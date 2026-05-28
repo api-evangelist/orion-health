@@ -1,0 +1,32 @@
+aid: orion-health
+name: Orion Health
+description: "Medical platform which allows the development of applications for different healthcare scenarios"
+url: https://developer.orionhealth.io/
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Health"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Health
+  - Public APIs
+apis:
+  - name: Orion Health
+    description: "Medical platform which allows the development of applications for different healthcare scenarios"
+    humanURL: https://developer.orionhealth.io/
+    baseURL: https://developer.orionhealth.io/
+    tags:
+      - Health
+    properties:
+      - type: Documentation
+        url: https://developer.orionhealth.io/
+common:
+  - type: Website
+    url: https://developer.orionhealth.io/
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
