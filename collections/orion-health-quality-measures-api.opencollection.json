@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Quality Measures API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quality Measures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List quality measures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/quality-measures",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Measure framework"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve healthcare quality measures being tracked, including HEDIS, CMS, and custom measures."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get quality measure results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/quality-measures/:measureId/results",
+            "params": [
+              {
+                "name": "measureId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve performance results for a specific quality measure, including numerator, denominator, and compliance rates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

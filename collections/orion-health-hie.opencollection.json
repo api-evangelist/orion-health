@@ -1,0 +1,579 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health HIE API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patient Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Match a patient across organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/hie/patients/match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform patient identity matching across the HIE network using demographics, identifiers, and probabilistic matching algorithms to find existing records in the Master Patient Index (MPI)."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get patient cross-reference identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/patients/:patientId/identifiers",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization"
+              }
+            ]
+          },
+          "docs": "Retrieve all known identifiers for a patient across participating organizations in the HIE network."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Locate patient records across organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/patients/:patientId/record-locator",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source organization"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document type"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query the HIE network to locate clinical records for a patient across participating organizations. Returns available document references without retrieving the full documents."
+        },
+        {
+          "info": {
+            "name": "Orion Health Search for clinical documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/documents",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sourceOrganization",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Document format"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Search for clinical documents in the HIE document registry by patient, organization, document type, and date range."
+        },
+        {
+          "info": {
+            "name": "Orion Health Submit a clinical document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/hie/documents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a clinical document to the HIE document repository for sharing with other participating organizations."
+        },
+        {
+          "info": {
+            "name": "Orion Health Retrieve a clinical document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Requested document format"
+              }
+            ]
+          },
+          "docs": "Retrieve the full content of a clinical document from the HIE document repository by its document ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Consent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for patient consents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/consent",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "purpose",
+                "value": "",
+                "type": "query",
+                "description": "Purpose of use"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Search for patient consent directives governing the sharing of health information within the HIE network."
+        },
+        {
+          "info": {
+            "name": "Orion Health Create a patient consent directive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/hie/consent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Record a new patient consent directive specifying permissions for sharing health information within the HIE network."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get a consent directive",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/consent/:consentId",
+            "params": [
+              {
+                "name": "consentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific patient consent directive."
+        },
+        {
+          "info": {
+            "name": "Orion Health Update a consent directive",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.orionhealth.com/hie/consent/:consentId",
+            "params": [
+              {
+                "name": "consentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing patient consent directive."
+        },
+        {
+          "info": {
+            "name": "Orion Health Revoke a consent directive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/hie/consent/:consentId/revoke",
+            "params": [
+              {
+                "name": "consentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a patient consent directive, preventing further data sharing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Provider Directory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search the provider directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/providers",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Provider or organization name"
+              },
+              {
+                "name": "npi",
+                "value": "",
+                "type": "query",
+                "description": "National Provider Identifier"
+              },
+              {
+                "name": "specialty",
+                "value": "",
+                "type": "query",
+                "description": "Provider specialty"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Provider type"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Search the HIE provider directory for healthcare providers and organizations participating in the exchange network."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get provider details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/providers/:providerId",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific provider in the HIE directory."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List ADT notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/notifications",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve admission, discharge, and transfer (ADT) notifications for subscribed patients and organizations."
+        },
+        {
+          "info": {
+            "name": "Orion Health List notification subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/notifications/subscriptions"
+          },
+          "docs": "Retrieve current ADT notification subscriptions."
+        },
+        {
+          "info": {
+            "name": "Orion Health Create a notification subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/hie/notifications/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe to ADT notifications for specific patients, organizations, or event types."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/hie/audit-logs",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "outcome",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Search audit logs for data access and exchange events within the HIE network for compliance and accountability purposes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

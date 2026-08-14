@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Consent API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Consent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for patient consents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/consent",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "purpose",
+                "value": "",
+                "type": "query",
+                "description": "Purpose of use"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Search for patient consent directives governing the sharing of health information within the HIE network."
+        },
+        {
+          "info": {
+            "name": "Orion Health Create a patient consent directive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/consent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Record a new patient consent directive specifying permissions for sharing health information within the HIE network."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get a consent directive",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/consent/:consentId",
+            "params": [
+              {
+                "name": "consentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific patient consent directive."
+        },
+        {
+          "info": {
+            "name": "Orion Health Update a consent directive",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.orionhealth.com/fhir/consent/:consentId",
+            "params": [
+              {
+                "name": "consentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing patient consent directive."
+        },
+        {
+          "info": {
+            "name": "Orion Health Revoke a consent directive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/consent/:consentId/revoke",
+            "params": [
+              {
+                "name": "consentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a patient consent directive, preventing further data sharing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

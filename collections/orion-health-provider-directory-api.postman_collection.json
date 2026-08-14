@@ -1,0 +1,500 @@
+{
+  "item": [
+    {
+      "id": "cb33a1b7-1861-4c4e-9d8a-b0b9e437da5b",
+      "name": "Provider Directory",
+      "description": {
+        "content": "Provider and organization directory lookups",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b2eb5ff-61fb-4fa9-9324-2905232c494d",
+          "name": "Orion Health Search the provider directory",
+          "request": {
+            "name": "Orion Health Search the provider directory",
+            "description": {
+              "content": "Search the HIE provider directory for healthcare providers and organizations participating in the exchange network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Provider or organization name"
+                },
+                {
+                  "disabled": false,
+                  "key": "npi",
+                  "value": "<string>",
+                  "description": "National Provider Identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty",
+                  "value": "<string>",
+                  "description": "Provider specialty"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Provider type"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb93a22c-d50b-48f0-8f75-455c2acac04a",
+              "name": "Provider search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "npi",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"individual\",\n      \"npi\": \"string\",\n      \"name\": \"string\",\n      \"specialty\": \"string\",\n      \"organization\": \"string\",\n      \"address\": {\n        \"line\": [\n          \"string\",\n          \"string\"\n        ],\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"phone\": \"string\",\n      \"fax\": \"string\",\n      \"email\": \"string\",\n      \"active\": false,\n      \"supportedTransactions\": [\n        \"xds-query\",\n        \"fhir\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"individual\",\n      \"npi\": \"string\",\n      \"name\": \"string\",\n      \"specialty\": \"string\",\n      \"organization\": \"string\",\n      \"address\": {\n        \"line\": [\n          \"string\",\n          \"string\"\n        ],\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"phone\": \"string\",\n      \"fax\": \"string\",\n      \"email\": \"string\",\n      \"active\": true,\n      \"supportedTransactions\": [\n        \"xds-query\",\n        \"direct-messaging\"\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 5139,\n    \"limit\": 8556,\n    \"total\": 670,\n    \"hasMore\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92f2a647-2bda-4ebf-a168-e6ad72e03a85",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "npi",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7da6baf4-b32e-4fe0-a75b-5cdc69b51277",
+          "name": "Orion Health Get provider details",
+          "request": {
+            "name": "Orion Health Get provider details",
+            "description": {
+              "content": "Retrieve details of a specific provider in the HIE directory.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "providers",
+                ":providerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "providerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7834e04f-f1bd-4a37-ae18-1f88fff7881c",
+              "name": "Provider details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    ":providerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "providerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"organization\",\n  \"npi\": \"string\",\n  \"name\": \"string\",\n  \"specialty\": \"string\",\n  \"organization\": \"string\",\n  \"address\": {\n    \"line\": [\n      \"string\",\n      \"string\"\n    ],\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\"\n  },\n  \"phone\": \"string\",\n  \"fax\": \"string\",\n  \"email\": \"string\",\n  \"active\": false,\n  \"supportedTransactions\": [\n    \"xds-retrieve\",\n    \"xds-query\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc1ae6e3-5cec-4eb4-bcfc-98999d6cd4da",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    ":providerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "providerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba16b6ee-c930-452b-95f6-17c52dae10a0",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "providers",
+                    ":providerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "providerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5d19021b-d0a8-4bdd-9b5e-d47c6ddf56e8",
+    "name": "Orion Health FHIR Alerts Provider Directory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

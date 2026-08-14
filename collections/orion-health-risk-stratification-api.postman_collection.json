@@ -1,0 +1,490 @@
+{
+  "item": [
+    {
+      "id": "54570107-29db-4cac-93f7-bec7594fc360",
+      "name": "Risk Stratification",
+      "description": {
+        "content": "Patient risk scoring and stratification",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "209d46b9-8323-4dae-9a18-00fb92667c39",
+          "name": "Orion Health List patient risk scores",
+          "request": {
+            "name": "Orion Health List patient risk scores",
+            "description": {
+              "content": "Retrieve risk stratification scores for patients, calculated using configurable risk models based on clinical data, claims, and social determinants.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk-stratification",
+                "scores"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patientId",
+                  "value": "<string>",
+                  "description": "Filter by patient identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Risk model used for scoring"
+                },
+                {
+                  "disabled": false,
+                  "key": "riskLevel",
+                  "value": "<string>",
+                  "description": "Filter by risk level"
+                },
+                {
+                  "disabled": false,
+                  "key": "calculatedAfter",
+                  "value": "<dateTime>",
+                  "description": "Only return scores calculated after this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27307876-5bf8-49fc-8b7f-112e73333bf1",
+              "name": "List of risk scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-stratification",
+                    "scores"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "riskLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "calculatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"edc339cf-03b2-045a-0d4b-eb5992af0116\",\n      \"patientId\": \"string\",\n      \"model\": \"string\",\n      \"score\": 1317.1627853356038,\n      \"riskLevel\": \"low\",\n      \"factors\": [\n        {\n          \"name\": \"string\",\n          \"category\": \"string\",\n          \"weight\": 8831.171857624424,\n          \"description\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"category\": \"string\",\n          \"weight\": 3866.477196196896,\n          \"description\": \"string\"\n        }\n      ],\n      \"calculatedAt\": \"1965-09-12T07:05:38.682Z\",\n      \"validUntil\": \"1967-11-16T10:30:49.720Z\"\n    },\n    {\n      \"id\": \"3087892d-02fc-356e-ae36-abdd25ed510a\",\n      \"patientId\": \"string\",\n      \"model\": \"string\",\n      \"score\": 5085.5485515203045,\n      \"riskLevel\": \"critical\",\n      \"factors\": [\n        {\n          \"name\": \"string\",\n          \"category\": \"string\",\n          \"weight\": 5395.286640161439,\n          \"description\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"category\": \"string\",\n          \"weight\": 466.14433565623006,\n          \"description\": \"string\"\n        }\n      ],\n      \"calculatedAt\": \"1994-03-12T15:32:15.235Z\",\n      \"validUntil\": \"2003-10-10T04:53:54.585Z\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 7623,\n    \"limit\": 414,\n    \"total\": 3499,\n    \"hasMore\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e93ba0c-35de-4758-957f-5b84d5d9ad7c",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-stratification",
+                    "scores"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "riskLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "calculatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "495ba405-47d4-4e93-9129-747e21b7be4e",
+          "name": "Orion Health Get risk score for a patient",
+          "request": {
+            "name": "Orion Health Get risk score for a patient",
+            "description": {
+              "content": "Retrieve the current risk stratification score and risk factors for a specific patient.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk-stratification",
+                "scores",
+                ":patientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Risk model to use"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df0bccba-abd8-4cf4-89c0-f10b0f5e4b29",
+              "name": "Patient risk score details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-stratification",
+                    "scores",
+                    ":patientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e3d726ca-0168-fca0-3f63-0aa19d52cd98\",\n  \"patientId\": \"string\",\n  \"model\": \"string\",\n  \"score\": 1908.4847804744154,\n  \"riskLevel\": \"low\",\n  \"factors\": [\n    {\n      \"name\": \"string\",\n      \"category\": \"string\",\n      \"weight\": 2656.334092429784,\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"category\": \"string\",\n      \"weight\": 342.8504840565405,\n      \"description\": \"string\"\n    }\n  ],\n  \"calculatedAt\": \"1996-11-19T15:27:01.433Z\",\n  \"validUntil\": \"1967-04-26T20:06:48.102Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9da26676-8bc8-4bdb-94f3-3f1bf1a9296e",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-stratification",
+                    "scores",
+                    ":patientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ac28942-4b7e-470c-b27c-187c56f6d4d0",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-stratification",
+                    "scores",
+                    ":patientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7ade4c44-4301-4e95-a168-f684a9070a69",
+    "name": "Orion Health FHIR Alerts Risk Stratification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

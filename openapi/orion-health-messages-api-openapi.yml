@@ -1,0 +1,359 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Messages API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Messages
+  description: Message search, inspection, and reprocessing
+paths:
+  /queues/{queueId}/messages:
+    get:
+      operationId: listQueueMessages
+      summary: Orion Health List messages in a queue
+      description: Retrieve messages currently held in a specific queue.
+      tags:
+      - Messages
+      parameters:
+      - name: queueId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - queued
+          - error
+          - held
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /messages/{messageId}:
+    get:
+      operationId: getMessage
+      summary: Orion Health Get message details
+      description: Retrieve the full content and metadata of a specific message, including its processing history.
+      tags:
+      - Messages
+      parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: includeBody
+        in: query
+        description: Include message body content
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: Message details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /messages/search:
+    get:
+      operationId: searchMessages
+      summary: Orion Health Search messages
+      description: Search for messages across all routes and queues using various criteria including message content, type, and date range.
+      tags:
+      - Messages
+      parameters:
+      - name: query
+        in: query
+        description: Full-text search query against message content
+        schema:
+          type: string
+      - name: messageType
+        in: query
+        description: HL7 message type (e.g., ADT^A01)
+        schema:
+          type: string
+      - name: routeId
+        in: query
+        schema:
+          type: integer
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - processed
+          - error
+          - held
+          - queued
+      - name: dateFrom
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: dateTo
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: patientId
+        in: query
+        description: Search by patient identifier in message content
+        schema:
+          type: string
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /messages/{messageId}/reprocess:
+    post:
+      operationId: reprocessMessage
+      summary: Orion Health Reprocess a message
+      description: Resubmit a held or errored message for reprocessing through its route.
+      tags:
+      - Messages
+      parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Message resubmitted for processing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageId:
+                    type: integer
+                  status:
+                    type: string
+                  reprocessedAt:
+                    type: string
+                    format: date-time
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Message cannot be reprocessed in current state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+        messageType:
+          type: string
+          description: HL7 message type (e.g., ADT^A01, ORM^O01)
+        status:
+          type: string
+          enum:
+          - processed
+          - error
+          - held
+          - queued
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        receivedAt:
+          type: string
+          format: date-time
+        processedAt:
+          type: string
+          format: date-time
+        size:
+          type: integer
+          description: Message size in bytes
+        errorMessage:
+          type: string
+    MessageDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        messageType:
+          type: string
+        status:
+          type: string
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        body:
+          type: string
+          description: Full message content
+        properties:
+          type: object
+          additionalProperties:
+            type: string
+          description: Message metadata properties
+        receivedAt:
+          type: string
+          format: date-time
+        processedAt:
+          type: string
+          format: date-time
+        processingTimeMs:
+          type: integer
+        size:
+          type: integer
+        errorMessage:
+          type: string
+        processingHistory:
+          type: array
+          items:
+            type: object
+            properties:
+              step:
+                type: string
+              componentName:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              status:
+                type: string
+              details:
+                type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

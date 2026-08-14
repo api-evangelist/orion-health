@@ -1,0 +1,371 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Care Programs API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Care Programs
+  description: Care program management and enrollment
+paths:
+  /care-programs:
+    get:
+      operationId: listCarePrograms
+      summary: Orion Health List care programs
+      description: Retrieve care programs configured for the organization, such as chronic disease management, wellness, and transition-of-care programs.
+      tags:
+      - Care Programs
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - draft
+      - name: type
+        in: query
+        description: Program type
+        schema:
+          type: string
+          enum:
+          - chronic-disease
+          - wellness
+          - transition-of-care
+          - behavioral-health
+          - maternity
+          - custom
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of care programs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CareProgram'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /care-programs/{programId}:
+    get:
+      operationId: getCareProgram
+      summary: Orion Health Get care program details
+      description: Retrieve details of a specific care program.
+      tags:
+      - Care Programs
+      parameters:
+      - name: programId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Care program details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CareProgram'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /care-programs/{programId}/enrollments:
+    get:
+      operationId: listProgramEnrollments
+      summary: Orion Health List program enrollments
+      description: Retrieve patient enrollments in a care program.
+      tags:
+      - Care Programs
+      parameters:
+      - name: programId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - enrolled
+          - active
+          - completed
+          - withdrawn
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of enrollments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Enrollment'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: enrollPatient
+      summary: Orion Health Enroll a patient in a care program
+      description: Enroll a patient in a specific care program.
+      tags:
+      - Care Programs
+      parameters:
+      - name: programId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentCreate'
+      responses:
+        '201':
+          description: Patient enrolled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Enrollment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Patient already enrolled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    CareProgram:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - chronic-disease
+          - wellness
+          - transition-of-care
+          - behavioral-health
+          - maternity
+          - custom
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - draft
+        enrollmentCount:
+          type: integer
+        eligibilityCriteria:
+          type: object
+          properties:
+            conditions:
+              type: array
+              items:
+                type: string
+            riskLevels:
+              type: array
+              items:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    EnrollmentCreate:
+      type: object
+      required:
+      - patientId
+      properties:
+        patientId:
+          type: string
+        assignedCareManager:
+          type: string
+        goals:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              targetDate:
+                type: string
+                format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    Enrollment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        programId:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        status:
+          type: string
+          enum:
+          - enrolled
+          - active
+          - completed
+          - withdrawn
+        enrolledAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        assignedCareManager:
+          type: string
+        goals:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              status:
+                type: string
+                enum:
+                - pending
+                - in-progress
+                - achieved
+                - not-achieved
+              targetDate:
+                type: string
+                format: date
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,1036 @@
+{
+  "info": {
+    "_postman_id": "0ceadb90-7f84-48a9-a26e-2ecf6d102fd0",
+    "name": "Orion Health FHIR Alerts Monitoring API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:24.000Z",
+    "updatedAt": "2026-07-28T02:29:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0ceadb90-7f84-48a9-a26e-2ecf6d102fd0"
+  },
+  "item": [
+    {
+      "name": "routes",
+      "item": [
+        {
+          "name": "{routeId}",
+          "item": [
+            {
+              "name": "statistics",
+              "item": [
+                {
+                  "name": "Orion Health Get route processing statistics",
+                  "id": "151bea3e-96ee-42f7-9f62-1b98810e557e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routes/:routeId/statistics?periodStart=<dateTime>&periodEnd=<dateTime>&interval=minute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routes",
+                        ":routeId",
+                        "statistics"
+                      ],
+                      "query": [
+                        {
+                          "key": "periodStart",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "periodEnd",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Statistics aggregation interval",
+                          "key": "interval",
+                          "value": "minute"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "87947d8a-e6af-45e1-b083-26c3b78cd9f8",
+                          "key": "routeId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve message processing statistics for a specific route including throughput, error rates, and processing times."
+                  },
+                  "response": [
+                    {
+                      "id": "9abea522-e728-4379-801e-d9f741363d85",
+                      "name": "Route statistics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/statistics?periodStart=<dateTime>&periodEnd=<dateTime>&interval=minute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "statistics"
+                          ],
+                          "query": [
+                            {
+                              "key": "periodStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Statistics aggregation interval",
+                              "key": "interval",
+                              "value": "minute"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"routeId\": \"<integer>\",\n  \"routeName\": \"<string>\",\n  \"period\": {\n    \"start\": \"<dateTime>\",\n    \"end\": \"<dateTime>\"\n  },\n  \"totalMessages\": \"<integer>\",\n  \"successfulMessages\": \"<integer>\",\n  \"errorMessages\": \"<integer>\",\n  \"averageProcessingTimeMs\": \"<number>\",\n  \"maxProcessingTimeMs\": \"<number>\",\n  \"messagesPerSecond\": \"<number>\",\n  \"timeline\": [\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"messagesProcessed\": \"<integer>\",\n      \"errors\": \"<integer>\",\n      \"avgProcessingTimeMs\": \"<number>\"\n    },\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"messagesProcessed\": \"<integer>\",\n      \"errors\": \"<integer>\",\n      \"avgProcessingTimeMs\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:24.000Z",
+                      "updatedAt": "2026-07-28T02:29:24.000Z",
+                      "uid": "35240-9abea522-e728-4379-801e-d9f741363d85"
+                    },
+                    {
+                      "id": "a3411f80-be1f-4202-b7bf-415fb58c5272",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/statistics?periodStart=<dateTime>&periodEnd=<dateTime>&interval=minute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "statistics"
+                          ],
+                          "query": [
+                            {
+                              "key": "periodStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Statistics aggregation interval",
+                              "key": "interval",
+                              "value": "minute"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:24.000Z",
+                      "updatedAt": "2026-07-28T02:29:24.000Z",
+                      "uid": "35240-a3411f80-be1f-4202-b7bf-415fb58c5272"
+                    },
+                    {
+                      "id": "f154b358-3f95-4ce0-9e39-797db864752c",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/statistics?periodStart=<dateTime>&periodEnd=<dateTime>&interval=minute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "statistics"
+                          ],
+                          "query": [
+                            {
+                              "key": "periodStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Statistics aggregation interval",
+                              "key": "interval",
+                              "value": "minute"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:24.000Z",
+                      "updatedAt": "2026-07-28T02:29:24.000Z",
+                      "uid": "35240-f154b358-3f95-4ce0-9e39-797db864752c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:24.000Z",
+                  "updatedAt": "2026-07-28T02:29:24.000Z",
+                  "uid": "35240-151bea3e-96ee-42f7-9f62-1b98810e557e"
+                }
+              ],
+              "id": "95504b02-42af-46ed-a9ab-48436d1a0ec6",
+              "createdAt": "2026-07-28T02:29:24.000Z",
+              "updatedAt": "2026-07-28T02:29:24.000Z",
+              "uid": "35240-95504b02-42af-46ed-a9ab-48436d1a0ec6"
+            }
+          ],
+          "id": "90617a38-c0d6-4130-a210-a0e0461d00d7",
+          "createdAt": "2026-07-28T02:29:24.000Z",
+          "updatedAt": "2026-07-28T02:29:24.000Z",
+          "uid": "35240-90617a38-c0d6-4130-a210-a0e0461d00d7"
+        }
+      ],
+      "id": "9cb0a66d-4d86-4f4d-bb8a-11a16395c2ea",
+      "createdAt": "2026-07-28T02:29:24.000Z",
+      "updatedAt": "2026-07-28T02:29:24.000Z",
+      "uid": "35240-9cb0a66d-4d86-4f4d-bb8a-11a16395c2ea"
+    },
+    {
+      "name": "monitoring",
+      "item": [
+        {
+          "name": "dashboard",
+          "item": [
+            {
+              "name": "Orion Health Get monitoring dashboard",
+              "id": "f503e3f9-2aad-4685-9d6c-766d52d991b3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitoring/dashboard",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitoring",
+                    "dashboard"
+                  ]
+                },
+                "description": "Retrieve an overview of the Rhapsody engine status including system health, active routes, queue depths, and error counts."
+              },
+              "response": [
+                {
+                  "id": "3881d1fc-585e-40c4-b9f4-ddd3b89c4e48",
+                  "name": "Dashboard data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitoring/dashboard",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitoring",
+                        "dashboard"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"engineStatus\": \"starting\",\n  \"uptime\": \"<string>\",\n  \"uptimeSeconds\": \"<integer>\",\n  \"routes\": {\n    \"total\": \"<integer>\",\n    \"started\": \"<integer>\",\n    \"stopped\": \"<integer>\",\n    \"error\": \"<integer>\"\n  },\n  \"communicationPoints\": {\n    \"total\": \"<integer>\",\n    \"started\": \"<integer>\",\n    \"stopped\": \"<integer>\",\n    \"error\": \"<integer>\"\n  },\n  \"queues\": {\n    \"totalDepth\": \"<integer>\",\n    \"totalErrors\": \"<integer>\",\n    \"totalHeld\": \"<integer>\"\n  },\n  \"messages\": {\n    \"processedToday\": \"<integer>\",\n    \"errorsToday\": \"<integer>\",\n    \"throughputPerSecond\": \"<number>\"\n  },\n  \"memory\": {\n    \"usedMb\": \"<number>\",\n    \"maxMb\": \"<number>\",\n    \"percentUsed\": \"<number>\"\n  },\n  \"disk\": {\n    \"usedGb\": \"<number>\",\n    \"totalGb\": \"<number>\",\n    \"percentUsed\": \"<number>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:29:24.000Z",
+                  "updatedAt": "2026-07-28T02:29:24.000Z",
+                  "uid": "35240-3881d1fc-585e-40c4-b9f4-ddd3b89c4e48"
+                },
+                {
+                  "id": "545b09a9-2297-4f8b-872d-d1335e6da727",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitoring/dashboard",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitoring",
+                        "dashboard"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:24.000Z",
+                  "updatedAt": "2026-07-28T02:29:24.000Z",
+                  "uid": "35240-545b09a9-2297-4f8b-872d-d1335e6da727"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:24.000Z",
+              "updatedAt": "2026-07-28T02:29:24.000Z",
+              "uid": "35240-f503e3f9-2aad-4685-9d6c-766d52d991b3"
+            }
+          ],
+          "id": "d3b97b4b-b014-43da-9361-5011ca5b35d4",
+          "createdAt": "2026-07-28T02:29:24.000Z",
+          "updatedAt": "2026-07-28T02:29:24.000Z",
+          "uid": "35240-d3b97b4b-b014-43da-9361-5011ca5b35d4"
+        },
+        {
+          "name": "health",
+          "item": [
+            {
+              "name": "Orion Health Get system health status",
+              "id": "33f57413-9e6c-40a3-9d3e-25e3e6c440e4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitoring/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitoring",
+                    "health"
+                  ]
+                },
+                "description": "Retrieve the overall health status of the Rhapsody engine including component-level health checks."
+              },
+              "response": [
+                {
+                  "id": "9433880f-d2d0-4d05-9d63-ab79b975ca2b",
+                  "name": "System is healthy",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitoring/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitoring",
+                        "health"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"healthy\",\n  \"timestamp\": \"<dateTime>\",\n  \"components\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"degraded\",\n      \"message\": \"<string>\",\n      \"lastChecked\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"degraded\",\n      \"message\": \"<string>\",\n      \"lastChecked\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:24.000Z",
+                  "updatedAt": "2026-07-28T02:29:24.000Z",
+                  "uid": "35240-9433880f-d2d0-4d05-9d63-ab79b975ca2b"
+                },
+                {
+                  "id": "a336acd3-35f3-4ce6-a338-205068141348",
+                  "name": "System is unhealthy",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitoring/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitoring",
+                        "health"
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"healthy\",\n  \"timestamp\": \"<dateTime>\",\n  \"components\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"degraded\",\n      \"message\": \"<string>\",\n      \"lastChecked\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"degraded\",\n      \"message\": \"<string>\",\n      \"lastChecked\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:24.000Z",
+                  "updatedAt": "2026-07-28T02:29:24.000Z",
+                  "uid": "35240-a336acd3-35f3-4ce6-a338-205068141348"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:24.000Z",
+              "updatedAt": "2026-07-28T02:29:24.000Z",
+              "uid": "35240-33f57413-9e6c-40a3-9d3e-25e3e6c440e4"
+            }
+          ],
+          "id": "99dec6a8-8b9e-4e17-944f-b5ea8bf37dca",
+          "createdAt": "2026-07-28T02:29:24.000Z",
+          "updatedAt": "2026-07-28T02:29:24.000Z",
+          "uid": "35240-99dec6a8-8b9e-4e17-944f-b5ea8bf37dca"
+        },
+        {
+          "name": "alerts",
+          "item": [
+            {
+              "name": "{alertId}",
+              "item": [
+                {
+                  "name": "acknowledge",
+                  "item": [
+                    {
+                      "name": "Orion Health Acknowledge a monitoring alert",
+                      "id": "dfc0d1b8-9023-477e-983f-5a7b9b6dc595",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/monitoring/alerts/:alertId/acknowledge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "monitoring",
+                            "alerts",
+                            ":alertId",
+                            "acknowledge"
+                          ],
+                          "variable": [
+                            {
+                              "id": "88675da6-9129-41c6-85c0-7aebba16b744",
+                              "key": "alertId",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Acknowledge a monitoring alert to indicate it has been reviewed."
+                      },
+                      "response": [
+                        {
+                          "id": "017da7f5-d1bd-4d62-af32-0e7a492cab90",
+                          "name": "Alert acknowledged",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/monitoring/alerts/:alertId/acknowledge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "monitoring",
+                                "alerts",
+                                ":alertId",
+                                "acknowledge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "alertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"severity\": \"error\",\n  \"source\": \"<string>\",\n  \"title\": \"<string>\",\n  \"message\": \"<string>\",\n  \"acknowledged\": \"<boolean>\",\n  \"acknowledgedBy\": \"<string>\",\n  \"acknowledgedAt\": \"<dateTime>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:29:24.000Z",
+                          "updatedAt": "2026-07-28T02:29:24.000Z",
+                          "uid": "35240-017da7f5-d1bd-4d62-af32-0e7a492cab90"
+                        },
+                        {
+                          "id": "66ece105-7c3f-49be-824f-b5d7e76feff3",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/monitoring/alerts/:alertId/acknowledge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "monitoring",
+                                "alerts",
+                                ":alertId",
+                                "acknowledge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "alertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:29:24.000Z",
+                          "updatedAt": "2026-07-28T02:29:24.000Z",
+                          "uid": "35240-66ece105-7c3f-49be-824f-b5d7e76feff3"
+                        },
+                        {
+                          "id": "1770c85b-77cf-44c8-80a3-dcf1868551fa",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/monitoring/alerts/:alertId/acknowledge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "monitoring",
+                                "alerts",
+                                ":alertId",
+                                "acknowledge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "alertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:29:24.000Z",
+                          "updatedAt": "2026-07-28T02:29:24.000Z",
+                          "uid": "35240-1770c85b-77cf-44c8-80a3-dcf1868551fa"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:29:24.000Z",
+                      "updatedAt": "2026-07-28T02:29:24.000Z",
+                      "uid": "35240-dfc0d1b8-9023-477e-983f-5a7b9b6dc595"
+                    }
+                  ],
+                  "id": "1628033c-b7f5-45ee-a4fb-ba62eb379c56",
+                  "createdAt": "2026-07-28T02:29:24.000Z",
+                  "updatedAt": "2026-07-28T02:29:24.000Z",
+                  "uid": "35240-1628033c-b7f5-45ee-a4fb-ba62eb379c56"
+                }
+              ],
+              "id": "a2465d5c-071d-4285-99ed-9b02f85b1580",
+              "createdAt": "2026-07-28T02:29:24.000Z",
+              "updatedAt": "2026-07-28T02:29:24.000Z",
+              "uid": "35240-a2465d5c-071d-4285-99ed-9b02f85b1580"
+            },
+            {
+              "name": "Orion Health List monitoring alerts",
+              "id": "e989ff68-2796-4e2d-9319-b6d2b9c5c88f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitoring/alerts?severity=info&acknowledged=<boolean>&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitoring",
+                    "alerts"
+                  ],
+                  "query": [
+                    {
+                      "key": "severity",
+                      "value": "info"
+                    },
+                    {
+                      "key": "acknowledged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                },
+                "description": "Retrieve active monitoring alerts for the Rhapsody engine."
+              },
+              "response": [
+                {
+                  "id": "8c49cd2b-e2e9-4ee8-a954-42eca338a941",
+                  "name": "List of alerts",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitoring/alerts?severity=info&acknowledged=<boolean>&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitoring",
+                        "alerts"
+                      ],
+                      "query": [
+                        {
+                          "key": "severity",
+                          "value": "info"
+                        },
+                        {
+                          "key": "acknowledged",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"severity\": \"info\",\n      \"source\": \"<string>\",\n      \"title\": \"<string>\",\n      \"message\": \"<string>\",\n      \"acknowledged\": \"<boolean>\",\n      \"acknowledgedBy\": \"<string>\",\n      \"acknowledgedAt\": \"<dateTime>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"severity\": \"error\",\n      \"source\": \"<string>\",\n      \"title\": \"<string>\",\n      \"message\": \"<string>\",\n      \"acknowledged\": \"<boolean>\",\n      \"acknowledgedBy\": \"<string>\",\n      \"acknowledgedAt\": \"<dateTime>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:29:24.000Z",
+                  "updatedAt": "2026-07-28T02:29:24.000Z",
+                  "uid": "35240-8c49cd2b-e2e9-4ee8-a954-42eca338a941"
+                },
+                {
+                  "id": "5b820421-35c1-417e-8827-4aea35db7806",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitoring/alerts?severity=info&acknowledged=<boolean>&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitoring",
+                        "alerts"
+                      ],
+                      "query": [
+                        {
+                          "key": "severity",
+                          "value": "info"
+                        },
+                        {
+                          "key": "acknowledged",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:24.000Z",
+                  "updatedAt": "2026-07-28T02:29:24.000Z",
+                  "uid": "35240-5b820421-35c1-417e-8827-4aea35db7806"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:24.000Z",
+              "updatedAt": "2026-07-28T02:29:24.000Z",
+              "uid": "35240-e989ff68-2796-4e2d-9319-b6d2b9c5c88f"
+            }
+          ],
+          "id": "5a202c9e-430f-4f79-a2bf-b76de5dde0f0",
+          "createdAt": "2026-07-28T02:29:24.000Z",
+          "updatedAt": "2026-07-28T02:29:24.000Z",
+          "uid": "35240-5a202c9e-430f-4f79-a2bf-b76de5dde0f0"
+        }
+      ],
+      "id": "868383e8-f981-4843-8eef-0b9341d344e4",
+      "createdAt": "2026-07-28T02:29:24.000Z",
+      "updatedAt": "2026-07-28T02:29:24.000Z",
+      "uid": "35240-868383e8-f981-4843-8eef-0b9341d344e4"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

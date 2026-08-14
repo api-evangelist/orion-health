@@ -1,0 +1,380 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Consent API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Consent
+  description: Patient consent management for data sharing
+paths:
+  /consent:
+    get:
+      operationId: searchConsents
+      summary: Orion Health Search for patient consents
+      description: Search for patient consent directives governing the sharing of health information within the HIE network.
+      tags:
+      - Consent
+      parameters:
+      - name: patientId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - revoked
+          - expired
+      - name: purpose
+        in: query
+        description: Purpose of use
+        schema:
+          type: string
+          enum:
+          - treatment
+          - payment
+          - operations
+          - research
+          - public-health
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of consent directives
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Consent'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createConsent
+      summary: Orion Health Create a patient consent directive
+      description: Record a new patient consent directive specifying permissions for sharing health information within the HIE network.
+      tags:
+      - Consent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentCreate'
+      responses:
+        '201':
+          description: Consent directive created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /consent/{consentId}:
+    get:
+      operationId: getConsent
+      summary: Orion Health Get a consent directive
+      description: Retrieve a specific patient consent directive.
+      tags:
+      - Consent
+      parameters:
+      - name: consentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Consent directive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateConsent
+      summary: Orion Health Update a consent directive
+      description: Update an existing patient consent directive.
+      tags:
+      - Consent
+      parameters:
+      - name: consentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentCreate'
+      responses:
+        '200':
+          description: Consent directive updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /consent/{consentId}/revoke:
+    post:
+      operationId: revokeConsent
+      summary: Orion Health Revoke a consent directive
+      description: Revoke a patient consent directive, preventing further data sharing.
+      tags:
+      - Consent
+      parameters:
+      - name: consentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Reason for revocation
+                effectiveDate:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Consent revoked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    ConsentCreate:
+      type: object
+      required:
+      - patientId
+      - scope
+      - purposes
+      properties:
+        patientId:
+          type: string
+        scope:
+          type: string
+          enum:
+          - opt-in
+          - opt-out
+        purposes:
+          type: array
+          items:
+            type: string
+            enum:
+            - treatment
+            - payment
+            - operations
+            - research
+            - public-health
+        grantedOrganizations:
+          type: array
+          items:
+            type: string
+        deniedOrganizations:
+          type: array
+          items:
+            type: string
+        documentTypes:
+          type: array
+          items:
+            type: string
+        effectiveDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+    Consent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - revoked
+          - expired
+        scope:
+          type: string
+          enum:
+          - opt-in
+          - opt-out
+        purposes:
+          type: array
+          items:
+            type: string
+            enum:
+            - treatment
+            - payment
+            - operations
+            - research
+            - public-health
+        grantedOrganizations:
+          type: array
+          items:
+            type: string
+          description: Organizations allowed to access data (opt-in)
+        deniedOrganizations:
+          type: array
+          items:
+            type: string
+          description: Organizations denied access (opt-out)
+        documentTypes:
+          type: array
+          items:
+            type: string
+          description: Document types covered by consent
+        effectiveDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

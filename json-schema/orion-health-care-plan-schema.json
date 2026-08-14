@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.orionhealth.com/population-health/care-plan.json",
+  "title": "Orion Health Population Health Care Plan",
+  "description": "Represents a care plan within the Orion Health Population Health Management platform, defining care goals, activities, and interventions for a patient enrolled in a care program.",
+  "type": "object",
+  "required": ["patientId", "programId", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique care plan identifier"
+    },
+    "patientId": {
+      "type": "string",
+      "description": "Patient identifier"
+    },
+    "programId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated care program identifier"
+    },
+    "programName": {
+      "type": "string",
+      "description": "Name of the associated care program"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "on-hold", "completed", "revoked"],
+      "description": "Current status of the care plan"
+    },
+    "intent": {
+      "type": "string",
+      "enum": ["proposal", "plan", "order"],
+      "description": "Level of authority for the care plan"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title for the care plan"
+    },
+    "description": {
+      "type": "string",
+      "description": "Summary of the care plan"
+    },
+    "period": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date",
+          "description": "Care plan start date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date",
+          "description": "Care plan end date"
+        }
+      },
+      "required": ["start"]
+    },
+    "careTeam": {
+      "type": "array",
+      "description": "Members of the care team responsible for this plan",
+      "items": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["primary-care-physician", "care-manager", "specialist", "nurse", "social-worker", "pharmacist", "dietitian", "behavioral-health"]
+          },
+          "organization": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "required": ["memberId", "name", "role"]
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "description": "Conditions addressed by this care plan",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "ICD-10 or SNOMED code"
+          },
+          "codeSystem": {
+            "type": "string",
+            "enum": ["icd-10", "snomed"]
+          },
+          "display": {
+            "type": "string"
+          },
+          "clinicalStatus": {
+            "type": "string",
+            "enum": ["active", "recurrence", "relapse", "inactive", "remission", "resolved"]
+          }
+        },
+        "required": ["code", "display"]
+      }
+    },
+    "goals": {
+      "type": "array",
+      "description": "Care plan goals",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["proposed", "planned", "accepted", "active", "on-hold", "completed", "cancelled", "entered-in-error", "rejected"]
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          },
+          "targetDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "targetValue": {
+            "type": "object",
+            "properties": {
+              "measure": {
+                "type": "string",
+                "description": "What is being measured (e.g., HbA1c, BMI, Blood Pressure)"
+              },
+              "targetValue": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "currentValue": {
+                "type": "number"
+              },
+              "currentValueDate": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          },
+          "achievedDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "authorName": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        },
+        "required": ["description", "status"]
+      }
+    },
+    "activities": {
+      "type": "array",
+      "description": "Planned care activities and interventions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["medication", "procedure", "encounter", "observation", "education", "referral", "self-management", "assessment"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["not-started", "scheduled", "in-progress", "on-hold", "completed", "cancelled"]
+          },
+          "frequency": {
+            "type": "string",
+            "description": "How often the activity should occur (e.g., daily, weekly, monthly)"
+          },
+          "scheduledDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "completedDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "assignedTo": {
+            "type": "string",
+            "description": "Care team member responsible"
+          },
+          "relatedGoalId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Goal this activity contributes to"
+          }
+        },
+        "required": ["category", "description", "status"]
+      }
+    },
+    "riskAssessment": {
+      "type": "object",
+      "description": "Current risk assessment for the patient",
+      "properties": {
+        "riskLevel": {
+          "type": "string",
+          "enum": ["low", "moderate", "high", "critical"]
+        },
+        "riskScore": {
+          "type": "number"
+        },
+        "model": {
+          "type": "string"
+        },
+        "assessedDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string"
+    }
+  }
+}

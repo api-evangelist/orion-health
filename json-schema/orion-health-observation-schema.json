@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.orionhealth.com/fhir/observation.json",
+  "title": "Orion Health FHIR Observation",
+  "description": "A FHIR R4 Observation resource as represented in the Orion Health platform. Captures measurements, test results, vital signs, and other clinical findings including laboratory results, imaging observations, and patient-reported data.",
+  "type": "object",
+  "required": ["resourceType", "status", "code"],
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "const": "Observation",
+      "description": "FHIR resource type identifier"
+    },
+    "id": {
+      "type": "string",
+      "description": "Logical ID of the observation resource"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "versionId": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "profile": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "identifier": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "format": "uri"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["registered", "preliminary", "final", "amended", "corrected", "cancelled", "entered-in-error", "unknown"],
+      "description": "Status of the observation"
+    },
+    "category": {
+      "type": "array",
+      "description": "Classification of the observation (e.g., vital-signs, laboratory)",
+      "items": {
+        "$ref": "#/$defs/CodeableConcept"
+      }
+    },
+    "code": {
+      "$ref": "#/$defs/CodeableConcept",
+      "description": "Type of observation (LOINC code)"
+    },
+    "subject": {
+      "$ref": "#/$defs/Reference",
+      "description": "Patient the observation is about"
+    },
+    "encounter": {
+      "$ref": "#/$defs/Reference",
+      "description": "Healthcare event during which observation was made"
+    },
+    "effectiveDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Clinically relevant time for the observation"
+    },
+    "effectivePeriod": {
+      "$ref": "#/$defs/Period",
+      "description": "Clinically relevant time period"
+    },
+    "issued": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date/time the result was made available"
+    },
+    "performer": {
+      "type": "array",
+      "description": "Who performed the observation",
+      "items": {
+        "$ref": "#/$defs/Reference"
+      }
+    },
+    "valueQuantity": {
+      "$ref": "#/$defs/Quantity",
+      "description": "Numeric result with units"
+    },
+    "valueCodeableConcept": {
+      "$ref": "#/$defs/CodeableConcept",
+      "description": "Coded result value"
+    },
+    "valueString": {
+      "type": "string",
+      "description": "String result value"
+    },
+    "valueBoolean": {
+      "type": "boolean",
+      "description": "Boolean result value"
+    },
+    "valueInteger": {
+      "type": "integer",
+      "description": "Integer result value"
+    },
+    "valueDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date/time result value"
+    },
+    "dataAbsentReason": {
+      "$ref": "#/$defs/CodeableConcept",
+      "description": "Why the result is missing"
+    },
+    "interpretation": {
+      "type": "array",
+      "description": "High, low, normal interpretation",
+      "items": {
+        "$ref": "#/$defs/CodeableConcept"
+      }
+    },
+    "note": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "authorReference": {
+            "$ref": "#/$defs/Reference"
+          }
+        },
+        "required": ["text"]
+      }
+    },
+    "bodySite": {
+      "$ref": "#/$defs/CodeableConcept",
+      "description": "Body site of the observation"
+    },
+    "method": {
+      "$ref": "#/$defs/CodeableConcept",
+      "description": "How the observation was performed"
+    },
+    "specimen": {
+      "$ref": "#/$defs/Reference",
+      "description": "Specimen used for the observation"
+    },
+    "device": {
+      "$ref": "#/$defs/Reference",
+      "description": "Device used to generate the observation"
+    },
+    "referenceRange": {
+      "type": "array",
+      "description": "Reference range for interpretation",
+      "items": {
+        "type": "object",
+        "properties": {
+          "low": {
+            "$ref": "#/$defs/Quantity"
+          },
+          "high": {
+            "$ref": "#/$defs/Quantity"
+          },
+          "type": {
+            "$ref": "#/$defs/CodeableConcept"
+          },
+          "appliesTo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/CodeableConcept"
+            }
+          },
+          "age": {
+            "type": "object",
+            "properties": {
+              "low": {
+                "$ref": "#/$defs/Quantity"
+              },
+              "high": {
+                "$ref": "#/$defs/Quantity"
+              }
+            }
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "component": {
+      "type": "array",
+      "description": "Component observations (e.g., systolic/diastolic for blood pressure)",
+      "items": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "code": {
+            "$ref": "#/$defs/CodeableConcept"
+          },
+          "valueQuantity": {
+            "$ref": "#/$defs/Quantity"
+          },
+          "valueCodeableConcept": {
+            "$ref": "#/$defs/CodeableConcept"
+          },
+          "valueString": {
+            "type": "string"
+          },
+          "interpretation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/CodeableConcept"
+            }
+          },
+          "referenceRange": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "low": {
+                  "$ref": "#/$defs/Quantity"
+                },
+                "high": {
+                  "$ref": "#/$defs/Quantity"
+                },
+                "text": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "CodeableConcept": {
+      "type": "object",
+      "properties": {
+        "coding": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Coding"
+          }
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "Coding": {
+      "type": "object",
+      "properties": {
+        "system": {
+          "type": "string",
+          "format": "uri"
+        },
+        "code": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        }
+      }
+    },
+    "Quantity": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "comparator": {
+          "type": "string",
+          "enum": ["<", "<=", ">=", ">"]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "system": {
+          "type": "string",
+          "format": "uri"
+        },
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "Period": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

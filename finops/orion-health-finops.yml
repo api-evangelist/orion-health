@@ -1,0 +1,125 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Orion Health
+providerId: orion
+publisherName: Orion Health Limited
+serviceCategory: Healthcare Interoperability
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Healthcare
+  - FHIR
+  - HIE
+  - Interoperability
+  - FinOps
+  - FOCUS
+description: >-
+  FOCUS-aligned FinOps view for Orion Health: negotiated enterprise license
+  scoped by population size and product bundle (Amadeus DCR, Virtuoso DFD,
+  Orchestral HIP, Communicate, Rhapsody), plus the underlying infrastructure
+  cost when self-hosted (on-premises hardware or customer cloud compute,
+  storage, and egress). API access is bundled with the license.
+sources:
+  - https://www.orionhealth.com/
+  - https://www.orionhealth.com/global/products/
+notes: >-
+  No public per-API meter exists. FinOps observation focuses on the
+  contractual population / product-bundle terms plus the underlying
+  self-hosted infrastructure cost where applicable.
+billingModel:
+  pricingCategory: Enterprise Subscription (Population-Scoped)
+  billingFrequency: Annual
+  billingCurrency: USD/NZD/AUD/GBP/EUR
+  chargeCategories:
+    - Purchase
+    - Usage
+    - Tax
+    - Adjustment
+    - Credit
+focusColumns:
+  ServiceName: Orion Health
+  ServiceCategory: Healthcare Interoperability
+  ProviderName: Orion Health
+  PublisherName: Orion Health Limited
+  InvoiceIssuerName: Orion Health Limited
+  BillingCurrency: USD
+  PricingCategory: Subscription
+  ChargeCategory: Purchase
+meters:
+  - name: orion_population_subscription
+    description: Contracted population coverage (lives) under the Orion Health agreement
+    unit: lives
+    aggregation: max
+    dimensions:
+      - product
+      - region
+  - name: orion_product_bundle
+    description: Active Orion Health products under the agreement
+    unit: bundle
+    aggregation: max
+    dimensions:
+      - product
+  - name: hosting_compute
+    description: Underlying infrastructure compute cost when Orion Health is self-hosted
+    unit: hour
+    aggregation: sum
+    dimensions:
+      - environment
+      - region
+  - name: hosting_storage
+    description: Underlying infrastructure storage cost when Orion Health is self-hosted
+    unit: GB-month
+    aggregation: sum
+    dimensions:
+      - environment
+      - region
+principles:
+  - name: Visibility
+    description: >-
+      Track contracted population size, product bundle, and deployment
+      model in a contract-management ledger; for self-hosted deployments
+      track the underlying infrastructure cost in the hosting cloud's
+      cost-management tooling.
+  - name: Allocation
+    description: >-
+      Allocate Orion Health subscription cost across the participating
+      health systems, payers, or government health authorities by
+      contributing population.
+  - name: Optimization
+    description: >-
+      Right-size the deployment (Rhapsody engine count, FHIR repository
+      sizing) to actual message and population volume; consolidate
+      participating organizations onto a shared HIE deployment where
+      governance permits to reduce per-organization overhead.
+  - name: Accountability
+    description: >-
+      Pair the Orion Health platform owner with a healthcare-finance
+      partner; review contracted population coverage and deployment
+      capacity at each renewal and at participating-organization onboarding.
+apis:
+  - name: Orion Health FHIR API
+    serviceName: Orion Health FHIR API
+    serviceCategory: Healthcare Interoperability
+  - name: Orion Health Population Health API
+    serviceName: Orion Health Population Health API
+    serviceCategory: Healthcare Interoperability
+  - name: Orion Health HIE API
+    serviceName: Orion Health HIE API
+    serviceCategory: Healthcare Interoperability
+  - name: Orion Health Rhapsody Integration API
+    serviceName: Orion Health Rhapsody Integration API
+    serviceCategory: Healthcare Interoperability
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

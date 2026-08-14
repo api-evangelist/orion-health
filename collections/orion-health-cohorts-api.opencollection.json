@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Cohorts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cohorts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List patient cohorts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/cohorts",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve defined patient cohorts used for population analytics and targeted interventions."
+        },
+        {
+          "info": {
+            "name": "Orion Health Create a patient cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/cohorts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Define a new patient cohort based on clinical criteria, demographics, diagnoses, or other population characteristics."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get cohort details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific patient cohort including membership criteria."
+        },
+        {
+          "info": {
+            "name": "Orion Health Update a cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.orionhealth.com/fhir/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the definition or criteria of an existing patient cohort."
+        },
+        {
+          "info": {
+            "name": "Orion Health Delete a cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.orionhealth.com/fhir/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a patient cohort definition."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get cohort analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/cohorts/:cohortId/analytics",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metrics to include"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve analytics and aggregate statistics for a patient cohort including demographics, utilization, and outcome metrics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

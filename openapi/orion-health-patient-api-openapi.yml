@@ -1,0 +1,561 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Patient API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Patient
+  description: Operations on Patient resources
+paths:
+  /Patient:
+    get:
+      operationId: searchPatients
+      summary: Orion Health Search for patients
+      description: Search for Patient resources using standard FHIR search parameters including name, identifier, birthdate, gender, and address.
+      tags:
+      - Patient
+      parameters:
+      - $ref: '#/components/parameters/FhirFormat'
+      - $ref: '#/components/parameters/FhirCount'
+      - $ref: '#/components/parameters/FhirOffset'
+      - name: _id
+        in: query
+        description: Logical ID of the patient resource
+        schema:
+          type: string
+      - name: identifier
+        in: query
+        description: Patient identifier (e.g., MRN, SSN) in format system|value
+        schema:
+          type: string
+      - name: family
+        in: query
+        description: Family (last) name of the patient
+        schema:
+          type: string
+      - name: given
+        in: query
+        description: Given (first) name of the patient
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: Any part of the patient name
+        schema:
+          type: string
+      - name: birthdate
+        in: query
+        description: Patient date of birth (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: gender
+        in: query
+        description: Patient gender
+        schema:
+          type: string
+          enum:
+          - male
+          - female
+          - other
+          - unknown
+      - name: address
+        in: query
+        description: Any part of the patient address
+        schema:
+          type: string
+      - name: telecom
+        in: query
+        description: Patient phone number or email
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Bundle of matching Patient resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPatient
+      summary: Orion Health Create a new patient
+      description: Create a new Patient resource on the server.
+      tags:
+      - Patient
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '201':
+          description: Patient resource created successfully
+          headers:
+            Location:
+              description: URL of the newly created resource
+              schema:
+                type: string
+            ETag:
+              description: Version ID of the resource
+              schema:
+                type: string
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /Patient/{id}:
+    get:
+      operationId: getPatient
+      summary: Orion Health Read a patient by ID
+      description: Retrieve a specific Patient resource by its logical ID.
+      tags:
+      - Patient
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: Patient resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updatePatient
+      summary: Orion Health Update a patient
+      description: Update an existing Patient resource by its logical ID.
+      tags:
+      - Patient
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          description: Patient resource updated
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /Patient/{id}/_history:
+    get:
+      operationId: getPatientHistory
+      summary: Orion Health Get patient version history
+      description: Retrieve the version history of a specific Patient resource.
+      tags:
+      - Patient
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/FhirCount'
+      responses:
+        '200':
+          description: Bundle containing historical versions
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Patient:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Patient
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+        identifier:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        active:
+          type: boolean
+        name:
+          type: array
+          items:
+            $ref: '#/components/schemas/HumanName'
+        telecom:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactPoint'
+        gender:
+          type: string
+          enum:
+          - male
+          - female
+          - other
+          - unknown
+        birthDate:
+          type: string
+          format: date
+        deceasedBoolean:
+          type: boolean
+        address:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        maritalStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        communication:
+          type: array
+          items:
+            type: object
+            properties:
+              language:
+                $ref: '#/components/schemas/CodeableConcept'
+              preferred:
+                type: boolean
+    Coding:
+      type: object
+      properties:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
+    Address:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+          - home
+          - work
+          - temp
+          - old
+          - billing
+        type:
+          type: string
+          enum:
+          - postal
+          - physical
+          - both
+        line:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    Identifier:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+          - usual
+          - official
+          - temp
+          - secondary
+          - old
+        system:
+          type: string
+          format: uri
+        value:
+          type: string
+    ContactPoint:
+      type: object
+      properties:
+        system:
+          type: string
+          enum:
+          - phone
+          - fax
+          - email
+          - pager
+          - url
+          - sms
+          - other
+        value:
+          type: string
+        use:
+          type: string
+          enum:
+          - home
+          - work
+          - temp
+          - old
+          - mobile
+    Bundle:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Bundle
+        type:
+          type: string
+          enum:
+          - searchset
+          - batch-response
+          - history
+        total:
+          type: integer
+          description: Total number of matching results
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                enum:
+                - self
+                - next
+                - previous
+                - first
+                - last
+              url:
+                type: string
+                format: uri
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                format: uri
+              resource:
+                $ref: '#/components/schemas/Resource'
+              search:
+                type: object
+                properties:
+                  mode:
+                    type: string
+                    enum:
+                    - match
+                    - include
+                    - outcome
+    HumanName:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+          - usual
+          - official
+          - temp
+          - nickname
+          - anonymous
+          - old
+          - maiden
+        family:
+          type: string
+        given:
+          type: array
+          items:
+            type: string
+        prefix:
+          type: array
+          items:
+            type: string
+        suffix:
+          type: array
+          items:
+            type: string
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
+    OperationOutcome:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+  parameters:
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    NotFound:
+      description: Resource not found
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    UnprocessableEntity:
+      description: Resource failed validation
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    Conflict:
+      description: Version conflict during update
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

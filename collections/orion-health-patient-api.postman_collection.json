@@ -1,0 +1,1566 @@
+{
+  "item": [
+    {
+      "id": "15a8d5f9-e63a-4ba2-bc21-16837831b965",
+      "name": "Patient",
+      "description": {
+        "content": "Operations on Patient resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5780b69-96ee-4abf-a5f4-a762b54c2b5a",
+          "name": "Orion Health Search for patients",
+          "request": {
+            "name": "Orion Health Search for patients",
+            "description": {
+              "content": "Search for Patient resources using standard FHIR search parameters including name, identifier, birthdate, gender, and address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Patient"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "20",
+                  "description": "Maximum number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "Starting offset for paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "_id",
+                  "value": "<string>",
+                  "description": "Logical ID of the patient resource"
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier",
+                  "value": "<string>",
+                  "description": "Patient identifier (e.g., MRN, SSN) in format system|value"
+                },
+                {
+                  "disabled": false,
+                  "key": "family",
+                  "value": "<string>",
+                  "description": "Family (last) name of the patient"
+                },
+                {
+                  "disabled": false,
+                  "key": "given",
+                  "value": "<string>",
+                  "description": "Given (first) name of the patient"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Any part of the patient name"
+                },
+                {
+                  "disabled": false,
+                  "key": "birthdate",
+                  "value": "<date>",
+                  "description": "Patient date of birth (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "gender",
+                  "value": "<string>",
+                  "description": "Patient gender"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "Any part of the patient address"
+                },
+                {
+                  "disabled": false,
+                  "key": "telecom",
+                  "value": "<string>",
+                  "description": "Patient phone number or email"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0d7e844-aa56-4d89-bee6-2cf278850644",
+              "name": "Bundle of matching Patient resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "family",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "given",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "birthdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "gender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "telecom",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"type\": \"history\",\n  \"total\": 399,\n  \"link\": [\n    {\n      \"relation\": \"last\",\n      \"url\": \"https://rbokEFVLPhKmUZ.kso3qi.81Q9xnGFBA\"\n    },\n    {\n      \"relation\": \"previous\",\n      \"url\": \"http://VitpssoGpTREJeG.hecbogHIV6G9-,SK0S5JA\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"https://SMFqJrXUOfteUqRXslyEiBbeHWFsTK.clX0+dhA+ezn8RKQgaz+P32XC3odp1ehxjt0MeFMpYP4SFS-r8WWsFXixKdu+bPy04VSLZVkk.q+,eLpA\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1987-11-23T14:39:11.980Z\",\n          \"profile\": [\n            \"http://rDmcqDtSTqOijsqUWkpxjwaNp.evfU1tBKD\",\n            \"https://nSjIOX.etcRRk5oy.Kb+4n2ixOqXwH2fhRPbRdF.eJo\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"outcome\"\n      }\n    },\n    {\n      \"fullUrl\": \"http://YUpeGmufNjAbyiqcIfWIxl.groiUvSeM3uq480bAlXnVFRqYxkNb,W3pPuQlcQ9zyVGa2FqZyWvx2kpSVTxGw2uwph\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1986-01-20T06:41:18.456Z\",\n          \"profile\": [\n            \"https://RShpSB.posAcFl4hR5+EQ6C7aMOo1igV6QiYWMGaMW4SJw8erYGUKxQneTtSX4jXSbX..\",\n            \"https://anA.iwgtU9vfmLFhfFwrrs+2vxRp4kgqCtGdGdSomwUWVaNQ++G6iVw9h8F7EFK5ZLj+E\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"outcome\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9799c128-442c-487e-b7c9-63aedeea7fe3",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "family",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "given",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "birthdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "gender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "telecom",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://cnGktjwvFqZkl.ddk,LGlj9NBMFB\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://EnXogp.kuodd0LBtoQGpxXJAUPdhuaN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://E.upfnNp8Yqysj0+rl79dHjU09ZquFVtqc+94L-PUOZsGacybgr7Zyj\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://XbyuFgTUXLV.yaOxk78GXZynF4qHJ3ooMFFZ.SFwc7Eq8aqAUIECx\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8af9648f-d3e3-4ec4-b12d-9c0f42ab7678",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "family",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "given",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "birthdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "gender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "telecom",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://cnGktjwvFqZkl.ddk,LGlj9NBMFB\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://EnXogp.kuodd0LBtoQGpxXJAUPdhuaN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://E.upfnNp8Yqysj0+rl79dHjU09ZquFVtqc+94L-PUOZsGacybgr7Zyj\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://XbyuFgTUXLV.yaOxk78GXZynF4qHJ3ooMFFZ.SFwc7Eq8aqAUIECx\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f96d0e0a-6d85-46a5-9422-6348c56d3e79",
+          "name": "Orion Health Create a new patient",
+          "request": {
+            "name": "Orion Health Create a new patient",
+            "description": {
+              "content": "Create a new Patient resource on the server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Patient"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/fhir+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"<string>\",\n      \"system\": \"<uri>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"use\": \"<string>\",\n      \"system\": \"<uri>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"<string>\",\n      \"family\": \"<string>\",\n      \"given\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"prefix\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"suffix\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"use\": \"<string>\",\n      \"family\": \"<string>\",\n      \"given\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"prefix\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"suffix\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"<string>\",\n      \"value\": \"<string>\",\n      \"use\": \"<string>\"\n    },\n    {\n      \"system\": \"<string>\",\n      \"value\": \"<string>\",\n      \"use\": \"<string>\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"<string>\",\n      \"type\": \"<string>\",\n      \"line\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"use\": \"<string>\",\n      \"type\": \"<string>\",\n      \"line\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3505ce7c-a5bc-49d0-9092-ef0b5c42ca45",
+              "name": "Patient resource created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL of the newly created resource",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Version ID of the resource",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"meta\": {\n    \"versionId\": \"string\",\n    \"lastUpdated\": \"2016-02-13T09:50:44.562Z\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://ioNRavJaxeIYHdcNep.zucwoAHKW8vWoEgQvy\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"old\",\n      \"system\": \"http://waKqKwNieUyvwh.knhgR-9JaZTLR\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": false,\n  \"name\": [\n    {\n      \"use\": \"usual\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"old\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"pager\",\n      \"value\": \"string\",\n      \"use\": \"mobile\"\n    },\n    {\n      \"system\": \"pager\",\n      \"value\": \"string\",\n      \"use\": \"mobile\"\n    }\n  ],\n  \"gender\": \"male\",\n  \"birthDate\": \"1981-06-20\",\n  \"deceasedBoolean\": true,\n  \"address\": [\n    {\n      \"use\": \"work\",\n      \"type\": \"postal\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"home\",\n      \"type\": \"both\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"https://TPkyGIrYdZRmSqnyElxXPRyRJcsuQH.xddpxGpg30feF2+aTb7NGDBCdetvWZuAGu9goLClkJWkiQ2Wrl\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://UJmfsTAxk.skizgHlZetPbRo.XWDqjtRO5CbPYv2B1oQidvnyMRXjMugRg+FyZzc7ZYKSOF0aQRqE\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://GS.itlci.ysTc-.CN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://zOeGVfInudApuiiaHsICTZkRKyZlZuMNP.cyh+pDYEhaV1dNcnaTF1WJLBwHGK4WtvZeY5a+noX6FfGvG-VomkbtNyER0\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": true\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://NmzlTgPQEjJbZrlMpZzJuEhIWS.pkqtJd9s\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://hR.uwzzUtggyjTwCNGO0kv5HoTv+UXHieXG+6,PB8Bk5Q\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc6dd96d-ac86-4fc3-9558-6255d499f31d",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "279f7be1-50c3-4498-b424-fc33d8115db9",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "343aaff2-bb80-4ab1-9b42-60e9be7cdf9c",
+              "name": "Resource failed validation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://cnGktjwvFqZkl.ddk,LGlj9NBMFB\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://EnXogp.kuodd0LBtoQGpxXJAUPdhuaN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://E.upfnNp8Yqysj0+rl79dHjU09ZquFVtqc+94L-PUOZsGacybgr7Zyj\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://XbyuFgTUXLV.yaOxk78GXZynF4qHJ3ooMFFZ.SFwc7Eq8aqAUIECx\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00082bc0-f487-46ac-b6eb-66eadc7c0c7a",
+          "name": "Orion Health Read a patient by ID",
+          "request": {
+            "name": "Orion Health Read a patient by ID",
+            "description": {
+              "content": "Retrieve a specific Patient resource by its logical ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Patient",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Logical ID of the FHIR resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81a4e2a9-0df3-4665-afb2-2be270aeb6c6",
+              "name": "Patient resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"meta\": {\n    \"versionId\": \"string\",\n    \"lastUpdated\": \"2016-02-13T09:50:44.562Z\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://ioNRavJaxeIYHdcNep.zucwoAHKW8vWoEgQvy\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"old\",\n      \"system\": \"http://waKqKwNieUyvwh.knhgR-9JaZTLR\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": false,\n  \"name\": [\n    {\n      \"use\": \"usual\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"old\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"pager\",\n      \"value\": \"string\",\n      \"use\": \"mobile\"\n    },\n    {\n      \"system\": \"pager\",\n      \"value\": \"string\",\n      \"use\": \"mobile\"\n    }\n  ],\n  \"gender\": \"male\",\n  \"birthDate\": \"1981-06-20\",\n  \"deceasedBoolean\": true,\n  \"address\": [\n    {\n      \"use\": \"work\",\n      \"type\": \"postal\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"home\",\n      \"type\": \"both\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"https://TPkyGIrYdZRmSqnyElxXPRyRJcsuQH.xddpxGpg30feF2+aTb7NGDBCdetvWZuAGu9goLClkJWkiQ2Wrl\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://UJmfsTAxk.skizgHlZetPbRo.XWDqjtRO5CbPYv2B1oQidvnyMRXjMugRg+FyZzc7ZYKSOF0aQRqE\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://GS.itlci.ysTc-.CN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://zOeGVfInudApuiiaHsICTZkRKyZlZuMNP.cyh+pDYEhaV1dNcnaTF1WJLBwHGK4WtvZeY5a+noX6FfGvG-VomkbtNyER0\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": true\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://NmzlTgPQEjJbZrlMpZzJuEhIWS.pkqtJd9s\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://hR.uwzzUtggyjTwCNGO0kv5HoTv+UXHieXG+6,PB8Bk5Q\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74d459ad-5f70-4344-95d0-aa0b059c21e7",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c728f83a-183b-4743-ab71-d782daf2ed92",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://cnGktjwvFqZkl.ddk,LGlj9NBMFB\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://EnXogp.kuodd0LBtoQGpxXJAUPdhuaN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://E.upfnNp8Yqysj0+rl79dHjU09ZquFVtqc+94L-PUOZsGacybgr7Zyj\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://XbyuFgTUXLV.yaOxk78GXZynF4qHJ3ooMFFZ.SFwc7Eq8aqAUIECx\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1854de99-3858-4c5e-8bd9-8272bb87f544",
+          "name": "Orion Health Update a patient",
+          "request": {
+            "name": "Orion Health Update a patient",
+            "description": {
+              "content": "Update an existing Patient resource by its logical ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Patient",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Logical ID of the FHIR resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/fhir+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"<string>\",\n      \"system\": \"<uri>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"use\": \"<string>\",\n      \"system\": \"<uri>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"<string>\",\n      \"family\": \"<string>\",\n      \"given\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"prefix\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"suffix\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"use\": \"<string>\",\n      \"family\": \"<string>\",\n      \"given\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"prefix\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"suffix\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"<string>\",\n      \"value\": \"<string>\",\n      \"use\": \"<string>\"\n    },\n    {\n      \"system\": \"<string>\",\n      \"value\": \"<string>\",\n      \"use\": \"<string>\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"<string>\",\n      \"type\": \"<string>\",\n      \"line\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"use\": \"<string>\",\n      \"type\": \"<string>\",\n      \"line\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c379dfd-a92a-4cfd-8909-67748972d14d",
+              "name": "Patient resource updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"meta\": {\n    \"versionId\": \"string\",\n    \"lastUpdated\": \"2016-02-13T09:50:44.562Z\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://ioNRavJaxeIYHdcNep.zucwoAHKW8vWoEgQvy\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"old\",\n      \"system\": \"http://waKqKwNieUyvwh.knhgR-9JaZTLR\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": false,\n  \"name\": [\n    {\n      \"use\": \"usual\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"old\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"pager\",\n      \"value\": \"string\",\n      \"use\": \"mobile\"\n    },\n    {\n      \"system\": \"pager\",\n      \"value\": \"string\",\n      \"use\": \"mobile\"\n    }\n  ],\n  \"gender\": \"male\",\n  \"birthDate\": \"1981-06-20\",\n  \"deceasedBoolean\": true,\n  \"address\": [\n    {\n      \"use\": \"work\",\n      \"type\": \"postal\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"home\",\n      \"type\": \"both\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"https://TPkyGIrYdZRmSqnyElxXPRyRJcsuQH.xddpxGpg30feF2+aTb7NGDBCdetvWZuAGu9goLClkJWkiQ2Wrl\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://UJmfsTAxk.skizgHlZetPbRo.XWDqjtRO5CbPYv2B1oQidvnyMRXjMugRg+FyZzc7ZYKSOF0aQRqE\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://GS.itlci.ysTc-.CN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://zOeGVfInudApuiiaHsICTZkRKyZlZuMNP.cyh+pDYEhaV1dNcnaTF1WJLBwHGK4WtvZeY5a+noX6FfGvG-VomkbtNyER0\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": true\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://NmzlTgPQEjJbZrlMpZzJuEhIWS.pkqtJd9s\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://hR.uwzzUtggyjTwCNGO0kv5HoTv+UXHieXG+6,PB8Bk5Q\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4619576f-40e6-49ad-a29f-be1fc220f408",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fb813e6-0248-4c30-99bb-955036e224f1",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d5daff8-0880-4388-b399-112ec936f1e9",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "186e0571-e910-4107-8912-192bd92e15f9",
+              "name": "Version conflict during update",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://cnGktjwvFqZkl.ddk,LGlj9NBMFB\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://EnXogp.kuodd0LBtoQGpxXJAUPdhuaN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://E.upfnNp8Yqysj0+rl79dHjU09ZquFVtqc+94L-PUOZsGacybgr7Zyj\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://XbyuFgTUXLV.yaOxk78GXZynF4qHJ3ooMFFZ.SFwc7Eq8aqAUIECx\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83062060-e556-42af-bc76-fdab9af50bfe",
+              "name": "Resource failed validation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"meta\": {\n    \"versionId\": \"<string>\",\n    \"lastUpdated\": \"<dateTime>\"\n  },\n  \"identifier\": [\n    {\n      \"use\": \"secondary\",\n      \"system\": \"https://W.qcvdUaO.kUR0o.xAMiQCRT5YHbJGL3KLlfXMuaiwkHAJP+M,DLSAnUEuWN,hP2fwCXZHjfYVLgZ\",\n      \"value\": \"string\"\n    },\n    {\n      \"use\": \"usual\",\n      \"system\": \"https://FTyYZGGZKjJ.xxva+sNppPa.aiwlYE9nxILjcjLmvLSKJvfPbhs6UAX-ON7WY5TWBOpSx9YpcFp5+zvuDd\",\n      \"value\": \"string\"\n    }\n  ],\n  \"active\": \"<boolean>\",\n  \"name\": [\n    {\n      \"use\": \"temp\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"use\": \"anonymous\",\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prefix\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suffix\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"telecom\": [\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    },\n    {\n      \"system\": \"other\",\n      \"value\": \"string\",\n      \"use\": \"old\"\n    }\n  ],\n  \"gender\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"deceasedBoolean\": \"<boolean>\",\n  \"address\": [\n    {\n      \"use\": \"home\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"use\": \"temp\",\n      \"type\": \"physical\",\n      \"line\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"maritalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WDrmMQvypIrExeMBfsHHjvotEo.mzvFsg91X7hOkYBd,4ajB80I,eKBkDYiWPqVs6pHOQbU,GpqeuKtVyw4kZ7\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://Luw.wftUhvaGA7WzqD.sxtWfSklhAwuDdDThiWEfL8vImlEUQqu.CxHTzAoX\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"communication\": [\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"https://mZjBDwSkZQdCQzfRtqHbakPtTaWXD.lqgtEHZOjugJNSMI5cVmhU\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://AAhwFNIMPmPZWjeeedJWv.hcdcBtrQIYfdTOFjxsD,AseB08BSah8dZnamllwY.hGUaI,kOgEMqoJdoibkxZaWtcFMPW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"language\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fiUnn.nfjjZuoQzHHvGIcqr2Er\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://Xm.jhTzm60VFHpnBjKdZz,sGIq1JQuvbsiBbijjVo+LzwXUB5D220uVi5BBpx9CI\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1faf3ac6-b1bb-4e06-a7a4-9ac7efea8e31",
+          "name": "Orion Health Get patient version history",
+          "request": {
+            "name": "Orion Health Get patient version history",
+            "description": {
+              "content": "Retrieve the version history of a specific Patient resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Patient",
+                ":id",
+                "_history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "20",
+                  "description": "Maximum number of results per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Logical ID of the FHIR resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1432910-b0af-44b1-9968-c3530bba437f",
+              "name": "Bundle containing historical versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id",
+                    "_history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"type\": \"history\",\n  \"total\": 399,\n  \"link\": [\n    {\n      \"relation\": \"last\",\n      \"url\": \"https://rbokEFVLPhKmUZ.kso3qi.81Q9xnGFBA\"\n    },\n    {\n      \"relation\": \"previous\",\n      \"url\": \"http://VitpssoGpTREJeG.hecbogHIV6G9-,SK0S5JA\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"https://SMFqJrXUOfteUqRXslyEiBbeHWFsTK.clX0+dhA+ezn8RKQgaz+P32XC3odp1ehxjt0MeFMpYP4SFS-r8WWsFXixKdu+bPy04VSLZVkk.q+,eLpA\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1987-11-23T14:39:11.980Z\",\n          \"profile\": [\n            \"http://rDmcqDtSTqOijsqUWkpxjwaNp.evfU1tBKD\",\n            \"https://nSjIOX.etcRRk5oy.Kb+4n2ixOqXwH2fhRPbRdF.eJo\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"outcome\"\n      }\n    },\n    {\n      \"fullUrl\": \"http://YUpeGmufNjAbyiqcIfWIxl.groiUvSeM3uq480bAlXnVFRqYxkNb,W3pPuQlcQ9zyVGa2FqZyWvx2kpSVTxGw2uwph\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1986-01-20T06:41:18.456Z\",\n          \"profile\": [\n            \"https://RShpSB.posAcFl4hR5+EQ6C7aMOo1igV6QiYWMGaMW4SJw8erYGUKxQneTtSX4jXSbX..\",\n            \"https://anA.iwgtU9vfmLFhfFwrrs+2vxRp4kgqCtGdGdSomwUWVaNQ++G6iVw9h8F7EFK5ZLj+E\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"outcome\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76a04887-9a43-4241-ab5f-baff26cd96de",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id",
+                    "_history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6543b70-0593-4d3d-92a9-ec08e9cb7d51",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":id",
+                    "_history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://WyUVgDDpJEVQpBHNgcMdq.pmfGMCmjPeedjSTby8UrElzuA3ZQ9EFycFA1XP\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://IXwAhPTdPjDFBZPBltYtuajhNLzgZ.puvQUBV9d6RHdYIew+T,Ua-+DPBSTboRy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://wqcsCmNOJTfgsyfJaWxdhlQSHhDcq.demzSX8BKwt,I+\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://rzUjiKWFJNPGdPBMfm.fpfqp8vTe9E2KzI6cB2LKm.1ijh,j6pVBPsJ63x\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "65112ec7-e6a8-403b-bab3-bb6fa3e0036b",
+    "name": "Orion Health FHIR Alerts Patient API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

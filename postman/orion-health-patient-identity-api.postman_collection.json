@@ -1,0 +1,791 @@
+{
+  "info": {
+    "_postman_id": "731cbda1-42be-4c64-9ade-9415df0d5d31",
+    "name": "Orion Health FHIR Alerts Patient Identity API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:31.000Z",
+    "updatedAt": "2026-07-28T02:29:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-731cbda1-42be-4c64-9ade-9415df0d5d31"
+  },
+  "item": [
+    {
+      "name": "patients",
+      "item": [
+        {
+          "name": "match",
+          "item": [
+            {
+              "name": "Orion Health Match a patient across organizations",
+              "id": "0e77a6a3-0791-41e3-aa91-9670cae7da2e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"familyName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"gender\": \"female\",\n  \"identifier\": {\n    \"system\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"ssn\": \"<string>\",\n  \"address\": {\n    \"line\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"phone\": \"<string>\",\n  \"matchThreshold\": 0.85\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/patients/match",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "patients",
+                    "match"
+                  ]
+                },
+                "description": "Perform patient identity matching across the HIE network using demographics, identifiers, and probabilistic matching algorithms to find existing records in the Master Patient Index (MPI)."
+              },
+              "response": [
+                {
+                  "id": "07d84dd4-0daf-42b2-9d58-5685f491c9a1",
+                  "name": "Patient match results",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"familyName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"gender\": \"female\",\n  \"identifier\": {\n    \"system\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"ssn\": \"<string>\",\n  \"address\": {\n    \"line\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"phone\": \"<string>\",\n  \"matchThreshold\": 0.85\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/match",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        "match"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"matches\": [\n    {\n      \"patientId\": \"<string>\",\n      \"confidence\": \"<number>\",\n      \"matchGrade\": \"probable\",\n      \"identifiers\": [\n        {\n          \"system\": \"<string>\",\n          \"value\": \"<string>\",\n          \"organization\": \"<string>\"\n        },\n        {\n          \"system\": \"<string>\",\n          \"value\": \"<string>\",\n          \"organization\": \"<string>\"\n        }\n      ],\n      \"demographics\": {\n        \"familyName\": \"<string>\",\n        \"givenName\": \"<string>\",\n        \"dateOfBirth\": \"<date>\",\n        \"gender\": \"<string>\"\n      }\n    },\n    {\n      \"patientId\": \"<string>\",\n      \"confidence\": \"<number>\",\n      \"matchGrade\": \"no-match\",\n      \"identifiers\": [\n        {\n          \"system\": \"<string>\",\n          \"value\": \"<string>\",\n          \"organization\": \"<string>\"\n        },\n        {\n          \"system\": \"<string>\",\n          \"value\": \"<string>\",\n          \"organization\": \"<string>\"\n        }\n      ],\n      \"demographics\": {\n        \"familyName\": \"<string>\",\n        \"givenName\": \"<string>\",\n        \"dateOfBirth\": \"<date>\",\n        \"gender\": \"<string>\"\n      }\n    }\n  ],\n  \"totalMatches\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:29:32.000Z",
+                  "updatedAt": "2026-07-28T02:29:32.000Z",
+                  "uid": "35240-07d84dd4-0daf-42b2-9d58-5685f491c9a1"
+                },
+                {
+                  "id": "b027009a-0565-4caa-942e-32907a652c8c",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"familyName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"gender\": \"female\",\n  \"identifier\": {\n    \"system\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"ssn\": \"<string>\",\n  \"address\": {\n    \"line\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"phone\": \"<string>\",\n  \"matchThreshold\": 0.85\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/match",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        "match"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:32.000Z",
+                  "updatedAt": "2026-07-28T02:29:32.000Z",
+                  "uid": "35240-b027009a-0565-4caa-942e-32907a652c8c"
+                },
+                {
+                  "id": "2af6e792-05e2-4a09-b986-bb9d993215b7",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"familyName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"gender\": \"female\",\n  \"identifier\": {\n    \"system\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"ssn\": \"<string>\",\n  \"address\": {\n    \"line\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"phone\": \"<string>\",\n  \"matchThreshold\": 0.85\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/match",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        "match"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:32.000Z",
+                  "updatedAt": "2026-07-28T02:29:32.000Z",
+                  "uid": "35240-2af6e792-05e2-4a09-b986-bb9d993215b7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:32.000Z",
+              "updatedAt": "2026-07-28T02:29:32.000Z",
+              "uid": "35240-0e77a6a3-0791-41e3-aa91-9670cae7da2e"
+            }
+          ],
+          "id": "ff48cda7-d495-4632-be03-78742d257225",
+          "createdAt": "2026-07-28T02:29:32.000Z",
+          "updatedAt": "2026-07-28T02:29:32.000Z",
+          "uid": "35240-ff48cda7-d495-4632-be03-78742d257225"
+        },
+        {
+          "name": "{patientId}",
+          "item": [
+            {
+              "name": "identifiers",
+              "item": [
+                {
+                  "name": "Orion Health Get patient cross-reference identifiers",
+                  "id": "0d2d8205-ce2e-4456-97e1-bd248fca2eff",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId/identifiers?organization=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId",
+                        "identifiers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by organization",
+                          "key": "organization",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "7f2be9dd-8e4b-41d8-a1e8-a52f9cda3e67",
+                          "key": "patientId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all known identifiers for a patient across participating organizations in the HIE network."
+                  },
+                  "response": [
+                    {
+                      "id": "24f1f49e-477e-4581-acd7-4f25b9321f29",
+                      "name": "Patient identifiers",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/identifiers?organization=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "identifiers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"patientId\": \"<string>\",\n  \"identifiers\": [\n    {\n      \"system\": \"<string>\",\n      \"value\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"organizationName\": \"<string>\",\n      \"assigningAuthority\": \"<string>\",\n      \"active\": \"<boolean>\"\n    },\n    {\n      \"system\": \"<string>\",\n      \"value\": \"<string>\",\n      \"organization\": \"<string>\",\n      \"organizationName\": \"<string>\",\n      \"assigningAuthority\": \"<string>\",\n      \"active\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:32.000Z",
+                      "updatedAt": "2026-07-28T02:29:32.000Z",
+                      "uid": "35240-24f1f49e-477e-4581-acd7-4f25b9321f29"
+                    },
+                    {
+                      "id": "1d956284-fcdb-4f17-a517-3cd1190c07d6",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/identifiers?organization=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "identifiers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:32.000Z",
+                      "updatedAt": "2026-07-28T02:29:32.000Z",
+                      "uid": "35240-1d956284-fcdb-4f17-a517-3cd1190c07d6"
+                    },
+                    {
+                      "id": "71c838e1-738d-4c58-b80c-8d2345cafcb2",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/identifiers?organization=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "identifiers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:32.000Z",
+                      "updatedAt": "2026-07-28T02:29:32.000Z",
+                      "uid": "35240-71c838e1-738d-4c58-b80c-8d2345cafcb2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:32.000Z",
+                  "updatedAt": "2026-07-28T02:29:32.000Z",
+                  "uid": "35240-0d2d8205-ce2e-4456-97e1-bd248fca2eff"
+                }
+              ],
+              "id": "d61136e6-5d21-45a6-af88-9db19958517b",
+              "createdAt": "2026-07-28T02:29:32.000Z",
+              "updatedAt": "2026-07-28T02:29:32.000Z",
+              "uid": "35240-d61136e6-5d21-45a6-af88-9db19958517b"
+            },
+            {
+              "name": "record-locator",
+              "item": [
+                {
+                  "name": "Orion Health Locate patient records across organizations",
+                  "id": "3d2b2e19-e15f-44ba-b9c4-662d01850913",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId/record-locator?organization=<string>&documentType=referral&dateFrom=<date>&dateTo=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId",
+                        "record-locator"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by source organization",
+                          "key": "organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by document type",
+                          "key": "documentType",
+                          "value": "referral"
+                        },
+                        {
+                          "key": "dateFrom",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "dateTo",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d4ff5204-6284-4d85-aa1d-86b375b703e5",
+                          "key": "patientId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Query the HIE network to locate clinical records for a patient across participating organizations. Returns available document references without retrieving the full documents."
+                  },
+                  "response": [
+                    {
+                      "id": "980b67a1-41cf-451b-9303-990816dc4dea",
+                      "name": "Located record references",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/record-locator?organization=<string>&documentType=referral&dateFrom=<date>&dateTo=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "record-locator"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by source organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by document type",
+                              "key": "documentType",
+                              "value": "referral"
+                            },
+                            {
+                              "key": "dateFrom",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "dateTo",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"documentId\": \"<uuid>\",\n      \"documentType\": \"<string>\",\n      \"title\": \"<string>\",\n      \"sourceOrganization\": \"<string>\",\n      \"sourceOrganizationName\": \"<string>\",\n      \"authorName\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"format\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"availableFormats\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"documentId\": \"<uuid>\",\n      \"documentType\": \"<string>\",\n      \"title\": \"<string>\",\n      \"sourceOrganization\": \"<string>\",\n      \"sourceOrganizationName\": \"<string>\",\n      \"authorName\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"format\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"availableFormats\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:29:32.000Z",
+                      "updatedAt": "2026-07-28T02:29:32.000Z",
+                      "uid": "35240-980b67a1-41cf-451b-9303-990816dc4dea"
+                    },
+                    {
+                      "id": "3a248c8d-660d-442c-a218-bb6de3a95e52",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/record-locator?organization=<string>&documentType=referral&dateFrom=<date>&dateTo=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "record-locator"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by source organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by document type",
+                              "key": "documentType",
+                              "value": "referral"
+                            },
+                            {
+                              "key": "dateFrom",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "dateTo",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:32.000Z",
+                      "updatedAt": "2026-07-28T02:29:32.000Z",
+                      "uid": "35240-3a248c8d-660d-442c-a218-bb6de3a95e52"
+                    },
+                    {
+                      "id": "b3fa1da0-c6e3-490f-aee1-9f6fb5ee33a3",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/record-locator?organization=<string>&documentType=referral&dateFrom=<date>&dateTo=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "record-locator"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by source organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by document type",
+                              "key": "documentType",
+                              "value": "referral"
+                            },
+                            {
+                              "key": "dateFrom",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "dateTo",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:32.000Z",
+                      "updatedAt": "2026-07-28T02:29:32.000Z",
+                      "uid": "35240-b3fa1da0-c6e3-490f-aee1-9f6fb5ee33a3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:32.000Z",
+                  "updatedAt": "2026-07-28T02:29:32.000Z",
+                  "uid": "35240-3d2b2e19-e15f-44ba-b9c4-662d01850913"
+                }
+              ],
+              "id": "83804469-281e-4f7b-aa74-37b84ceccfd5",
+              "createdAt": "2026-07-28T02:29:32.000Z",
+              "updatedAt": "2026-07-28T02:29:32.000Z",
+              "uid": "35240-83804469-281e-4f7b-aa74-37b84ceccfd5"
+            }
+          ],
+          "id": "59f66432-28be-4661-95dd-6f6fdba90702",
+          "createdAt": "2026-07-28T02:29:32.000Z",
+          "updatedAt": "2026-07-28T02:29:32.000Z",
+          "uid": "35240-59f66432-28be-4661-95dd-6f6fdba90702"
+        }
+      ],
+      "id": "5dcc865b-13f1-4942-b42f-64b308031f0e",
+      "createdAt": "2026-07-28T02:29:32.000Z",
+      "updatedAt": "2026-07-28T02:29:32.000Z",
+      "uid": "35240-5dcc865b-13f1-4942-b42f-64b308031f0e"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

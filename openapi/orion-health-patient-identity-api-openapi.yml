@@ -1,0 +1,336 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Patient Identity API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Patient Identity
+  description: Patient identity matching and cross-referencing (MPI)
+paths:
+  /patients/match:
+    post:
+      operationId: matchPatient
+      summary: Orion Health Match a patient across organizations
+      description: Perform patient identity matching across the HIE network using demographics, identifiers, and probabilistic matching algorithms to find existing records in the Master Patient Index (MPI).
+      tags:
+      - Patient Identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientMatchRequest'
+      responses:
+        '200':
+          description: Patient match results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientMatchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /patients/{patientId}/identifiers:
+    get:
+      operationId: getPatientIdentifiers
+      summary: Orion Health Get patient cross-reference identifiers
+      description: Retrieve all known identifiers for a patient across participating organizations in the HIE network.
+      tags:
+      - Patient Identity
+      parameters:
+      - name: patientId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: organization
+        in: query
+        description: Filter by organization
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Patient identifiers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientIdentifiers'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /patients/{patientId}/record-locator:
+    get:
+      operationId: locatePatientRecords
+      summary: Orion Health Locate patient records across organizations
+      description: Query the HIE network to locate clinical records for a patient across participating organizations. Returns available document references without retrieving the full documents.
+      tags:
+      - Patient Identity
+      parameters:
+      - name: patientId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: organization
+        in: query
+        description: Filter by source organization
+        schema:
+          type: string
+      - name: documentType
+        in: query
+        description: Filter by document type
+        schema:
+          type: string
+          enum:
+          - ccd
+          - discharge-summary
+          - progress-note
+          - lab-report
+          - radiology-report
+          - referral
+          - consult-note
+      - name: dateFrom
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: dateTo
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Located record references
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RecordLocatorResult'
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    PatientIdentifiers:
+      type: object
+      properties:
+        patientId:
+          type: string
+        identifiers:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              value:
+                type: string
+              organization:
+                type: string
+              organizationName:
+                type: string
+              assigningAuthority:
+                type: string
+              active:
+                type: boolean
+    PatientMatchResponse:
+      type: object
+      properties:
+        matches:
+          type: array
+          items:
+            type: object
+            properties:
+              patientId:
+                type: string
+              confidence:
+                type: number
+                description: Match confidence score (0-1)
+              matchGrade:
+                type: string
+                enum:
+                - certain
+                - probable
+                - possible
+                - no-match
+              identifiers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                    value:
+                      type: string
+                    organization:
+                      type: string
+              demographics:
+                type: object
+                properties:
+                  familyName:
+                    type: string
+                  givenName:
+                    type: string
+                  dateOfBirth:
+                    type: string
+                    format: date
+                  gender:
+                    type: string
+        totalMatches:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    PatientMatchRequest:
+      type: object
+      properties:
+        familyName:
+          type: string
+        givenName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+          - male
+          - female
+          - other
+          - unknown
+        identifier:
+          type: object
+          properties:
+            system:
+              type: string
+              description: Identifier system (e.g., MRN namespace)
+            value:
+              type: string
+        ssn:
+          type: string
+          description: Last four digits of SSN for matching
+        address:
+          type: object
+          properties:
+            line:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+        phone:
+          type: string
+        matchThreshold:
+          type: number
+          description: Minimum match confidence score (0-1)
+          default: 0.85
+    RecordLocatorResult:
+      type: object
+      properties:
+        documentId:
+          type: string
+          format: uuid
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        size:
+          type: integer
+          description: Document size in bytes
+        availableFormats:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

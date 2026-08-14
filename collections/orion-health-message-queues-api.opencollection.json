@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Message Queues API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Message Queues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List message queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/queues",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by route ID"
+              },
+              {
+                "name": "hasErrors",
+                "value": "",
+                "type": "query",
+                "description": "Only show queues with errors"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve all message queues in the Rhapsody engine with their current depth and status."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get queue details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/queues/:queueId",
+            "params": [
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific message queue."
+        },
+        {
+          "info": {
+            "name": "Orion Health List messages in a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/queues/:queueId/messages",
+            "params": [
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve messages currently held in a specific queue."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

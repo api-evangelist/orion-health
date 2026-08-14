@@ -1,0 +1,569 @@
+{
+  "item": [
+    {
+      "id": "a5114109-1aee-4a7b-819b-a74e70ad8503",
+      "name": "Immunization",
+      "description": {
+        "content": "Operations on Immunization resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5c07259-778b-4c82-aa4d-0567d200e6c5",
+          "name": "Orion Health Search for immunizations",
+          "request": {
+            "name": "Orion Health Search for immunizations",
+            "description": {
+              "content": "Search for Immunization resources representing vaccine administrations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Immunization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "20",
+                  "description": "Maximum number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "Starting offset for paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "patient",
+                  "value": "<string>",
+                  "description": "Reference to the patient"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Vaccination date or date range"
+                },
+                {
+                  "disabled": false,
+                  "key": "vaccine-code",
+                  "value": "<string>",
+                  "description": "CVX code for the vaccine"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Immunization status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f970a281-44a7-4ca2-a356-4d1d64a07210",
+              "name": "Bundle of matching Immunization resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Immunization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vaccine-code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"type\": \"searchset\",\n  \"total\": 1727,\n  \"link\": [\n    {\n      \"relation\": \"last\",\n      \"url\": \"https://hP.nzrmdzgd,qqQKBa5MCh8mSbKBJjqADPdFwVQNihUUV+Jv4SdSgkoRjPFgoqOcIwkvzgiLFRYyD1,zcq.+H+V\"\n    },\n    {\n      \"relation\": \"previous\",\n      \"url\": \"https://xoWpoHTpJACIZaOs.lwigJ,Yf0uVPt-1PJ.ftXuSsjW,SGXfXQ\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"https://kXLZsCejEftZfKMZgeujMcjWJIj.wlkuJql9g7JlCGZY6Gcd+,1ER5oYxGRstIq6iACLuoBLPBhX9arSGGfTve-gCPO\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"2024-06-23T03:49:37.957Z\",\n          \"profile\": [\n            \"https://BhJIXlHXRj.datyAUjXMr-gLw\",\n            \"https://ChXMHaw.jdlc5mIlTK8JijMuet\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    },\n    {\n      \"fullUrl\": \"http://ajznOspJiKVmSUGukaJ.owzS+e4s.OXFUDSnApNKUjGFoA9RqThGt4t7G\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1970-09-11T17:17:40.647Z\",\n          \"profile\": [\n            \"https://gayGSaYsTbGqNzq.tpH6xQ0dwjzVQZKbT20XjjuC37VprDPRI1dCJk8bSArWMI3jG4UHB1iOO\",\n            \"http://cN.pqynz8udg6vppLjY9XC8accRkhM5gro+Hy\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"include\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e96aad88-7913-4b58-8f35-0b83665133a4",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Immunization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vaccine-code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://rmsmoVgekrMltfkGEhtBgxfoYjalSI.gcndrzc\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://XKJgzyhBYUFjbjrGYQANwXyWRYwQvTKQL.mhnbmMXBhbGFzEQS0lFApPojFrd7+XzfaWdv88yeXJJL7HLXIlxzwBNc8V9mR\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://zfxiQqTUEjoaJFlILhYFhAXHVaAd.pfhbJe7+wEqKV-bHTBxfDKuKS+NM2p3DX2UIPpZXj8AxEHQHHKeVyyT\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://iASOHCuwCQKVRbGdjqLVoVWR.ffnaeIR9v,aPrMWsG5PoikU7r6p-m2qaqqJzGdRnBQ\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87e5f9cd-93d3-4107-8359-493195d9c38e",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Immunization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vaccine-code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://rmsmoVgekrMltfkGEhtBgxfoYjalSI.gcndrzc\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://XKJgzyhBYUFjbjrGYQANwXyWRYwQvTKQL.mhnbmMXBhbGFzEQS0lFApPojFrd7+XzfaWdv88yeXJJL7HLXIlxzwBNc8V9mR\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://zfxiQqTUEjoaJFlILhYFhAXHVaAd.pfhbJe7+wEqKV-bHTBxfDKuKS+NM2p3DX2UIPpZXj8AxEHQHHKeVyyT\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://iASOHCuwCQKVRbGdjqLVoVWR.ffnaeIR9v,aPrMWsG5PoikU7r6p-m2qaqqJzGdRnBQ\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19b840a4-48ae-4a56-9f79-8eea2c602899",
+          "name": "Orion Health Read an immunization by ID",
+          "request": {
+            "name": "Orion Health Read an immunization by ID",
+            "description": {
+              "content": "Retrieve a specific Immunization resource by its logical ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Immunization",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Logical ID of the FHIR resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "053c815a-d2be-4508-80be-122f7d6bb16b",
+              "name": "Immunization resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Immunization",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"status\": \"entered-in-error\",\n  \"vaccineCode\": {\n    \"coding\": [\n      {\n        \"system\": \"http://lCNFBaMVywH.hxUeoJKURIX+4SJuSxxhAhZ2pGLmfztyHGUpbbpZHvztA4Cow9D3rqblrU\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://ihxbCNsXETrEbbjHoscPVlokuzpWSR.fmyoKf,M2pErVusmXln9vWKXxXO-aki9pquPQvZJbEh7QAHPr++lTK8.vFG0mGgUqcb\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"patient\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"occurrenceDateTime\": \"2023-04-04T09:32:23.996Z\",\n  \"lotNumber\": \"string\",\n  \"site\": {\n    \"coding\": [\n      {\n        \"system\": \"http://kdWdfkqHfsOtVLjTDBsMLFpLxnFurM.rxmfpTTksz7OVBVGOpBk-ZSNX7M\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://op.uttwZrpCm3Ai6A1sVwKqMD\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"route\": {\n    \"coding\": [\n      {\n        \"system\": \"http://WVYmKex.qpoyFsITDsIo9A7tWz\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://EPDrBbsoQDnJIMRUIEzCwSzK.wpgqjcjzg6vZ.k0KzDlXiG8ScHubs1,jX5u,mzsKGOhtGSH0lT,-mQ\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"doseQuantity\": {\n    \"value\": 981.1728408266274,\n    \"unit\": \"string\",\n    \"system\": \"http://clLMZYtcWjGlleFQNLBRtCoNrFJGpyBys.nsfjuY.Sl0Kj5tjbpt-MEij-MhU6zTlq1xIeIHZcFMhXEqURLcc8jVyF-to0sfQ\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87029f0a-8343-4eaa-aa6d-abeab785f5e7",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Immunization",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://ougNCrh.fhuooaytI9i,WiioGgs8WlEVl8RS+Vb\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://aVLjjAIOFSCTQulSsofsBiOU.yzOQ8rlFw\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://fyTyRWWqgpIl.zdoGO1w2XkQ1VhoieQjOJ.K-O14dhP6c\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://aXAiugeYWmODPwegMzsuDB.ogfp+cWV.gn+njXXdrOq5Qx6ZYyFB4RTwZnMrF\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a9a0cb1-9b64-4329-8cf2-b11519684c7f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Immunization",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://rmsmoVgekrMltfkGEhtBgxfoYjalSI.gcndrzc\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://XKJgzyhBYUFjbjrGYQANwXyWRYwQvTKQL.mhnbmMXBhbGFzEQS0lFApPojFrd7+XzfaWdv88yeXJJL7HLXIlxzwBNc8V9mR\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://zfxiQqTUEjoaJFlILhYFhAXHVaAd.pfhbJe7+wEqKV-bHTBxfDKuKS+NM2p3DX2UIPpZXj8AxEHQHHKeVyyT\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://iASOHCuwCQKVRbGdjqLVoVWR.ffnaeIR9v,aPrMWsG5PoikU7r6p-m2qaqqJzGdRnBQ\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "90447379-fd2f-442c-8289-f1cedc3edc26",
+    "name": "Orion Health FHIR Alerts Immunization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

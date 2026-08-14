@@ -1,0 +1,502 @@
+{
+  "info": {
+    "_postman_id": "5e8a9b28-2eab-453a-b548-b4d801c07e5a",
+    "name": "Orion Health FHIR Alerts API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:59.000Z",
+    "updatedAt": "2026-07-28T02:28:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5e8a9b28-2eab-453a-b548-b4d801c07e5a"
+  },
+  "item": [
+    {
+      "name": "alerts",
+      "item": [
+        {
+          "name": "{alertId}",
+          "item": [
+            {
+              "name": "Orion Health Update an alert",
+              "id": "091afe46-7a73-42e5-8b87-08f92a1bf0f9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"resolved\",\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/alerts/:alertId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts",
+                    ":alertId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "38b4efef-8522-4913-bf25-36f8b9050d4d",
+                      "key": "alertId",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Update the status of a population health alert."
+              },
+              "response": [
+                {
+                  "id": "df87ca8c-d9a1-47f8-81b5-e4bfa7f4f7d0",
+                  "name": "Alert updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"resolved\",\n  \"note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"risk-change\",\n  \"priority\": \"low\",\n  \"status\": \"dismissed\",\n  \"patientId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:29:00.000Z",
+                  "updatedAt": "2026-07-28T02:29:00.000Z",
+                  "uid": "35240-df87ca8c-d9a1-47f8-81b5-e4bfa7f4f7d0"
+                },
+                {
+                  "id": "f163b5b8-eff3-4da3-900a-807320de3646",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"resolved\",\n  \"note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:00.000Z",
+                  "updatedAt": "2026-07-28T02:29:00.000Z",
+                  "uid": "35240-f163b5b8-eff3-4da3-900a-807320de3646"
+                },
+                {
+                  "id": "2d81f0c9-8a2f-4901-8183-68d6c49cfb02",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"resolved\",\n  \"note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:00.000Z",
+                  "updatedAt": "2026-07-28T02:29:00.000Z",
+                  "uid": "35240-2d81f0c9-8a2f-4901-8183-68d6c49cfb02"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:00.000Z",
+              "updatedAt": "2026-07-28T02:29:00.000Z",
+              "uid": "35240-091afe46-7a73-42e5-8b87-08f92a1bf0f9"
+            }
+          ],
+          "id": "88ab25d1-06bf-49f2-b6e4-7255b7601921",
+          "createdAt": "2026-07-28T02:29:00.000Z",
+          "updatedAt": "2026-07-28T02:29:00.000Z",
+          "uid": "35240-88ab25d1-06bf-49f2-b6e4-7255b7601921"
+        },
+        {
+          "name": "Orion Health List population health alerts",
+          "id": "2f72be75-2964-40fd-9211-a04e0649ef41",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/alerts?patientId=<string>&type=quality-measure&priority=medium&status=new&offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alerts"
+              ],
+              "query": [
+                {
+                  "key": "patientId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "type",
+                  "value": "quality-measure"
+                },
+                {
+                  "key": "priority",
+                  "value": "medium"
+                },
+                {
+                  "key": "status",
+                  "value": "new"
+                },
+                {
+                  "description": "Number of items to skip",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Retrieve clinical and population health alerts such as care gap notifications, risk changes, and quality measure compliance alerts."
+          },
+          "response": [
+            {
+              "id": "845e8f5d-688a-4cbb-8d28-30b9cc5e33cb",
+              "name": "List of alerts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alerts?patientId=<string>&type=quality-measure&priority=medium&status=new&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ],
+                  "query": [
+                    {
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "quality-measure"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "medium"
+                    },
+                    {
+                      "key": "status",
+                      "value": "new"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"type\": \"utilization\",\n      \"priority\": \"medium\",\n      \"status\": \"acknowledged\",\n      \"patientId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"type\": \"utilization\",\n      \"priority\": \"urgent\",\n      \"status\": \"new\",\n      \"patientId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:29:00.000Z",
+              "updatedAt": "2026-07-28T02:29:00.000Z",
+              "uid": "35240-845e8f5d-688a-4cbb-8d28-30b9cc5e33cb"
+            },
+            {
+              "id": "01d21bbc-23c8-49cf-847e-74186f4cb803",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alerts?patientId=<string>&type=quality-measure&priority=medium&status=new&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ],
+                  "query": [
+                    {
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "quality-measure"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "medium"
+                    },
+                    {
+                      "key": "status",
+                      "value": "new"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:00.000Z",
+              "updatedAt": "2026-07-28T02:29:00.000Z",
+              "uid": "35240-01d21bbc-23c8-49cf-847e-74186f4cb803"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:00.000Z",
+          "updatedAt": "2026-07-28T02:29:00.000Z",
+          "uid": "35240-2f72be75-2964-40fd-9211-a04e0649ef41"
+        }
+      ],
+      "id": "50bdca6d-c111-492a-92e2-b8f76c0d0c20",
+      "createdAt": "2026-07-28T02:29:00.000Z",
+      "updatedAt": "2026-07-28T02:29:00.000Z",
+      "uid": "35240-50bdca6d-c111-492a-92e2-b8f76c0d0c20"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

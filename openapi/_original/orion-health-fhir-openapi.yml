@@ -1,0 +1,1889 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR API
+  description: >-
+    The Orion Health FHIR API provides standards-based access to healthcare data
+    using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification.
+    It enables healthcare organizations to read, search, create, and update clinical
+    resources including patients, encounters, observations, conditions, medications,
+    allergies, procedures, diagnostic reports, and care plans. The API conforms to
+    FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+  - url: https://api.orionhealth.com/fhir
+    description: Production FHIR Server
+  - url: https://sandbox.orionhealth.com/fhir
+    description: Sandbox FHIR Server
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: AllergyIntolerance
+    description: Operations on AllergyIntolerance resources
+  - name: CarePlan
+    description: Operations on CarePlan resources
+  - name: Condition
+    description: Operations on Condition resources (diagnoses, problems)
+  - name: DiagnosticReport
+    description: Operations on DiagnosticReport resources
+  - name: DocumentReference
+    description: Operations on DocumentReference resources
+  - name: Encounter
+    description: Operations on Encounter resources
+  - name: Immunization
+    description: Operations on Immunization resources
+  - name: MedicationRequest
+    description: Operations on MedicationRequest resources
+  - name: Metadata
+    description: Server capability and metadata operations
+  - name: Observation
+    description: Operations on Observation resources (vitals, labs, etc.)
+  - name: Patient
+    description: Operations on Patient resources
+  - name: Procedure
+    description: Operations on Procedure resources
+paths:
+  /metadata:
+    get:
+      operationId: getCapabilityStatement
+      summary: Orion Health Get server capability statement
+      description: >-
+        Returns the server's CapabilityStatement resource describing the
+        FHIR operations, resources, and search parameters supported.
+      tags:
+        - Metadata
+      security: []
+      responses:
+        '200':
+          description: CapabilityStatement resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/CapabilityStatement'
+  /Patient:
+    get:
+      operationId: searchPatients
+      summary: Orion Health Search for patients
+      description: >-
+        Search for Patient resources using standard FHIR search parameters
+        including name, identifier, birthdate, gender, and address.
+      tags:
+        - Patient
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: _id
+          in: query
+          description: Logical ID of the patient resource
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: 'Patient identifier (e.g., MRN, SSN) in format system|value'
+          schema:
+            type: string
+        - name: family
+          in: query
+          description: Family (last) name of the patient
+          schema:
+            type: string
+        - name: given
+          in: query
+          description: Given (first) name of the patient
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Any part of the patient name
+          schema:
+            type: string
+        - name: birthdate
+          in: query
+          description: Patient date of birth (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: gender
+          in: query
+          description: Patient gender
+          schema:
+            type: string
+            enum:
+              - male
+              - female
+              - other
+              - unknown
+        - name: address
+          in: query
+          description: Any part of the patient address
+          schema:
+            type: string
+        - name: telecom
+          in: query
+          description: Patient phone number or email
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Bundle of matching Patient resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPatient
+      summary: Orion Health Create a new patient
+      description: Create a new Patient resource on the server.
+      tags:
+        - Patient
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '201':
+          description: Patient resource created successfully
+          headers:
+            Location:
+              description: URL of the newly created resource
+              schema:
+                type: string
+            ETag:
+              description: Version ID of the resource
+              schema:
+                type: string
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /Patient/{id}:
+    get:
+      operationId: getPatient
+      summary: Orion Health Read a patient by ID
+      description: Retrieve a specific Patient resource by its logical ID.
+      tags:
+        - Patient
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: Patient resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updatePatient
+      summary: Orion Health Update a patient
+      description: Update an existing Patient resource by its logical ID.
+      tags:
+        - Patient
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          description: Patient resource updated
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /Patient/{id}/_history:
+    get:
+      operationId: getPatientHistory
+      summary: Orion Health Get patient version history
+      description: Retrieve the version history of a specific Patient resource.
+      tags:
+        - Patient
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirCount'
+      responses:
+        '200':
+          description: Bundle containing historical versions
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Encounter:
+    get:
+      operationId: searchEncounters
+      summary: Orion Health Search for encounters
+      description: >-
+        Search for Encounter resources representing patient visits, admissions,
+        and other clinical interactions.
+      tags:
+        - Encounter
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Encounter date or date range
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Encounter status
+          schema:
+            type: string
+            enum:
+              - planned
+              - arrived
+              - triaged
+              - in-progress
+              - onleave
+              - finished
+              - cancelled
+        - name: class
+          in: query
+          description: Classification of the encounter (e.g., ambulatory, inpatient)
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Specific type of encounter
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Bundle of matching Encounter resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Encounter/{id}:
+    get:
+      operationId: getEncounter
+      summary: Orion Health Read an encounter by ID
+      description: Retrieve a specific Encounter resource by its logical ID.
+      tags:
+        - Encounter
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: Encounter resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Encounter'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Observation:
+    get:
+      operationId: searchObservations
+      summary: Orion Health Search for observations
+      description: >-
+        Search for Observation resources including vital signs, laboratory results,
+        imaging findings, and other clinical measurements.
+      tags:
+        - Observation
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Observation category (e.g., vital-signs, laboratory)
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: LOINC or SNOMED code for the observation
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Observation date or date range
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Observation status
+          schema:
+            type: string
+            enum:
+              - registered
+              - preliminary
+              - final
+              - amended
+              - corrected
+              - cancelled
+              - entered-in-error
+              - unknown
+      responses:
+        '200':
+          description: Bundle of matching Observation resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createObservation
+      summary: Orion Health Create a new observation
+      description: Create a new Observation resource.
+      tags:
+        - Observation
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Observation'
+      responses:
+        '201':
+          description: Observation resource created successfully
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Observation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /Observation/{id}:
+    get:
+      operationId: getObservation
+      summary: Orion Health Read an observation by ID
+      description: Retrieve a specific Observation resource by its logical ID.
+      tags:
+        - Observation
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: Observation resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Observation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Condition:
+    get:
+      operationId: searchConditions
+      summary: Orion Health Search for conditions
+      description: >-
+        Search for Condition resources representing diagnoses, problems, and
+        health concerns.
+      tags:
+        - Condition
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: ICD-10 or SNOMED code for the condition
+          schema:
+            type: string
+        - name: clinical-status
+          in: query
+          description: Clinical status of the condition
+          schema:
+            type: string
+            enum:
+              - active
+              - recurrence
+              - relapse
+              - inactive
+              - remission
+              - resolved
+        - name: category
+          in: query
+          description: Condition category
+          schema:
+            type: string
+        - name: onset-date
+          in: query
+          description: Date of onset
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Bundle of matching Condition resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Condition/{id}:
+    get:
+      operationId: getCondition
+      summary: Orion Health Read a condition by ID
+      description: Retrieve a specific Condition resource by its logical ID.
+      tags:
+        - Condition
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: Condition resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Condition'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /MedicationRequest:
+    get:
+      operationId: searchMedicationRequests
+      summary: Orion Health Search for medication requests
+      description: >-
+        Search for MedicationRequest resources representing prescriptions and
+        medication orders.
+      tags:
+        - MedicationRequest
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Prescription status
+          schema:
+            type: string
+            enum:
+              - active
+              - on-hold
+              - cancelled
+              - completed
+              - entered-in-error
+              - stopped
+              - draft
+              - unknown
+        - name: intent
+          in: query
+          description: Kind of medication request
+          schema:
+            type: string
+        - name: authoredon
+          in: query
+          description: Date the prescription was written
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Bundle of matching MedicationRequest resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /MedicationRequest/{id}:
+    get:
+      operationId: getMedicationRequest
+      summary: Orion Health Read a medication request by ID
+      description: Retrieve a specific MedicationRequest resource by its logical ID.
+      tags:
+        - MedicationRequest
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: MedicationRequest resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/MedicationRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /AllergyIntolerance:
+    get:
+      operationId: searchAllergyIntolerances
+      summary: Orion Health Search for allergy intolerances
+      description: >-
+        Search for AllergyIntolerance resources representing patient allergies
+        and adverse reactions.
+      tags:
+        - AllergyIntolerance
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: clinical-status
+          in: query
+          description: Clinical status of the allergy
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - resolved
+        - name: type
+          in: query
+          description: allergy or intolerance
+          schema:
+            type: string
+            enum:
+              - allergy
+              - intolerance
+        - name: criticality
+          in: query
+          description: Criticality level
+          schema:
+            type: string
+            enum:
+              - low
+              - high
+              - unable-to-assess
+      responses:
+        '200':
+          description: Bundle of matching AllergyIntolerance resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /AllergyIntolerance/{id}:
+    get:
+      operationId: getAllergyIntolerance
+      summary: Orion Health Read an allergy intolerance by ID
+      description: Retrieve a specific AllergyIntolerance resource by its logical ID.
+      tags:
+        - AllergyIntolerance
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: AllergyIntolerance resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/AllergyIntolerance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Procedure:
+    get:
+      operationId: searchProcedures
+      summary: Orion Health Search for procedures
+      description: >-
+        Search for Procedure resources representing clinical procedures
+        performed on patients.
+      tags:
+        - Procedure
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: CPT or SNOMED code for the procedure
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Procedure date or date range
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Procedure status
+          schema:
+            type: string
+            enum:
+              - preparation
+              - in-progress
+              - not-done
+              - on-hold
+              - stopped
+              - completed
+              - entered-in-error
+              - unknown
+      responses:
+        '200':
+          description: Bundle of matching Procedure resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Procedure/{id}:
+    get:
+      operationId: getProcedure
+      summary: Orion Health Read a procedure by ID
+      description: Retrieve a specific Procedure resource by its logical ID.
+      tags:
+        - Procedure
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: Procedure resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Procedure'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /DiagnosticReport:
+    get:
+      operationId: searchDiagnosticReports
+      summary: Orion Health Search for diagnostic reports
+      description: >-
+        Search for DiagnosticReport resources including lab reports,
+        pathology, radiology, and other diagnostic findings.
+      tags:
+        - DiagnosticReport
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Report category (e.g., LAB, RAD)
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: LOINC code for the report
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Report date or date range
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Report status
+          schema:
+            type: string
+            enum:
+              - registered
+              - partial
+              - preliminary
+              - final
+              - amended
+              - corrected
+              - appended
+              - cancelled
+              - entered-in-error
+              - unknown
+      responses:
+        '200':
+          description: Bundle of matching DiagnosticReport resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /DiagnosticReport/{id}:
+    get:
+      operationId: getDiagnosticReport
+      summary: Orion Health Read a diagnostic report by ID
+      description: Retrieve a specific DiagnosticReport resource by its logical ID.
+      tags:
+        - DiagnosticReport
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: DiagnosticReport resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/DiagnosticReport'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /CarePlan:
+    get:
+      operationId: searchCarePlans
+      summary: Orion Health Search for care plans
+      description: >-
+        Search for CarePlan resources describing planned healthcare activities
+        and goals for patients.
+      tags:
+        - CarePlan
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Care plan status
+          schema:
+            type: string
+            enum:
+              - draft
+              - active
+              - on-hold
+              - revoked
+              - completed
+              - entered-in-error
+              - unknown
+        - name: category
+          in: query
+          description: Type of care plan
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Care plan period
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Bundle of matching CarePlan resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /CarePlan/{id}:
+    get:
+      operationId: getCarePlan
+      summary: Orion Health Read a care plan by ID
+      description: Retrieve a specific CarePlan resource by its logical ID.
+      tags:
+        - CarePlan
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: CarePlan resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/CarePlan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Immunization:
+    get:
+      operationId: searchImmunizations
+      summary: Orion Health Search for immunizations
+      description: >-
+        Search for Immunization resources representing vaccine administrations.
+      tags:
+        - Immunization
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Vaccination date or date range
+          schema:
+            type: string
+        - name: vaccine-code
+          in: query
+          description: CVX code for the vaccine
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Immunization status
+          schema:
+            type: string
+            enum:
+              - completed
+              - entered-in-error
+              - not-done
+      responses:
+        '200':
+          description: Bundle of matching Immunization resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Immunization/{id}:
+    get:
+      operationId: getImmunization
+      summary: Orion Health Read an immunization by ID
+      description: Retrieve a specific Immunization resource by its logical ID.
+      tags:
+        - Immunization
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: Immunization resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Immunization'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /DocumentReference:
+    get:
+      operationId: searchDocumentReferences
+      summary: Orion Health Search for document references
+      description: >-
+        Search for DocumentReference resources representing clinical documents,
+        notes, and reports.
+      tags:
+        - DocumentReference
+      parameters:
+        - $ref: '#/components/parameters/FhirFormat'
+        - $ref: '#/components/parameters/FhirCount'
+        - $ref: '#/components/parameters/FhirOffset'
+        - name: patient
+          in: query
+          description: Reference to the patient
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Document type code
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Document category
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Document date or date range
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Document status
+          schema:
+            type: string
+            enum:
+              - current
+              - superseded
+              - entered-in-error
+      responses:
+        '200':
+          description: Bundle of matching DocumentReference resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /DocumentReference/{id}:
+    get:
+      operationId: getDocumentReference
+      summary: Orion Health Read a document reference by ID
+      description: Retrieve a specific DocumentReference resource by its logical ID.
+      tags:
+        - DocumentReference
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+        - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: DocumentReference resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/DocumentReference'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+          - application/fhir+json
+          - application/fhir+xml
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
+    Bundle:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Bundle
+        type:
+          type: string
+          enum:
+            - searchset
+            - batch-response
+            - history
+        total:
+          type: integer
+          description: Total number of matching results
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                enum:
+                  - self
+                  - next
+                  - previous
+                  - first
+                  - last
+              url:
+                type: string
+                format: uri
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                format: uri
+              resource:
+                $ref: '#/components/schemas/Resource'
+              search:
+                type: object
+                properties:
+                  mode:
+                    type: string
+                    enum:
+                      - match
+                      - include
+                      - outcome
+    Patient:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Patient
+        id:
+          type: string
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+        identifier:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        active:
+          type: boolean
+        name:
+          type: array
+          items:
+            $ref: '#/components/schemas/HumanName'
+        telecom:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactPoint'
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+            - other
+            - unknown
+        birthDate:
+          type: string
+          format: date
+        deceasedBoolean:
+          type: boolean
+        address:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        maritalStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        communication:
+          type: array
+          items:
+            type: object
+            properties:
+              language:
+                $ref: '#/components/schemas/CodeableConcept'
+              preferred:
+                type: boolean
+    Encounter:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Encounter
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - planned
+            - arrived
+            - triaged
+            - in-progress
+            - onleave
+            - finished
+            - cancelled
+        class:
+          $ref: '#/components/schemas/Coding'
+        type:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        period:
+          $ref: '#/components/schemas/Period'
+        reasonCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        participant:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodeableConcept'
+              individual:
+                $ref: '#/components/schemas/Reference'
+    Observation:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Observation
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - registered
+            - preliminary
+            - final
+            - amended
+            - corrected
+            - cancelled
+            - entered-in-error
+            - unknown
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        effectiveDateTime:
+          type: string
+          format: date-time
+        valueQuantity:
+          $ref: '#/components/schemas/Quantity'
+        valueString:
+          type: string
+        valueCodeableConcept:
+          $ref: '#/components/schemas/CodeableConcept'
+        interpretation:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        referenceRange:
+          type: array
+          items:
+            type: object
+            properties:
+              low:
+                $ref: '#/components/schemas/Quantity'
+              high:
+                $ref: '#/components/schemas/Quantity'
+              text:
+                type: string
+    Condition:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Condition
+        id:
+          type: string
+        clinicalStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        verificationStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        severity:
+          $ref: '#/components/schemas/CodeableConcept'
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        onsetDateTime:
+          type: string
+          format: date-time
+        recordedDate:
+          type: string
+          format: date-time
+    MedicationRequest:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: MedicationRequest
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - on-hold
+            - cancelled
+            - completed
+            - entered-in-error
+            - stopped
+            - draft
+            - unknown
+        intent:
+          type: string
+          enum:
+            - proposal
+            - plan
+            - order
+            - original-order
+            - reflex-order
+            - filler-order
+            - instance-order
+            - option
+        medicationCodeableConcept:
+          $ref: '#/components/schemas/CodeableConcept'
+        medicationReference:
+          $ref: '#/components/schemas/Reference'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        authoredOn:
+          type: string
+          format: date-time
+        requester:
+          $ref: '#/components/schemas/Reference'
+        dosageInstruction:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              timing:
+                type: object
+                properties:
+                  repeat:
+                    type: object
+                    properties:
+                      frequency:
+                        type: integer
+                      period:
+                        type: number
+                      periodUnit:
+                        type: string
+              doseAndRate:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    doseQuantity:
+                      $ref: '#/components/schemas/Quantity'
+    AllergyIntolerance:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: AllergyIntolerance
+        id:
+          type: string
+        clinicalStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        verificationStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        type:
+          type: string
+          enum:
+            - allergy
+            - intolerance
+        category:
+          type: array
+          items:
+            type: string
+            enum:
+              - food
+              - medication
+              - environment
+              - biologic
+        criticality:
+          type: string
+          enum:
+            - low
+            - high
+            - unable-to-assess
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        patient:
+          $ref: '#/components/schemas/Reference'
+        reaction:
+          type: array
+          items:
+            type: object
+            properties:
+              substance:
+                $ref: '#/components/schemas/CodeableConcept'
+              manifestation:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodeableConcept'
+              severity:
+                type: string
+                enum:
+                  - mild
+                  - moderate
+                  - severe
+    Procedure:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Procedure
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - preparation
+            - in-progress
+            - not-done
+            - on-hold
+            - stopped
+            - completed
+            - entered-in-error
+            - unknown
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        performedDateTime:
+          type: string
+          format: date-time
+        performedPeriod:
+          $ref: '#/components/schemas/Period'
+        performer:
+          type: array
+          items:
+            type: object
+            properties:
+              actor:
+                $ref: '#/components/schemas/Reference'
+    DiagnosticReport:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: DiagnosticReport
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - registered
+            - partial
+            - preliminary
+            - final
+            - amended
+            - corrected
+            - appended
+            - cancelled
+            - entered-in-error
+            - unknown
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        effectiveDateTime:
+          type: string
+          format: date-time
+        issued:
+          type: string
+          format: date-time
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+        conclusion:
+          type: string
+    CarePlan:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: CarePlan
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - draft
+            - active
+            - on-hold
+            - revoked
+            - completed
+            - entered-in-error
+            - unknown
+        intent:
+          type: string
+          enum:
+            - proposal
+            - plan
+            - order
+            - option
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        period:
+          $ref: '#/components/schemas/Period'
+        activity:
+          type: array
+          items:
+            type: object
+            properties:
+              detail:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  code:
+                    $ref: '#/components/schemas/CodeableConcept'
+                  description:
+                    type: string
+    Immunization:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Immunization
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - completed
+            - entered-in-error
+            - not-done
+        vaccineCode:
+          $ref: '#/components/schemas/CodeableConcept'
+        patient:
+          $ref: '#/components/schemas/Reference'
+        occurrenceDateTime:
+          type: string
+          format: date-time
+        lotNumber:
+          type: string
+        site:
+          $ref: '#/components/schemas/CodeableConcept'
+        route:
+          $ref: '#/components/schemas/CodeableConcept'
+        doseQuantity:
+          $ref: '#/components/schemas/Quantity'
+    DocumentReference:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: DocumentReference
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - current
+            - superseded
+            - entered-in-error
+        type:
+          $ref: '#/components/schemas/CodeableConcept'
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        date:
+          type: string
+          format: date-time
+        content:
+          type: array
+          items:
+            type: object
+            properties:
+              attachment:
+                type: object
+                properties:
+                  contentType:
+                    type: string
+                  url:
+                    type: string
+                    format: uri
+                  title:
+                    type: string
+    CapabilityStatement:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: CapabilityStatement
+        status:
+          type: string
+        date:
+          type: string
+          format: date-time
+        kind:
+          type: string
+        fhirVersion:
+          type: string
+        format:
+          type: array
+          items:
+            type: string
+        rest:
+          type: array
+          items:
+            type: object
+            properties:
+              mode:
+                type: string
+              resource:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    interaction:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+    OperationOutcome:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                  - fatal
+                  - error
+                  - warning
+                  - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
+    Identifier:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+            - usual
+            - official
+            - temp
+            - secondary
+            - old
+        system:
+          type: string
+          format: uri
+        value:
+          type: string
+    HumanName:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+            - usual
+            - official
+            - temp
+            - nickname
+            - anonymous
+            - old
+            - maiden
+        family:
+          type: string
+        given:
+          type: array
+          items:
+            type: string
+        prefix:
+          type: array
+          items:
+            type: string
+        suffix:
+          type: array
+          items:
+            type: string
+    ContactPoint:
+      type: object
+      properties:
+        system:
+          type: string
+          enum:
+            - phone
+            - fax
+            - email
+            - pager
+            - url
+            - sms
+            - other
+        value:
+          type: string
+        use:
+          type: string
+          enum:
+            - home
+            - work
+            - temp
+            - old
+            - mobile
+    Address:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+            - home
+            - work
+            - temp
+            - old
+            - billing
+        type:
+          type: string
+          enum:
+            - postal
+            - physical
+            - both
+        line:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+    Coding:
+      type: object
+      properties:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
+    Reference:
+      type: object
+      properties:
+        reference:
+          type: string
+        display:
+          type: string
+    Period:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+    Quantity:
+      type: object
+      properties:
+        value:
+          type: number
+        unit:
+          type: string
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    NotFound:
+      description: Resource not found
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    Conflict:
+      description: Version conflict during update
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    UnprocessableEntity:
+      description: Resource failed validation
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'

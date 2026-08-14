@@ -1,0 +1,738 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health Rhapsody Integration API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List integration routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/routes",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by route status"
+              },
+              {
+                "name": "folder",
+                "value": "",
+                "type": "query",
+                "description": "Filter by route folder path"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search routes by name"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve all integration routes configured in the Rhapsody engine, including their current operational status."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get route details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific integration route."
+        },
+        {
+          "info": {
+            "name": "Orion Health Start a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/rhapsody/routes/:routeId/start",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Start a stopped integration route to begin processing messages."
+        },
+        {
+          "info": {
+            "name": "Orion Health Stop a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/rhapsody/routes/:routeId/stop",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stop an active integration route from processing messages."
+        },
+        {
+          "info": {
+            "name": "Orion Health Restart a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/rhapsody/routes/:routeId/restart",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Restart an integration route by stopping and starting it."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Get route processing statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/routes/:routeId/statistics",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Statistics aggregation interval"
+              }
+            ]
+          },
+          "docs": "Retrieve message processing statistics for a specific route including throughput, error rates, and processing times."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get monitoring dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/monitoring/dashboard"
+          },
+          "docs": "Retrieve an overview of the Rhapsody engine status including system health, active routes, queue depths, and error counts."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get system health status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/monitoring/health"
+          },
+          "docs": "Retrieve the overall health status of the Rhapsody engine including component-level health checks."
+        },
+        {
+          "info": {
+            "name": "Orion Health List monitoring alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/monitoring/alerts",
+            "params": [
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "acknowledged",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve active monitoring alerts for the Rhapsody engine."
+        },
+        {
+          "info": {
+            "name": "Orion Health Acknowledge a monitoring alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/rhapsody/monitoring/alerts/:alertId/acknowledge",
+            "params": [
+              {
+                "name": "alertId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Acknowledge a monitoring alert to indicate it has been reviewed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Communication Points",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List communication points",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/communication-points",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Communication point type"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Communication protocol"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve all communication points (input and output connectors) configured in the Rhapsody engine."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get communication point details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/communication-points/:commPointId",
+            "params": [
+              {
+                "name": "commPointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed configuration of a specific communication point."
+        },
+        {
+          "info": {
+            "name": "Orion Health Start a communication point",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/rhapsody/communication-points/:commPointId/start",
+            "params": [
+              {
+                "name": "commPointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Start a stopped communication point."
+        },
+        {
+          "info": {
+            "name": "Orion Health Stop a communication point",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/rhapsody/communication-points/:commPointId/stop",
+            "params": [
+              {
+                "name": "commPointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stop an active communication point."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Message Queues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List message queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/queues",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by route ID"
+              },
+              {
+                "name": "hasErrors",
+                "value": "",
+                "type": "query",
+                "description": "Only show queues with errors"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve all message queues in the Rhapsody engine with their current depth and status."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get queue details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/queues/:queueId",
+            "params": [
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific message queue."
+        },
+        {
+          "info": {
+            "name": "Orion Health List messages in a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/queues/:queueId/messages",
+            "params": [
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve messages currently held in a specific queue."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Get message details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/messages/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeBody",
+                "value": "",
+                "type": "query",
+                "description": "Include message body content"
+              }
+            ]
+          },
+          "docs": "Retrieve the full content and metadata of a specific message, including its processing history."
+        },
+        {
+          "info": {
+            "name": "Orion Health Search messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/messages/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Full-text search query against message content"
+              },
+              {
+                "name": "messageType",
+                "value": "",
+                "type": "query",
+                "description": "HL7 message type (e.g., ADT^A01)"
+              },
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query",
+                "description": "Search by patient identifier in message content"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Search for messages across all routes and queues using various criteria including message content, type, and date range."
+        },
+        {
+          "info": {
+            "name": "Orion Health Reprocess a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/rhapsody/messages/:messageId/reprocess",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resubmit a held or errored message for reprocessing through its route."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lookup Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List lookup tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/lookup-tables",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by table name"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve lookup tables used for data transformation and mapping within integration routes."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get lookup table contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/lookup-tables/:tableId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the contents of a specific lookup table."
+        },
+        {
+          "info": {
+            "name": "Orion Health Update lookup table contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.orionhealth.com/rhapsody/lookup-tables/:tableId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the contents of a lookup table."
+        },
+        {
+          "info": {
+            "name": "Orion Health Look up a value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/lookup-tables/:tableId/lookup",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Lookup key"
+              },
+              {
+                "name": "column",
+                "value": "",
+                "type": "query",
+                "description": "Column name to return"
+              }
+            ]
+          },
+          "docs": "Look up a value in a specific lookup table by key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Get engine configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/configuration/engine"
+          },
+          "docs": "Retrieve the current Rhapsody engine configuration settings."
+        },
+        {
+          "info": {
+            "name": "Orion Health List installed components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/rhapsody/configuration/components",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "List all installed Rhapsody components including filters, communication point types, and custom modules."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

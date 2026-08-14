@@ -1,0 +1,713 @@
+{
+  "info": {
+    "_postman_id": "f18de13c-8c51-49b1-bbd2-352ef7a16df9",
+    "name": "Orion Health FHIR Alerts Registries API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:37.000Z",
+    "updatedAt": "2026-07-28T02:29:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f18de13c-8c51-49b1-bbd2-352ef7a16df9"
+  },
+  "item": [
+    {
+      "name": "registries",
+      "item": [
+        {
+          "name": "{registryId}",
+          "item": [
+            {
+              "name": "patients",
+              "item": [
+                {
+                  "name": "Orion Health List patients in a registry",
+                  "id": "d7c30fcc-ce5e-481b-838f-fc5a3345853d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registries/:registryId/patients?riskLevel=high&careStatus=completed&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registries",
+                        ":registryId",
+                        "patients"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by risk stratification level",
+                          "key": "riskLevel",
+                          "value": "high"
+                        },
+                        {
+                          "description": "Filter by care management status",
+                          "key": "careStatus",
+                          "value": "completed"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "699e8916-8ac6-49b4-b248-87349789f6dc",
+                          "key": "registryId",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the list of patients enrolled in a specific registry, with optional filtering by risk level and care status."
+                  },
+                  "response": [
+                    {
+                      "id": "f9f95c21-43c4-4a76-8ec1-c3fb319b9147",
+                      "name": "List of patients in the registry",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/registries/:registryId/patients?riskLevel=high&careStatus=completed&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "registries",
+                            ":registryId",
+                            "patients"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by risk stratification level",
+                              "key": "riskLevel",
+                              "value": "high"
+                            },
+                            {
+                              "description": "Filter by care management status",
+                              "key": "careStatus",
+                              "value": "completed"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "registryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"patientId\": \"<string>\",\n      \"patientName\": \"<string>\",\n      \"dateOfBirth\": \"<date>\",\n      \"gender\": \"<string>\",\n      \"riskLevel\": \"critical\",\n      \"riskScore\": \"<number>\",\n      \"careStatus\": \"completed\",\n      \"primaryConditions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lastEncounterDate\": \"<date>\",\n      \"assignedCareManager\": \"<string>\"\n    },\n    {\n      \"patientId\": \"<string>\",\n      \"patientName\": \"<string>\",\n      \"dateOfBirth\": \"<date>\",\n      \"gender\": \"<string>\",\n      \"riskLevel\": \"high\",\n      \"riskScore\": \"<number>\",\n      \"careStatus\": \"enrolled\",\n      \"primaryConditions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lastEncounterDate\": \"<date>\",\n      \"assignedCareManager\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:29:37.000Z",
+                      "updatedAt": "2026-07-28T02:29:37.000Z",
+                      "uid": "35240-f9f95c21-43c4-4a76-8ec1-c3fb319b9147"
+                    },
+                    {
+                      "id": "18e8784d-799f-442a-b30d-47a1e060cc74",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/registries/:registryId/patients?riskLevel=high&careStatus=completed&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "registries",
+                            ":registryId",
+                            "patients"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by risk stratification level",
+                              "key": "riskLevel",
+                              "value": "high"
+                            },
+                            {
+                              "description": "Filter by care management status",
+                              "key": "careStatus",
+                              "value": "completed"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "registryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:37.000Z",
+                      "updatedAt": "2026-07-28T02:29:37.000Z",
+                      "uid": "35240-18e8784d-799f-442a-b30d-47a1e060cc74"
+                    },
+                    {
+                      "id": "7821be24-e13d-41c1-a6a8-bfa02d8387e6",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/registries/:registryId/patients?riskLevel=high&careStatus=completed&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "registries",
+                            ":registryId",
+                            "patients"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by risk stratification level",
+                              "key": "riskLevel",
+                              "value": "high"
+                            },
+                            {
+                              "description": "Filter by care management status",
+                              "key": "careStatus",
+                              "value": "completed"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "registryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:37.000Z",
+                      "updatedAt": "2026-07-28T02:29:37.000Z",
+                      "uid": "35240-7821be24-e13d-41c1-a6a8-bfa02d8387e6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:37.000Z",
+                  "updatedAt": "2026-07-28T02:29:37.000Z",
+                  "uid": "35240-d7c30fcc-ce5e-481b-838f-fc5a3345853d"
+                }
+              ],
+              "id": "4f9482ea-995f-400f-8ebb-4428b72aea67",
+              "createdAt": "2026-07-28T02:29:37.000Z",
+              "updatedAt": "2026-07-28T02:29:37.000Z",
+              "uid": "35240-4f9482ea-995f-400f-8ebb-4428b72aea67"
+            },
+            {
+              "name": "Orion Health Get a patient registry",
+              "id": "18b9014b-7e54-4032-bb56-61f654259331",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registries/:registryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registries",
+                    ":registryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "98ce1599-6569-4bb9-b2bf-a87e9cdfbc3f",
+                      "key": "registryId",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific patient registry."
+              },
+              "response": [
+                {
+                  "id": "a0bb43f1-64d7-40c6-9aba-278de1040864",
+                  "name": "Registry details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registries/:registryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registries",
+                        ":registryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "registryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"behavioral-health\",\n  \"status\": \"archived\",\n  \"patientCount\": \"<integer>\",\n  \"criteria\": {\n    \"conditions\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"ageRange\": {\n      \"min\": \"<integer>\",\n      \"max\": \"<integer>\"\n    },\n    \"gender\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:29:37.000Z",
+                  "updatedAt": "2026-07-28T02:29:37.000Z",
+                  "uid": "35240-a0bb43f1-64d7-40c6-9aba-278de1040864"
+                },
+                {
+                  "id": "5d10475c-a1a7-43d0-a53e-1f99b80df5fd",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registries/:registryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registries",
+                        ":registryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "registryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:37.000Z",
+                  "updatedAt": "2026-07-28T02:29:37.000Z",
+                  "uid": "35240-5d10475c-a1a7-43d0-a53e-1f99b80df5fd"
+                },
+                {
+                  "id": "e386f3d8-2676-45bd-826d-fa9149aac4b8",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registries/:registryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registries",
+                        ":registryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "registryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:37.000Z",
+                  "updatedAt": "2026-07-28T02:29:37.000Z",
+                  "uid": "35240-e386f3d8-2676-45bd-826d-fa9149aac4b8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:37.000Z",
+              "updatedAt": "2026-07-28T02:29:37.000Z",
+              "uid": "35240-18b9014b-7e54-4032-bb56-61f654259331"
+            }
+          ],
+          "id": "d5d05e09-c7e4-4b5e-995e-511dfcb298c7",
+          "createdAt": "2026-07-28T02:29:37.000Z",
+          "updatedAt": "2026-07-28T02:29:37.000Z",
+          "uid": "35240-d5d05e09-c7e4-4b5e-995e-511dfcb298c7"
+        },
+        {
+          "name": "Orion Health List patient registries",
+          "id": "0ca0c45c-dbff-4fbe-bc31-ca24475a25eb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/registries?type=behavioral-health&status=archived&offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "registries"
+              ],
+              "query": [
+                {
+                  "description": "Filter by registry type",
+                  "key": "type",
+                  "value": "behavioral-health"
+                },
+                {
+                  "description": "Filter by registry status",
+                  "key": "status",
+                  "value": "archived"
+                },
+                {
+                  "description": "Number of items to skip",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Retrieve a list of patient registries configured for the organization, such as diabetes, heart failure, or chronic disease registries."
+          },
+          "response": [
+            {
+              "id": "8ecd4005-471a-4aa0-8641-efa37704a0d2",
+              "name": "List of patient registries",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registries?type=behavioral-health&status=archived&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registries"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by registry type",
+                      "key": "type",
+                      "value": "behavioral-health"
+                    },
+                    {
+                      "description": "Filter by registry status",
+                      "key": "status",
+                      "value": "archived"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"maternal-health\",\n      \"status\": \"inactive\",\n      \"patientCount\": \"<integer>\",\n      \"criteria\": {\n        \"conditions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"ageRange\": {\n          \"min\": \"<integer>\",\n          \"max\": \"<integer>\"\n        },\n        \"gender\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"maternal-health\",\n      \"status\": \"active\",\n      \"patientCount\": \"<integer>\",\n      \"criteria\": {\n        \"conditions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"ageRange\": {\n          \"min\": \"<integer>\",\n          \"max\": \"<integer>\"\n        },\n        \"gender\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:29:37.000Z",
+              "updatedAt": "2026-07-28T02:29:37.000Z",
+              "uid": "35240-8ecd4005-471a-4aa0-8641-efa37704a0d2"
+            },
+            {
+              "id": "812d54b4-e628-4d41-9e39-fa40cf461b0c",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registries?type=behavioral-health&status=archived&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registries"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by registry type",
+                      "key": "type",
+                      "value": "behavioral-health"
+                    },
+                    {
+                      "description": "Filter by registry status",
+                      "key": "status",
+                      "value": "archived"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:37.000Z",
+              "updatedAt": "2026-07-28T02:29:37.000Z",
+              "uid": "35240-812d54b4-e628-4d41-9e39-fa40cf461b0c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:37.000Z",
+          "updatedAt": "2026-07-28T02:29:37.000Z",
+          "uid": "35240-0ca0c45c-dbff-4fbe-bc31-ca24475a25eb"
+        }
+      ],
+      "id": "aa6a92fb-461b-4f48-a266-db986e6915dc",
+      "createdAt": "2026-07-28T02:29:37.000Z",
+      "updatedAt": "2026-07-28T02:29:37.000Z",
+      "uid": "35240-aa6a92fb-461b-4f48-a266-db986e6915dc"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

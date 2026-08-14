@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Messages API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List messages in a queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/queues/:queueId/messages",
+            "params": [
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve messages currently held in a specific queue."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get message details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/messages/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeBody",
+                "value": "",
+                "type": "query",
+                "description": "Include message body content"
+              }
+            ]
+          },
+          "docs": "Retrieve the full content and metadata of a specific message, including its processing history."
+        },
+        {
+          "info": {
+            "name": "Orion Health Search messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/messages/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Full-text search query against message content"
+              },
+              {
+                "name": "messageType",
+                "value": "",
+                "type": "query",
+                "description": "HL7 message type (e.g., ADT^A01)"
+              },
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query",
+                "description": "Search by patient identifier in message content"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Search for messages across all routes and queues using various criteria including message content, type, and date range."
+        },
+        {
+          "info": {
+            "name": "Orion Health Reprocess a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/messages/:messageId/reprocess",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resubmit a held or errored message for reprocessing through its route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,172 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/orion-fhir-openapi.yml, openapi/orion-hie-openapi.yml, openapi/orion-population-health-openapi.yml,
+  openapi/orion-rhapsody-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/orion-fhir-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+    tokenUrl: https://auth.orionhealth.com/oauth2/token
+  description: OAuth 2.0 authorization using SMART on FHIR
+- name: oauth2
+  source: openapi/orion-hie-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.orionhealth.com/oauth2/token
+- name: oauth2
+  source: openapi/orion-population-health-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.orionhealth.com/oauth2/token
+- name: oauth2
+  source: openapi/orion-rhapsody-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.orionhealth.com/oauth2/token
+scopes:
+- scope: fhirUser
+  description: FHIR user identity
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: hie:audit-read
+  description: Read audit logs
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: hie:consent-read
+  description: Read consent directives
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: hie:consent-write
+  description: Manage consent directives
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: hie:document-read
+  description: Retrieve documents
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: hie:document-write
+  description: Submit documents
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: hie:notification-manage
+  description: Manage notification subscriptions
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: hie:notification-read
+  description: Read notifications
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: hie:patient-query
+  description: Query patient identity
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: hie:provider-read
+  description: Query provider directory
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-hie-openapi.yml
+- scope: launch
+  description: Launch context
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: openid
+  description: OpenID Connect
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: patient/*.read
+  description: Read access to all patient data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: patient/*.write
+  description: Write access to all patient data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: patient/Condition.read
+  description: Read access to Condition resources
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: patient/MedicationRequest.read
+  description: Read access to MedicationRequest resources
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: patient/Observation.read
+  description: Read access to Observation resources
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: patient/Patient.read
+  description: Read access to Patient resources
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/orion-fhir-openapi.yml
+- scope: population-health:admin
+  description: Administrative access
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-population-health-openapi.yml
+- scope: population-health:read
+  description: Read population health data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-population-health-openapi.yml
+- scope: population-health:write
+  description: Write population health data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-population-health-openapi.yml
+- scope: rhapsody:admin
+  description: Administrative access
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-rhapsody-openapi.yml
+- scope: rhapsody:read
+  description: Read access to Rhapsody engine
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-rhapsody-openapi.yml
+- scope: rhapsody:write
+  description: Write access to Rhapsody engine
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/orion-rhapsody-openapi.yml

@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts AllergyIntolerance API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AllergyIntolerance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for allergy intolerances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/AllergyIntolerance",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "clinical-status",
+                "value": "",
+                "type": "query",
+                "description": "Clinical status of the allergy"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "allergy or intolerance"
+              },
+              {
+                "name": "criticality",
+                "value": "",
+                "type": "query",
+                "description": "Criticality level"
+              }
+            ]
+          },
+          "docs": "Search for AllergyIntolerance resources representing patient allergies and adverse reactions."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read an allergy intolerance by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/AllergyIntolerance/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific AllergyIntolerance resource by its logical ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

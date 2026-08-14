@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Routes API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List integration routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/routes",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by route status"
+              },
+              {
+                "name": "folder",
+                "value": "",
+                "type": "query",
+                "description": "Filter by route folder path"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search routes by name"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve all integration routes configured in the Rhapsody engine, including their current operational status."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get route details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific integration route."
+        },
+        {
+          "info": {
+            "name": "Orion Health Start a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/routes/:routeId/start",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Start a stopped integration route to begin processing messages."
+        },
+        {
+          "info": {
+            "name": "Orion Health Stop a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/routes/:routeId/stop",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stop an active integration route from processing messages."
+        },
+        {
+          "info": {
+            "name": "Orion Health Restart a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/routes/:routeId/restart",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Restart an integration route by stopping and starting it."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get route processing statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/routes/:routeId/statistics",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Statistics aggregation interval"
+              }
+            ]
+          },
+          "docs": "Retrieve message processing statistics for a specific route including throughput, error rates, and processing times."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

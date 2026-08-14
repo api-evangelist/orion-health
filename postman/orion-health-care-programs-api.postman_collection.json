@@ -1,0 +1,1056 @@
+{
+  "info": {
+    "_postman_id": "11158e32-4c53-4895-ba26-3bd3f28f2526",
+    "name": "Orion Health FHIR Alerts Care Programs API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:03.000Z",
+    "updatedAt": "2026-07-28T02:29:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-11158e32-4c53-4895-ba26-3bd3f28f2526"
+  },
+  "item": [
+    {
+      "name": "care-programs",
+      "item": [
+        {
+          "name": "{programId}",
+          "item": [
+            {
+              "name": "enrollments",
+              "item": [
+                {
+                  "name": "Orion Health List program enrollments",
+                  "id": "9ac13230-2a6e-4b6b-9326-eeffb6546753",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/care-programs/:programId/enrollments?status=withdrawn&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "care-programs",
+                        ":programId",
+                        "enrollments"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "withdrawn"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "53d11347-7060-41bb-9eb9-2147db881cf1",
+                          "key": "programId",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve patient enrollments in a care program."
+                  },
+                  "response": [
+                    {
+                      "id": "4b4e2a1a-c7fc-40a0-a795-4391c80f90c8",
+                      "name": "List of enrollments",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/care-programs/:programId/enrollments?status=withdrawn&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "care-programs",
+                            ":programId",
+                            "enrollments"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "withdrawn"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "programId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"programId\": \"<uuid>\",\n      \"patientId\": \"<string>\",\n      \"status\": \"enrolled\",\n      \"enrolledAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"assignedCareManager\": \"<string>\",\n      \"goals\": [\n        {\n          \"description\": \"<string>\",\n          \"status\": \"in-progress\",\n          \"targetDate\": \"<date>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"status\": \"achieved\",\n          \"targetDate\": \"<date>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"programId\": \"<uuid>\",\n      \"patientId\": \"<string>\",\n      \"status\": \"withdrawn\",\n      \"enrolledAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\",\n      \"assignedCareManager\": \"<string>\",\n      \"goals\": [\n        {\n          \"description\": \"<string>\",\n          \"status\": \"in-progress\",\n          \"targetDate\": \"<date>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"status\": \"achieved\",\n          \"targetDate\": \"<date>\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:29:04.000Z",
+                      "updatedAt": "2026-07-28T02:29:04.000Z",
+                      "uid": "35240-4b4e2a1a-c7fc-40a0-a795-4391c80f90c8"
+                    },
+                    {
+                      "id": "21448cfe-dca2-4ff4-9d98-e5aaaba6386c",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/care-programs/:programId/enrollments?status=withdrawn&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "care-programs",
+                            ":programId",
+                            "enrollments"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "withdrawn"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "programId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:04.000Z",
+                      "updatedAt": "2026-07-28T02:29:04.000Z",
+                      "uid": "35240-21448cfe-dca2-4ff4-9d98-e5aaaba6386c"
+                    },
+                    {
+                      "id": "0d7c6d87-5bd7-4589-8f7e-f1b8839b7ecc",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/care-programs/:programId/enrollments?status=withdrawn&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "care-programs",
+                            ":programId",
+                            "enrollments"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "withdrawn"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "programId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:04.000Z",
+                      "updatedAt": "2026-07-28T02:29:04.000Z",
+                      "uid": "35240-0d7c6d87-5bd7-4589-8f7e-f1b8839b7ecc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:03.000Z",
+                  "updatedAt": "2026-07-28T02:29:03.000Z",
+                  "uid": "35240-9ac13230-2a6e-4b6b-9326-eeffb6546753"
+                },
+                {
+                  "name": "Orion Health Enroll a patient in a care program",
+                  "id": "2e621afb-3b79-4a7e-8ba6-41a109f9e4eb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"patientId\": \"<string>\",\n  \"assignedCareManager\": \"<string>\",\n  \"goals\": [\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/care-programs/:programId/enrollments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "care-programs",
+                        ":programId",
+                        "enrollments"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8cc60b0b-2c1a-42d6-a172-fd6a58425f94",
+                          "key": "programId",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Enroll a patient in a specific care program."
+                  },
+                  "response": [
+                    {
+                      "id": "fa0c491a-cc01-489f-b26d-893a4c146324",
+                      "name": "Patient enrolled",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"patientId\": \"<string>\",\n  \"assignedCareManager\": \"<string>\",\n  \"goals\": [\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/care-programs/:programId/enrollments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "care-programs",
+                            ":programId",
+                            "enrollments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "programId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"programId\": \"<uuid>\",\n  \"patientId\": \"<string>\",\n  \"status\": \"enrolled\",\n  \"enrolledAt\": \"<dateTime>\",\n  \"completedAt\": \"<dateTime>\",\n  \"assignedCareManager\": \"<string>\",\n  \"goals\": [\n    {\n      \"description\": \"<string>\",\n      \"status\": \"pending\",\n      \"targetDate\": \"<date>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"status\": \"achieved\",\n      \"targetDate\": \"<date>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:04.000Z",
+                      "updatedAt": "2026-07-28T02:29:04.000Z",
+                      "uid": "35240-fa0c491a-cc01-489f-b26d-893a4c146324"
+                    },
+                    {
+                      "id": "48e28488-18b8-43b1-997d-1be9df18bfd7",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"patientId\": \"<string>\",\n  \"assignedCareManager\": \"<string>\",\n  \"goals\": [\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/care-programs/:programId/enrollments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "care-programs",
+                            ":programId",
+                            "enrollments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "programId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:04.000Z",
+                      "updatedAt": "2026-07-28T02:29:04.000Z",
+                      "uid": "35240-48e28488-18b8-43b1-997d-1be9df18bfd7"
+                    },
+                    {
+                      "id": "80af1c21-7286-4e72-afcc-83e4d57fdd66",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"patientId\": \"<string>\",\n  \"assignedCareManager\": \"<string>\",\n  \"goals\": [\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/care-programs/:programId/enrollments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "care-programs",
+                            ":programId",
+                            "enrollments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "programId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:04.000Z",
+                      "updatedAt": "2026-07-28T02:29:04.000Z",
+                      "uid": "35240-80af1c21-7286-4e72-afcc-83e4d57fdd66"
+                    },
+                    {
+                      "id": "c176d011-2b14-440b-be8b-61ce1e11bf76",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"patientId\": \"<string>\",\n  \"assignedCareManager\": \"<string>\",\n  \"goals\": [\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/care-programs/:programId/enrollments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "care-programs",
+                            ":programId",
+                            "enrollments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "programId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:04.000Z",
+                      "updatedAt": "2026-07-28T02:29:04.000Z",
+                      "uid": "35240-c176d011-2b14-440b-be8b-61ce1e11bf76"
+                    },
+                    {
+                      "id": "7f78995c-4075-4384-9bbb-83a3fce8c581",
+                      "name": "Patient already enrolled",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"patientId\": \"<string>\",\n  \"assignedCareManager\": \"<string>\",\n  \"goals\": [\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"targetDate\": \"<date>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/care-programs/:programId/enrollments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "care-programs",
+                            ":programId",
+                            "enrollments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "programId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:04.000Z",
+                      "updatedAt": "2026-07-28T02:29:04.000Z",
+                      "uid": "35240-7f78995c-4075-4384-9bbb-83a3fce8c581"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:03.000Z",
+                  "updatedAt": "2026-07-28T02:29:03.000Z",
+                  "uid": "35240-2e621afb-3b79-4a7e-8ba6-41a109f9e4eb"
+                }
+              ],
+              "id": "77309bd3-b875-4d38-9393-05979b64fab3",
+              "createdAt": "2026-07-28T02:29:03.000Z",
+              "updatedAt": "2026-07-28T02:29:03.000Z",
+              "uid": "35240-77309bd3-b875-4d38-9393-05979b64fab3"
+            },
+            {
+              "name": "Orion Health Get care program details",
+              "id": "c3580cb5-139a-47a1-9ab6-68a17c8a1a1f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/care-programs/:programId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "care-programs",
+                    ":programId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3b46ba0b-6a33-41da-8157-a517f24bc4bc",
+                      "key": "programId",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific care program."
+              },
+              "response": [
+                {
+                  "id": "8f47e0ab-8f9a-4364-b779-5cfcdb256da4",
+                  "name": "Care program details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/care-programs/:programId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "care-programs",
+                        ":programId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "programId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"wellness\",\n  \"status\": \"draft\",\n  \"enrollmentCount\": \"<integer>\",\n  \"eligibilityCriteria\": {\n    \"conditions\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"riskLevels\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:29:04.000Z",
+                  "updatedAt": "2026-07-28T02:29:04.000Z",
+                  "uid": "35240-8f47e0ab-8f9a-4364-b779-5cfcdb256da4"
+                },
+                {
+                  "id": "d3f324dd-4055-491f-a999-1db2017e37e6",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/care-programs/:programId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "care-programs",
+                        ":programId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "programId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:04.000Z",
+                  "updatedAt": "2026-07-28T02:29:04.000Z",
+                  "uid": "35240-d3f324dd-4055-491f-a999-1db2017e37e6"
+                },
+                {
+                  "id": "a62a499f-1df6-42fd-8036-13a792b10bbe",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/care-programs/:programId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "care-programs",
+                        ":programId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "programId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:04.000Z",
+                  "updatedAt": "2026-07-28T02:29:04.000Z",
+                  "uid": "35240-a62a499f-1df6-42fd-8036-13a792b10bbe"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:03.000Z",
+              "updatedAt": "2026-07-28T02:29:03.000Z",
+              "uid": "35240-c3580cb5-139a-47a1-9ab6-68a17c8a1a1f"
+            }
+          ],
+          "id": "7b8e1c7f-494a-41a8-b423-ec6d71599c9a",
+          "createdAt": "2026-07-28T02:29:03.000Z",
+          "updatedAt": "2026-07-28T02:29:03.000Z",
+          "uid": "35240-7b8e1c7f-494a-41a8-b423-ec6d71599c9a"
+        },
+        {
+          "name": "Orion Health List care programs",
+          "id": "49c2f70d-88cb-4dba-bcb3-ca04046aa7d1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/care-programs?status=inactive&type=transition-of-care&offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "care-programs"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "inactive"
+                },
+                {
+                  "description": "Program type",
+                  "key": "type",
+                  "value": "transition-of-care"
+                },
+                {
+                  "description": "Number of items to skip",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Retrieve care programs configured for the organization, such as chronic disease management, wellness, and transition-of-care programs."
+          },
+          "response": [
+            {
+              "id": "2709ad42-8ca5-470f-b24c-70a8edf643ad",
+              "name": "List of care programs",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/care-programs?status=inactive&type=transition-of-care&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "care-programs"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "inactive"
+                    },
+                    {
+                      "description": "Program type",
+                      "key": "type",
+                      "value": "transition-of-care"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"custom\",\n      \"status\": \"draft\",\n      \"enrollmentCount\": \"<integer>\",\n      \"eligibilityCriteria\": {\n        \"conditions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"riskLevels\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"transition-of-care\",\n      \"status\": \"inactive\",\n      \"enrollmentCount\": \"<integer>\",\n      \"eligibilityCriteria\": {\n        \"conditions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"riskLevels\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:29:04.000Z",
+              "updatedAt": "2026-07-28T02:29:04.000Z",
+              "uid": "35240-2709ad42-8ca5-470f-b24c-70a8edf643ad"
+            },
+            {
+              "id": "4d806a6a-c471-4339-9082-9319d8963637",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/care-programs?status=inactive&type=transition-of-care&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "care-programs"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "inactive"
+                    },
+                    {
+                      "description": "Program type",
+                      "key": "type",
+                      "value": "transition-of-care"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:04.000Z",
+              "updatedAt": "2026-07-28T02:29:04.000Z",
+              "uid": "35240-4d806a6a-c471-4339-9082-9319d8963637"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:03.000Z",
+          "updatedAt": "2026-07-28T02:29:03.000Z",
+          "uid": "35240-49c2f70d-88cb-4dba-bcb3-ca04046aa7d1"
+        }
+      ],
+      "id": "87d37951-7829-4936-9049-930f88eb9c71",
+      "createdAt": "2026-07-28T02:29:03.000Z",
+      "updatedAt": "2026-07-28T02:29:03.000Z",
+      "uid": "35240-87d37951-7829-4936-9049-930f88eb9c71"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

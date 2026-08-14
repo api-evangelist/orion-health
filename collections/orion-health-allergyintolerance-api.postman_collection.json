@@ -1,0 +1,569 @@
+{
+  "item": [
+    {
+      "id": "5b458928-3023-4793-8d45-66b47d633d9a",
+      "name": "AllergyIntolerance",
+      "description": {
+        "content": "Operations on AllergyIntolerance resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07fc60db-6872-4e34-892a-ce29b97f5e63",
+          "name": "Orion Health Search for allergy intolerances",
+          "request": {
+            "name": "Orion Health Search for allergy intolerances",
+            "description": {
+              "content": "Search for AllergyIntolerance resources representing patient allergies and adverse reactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AllergyIntolerance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "20",
+                  "description": "Maximum number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "Starting offset for paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "patient",
+                  "value": "<string>",
+                  "description": "Reference to the patient"
+                },
+                {
+                  "disabled": false,
+                  "key": "clinical-status",
+                  "value": "<string>",
+                  "description": "Clinical status of the allergy"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "allergy or intolerance"
+                },
+                {
+                  "disabled": false,
+                  "key": "criticality",
+                  "value": "<string>",
+                  "description": "Criticality level"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da206418-1b2c-4fd3-a888-86ca1e2b509e",
+              "name": "Bundle of matching AllergyIntolerance resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AllergyIntolerance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clinical-status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "criticality",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"type\": \"history\",\n  \"total\": 4762,\n  \"link\": [\n    {\n      \"relation\": \"first\",\n      \"url\": \"http://MtlGAavzQbWrwnooBlMIzUvNzNmuOqODi.dlhlISK5XtI3,4s7I86lfYJv\"\n    },\n    {\n      \"relation\": \"first\",\n      \"url\": \"http://MUYyfGkp.qfmacg-DTSfiaEe-OuLRp55JYiv,uRSl6-HWQr2mhef+0efuWH6hSiQyBoUUYZi2egkr6M,ly.J3UkXqWl\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"http://AeRzqVvHhbuRnMzUGM.znjkogJiQ8w8rtIgyWlz5eft08GQnHgQpuaVGuGek\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1953-02-17T23:20:26.270Z\",\n          \"profile\": [\n            \"https://QUbBrviuuunOzbHFUFaSZVbDvLHvwP.htprUdAUDyWlyAHlsPVOgWENq\",\n            \"https://gBXOOXBgZKmkCziOnEldWDLDGeOlPsX.jkeSSBF5uksbyAFjrj\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    },\n    {\n      \"fullUrl\": \"https://pGDYwSsvWCEqdUNWiUhQkmQHMYPKrAxRW.wgM2sDSZLy8ukweq7zQ34M5ONTSmhfptQcBV6rLYrb6-XZfYudzEv9iaSO.\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1985-12-13T13:31:57.428Z\",\n          \"profile\": [\n            \"https://CZSUrtkOaqLKbcDowIFeNoj.olapKLhL29h2AqIHdF5.GyV5BzyD-sTr5\",\n            \"https://ULfSrBWvZj.wpLJ2olG3jv6oo4ieAetuH5,FZyBOdJsh4S-Rzm7BGB9iUkPhnEGTZHaOq6ooUHlSHE9Fivxipl2hsctlXvuAQRc\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"outcome\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c0c00b8-65f5-4607-a3c1-46fb1abbdf9e",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AllergyIntolerance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clinical-status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "criticality",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://mHzlcnLXTfNjzZzuaYglpYbZIu.mmfvHMx,dQRFqgrwGte2\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://XTqkrqSoJpsGRaCLsyqgkQczkvvC.vwjNpSbJnc-pnm+AYEV-qaFadecum-zIkyBYZu\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://BVDhnXFqHm.qfskQjknQbE4WwcIEmqRlWPpGtyYmJhx9DTwVjC3,Qs4\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://mHhrDKHxCHdRCcL.nltzEqIdHinQ2pHcGmluRIHLW9WjQV0.yz1ulWJ6QH6ZPI.FqiSYLswAVA2K\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "214b3a02-b68a-4057-b81e-e0c1ff96bb92",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AllergyIntolerance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clinical-status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "criticality",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://mHzlcnLXTfNjzZzuaYglpYbZIu.mmfvHMx,dQRFqgrwGte2\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://XTqkrqSoJpsGRaCLsyqgkQczkvvC.vwjNpSbJnc-pnm+AYEV-qaFadecum-zIkyBYZu\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://BVDhnXFqHm.qfskQjknQbE4WwcIEmqRlWPpGtyYmJhx9DTwVjC3,Qs4\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://mHhrDKHxCHdRCcL.nltzEqIdHinQ2pHcGmluRIHLW9WjQV0.yz1ulWJ6QH6ZPI.FqiSYLswAVA2K\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b85a6bf2-b847-4864-ba8f-fa83970c69a9",
+          "name": "Orion Health Read an allergy intolerance by ID",
+          "request": {
+            "name": "Orion Health Read an allergy intolerance by ID",
+            "description": {
+              "content": "Retrieve a specific AllergyIntolerance resource by its logical ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AllergyIntolerance",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Logical ID of the FHIR resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e675f14-e557-4a24-9fbb-36306e7efeff",
+              "name": "AllergyIntolerance resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AllergyIntolerance",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"clinicalStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"https://yjUfayJIF.nakfKGNPDG8fRGkPt9,JQ-2YsEBvKZGNKELA9RCnL+jI4u0vvBR2qR5bw\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://UpymWGtXgmrCHlrb.drcaeWodavfrdLYlzLSs3-gKd\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"verificationStatus\": {\n    \"coding\": [\n      {\n        \"system\": \"https://SAAQVLntwoIyuXCs.bxzaYdrSz-OwpAYApF4J502GxyFsTRUe.bTUZ+rzXMJ+-GIqLtc1O6IySHrR-Hch5rQp\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://htLzyHcszyudeitlWg.inyWglqpO4xOc+\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"type\": \"intolerance\",\n  \"category\": [\n    \"biologic\",\n    \"medication\"\n  ],\n  \"criticality\": \"low\",\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"http://HjJeabsQmXHloeCoElonduBP.bqZR-FcXVJpDfPRtngEoIDgEJKnbQRKXyXX3GAKmcFWtKd\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://qqphasxKSzkSNJfrNtNCevxlIk.czjM+n+DS2I0qljjBD0bfzhH\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"patient\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"reaction\": [\n    {\n      \"substance\": {\n        \"coding\": [\n          {\n            \"system\": \"http://hzjMvYSGAOIbfmVfVIo.emomj0LPQJB6w6,URmrOvyEGHXoI6Fs19vir6.Ky.kE947ur4iOfvpb9zSEUPyXEtiWY5\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://kkZwabEzLHPsy.sshwOxqVXkB56\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"manifestation\": [\n        {\n          \"coding\": [\n            {\n              \"system\": \"http://sYOvwpevISEJIGaazGNYPIoHCe.enpXvybnYjJQDSIAZjeJdOa9-bbetlZdlDCH50f5Akvv67Y8CvhBZfH.6W\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"http://y.wpgZeHvymfSCUWks+a2nTO3S-mvXE2M4YieDcYmNWgF8DoToq.f,iExbHedr\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        },\n        {\n          \"coding\": [\n            {\n              \"system\": \"https://hbNkTWV.pgqQX5TAIEgDGs6o53xiAS6qlPnaP6EGOro3gqP0fY8,4O78dN6kKX,WV2J\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"https://VXUefDYjnS.yjFLhT-iUok0xsco\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        }\n      ],\n      \"severity\": \"severe\"\n    },\n    {\n      \"substance\": {\n        \"coding\": [\n          {\n            \"system\": \"http://OuaPkfkb.muGZQRFLM9jmDXA1Drdkdnq3vwsv8BFlQeVoKS4XMpQ.q+avvIaLRqQZsfa\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://MQeavZkxKJAiYTdZnmKkapqrXiMsKV.jpYFYF0YrkzVjSBlb0z4LPkaAfnF-r7HdFkDSLZcge.hiX\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      },\n      \"manifestation\": [\n        {\n          \"coding\": [\n            {\n              \"system\": \"http://uHNSVmjhSwHUdGFyHKOC.aee\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"https://oAfFIPER.vfulnAr9MgJMM+1zA8NFjYN1XfX,283RyjbmmwKWNkH2QdhRFtFU,1Nz3gFcAV\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        },\n        {\n          \"coding\": [\n            {\n              \"system\": \"https://GaouCyn.xbdaBI3l9eLjW\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"http://PpkZcSkwDwNqBZLWWSRcyqpqrdvzPjPR.eptwDesIHM\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        }\n      ],\n      \"severity\": \"mild\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dddd3c8-2723-4dae-9bee-a7125d0cec64",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AllergyIntolerance",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://QMAAGZOuEpQAcAtvTNthNVLlDtpmiD.hbdaYw04-0ILGi2Ec91QtURBv0.yyRn9\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://lXke.tezX7b9WR.bCd2r5rlU2yKdC3\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://GcVcbCNQsIcCVRQlf.oaunG6Y74bvaV3F9h31seKsO7rVWLIAv-YDWuK8-Jy9lB\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://QESaed.sohzxzER8iK0aIq8x4PTS64.Hy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bb4c218-8299-448e-94d1-a1b30d78b96b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AllergyIntolerance",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://mHzlcnLXTfNjzZzuaYglpYbZIu.mmfvHMx,dQRFqgrwGte2\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://XTqkrqSoJpsGRaCLsyqgkQczkvvC.vwjNpSbJnc-pnm+AYEV-qaFadecum-zIkyBYZu\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://BVDhnXFqHm.qfskQjknQbE4WwcIEmqRlWPpGtyYmJhx9DTwVjC3,Qs4\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://mHhrDKHxCHdRCcL.nltzEqIdHinQ2pHcGmluRIHLW9WjQV0.yz1ulWJ6QH6ZPI.FqiSYLswAVA2K\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a21259c-3ce8-457f-a2ef-a8566bafaae6",
+    "name": "Orion Health FHIR Alerts AllergyIntolerance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

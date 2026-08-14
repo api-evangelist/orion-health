@@ -1,0 +1,569 @@
+{
+  "item": [
+    {
+      "id": "d9a963d1-12d4-46d9-ae73-40724c5060e2",
+      "name": "CarePlan",
+      "description": {
+        "content": "Operations on CarePlan resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "621b2f45-8c17-489c-b171-9ed13a45c295",
+          "name": "Orion Health Search for care plans",
+          "request": {
+            "name": "Orion Health Search for care plans",
+            "description": {
+              "content": "Search for CarePlan resources describing planned healthcare activities and goals for patients.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "CarePlan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "20",
+                  "description": "Maximum number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "Starting offset for paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "patient",
+                  "value": "<string>",
+                  "description": "Reference to the patient"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Care plan status"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Type of care plan"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Care plan period"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e631a13b-2c9e-4822-b2b5-ff84ada6f079",
+              "name": "Bundle of matching CarePlan resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "CarePlan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"type\": \"searchset\",\n  \"total\": 4405,\n  \"link\": [\n    {\n      \"relation\": \"first\",\n      \"url\": \"http://yanXdmeYB.iluzyviJkUvb,UPOFIg-RESgusadoqTmpN8,4cKXbAttNJnROupDOu4hBxOAmFqk-+ieF.gMszaEG8ZDCqfNozU83R\"\n    },\n    {\n      \"relation\": \"previous\",\n      \"url\": \"https://sRxtBmuY.qtts12ZYthlSKS88f-JknHvj--TOHk9nY68rJmuJAKy,r\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"https://XGJgDCqXPLpAShQMaZ.ksT\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"2021-11-03T12:05:37.109Z\",\n          \"profile\": [\n            \"https://TOAlk.dffEhJ9Edi19uVQ5UumJUWD\",\n            \"http://AYuOhKCPfxJOMBMQogLtSk.dgTEjBFEpXHRpzdS+FTP9UiVY9IUnar8xJg\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    },\n    {\n      \"fullUrl\": \"https://RgLmfOxgsfnBlgJWaYCrKMyJqbHQJeY.dgqT85Dltk5KsL5LV-doW9UmS2xMdld6x7oSbjwqMW-mDDr5KnMdrErZbPn3vpD06jNpRHxZyiGQM8kQrEg\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1951-06-14T08:17:14.877Z\",\n          \"profile\": [\n            \"http://PHVPVSS.zwum2IqG7k-bCXkSSnOvIrPwsSKzTkMudo8Gyo.,\",\n            \"https://TIKiaqkROxmVrQTLhJfi.ymfgdnKpD8dgerSQ5TT+epytCqcMK\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aeea771-734c-4eda-9208-74a96947d552",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "CarePlan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://eGOjEVPlFRFddSAEcfSFkAdzLTvaY.cpff+xzL4MyyHhUglF+VWRWEivCzGdEWMHzChxLPFp,dFiaUoObof\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://UmxmLPOqrCdtfFrvQAJIDR.nzrR4oQd3UDa0QgkSlMtwWxlA2-na-EtdYkYT2LV2QR-tFOoKyLovdoJD0WsypsMvPnGFoiS85xNKy5RE-C0V3\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://piPWKCLzgvDzRguTnYhJ.teihwwje8jmokzDrSDQ.AAgZm2T3\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://MWKNrUhveAuaYfhyLulKXHSvv.niprqS.O6Ah1Vw8p-w,kM0TqFDLu\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fd7c478-6fa5-49fe-b7a6-dd17570fb295",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "CarePlan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://eGOjEVPlFRFddSAEcfSFkAdzLTvaY.cpff+xzL4MyyHhUglF+VWRWEivCzGdEWMHzChxLPFp,dFiaUoObof\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://UmxmLPOqrCdtfFrvQAJIDR.nzrR4oQd3UDa0QgkSlMtwWxlA2-na-EtdYkYT2LV2QR-tFOoKyLovdoJD0WsypsMvPnGFoiS85xNKy5RE-C0V3\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://piPWKCLzgvDzRguTnYhJ.teihwwje8jmokzDrSDQ.AAgZm2T3\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://MWKNrUhveAuaYfhyLulKXHSvv.niprqS.O6Ah1Vw8p-w,kM0TqFDLu\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1b439b2-517b-419b-a9b5-ec02ab5fd781",
+          "name": "Orion Health Read a care plan by ID",
+          "request": {
+            "name": "Orion Health Read a care plan by ID",
+            "description": {
+              "content": "Retrieve a specific CarePlan resource by its logical ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "CarePlan",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Logical ID of the FHIR resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae5baf4f-6125-45a8-af77-adce036ba307",
+              "name": "CarePlan resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "CarePlan",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"status\": \"revoked\",\n  \"intent\": \"option\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"https://AOHERtFbLnOMuWdVOoxGoiGxyPfiYZEG.fzRaBtz-BzU-2Ac\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://tuu.mmzLvtu.QFkrDQOohVhi0DLnQ9YVWuaDnh5\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://FnwxhsqAxUOtXIqilcQPYUG.jbngOcXpx\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://KWCnpYKDRRo.dhmzDxivM0iOQjUs\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"subject\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"period\": {\n    \"start\": \"1976-11-04T20:51:24.376Z\",\n    \"end\": \"1983-03-30T21:08:13.877Z\"\n  },\n  \"activity\": [\n    {\n      \"detail\": {\n        \"status\": \"string\",\n        \"code\": {\n          \"coding\": [\n            {\n              \"system\": \"https://homnlKfLdRtNbK.osaWCJw3LGk+TafW1Yl-x.FdHYF3lzIcRihA+m\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"https://lPVJQljAUgPqBgRBkVSQosRVjLo.nmxnlDLnMPXzBvUGOL8-elVSSCE8ww6nOG0QDfUD84Qou\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        },\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"detail\": {\n        \"status\": \"string\",\n        \"code\": {\n          \"coding\": [\n            {\n              \"system\": \"https://NEUkSKVVbiX.kve9CSh7CbpJGGpCJrWiEaZDWK1r0ROg9I1DOqL.d205bR0Haga0cr,a3J.HONET,iL9IFZ5ux\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"http://tztKFHYydlCaxFIzZlyWIiH.efq-VZ.zvOIm9n8L3ZrwzTgSvs8V\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        },\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "976102e9-3820-48d5-b94c-b23675bdc256",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "CarePlan",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://WlWfwiftoxfVbD.mmbrO4pMMg,KcnQrC8XA7AwKqd3jVwTDVYjl9FF\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://BHlIC.zbfVe8KaveWaiHog+eetEROZtBLIltpgqZ0s2vEbCESENfDw5FO\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://lZjULJeSR.jigRz.HKUsVqL6hGJb0Hfub4X6AaMqEkw6QiJnP2PKPIMqRNE0PHJfW\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://JjTHPMruOBpLdmSnrHMgqzoZMsRqIzX.xvehC6pX-oVWroIXTXIhNxb1UDtJ\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0820940-c9c5-4458-a52c-3e59cda5be7c",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "CarePlan",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://eGOjEVPlFRFddSAEcfSFkAdzLTvaY.cpff+xzL4MyyHhUglF+VWRWEivCzGdEWMHzChxLPFp,dFiaUoObof\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://UmxmLPOqrCdtfFrvQAJIDR.nzrR4oQd3UDa0QgkSlMtwWxlA2-na-EtdYkYT2LV2QR-tFOoKyLovdoJD0WsypsMvPnGFoiS85xNKy5RE-C0V3\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://piPWKCLzgvDzRguTnYhJ.teihwwje8jmokzDrSDQ.AAgZm2T3\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://MWKNrUhveAuaYfhyLulKXHSvv.niprqS.O6Ah1Vw8p-w,kM0TqFDLu\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e1e9040a-b3d5-42aa-908b-d463dc1a48eb",
+    "name": "Orion Health FHIR Alerts CarePlan API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

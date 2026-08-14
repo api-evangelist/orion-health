@@ -1,0 +1,920 @@
+asyncapi: 2.6.0
+info:
+  title: Orion Health Rhapsody Messaging Events
+  version: 1.0.0
+  description: >-
+    The Orion Health Rhapsody Integration Engine processes healthcare messages
+    in real-time across connected healthcare systems. This specification
+    describes the event-driven messaging patterns supported by Rhapsody,
+    including HL7v2 ADT (Admit/Discharge/Transfer) events, order messages
+    (ORM/OML), result messages (ORU), and FHIR subscription notifications.
+    Rhapsody acts as a healthcare message broker, routing and transforming
+    messages between clinical systems using MLLP, TCP, HTTP, and other
+    transport protocols.
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+servers:
+  production:
+    url: mllp://integration.orionhealth.com:2575
+    protocol: mllp
+    description: Production MLLP endpoint for HL7v2 messaging
+  production-http:
+    url: https://integration.orionhealth.com/messaging
+    protocol: https
+    description: Production HTTPS endpoint for FHIR and REST messaging
+  sandbox:
+    url: mllp://sandbox-integration.orionhealth.com:2575
+    protocol: mllp
+    description: Sandbox MLLP endpoint
+  sandbox-http:
+    url: https://sandbox-integration.orionhealth.com/messaging
+    protocol: https
+    description: Sandbox HTTPS endpoint
+defaultContentType: application/json
+channels:
+  adt/patient-admit:
+    description: >-
+      Patient admission events (HL7v2 ADT^A01). Triggered when a patient
+      is admitted to a healthcare facility. Contains patient demographics,
+      visit information, attending provider, and insurance details.
+    subscribe:
+      operationId: onPatientAdmit
+      summary: Receive patient admission events
+      message:
+        $ref: '#/components/messages/ADT_A01'
+    publish:
+      operationId: sendPatientAdmit
+      summary: Send a patient admission event
+      message:
+        $ref: '#/components/messages/ADT_A01'
+  adt/patient-discharge:
+    description: >-
+      Patient discharge events (HL7v2 ADT^A03). Triggered when a patient
+      is discharged from a healthcare facility. Contains discharge
+      disposition, diagnosis codes, and follow-up instructions.
+    subscribe:
+      operationId: onPatientDischarge
+      summary: Receive patient discharge events
+      message:
+        $ref: '#/components/messages/ADT_A03'
+    publish:
+      operationId: sendPatientDischarge
+      summary: Send a patient discharge event
+      message:
+        $ref: '#/components/messages/ADT_A03'
+  adt/patient-transfer:
+    description: >-
+      Patient transfer events (HL7v2 ADT^A02). Triggered when a patient
+      is transferred between locations or units within a facility.
+    subscribe:
+      operationId: onPatientTransfer
+      summary: Receive patient transfer events
+      message:
+        $ref: '#/components/messages/ADT_A02'
+    publish:
+      operationId: sendPatientTransfer
+      summary: Send a patient transfer event
+      message:
+        $ref: '#/components/messages/ADT_A02'
+  adt/patient-registration:
+    description: >-
+      Patient registration events (HL7v2 ADT^A04). Triggered when a
+      patient is registered for outpatient services.
+    subscribe:
+      operationId: onPatientRegistration
+      summary: Receive patient registration events
+      message:
+        $ref: '#/components/messages/ADT_A04'
+    publish:
+      operationId: sendPatientRegistration
+      summary: Send a patient registration event
+      message:
+        $ref: '#/components/messages/ADT_A04'
+  adt/patient-update:
+    description: >-
+      Patient demographics update events (HL7v2 ADT^A08). Triggered when
+      patient demographic information is updated in the source system.
+    subscribe:
+      operationId: onPatientUpdate
+      summary: Receive patient update events
+      message:
+        $ref: '#/components/messages/ADT_A08'
+    publish:
+      operationId: sendPatientUpdate
+      summary: Send a patient update event
+      message:
+        $ref: '#/components/messages/ADT_A08'
+  adt/patient-merge:
+    description: >-
+      Patient merge events (HL7v2 ADT^A40). Triggered when duplicate
+      patient records are merged in the source system.
+    subscribe:
+      operationId: onPatientMerge
+      summary: Receive patient merge events
+      message:
+        $ref: '#/components/messages/ADT_A40'
+  orders/new-order:
+    description: >-
+      New order events (HL7v2 ORM^O01). Triggered when a new clinical
+      order is placed, such as laboratory, radiology, or pharmacy orders.
+    subscribe:
+      operationId: onNewOrder
+      summary: Receive new order events
+      message:
+        $ref: '#/components/messages/ORM_O01'
+    publish:
+      operationId: sendNewOrder
+      summary: Send a new order event
+      message:
+        $ref: '#/components/messages/ORM_O01'
+  orders/order-update:
+    description: >-
+      Order update events. Triggered when an existing order is modified,
+      cancelled, or its status changes.
+    subscribe:
+      operationId: onOrderUpdate
+      summary: Receive order update events
+      message:
+        $ref: '#/components/messages/ORM_O01'
+  results/observation-result:
+    description: >-
+      Observation result events (HL7v2 ORU^R01). Triggered when clinical
+      results are available, including laboratory results, radiology
+      reports, and other diagnostic findings.
+    subscribe:
+      operationId: onObservationResult
+      summary: Receive observation result events
+      message:
+        $ref: '#/components/messages/ORU_R01'
+    publish:
+      operationId: sendObservationResult
+      summary: Send an observation result event
+      message:
+        $ref: '#/components/messages/ORU_R01'
+  scheduling/appointment-notification:
+    description: >-
+      Scheduling notification events (HL7v2 SIU^S12-S17). Triggered when
+      appointments are created, modified, or cancelled.
+    subscribe:
+      operationId: onAppointmentNotification
+      summary: Receive appointment notification events
+      message:
+        $ref: '#/components/messages/SIU_S12'
+  fhir/subscription-notification:
+    description: >-
+      FHIR Subscription notification events. Triggered when FHIR resources
+      matching a subscription criteria are created or updated, delivered
+      as FHIR Bundle notifications over HTTPS.
+    subscribe:
+      operationId: onFhirSubscriptionNotification
+      summary: Receive FHIR subscription notifications
+      message:
+        $ref: '#/components/messages/FHIRSubscriptionNotification'
+  documents/clinical-document:
+    description: >-
+      Clinical document events (HL7v2 MDM^T02). Triggered when clinical
+      documents such as discharge summaries, progress notes, or consult
+      notes are created or updated.
+    subscribe:
+      operationId: onClinicalDocument
+      summary: Receive clinical document events
+      message:
+        $ref: '#/components/messages/MDM_T02'
+    publish:
+      operationId: sendClinicalDocument
+      summary: Send a clinical document event
+      message:
+        $ref: '#/components/messages/MDM_T02'
+components:
+  messages:
+    ADT_A01:
+      name: ADT_A01
+      title: Patient Admission
+      summary: HL7v2 ADT^A01 patient admission message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ADTEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: ADT^A01
+            description: HL7 message type
+          messageControlId:
+            type: string
+            description: Unique message identifier
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    ADT_A02:
+      name: ADT_A02
+      title: Patient Transfer
+      summary: HL7v2 ADT^A02 patient transfer message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ADTTransferEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: ADT^A02
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    ADT_A03:
+      name: ADT_A03
+      title: Patient Discharge
+      summary: HL7v2 ADT^A03 patient discharge message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ADTDischargeEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: ADT^A03
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    ADT_A04:
+      name: ADT_A04
+      title: Patient Registration
+      summary: HL7v2 ADT^A04 patient registration message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ADTEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: ADT^A04
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    ADT_A08:
+      name: ADT_A08
+      title: Patient Demographics Update
+      summary: HL7v2 ADT^A08 patient information update message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ADTEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: ADT^A08
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    ADT_A40:
+      name: ADT_A40
+      title: Patient Merge
+      summary: HL7v2 ADT^A40 patient merge message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ADTMergeEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: ADT^A40
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    ORM_O01:
+      name: ORM_O01
+      title: New Order
+      summary: HL7v2 ORM^O01 general order message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/OrderEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: ORM^O01
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    ORU_R01:
+      name: ORU_R01
+      title: Observation Result
+      summary: HL7v2 ORU^R01 observation result message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ResultEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: ORU^R01
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    SIU_S12:
+      name: SIU_S12
+      title: Appointment Notification
+      summary: HL7v2 SIU^S12 scheduling notification message
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SchedulingEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            description: SIU^S12 through SIU^S17
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+    FHIRSubscriptionNotification:
+      name: FHIRSubscriptionNotification
+      title: FHIR Subscription Notification
+      summary: FHIR R4 subscription notification bundle
+      contentType: application/fhir+json
+      payload:
+        $ref: '#/components/schemas/FHIRNotificationEvent'
+    MDM_T02:
+      name: MDM_T02
+      title: Clinical Document Notification
+      summary: HL7v2 MDM^T02 document notification with content
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/DocumentEvent'
+      headers:
+        type: object
+        properties:
+          messageType:
+            type: string
+            const: MDM^T02
+          messageControlId:
+            type: string
+          sendingFacility:
+            type: string
+          receivingFacility:
+            type: string
+          timestamp:
+            type: string
+            format: date-time
+  schemas:
+    ADTEvent:
+      type: object
+      properties:
+        messageHeader:
+          $ref: '#/components/schemas/MessageHeader'
+        eventType:
+          type: string
+          description: ADT event type code
+        patient:
+          $ref: '#/components/schemas/PatientIdentification'
+        visit:
+          $ref: '#/components/schemas/PatientVisit'
+        attendingDoctor:
+          $ref: '#/components/schemas/Provider'
+        diagnosis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Diagnosis'
+        insurance:
+          type: array
+          items:
+            $ref: '#/components/schemas/Insurance'
+    ADTTransferEvent:
+      type: object
+      properties:
+        messageHeader:
+          $ref: '#/components/schemas/MessageHeader'
+        eventType:
+          type: string
+          const: A02
+        patient:
+          $ref: '#/components/schemas/PatientIdentification'
+        visit:
+          $ref: '#/components/schemas/PatientVisit'
+        priorLocation:
+          $ref: '#/components/schemas/Location'
+        newLocation:
+          $ref: '#/components/schemas/Location'
+    ADTDischargeEvent:
+      type: object
+      properties:
+        messageHeader:
+          $ref: '#/components/schemas/MessageHeader'
+        eventType:
+          type: string
+          const: A03
+        patient:
+          $ref: '#/components/schemas/PatientIdentification'
+        visit:
+          $ref: '#/components/schemas/PatientVisit'
+        dischargeDisposition:
+          type: string
+          description: Discharge disposition code
+        dischargeDateTime:
+          type: string
+          format: date-time
+        diagnosis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Diagnosis'
+    ADTMergeEvent:
+      type: object
+      properties:
+        messageHeader:
+          $ref: '#/components/schemas/MessageHeader'
+        eventType:
+          type: string
+          const: A40
+        survivingPatient:
+          $ref: '#/components/schemas/PatientIdentification'
+        mergedPatient:
+          $ref: '#/components/schemas/PatientIdentification'
+        mergeReason:
+          type: string
+    OrderEvent:
+      type: object
+      properties:
+        messageHeader:
+          $ref: '#/components/schemas/MessageHeader'
+        patient:
+          $ref: '#/components/schemas/PatientIdentification'
+        visit:
+          $ref: '#/components/schemas/PatientVisit'
+        orderControl:
+          type: string
+          description: Order control code (NW=New, CA=Cancel, XO=Change)
+          enum:
+            - NW
+            - CA
+            - XO
+            - DC
+            - HD
+            - RL
+            - SC
+        order:
+          type: object
+          properties:
+            placerOrderNumber:
+              type: string
+            fillerOrderNumber:
+              type: string
+            orderDateTime:
+              type: string
+              format: date-time
+            orderingProvider:
+              $ref: '#/components/schemas/Provider'
+            orderCode:
+              type: string
+              description: Code identifying the ordered service
+            orderCodeSystem:
+              type: string
+              description: Coding system (LOINC, CPT, local)
+            orderCodeText:
+              type: string
+            priority:
+              type: string
+              enum:
+                - S
+                - A
+                - R
+                - T
+              description: 'S=Stat, A=ASAP, R=Routine, T=Timed'
+            specimenSource:
+              type: string
+            clinicalInformation:
+              type: string
+    ResultEvent:
+      type: object
+      properties:
+        messageHeader:
+          $ref: '#/components/schemas/MessageHeader'
+        patient:
+          $ref: '#/components/schemas/PatientIdentification'
+        visit:
+          $ref: '#/components/schemas/PatientVisit'
+        order:
+          type: object
+          properties:
+            placerOrderNumber:
+              type: string
+            fillerOrderNumber:
+              type: string
+            orderCode:
+              type: string
+            orderCodeText:
+              type: string
+            resultStatus:
+              type: string
+              enum:
+                - F
+                - P
+                - C
+                - X
+              description: 'F=Final, P=Preliminary, C=Corrected, X=Cancelled'
+        observations:
+          type: array
+          items:
+            type: object
+            properties:
+              observationId:
+                type: string
+              observationCode:
+                type: string
+              observationCodeText:
+                type: string
+              value:
+                type: string
+              units:
+                type: string
+              referenceRange:
+                type: string
+              abnormalFlag:
+                type: string
+                enum:
+                  - N
+                  - L
+                  - H
+                  - LL
+                  - HH
+                  - A
+                description: 'N=Normal, L=Low, H=High, LL=Critical Low, HH=Critical High, A=Abnormal'
+              resultStatus:
+                type: string
+              observationDateTime:
+                type: string
+                format: date-time
+    SchedulingEvent:
+      type: object
+      properties:
+        messageHeader:
+          $ref: '#/components/schemas/MessageHeader'
+        eventType:
+          type: string
+          description: Scheduling event type (S12-S17)
+        patient:
+          $ref: '#/components/schemas/PatientIdentification'
+        appointment:
+          type: object
+          properties:
+            appointmentId:
+              type: string
+            startDateTime:
+              type: string
+              format: date-time
+            endDateTime:
+              type: string
+              format: date-time
+            duration:
+              type: integer
+              description: Duration in minutes
+            appointmentType:
+              type: string
+            appointmentReason:
+              type: string
+            status:
+              type: string
+              enum:
+                - booked
+                - cancelled
+                - rescheduled
+                - no-show
+                - completed
+            provider:
+              $ref: '#/components/schemas/Provider'
+            location:
+              $ref: '#/components/schemas/Location'
+    FHIRNotificationEvent:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Bundle
+        type:
+          type: string
+          const: history
+        timestamp:
+          type: string
+          format: date-time
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                format: uri
+              resource:
+                type: object
+                properties:
+                  resourceType:
+                    type: string
+                  id:
+                    type: string
+              request:
+                type: object
+                properties:
+                  method:
+                    type: string
+                    enum:
+                      - POST
+                      - PUT
+                      - DELETE
+                  url:
+                    type: string
+        subscription:
+          type: object
+          properties:
+            id:
+              type: string
+            criteria:
+              type: string
+            channel:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - rest-hook
+                    - websocket
+                    - email
+                endpoint:
+                  type: string
+                  format: uri
+    DocumentEvent:
+      type: object
+      properties:
+        messageHeader:
+          $ref: '#/components/schemas/MessageHeader'
+        patient:
+          $ref: '#/components/schemas/PatientIdentification'
+        document:
+          type: object
+          properties:
+            documentId:
+              type: string
+            documentType:
+              type: string
+              description: Document type code
+            documentTypeText:
+              type: string
+            activityDateTime:
+              type: string
+              format: date-time
+            author:
+              $ref: '#/components/schemas/Provider'
+            authenticator:
+              $ref: '#/components/schemas/Provider'
+            contentType:
+              type: string
+              description: MIME type of the document content
+            content:
+              type: string
+              description: Base64-encoded document content
+    MessageHeader:
+      type: object
+      properties:
+        messageControlId:
+          type: string
+          description: Unique message identifier
+        messageType:
+          type: string
+          description: HL7 message type (e.g., ADT^A01)
+        triggerEvent:
+          type: string
+          description: Trigger event code
+        sendingApplication:
+          type: string
+        sendingFacility:
+          type: string
+        receivingApplication:
+          type: string
+        receivingFacility:
+          type: string
+        messageDateTime:
+          type: string
+          format: date-time
+        processingId:
+          type: string
+          enum:
+            - P
+            - T
+            - D
+          description: 'P=Production, T=Training, D=Debugging'
+        versionId:
+          type: string
+          description: HL7 version (e.g., 2.5.1)
+    PatientIdentification:
+      type: object
+      properties:
+        patientId:
+          type: string
+          description: Internal patient identifier
+        mrn:
+          type: string
+          description: Medical record number
+        externalIds:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              assigningAuthority:
+                type: string
+              idType:
+                type: string
+        familyName:
+          type: string
+        givenName:
+          type: string
+        middleName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+            - M
+            - F
+            - O
+            - U
+        ssn:
+          type: string
+        address:
+          type: object
+          properties:
+            streetAddress:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        phone:
+          type: string
+        email:
+          type: string
+    PatientVisit:
+      type: object
+      properties:
+        visitNumber:
+          type: string
+        patientClass:
+          type: string
+          enum:
+            - I
+            - O
+            - E
+            - P
+          description: 'I=Inpatient, O=Outpatient, E=Emergency, P=Preadmit'
+        assignedLocation:
+          $ref: '#/components/schemas/Location'
+        admitDateTime:
+          type: string
+          format: date-time
+        dischargeDateTime:
+          type: string
+          format: date-time
+        admitReason:
+          type: string
+        admitSource:
+          type: string
+        visitType:
+          type: string
+    Location:
+      type: object
+      properties:
+        pointOfCare:
+          type: string
+          description: Ward or clinic
+        room:
+          type: string
+        bed:
+          type: string
+        facility:
+          type: string
+        building:
+          type: string
+        floor:
+          type: string
+    Provider:
+      type: object
+      properties:
+        id:
+          type: string
+        npi:
+          type: string
+        familyName:
+          type: string
+        givenName:
+          type: string
+        prefix:
+          type: string
+        specialty:
+          type: string
+    Diagnosis:
+      type: object
+      properties:
+        code:
+          type: string
+        codingSystem:
+          type: string
+          description: Coding system (ICD-10, SNOMED)
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - admitting
+            - final
+            - working
+        dateTime:
+          type: string
+          format: date-time
+    Insurance:
+      type: object
+      properties:
+        planId:
+          type: string
+        planName:
+          type: string
+        groupNumber:
+          type: string
+        policyNumber:
+          type: string
+        subscriberName:
+          type: string
+        relationship:
+          type: string
+        coordinationOfBenefits:
+          type: integer
+          description: 'Priority order (1=Primary, 2=Secondary)'

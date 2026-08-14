@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Analytics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Get cohort analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/cohorts/:cohortId/analytics",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metrics to include"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve analytics and aggregate statistics for a patient cohort including demographics, utilization, and outcome metrics."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get population summary analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/analytics/population-summary",
+            "params": [
+              {
+                "name": "registryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a specific registry"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve aggregate population health summary including demographics, top conditions, utilization patterns, and risk distribution."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get utilization analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/analytics/utilization",
+            "params": [
+              {
+                "name": "registryId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by time period"
+              }
+            ]
+          },
+          "docs": "Retrieve healthcare utilization analytics including ED visits, hospital admissions, readmissions, and ambulatory utilization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

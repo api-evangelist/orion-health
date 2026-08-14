@@ -1,0 +1,960 @@
+{
+  "info": {
+    "_postman_id": "9a66b663-116f-4879-8257-4e225104d053",
+    "name": "Orion Health FHIR Alerts Lookup Tables API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:17.000Z",
+    "updatedAt": "2026-07-28T02:29:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9a66b663-116f-4879-8257-4e225104d053"
+  },
+  "item": [
+    {
+      "name": "lookup-tables",
+      "item": [
+        {
+          "name": "{tableId}",
+          "item": [
+            {
+              "name": "lookup",
+              "item": [
+                {
+                  "name": "Orion Health Look up a value",
+                  "id": "4b2b3c39-e72f-4bfe-ab5d-5293689665af",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:tableId/lookup?key=<string>&column=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":tableId",
+                        "lookup"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Lookup key",
+                          "key": "key",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Column name to return",
+                          "key": "column",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "420b788f-2506-41a3-8e2f-30bd664cd374",
+                          "key": "tableId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Look up a value in a specific lookup table by key."
+                  },
+                  "response": [
+                    {
+                      "id": "8accdf74-5882-4dd7-8861-b52c8e0f912e",
+                      "name": "Lookup result",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/lookup-tables/:tableId/lookup?key=<string>&column=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lookup-tables",
+                            ":tableId",
+                            "lookup"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Lookup key",
+                              "key": "key",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Column name to return",
+                              "key": "column",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tableId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"key\": \"<string>\",\n  \"value\": \"<string>\",\n  \"row\": {\n    \"qui_444\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:29:18.000Z",
+                      "updatedAt": "2026-07-28T02:29:18.000Z",
+                      "uid": "35240-8accdf74-5882-4dd7-8861-b52c8e0f912e"
+                    },
+                    {
+                      "id": "84bd0e1f-cdea-4101-9ee5-bb86ae76657e",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/lookup-tables/:tableId/lookup?key=<string>&column=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lookup-tables",
+                            ":tableId",
+                            "lookup"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Lookup key",
+                              "key": "key",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Column name to return",
+                              "key": "column",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tableId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:18.000Z",
+                      "updatedAt": "2026-07-28T02:29:18.000Z",
+                      "uid": "35240-84bd0e1f-cdea-4101-9ee5-bb86ae76657e"
+                    },
+                    {
+                      "id": "fc7bac4d-427f-4eae-865f-eaf997413baf",
+                      "name": "Key not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/lookup-tables/:tableId/lookup?key=<string>&column=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lookup-tables",
+                            ":tableId",
+                            "lookup"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Lookup key",
+                              "key": "key",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Column name to return",
+                              "key": "column",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tableId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:18.000Z",
+                      "updatedAt": "2026-07-28T02:29:18.000Z",
+                      "uid": "35240-fc7bac4d-427f-4eae-865f-eaf997413baf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:18.000Z",
+                  "updatedAt": "2026-07-28T02:29:18.000Z",
+                  "uid": "35240-4b2b3c39-e72f-4bfe-ab5d-5293689665af"
+                }
+              ],
+              "id": "9b8bb77f-e9b7-49fb-9452-7288b5625b84",
+              "createdAt": "2026-07-28T02:29:18.000Z",
+              "updatedAt": "2026-07-28T02:29:18.000Z",
+              "uid": "35240-9b8bb77f-e9b7-49fb-9452-7288b5625b84"
+            },
+            {
+              "name": "Orion Health Get lookup table contents",
+              "id": "3ae4b655-21e3-4404-b488-365021cab073",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lookup-tables",
+                    ":tableId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ba9e93d7-37a1-4d10-a812-4dd98fc01a8b",
+                      "key": "tableId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve the contents of a specific lookup table."
+              },
+              "response": [
+                {
+                  "id": "b57aa717-77fd-4521-a448-69be73145957",
+                  "name": "Lookup table contents",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":tableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rows\": [\n    {\n      \"tempor_9\": \"<string>\"\n    },\n    {\n      \"sitf2\": \"<string>\",\n      \"esse__\": \"<string>\",\n      \"sed_a\": \"<string>\"\n    }\n  ],\n  \"lastModified\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:29:18.000Z",
+                  "updatedAt": "2026-07-28T02:29:18.000Z",
+                  "uid": "35240-b57aa717-77fd-4521-a448-69be73145957"
+                },
+                {
+                  "id": "f4bf2b99-07bc-4e80-b3d2-d0eb1ec2f568",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":tableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:18.000Z",
+                  "updatedAt": "2026-07-28T02:29:18.000Z",
+                  "uid": "35240-f4bf2b99-07bc-4e80-b3d2-d0eb1ec2f568"
+                },
+                {
+                  "id": "878f1108-8ae9-4494-8ccc-527be533d8f6",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":tableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:18.000Z",
+                  "updatedAt": "2026-07-28T02:29:18.000Z",
+                  "uid": "35240-878f1108-8ae9-4494-8ccc-527be533d8f6"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:18.000Z",
+              "updatedAt": "2026-07-28T02:29:18.000Z",
+              "uid": "35240-3ae4b655-21e3-4404-b488-365021cab073"
+            },
+            {
+              "name": "Orion Health Update lookup table contents",
+              "id": "2e32243c-2023-46d5-a05d-ae55e75108db",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rows\": [\n    {\n      \"in660\": \"<string>\",\n      \"labore2\": \"<string>\",\n      \"incididunt__69\": \"<string>\",\n      \"quis_a_\": \"<string>\"\n    },\n    {\n      \"sed_085\": \"<string>\",\n      \"Duiscf\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lookup-tables",
+                    ":tableId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b4a224aa-ace4-4f62-9e7f-80a442b2642a",
+                      "key": "tableId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Replace the contents of a lookup table."
+              },
+              "response": [
+                {
+                  "id": "5776f75f-6be6-40ea-868f-c8e8a84ddb4b",
+                  "name": "Lookup table updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rows\": [\n    {\n      \"in660\": \"<string>\",\n      \"labore2\": \"<string>\",\n      \"incididunt__69\": \"<string>\",\n      \"quis_a_\": \"<string>\"\n    },\n    {\n      \"sed_085\": \"<string>\",\n      \"Duiscf\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":tableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rows\": [\n    {\n      \"tempor_9\": \"<string>\"\n    },\n    {\n      \"sitf2\": \"<string>\",\n      \"esse__\": \"<string>\",\n      \"sed_a\": \"<string>\"\n    }\n  ],\n  \"lastModified\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:29:18.000Z",
+                  "updatedAt": "2026-07-28T02:29:18.000Z",
+                  "uid": "35240-5776f75f-6be6-40ea-868f-c8e8a84ddb4b"
+                },
+                {
+                  "id": "0c03b25c-036f-4d0a-8c57-677e3be3d13f",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rows\": [\n    {\n      \"in660\": \"<string>\",\n      \"labore2\": \"<string>\",\n      \"incididunt__69\": \"<string>\",\n      \"quis_a_\": \"<string>\"\n    },\n    {\n      \"sed_085\": \"<string>\",\n      \"Duiscf\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":tableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:18.000Z",
+                  "updatedAt": "2026-07-28T02:29:18.000Z",
+                  "uid": "35240-0c03b25c-036f-4d0a-8c57-677e3be3d13f"
+                },
+                {
+                  "id": "ab024ab6-e299-4edd-b188-391cad1ec598",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rows\": [\n    {\n      \"in660\": \"<string>\",\n      \"labore2\": \"<string>\",\n      \"incididunt__69\": \"<string>\",\n      \"quis_a_\": \"<string>\"\n    },\n    {\n      \"sed_085\": \"<string>\",\n      \"Duiscf\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":tableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:18.000Z",
+                  "updatedAt": "2026-07-28T02:29:18.000Z",
+                  "uid": "35240-ab024ab6-e299-4edd-b188-391cad1ec598"
+                },
+                {
+                  "id": "634dd5ae-8e15-4b7f-bed5-4726057d3c3e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rows\": [\n    {\n      \"in660\": \"<string>\",\n      \"labore2\": \"<string>\",\n      \"incididunt__69\": \"<string>\",\n      \"quis_a_\": \"<string>\"\n    },\n    {\n      \"sed_085\": \"<string>\",\n      \"Duiscf\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lookup-tables/:tableId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lookup-tables",
+                        ":tableId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tableId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:18.000Z",
+                  "updatedAt": "2026-07-28T02:29:18.000Z",
+                  "uid": "35240-634dd5ae-8e15-4b7f-bed5-4726057d3c3e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:18.000Z",
+              "updatedAt": "2026-07-28T02:29:18.000Z",
+              "uid": "35240-2e32243c-2023-46d5-a05d-ae55e75108db"
+            }
+          ],
+          "id": "3105e35b-5bf7-4c1d-b53d-d8f5ee4e4768",
+          "createdAt": "2026-07-28T02:29:18.000Z",
+          "updatedAt": "2026-07-28T02:29:18.000Z",
+          "uid": "35240-3105e35b-5bf7-4c1d-b53d-d8f5ee4e4768"
+        },
+        {
+          "name": "Orion Health List lookup tables",
+          "id": "66101160-f49b-413d-944b-20d451d8f13b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/lookup-tables?search=<string>&offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "lookup-tables"
+              ],
+              "query": [
+                {
+                  "description": "Search by table name",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Number of items to skip",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Retrieve lookup tables used for data transformation and mapping within integration routes."
+          },
+          "response": [
+            {
+              "id": "5eacb046-2d07-4284-a1a5-912a749f50c3",
+              "name": "List of lookup tables",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/lookup-tables?search=<string>&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lookup-tables"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search by table name",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"columnCount\": \"<integer>\",\n      \"rowCount\": \"<integer>\",\n      \"lastModified\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"columnCount\": \"<integer>\",\n      \"rowCount\": \"<integer>\",\n      \"lastModified\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:29:18.000Z",
+              "updatedAt": "2026-07-28T02:29:18.000Z",
+              "uid": "35240-5eacb046-2d07-4284-a1a5-912a749f50c3"
+            },
+            {
+              "id": "9713e072-9c2f-46b0-b794-0fef4b96f478",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/lookup-tables?search=<string>&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "lookup-tables"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search by table name",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:18.000Z",
+              "updatedAt": "2026-07-28T02:29:18.000Z",
+              "uid": "35240-9713e072-9c2f-46b0-b794-0fef4b96f478"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:18.000Z",
+          "updatedAt": "2026-07-28T02:29:18.000Z",
+          "uid": "35240-66101160-f49b-413d-944b-20d451d8f13b"
+        }
+      ],
+      "id": "a17d075c-c219-463e-8a61-ad57dc07dcab",
+      "createdAt": "2026-07-28T02:29:18.000Z",
+      "updatedAt": "2026-07-28T02:29:18.000Z",
+      "uid": "35240-a17d075c-c219-463e-8a61-ad57dc07dcab"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

@@ -12,37 +12,1234 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/orion-health.png
 name: Orion Health
-description: "Medical platform which allows the development of applications for different healthcare scenarios"
+description: Medical platform which allows the development of applications for different healthcare scenarios
 url: https://developer.orionhealth.io/
 specificationVersion: '0.20'
 created: '2026-05-28'
 modified: '2026-05-28'
 x-source: public-apis/public-apis
-x-category: "Health"
+x-category: Health
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
-  - Health
-  - Public APIs
+- Health
+- Public APIs
 apis:
-  - name: Orion Health
-    description: "Medical platform which allows the development of applications for different healthcare scenarios"
-    humanURL: https://developer.orionhealth.io/
-    baseURL: https://developer.orionhealth.io/
-    tags:
-      - Health
-    properties:
-      - type: Documentation
-        url: https://developer.orionhealth.io/
-common:
-  - type: DomainSecurity
-    url: security/orion-health-domain-security.yml
-  - type: Website
+- name: Orion Health
+  description: Medical platform which allows the development of applications for different healthcare
+    scenarios
+  humanURL: https://developer.orionhealth.io/
+  baseURL: https://developer.orionhealth.io/
+  tags:
+  - Health
+  properties:
+  - type: Documentation
     url: https://developer.orionhealth.io/
-  - type: PublicAPIsListing
-    url: https://github.com/public-apis/public-apis
-  - url: https://www.orionhealth.com/feed/
-    type: Blog
+- aid: orion-health-health:orion-alerts-api
+  name: Orion Health Alerts API
+  description: Clinical and population health alerts
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-allergyintolerance-api
+  name: Orion Health AllergyIntolerance API
+  description: Operations on AllergyIntolerance resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - AllergyIntolerance
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-allergyintolerance-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-analytics-api
+  name: Orion Health Analytics API
+  description: Population health analytics and reporting
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-audit-api
+  name: Orion Health Audit API
+  description: Audit log access for compliance
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-audit-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-care-programs-api
+  name: Orion Health Care Programs API
+  description: Care program management and enrollment
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Care Programs
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-care-programs-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-careplan-api
+  name: Orion Health CarePlan API
+  description: Operations on CarePlan resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - CarePlan
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-careplan-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-cohorts-api
+  name: Orion Health Cohorts API
+  description: Patient cohort definition and analysis
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Cohorts
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-cohorts-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-communication-points-api
+  name: Orion Health Communication Points API
+  description: Communication point configuration and management
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Communication Points
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-communication-points-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-condition-api
+  name: Orion Health Condition API
+  description: Operations on Condition resources (diagnoses, problems)
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Condition
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-condition-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-configuration-api
+  name: Orion Health Configuration API
+  description: Engine configuration management
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-consent-api
+  name: Orion Health Consent API
+  description: Patient consent management for data sharing
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Consent
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-consent-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-diagnosticreport-api
+  name: Orion Health DiagnosticReport API
+  description: Operations on DiagnosticReport resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - DiagnosticReport
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-diagnosticreport-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-documentreference-api
+  name: Orion Health DocumentReference API
+  description: Operations on DocumentReference resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - DocumentReference
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-documentreference-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-documents-api
+  name: Orion Health Documents API
+  description: Clinical document exchange and retrieval
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-documents-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-encounter-api
+  name: Orion Health Encounter API
+  description: Operations on Encounter resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Encounter
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-encounter-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-immunization-api
+  name: Orion Health Immunization API
+  description: Operations on Immunization resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Immunization
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-immunization-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-lookup-tables-api
+  name: Orion Health Lookup Tables API
+  description: Lookup table management for data mapping
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Lookup Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-lookup-tables-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-medicationrequest-api
+  name: Orion Health MedicationRequest API
+  description: Operations on MedicationRequest resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - MedicationRequest
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-medicationrequest-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-message-queues-api
+  name: Orion Health Message Queues API
+  description: Message queue monitoring and management
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Message Queues
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-message-queues-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-messages-api
+  name: Orion Health Messages API
+  description: Message search, inspection, and reprocessing
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-messages-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-metadata-api
+  name: Orion Health Metadata API
+  description: Server capability and metadata operations
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-monitoring-api
+  name: Orion Health Monitoring API
+  description: System health and performance monitoring
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Monitoring
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-monitoring-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-notifications-api
+  name: Orion Health Notifications API
+  description: Admission, discharge, and transfer notifications
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-observation-api
+  name: Orion Health Observation API
+  description: Operations on Observation resources (vitals, labs, etc.)
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Observation
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-observation-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-patient-api
+  name: Orion Health Patient API
+  description: Operations on Patient resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Patient
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-patient-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-patient-identity-api
+  name: Orion Health Patient Identity API
+  description: Patient identity matching and cross-referencing (MPI)
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Patient Identity
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-patient-identity-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-procedure-api
+  name: Orion Health Procedure API
+  description: Operations on Procedure resources
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Procedure
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-procedure-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-provider-directory-api
+  name: Orion Health Provider Directory API
+  description: Provider and organization directory lookups
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Provider Directory
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-provider-directory-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-quality-measures-api
+  name: Orion Health Quality Measures API
+  description: Healthcare quality measure tracking
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Quality Measures
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-quality-measures-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-registries-api
+  name: Orion Health Registries API
+  description: Patient registry management
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Registries
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-registries-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-risk-stratification-api
+  name: Orion Health Risk Stratification API
+  description: Patient risk scoring and stratification
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Risk Stratification
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-risk-stratification-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+- aid: orion-health-health:orion-routes-api
+  name: Orion Health Routes API
+  description: Integration route management
+  humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
+  baseURL: https://api.orionhealth.com/fhir
+  tags:
+  - Routes
+  properties:
+  - type: OpenAPI
+    url: openapi/orion-health-routes-api-openapi.yml
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/fhir-api
+  - type: Authentication
+    url: https://www.orionhealth.com/developers/authentication
+  - type: JSONSchema
+    url: json-schema/orion-health-patient-schema.json
+  - type: JSONSchema
+    url: json-schema/orion-health-observation-schema.json
+  - type: JSONLD
+    url: json-ld/orion-health-healthcare-context.jsonld
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/population-health-api
+  - type: Sandbox
+    url: https://sandbox.orionhealth.com/population-health
+  - type: JSONSchema
+    url: json-schema/orion-health-care-plan-schema.json
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/hie-api
+  - type: TermsOfService
+    url: https://www.orionhealth.com/terms-of-service
+  - type: Documentation
+    url: https://www.orionhealth.com/developers/rhapsody-api
+  - type: AsyncAPI
+    url: asyncapi/orion-health-rhapsody-messaging-asyncapi.yml
+  - type: GettingStarted
+    url: https://www.orionhealth.com/developers/getting-started
+common:
+- type: DomainSecurity
+  url: security/orion-health-domain-security.yml
+- type: Website
+  url: https://developer.orionhealth.io/
+- type: PublicAPIsListing
+  url: https://github.com/public-apis/public-apis
+- url: https://www.orionhealth.com/feed/
+  type: Blog
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/orion-health/overview
+- type: AgenticAccess
+  url: agentic-access/orion-health-agentic-access.yml
+- type: DomainSecurity
+  url: security/orion-health-domain-security.yml
+- type: Authentication
+  url: authentication/orion-health-authentication.yml
+- type: OAuthScopes
+  url: scopes/orion-health-scopes.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/orion-health
+- type: Portal
+  url: https://developer.orionhealth.io/
+- type: GettingStarted
+  url: https://www.orionhealth.com/developers/getting-started
+- type: Authentication
+  url: https://www.orionhealth.com/developers/authentication
+- type: Support
+  url: https://www.orionhealth.com/support
+- type: TermsOfService
+  url: https://www.orionhealth.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.orionhealth.com/privacy-policy
+- type: Contact
+  url: https://www.orionhealth.com/contact
+- type: Blog
+  url: https://www.orionhealth.com/blog
+- type: StatusPage
+  url: https://status.orionhealth.com
+- type: Website
+  url: https://www.orionhealth.com
+- type: GitHubOrganization
+  url: https://github.com/orionhealth
+- type: Community
+  url: https://community.orionhealth.com
+- type: AgenticAccess
+  url: agentic-access/orion-health-agentic-access.yml
+- type: DomainSecurity
+  url: security/orion-health-domain-security.yml
+- type: Authentication
+  url: authentication/orion-health-authentication.yml
+- type: OAuthScopes
+  url: scopes/orion-health-scopes.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

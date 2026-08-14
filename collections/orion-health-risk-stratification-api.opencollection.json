@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Risk Stratification API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Risk Stratification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List patient risk scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/risk-stratification/scores",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by patient identifier"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Risk model used for scoring"
+              },
+              {
+                "name": "riskLevel",
+                "value": "",
+                "type": "query",
+                "description": "Filter by risk level"
+              },
+              {
+                "name": "calculatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Only return scores calculated after this date"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve risk stratification scores for patients, calculated using configurable risk models based on clinical data, claims, and social determinants."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get risk score for a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/risk-stratification/scores/:patientId",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Risk model to use"
+              }
+            ]
+          },
+          "docs": "Retrieve the current risk stratification score and risk factors for a specific patient."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

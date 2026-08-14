@@ -1,0 +1,331 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Communication Points API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Communication Points
+  description: Communication point configuration and management
+paths:
+  /communication-points:
+    get:
+      operationId: listCommunicationPoints
+      summary: Orion Health List communication points
+      description: Retrieve all communication points (input and output connectors) configured in the Rhapsody engine.
+      tags:
+      - Communication Points
+      parameters:
+      - name: type
+        in: query
+        description: Communication point type
+        schema:
+          type: string
+          enum:
+          - input
+          - output
+          - bidirectional
+      - name: protocol
+        in: query
+        description: Communication protocol
+        schema:
+          type: string
+          enum:
+          - tcp
+          - http
+          - https
+          - sftp
+          - database
+          - file
+          - web-service
+          - mllp
+          - smtp
+          - pop3
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - started
+          - stopped
+          - error
+          - disabled
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of communication points
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CommunicationPoint'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /communication-points/{commPointId}:
+    get:
+      operationId: getCommunicationPoint
+      summary: Orion Health Get communication point details
+      description: Retrieve detailed configuration of a specific communication point.
+      tags:
+      - Communication Points
+      parameters:
+      - name: commPointId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Communication point details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunicationPointDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /communication-points/{commPointId}/start:
+    post:
+      operationId: startCommunicationPoint
+      summary: Orion Health Start a communication point
+      description: Start a stopped communication point.
+      tags:
+      - Communication Points
+      parameters:
+      - name: commPointId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Communication point started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  status:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /communication-points/{commPointId}/stop:
+    post:
+      operationId: stopCommunicationPoint
+      summary: Orion Health Stop a communication point
+      description: Stop an active communication point.
+      tags:
+      - Communication Points
+      parameters:
+      - name: commPointId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Communication point stopped
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  status:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CommunicationPoint:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - input
+          - output
+          - bidirectional
+        protocol:
+          type: string
+          enum:
+          - tcp
+          - http
+          - https
+          - sftp
+          - database
+          - file
+          - web-service
+          - mllp
+          - smtp
+          - pop3
+        status:
+          type: string
+          enum:
+          - started
+          - stopped
+          - error
+          - disabled
+        routeId:
+          type: integer
+        connectionCount:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    CommunicationPointDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        protocol:
+          type: string
+        status:
+          type: string
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        configuration:
+          type: object
+          properties:
+            host:
+              type: string
+            port:
+              type: integer
+            path:
+              type: string
+            encoding:
+              type: string
+            timeout:
+              type: integer
+            retryCount:
+              type: integer
+            retryInterval:
+              type: integer
+            ssl:
+              type: boolean
+        connectionCount:
+          type: integer
+        messagesProcessed:
+          type: integer
+        lastMessageTime:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

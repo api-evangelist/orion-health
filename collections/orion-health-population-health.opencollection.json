@@ -1,0 +1,694 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health Population Health API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Registries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List patient registries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/registries",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by registry type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by registry status"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of patient registries configured for the organization, such as diabetes, heart failure, or chronic disease registries."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get a patient registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/registries/:registryId",
+            "params": [
+              {
+                "name": "registryId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific patient registry."
+        },
+        {
+          "info": {
+            "name": "Orion Health List patients in a registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/registries/:registryId/patients",
+            "params": [
+              {
+                "name": "registryId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "riskLevel",
+                "value": "",
+                "type": "query",
+                "description": "Filter by risk stratification level"
+              },
+              {
+                "name": "careStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by care management status"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of patients enrolled in a specific registry, with optional filtering by risk level and care status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Risk Stratification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List patient risk scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/risk-stratification/scores",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by patient identifier"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Risk model used for scoring"
+              },
+              {
+                "name": "riskLevel",
+                "value": "",
+                "type": "query",
+                "description": "Filter by risk level"
+              },
+              {
+                "name": "calculatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Only return scores calculated after this date"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve risk stratification scores for patients, calculated using configurable risk models based on clinical data, claims, and social determinants."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get risk score for a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/risk-stratification/scores/:patientId",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Risk model to use"
+              }
+            ]
+          },
+          "docs": "Retrieve the current risk stratification score and risk factors for a specific patient."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cohorts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List patient cohorts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/cohorts",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve defined patient cohorts used for population analytics and targeted interventions."
+        },
+        {
+          "info": {
+            "name": "Orion Health Create a patient cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/population-health/cohorts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Define a new patient cohort based on clinical criteria, demographics, diagnoses, or other population characteristics."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get cohort details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific patient cohort including membership criteria."
+        },
+        {
+          "info": {
+            "name": "Orion Health Update a cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.orionhealth.com/population-health/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the definition or criteria of an existing patient cohort."
+        },
+        {
+          "info": {
+            "name": "Orion Health Delete a cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.orionhealth.com/population-health/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a patient cohort definition."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Get cohort analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/cohorts/:cohortId/analytics",
+            "params": [
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metrics to include"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve analytics and aggregate statistics for a patient cohort including demographics, utilization, and outcome metrics."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get population summary analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/analytics/population-summary",
+            "params": [
+              {
+                "name": "registryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a specific registry"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve aggregate population health summary including demographics, top conditions, utilization patterns, and risk distribution."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get utilization analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/analytics/utilization",
+            "params": [
+              {
+                "name": "registryId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by time period"
+              }
+            ]
+          },
+          "docs": "Retrieve healthcare utilization analytics including ED visits, hospital admissions, readmissions, and ambulatory utilization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Care Programs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List care programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/care-programs",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Program type"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve care programs configured for the organization, such as chronic disease management, wellness, and transition-of-care programs."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get care program details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/care-programs/:programId",
+            "params": [
+              {
+                "name": "programId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific care program."
+        },
+        {
+          "info": {
+            "name": "Orion Health List program enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/care-programs/:programId/enrollments",
+            "params": [
+              {
+                "name": "programId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve patient enrollments in a care program."
+        },
+        {
+          "info": {
+            "name": "Orion Health Enroll a patient in a care program",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/population-health/care-programs/:programId/enrollments",
+            "params": [
+              {
+                "name": "programId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enroll a patient in a specific care program."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quality Measures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List quality measures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/quality-measures",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Measure framework"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve healthcare quality measures being tracked, including HEDIS, CMS, and custom measures."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get quality measure results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/quality-measures/:measureId/results",
+            "params": [
+              {
+                "name": "measureId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve performance results for a specific quality measure, including numerator, denominator, and compliance rates."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List population health alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/population-health/alerts",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve clinical and population health alerts such as care gap notifications, risk changes, and quality measure compliance alerts."
+        },
+        {
+          "info": {
+            "name": "Orion Health Update an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.orionhealth.com/population-health/alerts/:alertId",
+            "params": [
+              {
+                "name": "alertId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of a population health alert."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

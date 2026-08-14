@@ -1,0 +1,1185 @@
+{
+  "item": [
+    {
+      "id": "8e129e12-fa9e-48bb-af85-b6a1641fbc79",
+      "name": "Consent",
+      "description": {
+        "content": "Patient consent management for data sharing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ede76321-dabb-4a51-aab5-09ba9bc15ca9",
+          "name": "Orion Health Search for patient consents",
+          "request": {
+            "name": "Orion Health Search for patient consents",
+            "description": {
+              "content": "Search for patient consent directives governing the sharing of health information within the HIE network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patientId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "purpose",
+                  "value": "<string>",
+                  "description": "Purpose of use"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff479a74-cc47-443c-827e-343cedc1f628",
+              "name": "List of consent directives",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "purpose",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"aa1af1fa-a341-2061-51ed-763bbaf1a835\",\n      \"patientId\": \"string\",\n      \"status\": \"expired\",\n      \"scope\": \"opt-in\",\n      \"purposes\": [\n        \"operations\",\n        \"treatment\"\n      ],\n      \"grantedOrganizations\": [\n        \"string\",\n        \"string\"\n      ],\n      \"deniedOrganizations\": [\n        \"string\",\n        \"string\"\n      ],\n      \"documentTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"effectiveDate\": \"1950-03-01T10:34:50.054Z\",\n      \"expirationDate\": \"1950-11-08T09:39:13.789Z\",\n      \"createdAt\": \"1998-12-27T18:39:37.725Z\",\n      \"updatedAt\": \"2017-08-22T09:03:03.041Z\"\n    },\n    {\n      \"id\": \"5eeeb31c-b6cf-d83e-9b19-5fd4e9bd238e\",\n      \"patientId\": \"string\",\n      \"status\": \"revoked\",\n      \"scope\": \"opt-in\",\n      \"purposes\": [\n        \"operations\",\n        \"payment\"\n      ],\n      \"grantedOrganizations\": [\n        \"string\",\n        \"string\"\n      ],\n      \"deniedOrganizations\": [\n        \"string\",\n        \"string\"\n      ],\n      \"documentTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"effectiveDate\": \"2023-02-08T20:49:42.809Z\",\n      \"expirationDate\": \"2024-03-21T16:04:02.109Z\",\n      \"createdAt\": \"1977-12-07T07:40:29.201Z\",\n      \"updatedAt\": \"2013-09-11T21:14:37.362Z\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 1197,\n    \"limit\": 2465,\n    \"total\": 3515,\n    \"hasMore\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf650ad7-ae4d-4d71-802f-755d2c480ee4",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "purpose",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1371f732-fec0-4d2a-bd20-354e44d8c7ab",
+          "name": "Orion Health Create a patient consent directive",
+          "request": {
+            "name": "Orion Health Create a patient consent directive",
+            "description": {
+              "content": "Record a new patient consent directive specifying permissions for sharing health information within the HIE network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "776e2665-7670-4233-a0ab-9180fc708480",
+              "name": "Consent directive created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"844569d1-3aa7-8da8-7699-132d89099a08\",\n  \"patientId\": \"string\",\n  \"status\": \"active\",\n  \"scope\": \"opt-out\",\n  \"purposes\": [\n    \"operations\",\n    \"operations\"\n  ],\n  \"grantedOrganizations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedOrganizations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"documentTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"effectiveDate\": \"1981-03-15T09:33:12.852Z\",\n  \"expirationDate\": \"1981-01-17T19:43:21.779Z\",\n  \"createdAt\": \"2023-04-26T13:28:46.037Z\",\n  \"updatedAt\": \"1966-07-21T09:57:33.404Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a2e02ae-e364-4037-8482-5afc636db2c6",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddf30924-2f3b-4c0b-9659-40cd11100abe",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cfe3d2a-19ce-4b6f-b17a-042eff86726e",
+          "name": "Orion Health Get a consent directive",
+          "request": {
+            "name": "Orion Health Get a consent directive",
+            "description": {
+              "content": "Retrieve a specific patient consent directive.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent",
+                ":consentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "consentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60091fc0-35f0-4b6f-915c-6eaf2ee2f6d0",
+              "name": "Consent directive",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"844569d1-3aa7-8da8-7699-132d89099a08\",\n  \"patientId\": \"string\",\n  \"status\": \"active\",\n  \"scope\": \"opt-out\",\n  \"purposes\": [\n    \"operations\",\n    \"operations\"\n  ],\n  \"grantedOrganizations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedOrganizations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"documentTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"effectiveDate\": \"1981-03-15T09:33:12.852Z\",\n  \"expirationDate\": \"1981-01-17T19:43:21.779Z\",\n  \"createdAt\": \"2023-04-26T13:28:46.037Z\",\n  \"updatedAt\": \"1966-07-21T09:57:33.404Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54191779-7a58-442d-a793-c92f8b73d216",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7044d900-959b-4a04-b3c2-019f650f0371",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1af6f491-477a-4ce3-8e5a-5efd6501db4b",
+          "name": "Orion Health Update a consent directive",
+          "request": {
+            "name": "Orion Health Update a consent directive",
+            "description": {
+              "content": "Update an existing patient consent directive.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent",
+                ":consentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "consentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d95d2945-ae3a-4ff7-bb15-5557e1f09342",
+              "name": "Consent directive updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"844569d1-3aa7-8da8-7699-132d89099a08\",\n  \"patientId\": \"string\",\n  \"status\": \"active\",\n  \"scope\": \"opt-out\",\n  \"purposes\": [\n    \"operations\",\n    \"operations\"\n  ],\n  \"grantedOrganizations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedOrganizations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"documentTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"effectiveDate\": \"1981-03-15T09:33:12.852Z\",\n  \"expirationDate\": \"1981-01-17T19:43:21.779Z\",\n  \"createdAt\": \"2023-04-26T13:28:46.037Z\",\n  \"updatedAt\": \"1966-07-21T09:57:33.404Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb98526a-7fcd-4a92-8d07-3963d51f88bb",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "173e0fd8-0931-4023-a3d2-eb37fa2a318d",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1ba4935-d71e-445c-94b6-5b7a61d525b5",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"purposes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grantedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"documentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"effectiveDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d195f2a-cbca-4415-bfba-70c8dcdaa10d",
+          "name": "Orion Health Revoke a consent directive",
+          "request": {
+            "name": "Orion Health Revoke a consent directive",
+            "description": {
+              "content": "Revoke a patient consent directive, preventing further data sharing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent",
+                ":consentId",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "consentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f34fc821-c6da-4008-a7a8-861f9698c256",
+              "name": "Consent revoked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"844569d1-3aa7-8da8-7699-132d89099a08\",\n  \"patientId\": \"string\",\n  \"status\": \"active\",\n  \"scope\": \"opt-out\",\n  \"purposes\": [\n    \"operations\",\n    \"operations\"\n  ],\n  \"grantedOrganizations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedOrganizations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"documentTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"effectiveDate\": \"1981-03-15T09:33:12.852Z\",\n  \"expirationDate\": \"1981-01-17T19:43:21.779Z\",\n  \"createdAt\": \"2023-04-26T13:28:46.037Z\",\n  \"updatedAt\": \"1966-07-21T09:57:33.404Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02f42114-4034-4265-83f1-6a25305ed5b6",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a7ed115-57cf-4d8c-a04e-9e542deb024e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    ":consentId",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "consentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "194dc6e5-f6aa-48f3-9de8-c8315f987ef5",
+    "name": "Orion Health FHIR Alerts Consent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

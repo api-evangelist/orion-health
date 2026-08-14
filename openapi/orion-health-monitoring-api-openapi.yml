@@ -1,0 +1,436 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Monitoring API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Monitoring
+  description: System health and performance monitoring
+paths:
+  /routes/{routeId}/statistics:
+    get:
+      operationId: getRouteStatistics
+      summary: Orion Health Get route processing statistics
+      description: Retrieve message processing statistics for a specific route including throughput, error rates, and processing times.
+      tags:
+      - Monitoring
+      parameters:
+      - name: routeId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: periodStart
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: periodEnd
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        description: Statistics aggregation interval
+        schema:
+          type: string
+          enum:
+          - minute
+          - hour
+          - day
+          - week
+      responses:
+        '200':
+          description: Route statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteStatistics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /monitoring/dashboard:
+    get:
+      operationId: getMonitoringDashboard
+      summary: Orion Health Get monitoring dashboard
+      description: Retrieve an overview of the Rhapsody engine status including system health, active routes, queue depths, and error counts.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Dashboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /monitoring/health:
+    get:
+      operationId: getHealthStatus
+      summary: Orion Health Get system health status
+      description: Retrieve the overall health status of the Rhapsody engine including component-level health checks.
+      tags:
+      - Monitoring
+      security: []
+      responses:
+        '200':
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+        '503':
+          description: System is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+  /monitoring/alerts:
+    get:
+      operationId: listMonitoringAlerts
+      summary: Orion Health List monitoring alerts
+      description: Retrieve active monitoring alerts for the Rhapsody engine.
+      tags:
+      - Monitoring
+      parameters:
+      - name: severity
+        in: query
+        schema:
+          type: string
+          enum:
+          - info
+          - warning
+          - error
+          - critical
+      - name: acknowledged
+        in: query
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of alerts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MonitoringAlert'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /monitoring/alerts/{alertId}/acknowledge:
+    post:
+      operationId: acknowledgeAlert
+      summary: Orion Health Acknowledge a monitoring alert
+      description: Acknowledge a monitoring alert to indicate it has been reviewed.
+      tags:
+      - Monitoring
+      parameters:
+      - name: alertId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  type: string
+      responses:
+        '200':
+          description: Alert acknowledged
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringAlert'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Dashboard:
+      type: object
+      properties:
+        engineStatus:
+          type: string
+          enum:
+          - running
+          - starting
+          - stopping
+          - stopped
+          - error
+        uptime:
+          type: string
+          description: Engine uptime duration
+        uptimeSeconds:
+          type: integer
+        routes:
+          type: object
+          properties:
+            total:
+              type: integer
+            started:
+              type: integer
+            stopped:
+              type: integer
+            error:
+              type: integer
+        communicationPoints:
+          type: object
+          properties:
+            total:
+              type: integer
+            started:
+              type: integer
+            stopped:
+              type: integer
+            error:
+              type: integer
+        queues:
+          type: object
+          properties:
+            totalDepth:
+              type: integer
+            totalErrors:
+              type: integer
+            totalHeld:
+              type: integer
+        messages:
+          type: object
+          properties:
+            processedToday:
+              type: integer
+            errorsToday:
+              type: integer
+            throughputPerSecond:
+              type: number
+        memory:
+          type: object
+          properties:
+            usedMb:
+              type: number
+            maxMb:
+              type: number
+            percentUsed:
+              type: number
+        disk:
+          type: object
+          properties:
+            usedGb:
+              type: number
+            totalGb:
+              type: number
+            percentUsed:
+              type: number
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - healthy
+          - degraded
+          - unhealthy
+        timestamp:
+          type: string
+          format: date-time
+        components:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              status:
+                type: string
+                enum:
+                - healthy
+                - degraded
+                - unhealthy
+              message:
+                type: string
+              lastChecked:
+                type: string
+                format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    MonitoringAlert:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        severity:
+          type: string
+          enum:
+          - info
+          - warning
+          - error
+          - critical
+        source:
+          type: string
+          description: Component that generated the alert
+        title:
+          type: string
+        message:
+          type: string
+        acknowledged:
+          type: boolean
+        acknowledgedBy:
+          type: string
+        acknowledgedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+    RouteStatistics:
+      type: object
+      properties:
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+        totalMessages:
+          type: integer
+        successfulMessages:
+          type: integer
+        errorMessages:
+          type: integer
+        averageProcessingTimeMs:
+          type: number
+        maxProcessingTimeMs:
+          type: number
+        messagesPerSecond:
+          type: number
+        timeline:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              messagesProcessed:
+                type: integer
+              errors:
+                type: integer
+              avgProcessingTimeMs:
+                type: number
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Immunization API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Immunization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for immunizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Immunization",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Vaccination date or date range"
+              },
+              {
+                "name": "vaccine-code",
+                "value": "",
+                "type": "query",
+                "description": "CVX code for the vaccine"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Immunization status"
+              }
+            ]
+          },
+          "docs": "Search for Immunization resources representing vaccine administrations."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read an immunization by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Immunization/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Immunization resource by its logical ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

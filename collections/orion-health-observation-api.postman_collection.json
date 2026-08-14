@@ -1,0 +1,839 @@
+{
+  "item": [
+    {
+      "id": "31a276f9-3dc2-40e9-9a91-0ac7b05bf567",
+      "name": "Observation",
+      "description": {
+        "content": "Operations on Observation resources (vitals, labs, etc.)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1804e9b0-842f-4696-b0fc-9a8103f422c6",
+          "name": "Orion Health Search for observations",
+          "request": {
+            "name": "Orion Health Search for observations",
+            "description": {
+              "content": "Search for Observation resources including vital signs, laboratory results, imaging findings, and other clinical measurements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Observation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "20",
+                  "description": "Maximum number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "Starting offset for paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "patient",
+                  "value": "<string>",
+                  "description": "Reference to the patient"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Observation category (e.g., vital-signs, laboratory)"
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "LOINC or SNOMED code for the observation"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Observation date or date range"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Observation status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0d0c327-2c17-4252-a9bc-9d82c31e6f07",
+              "name": "Bundle of matching Observation resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"type\": \"searchset\",\n  \"total\": 880,\n  \"link\": [\n    {\n      \"relation\": \"self\",\n      \"url\": \"https://NMJqcnzdJUJsmkOGCtZVFKeYqTRaSNob.tbcPAcM8U,Y\"\n    },\n    {\n      \"relation\": \"previous\",\n      \"url\": \"https://NEOMFNphjlJwPuUhDHkEnVgZSGwga.ytYFMdv6jhj8KJuWim-4HO,MfOB8x0SUvLbpoQvLPwfsQG4S3OMJb5ktwJzsbCr\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"https://SSTLIVeakQFLhAfvUhcVopUnBedqkPWF.uxrYXV21h+vnzjI1D2YCAL,ZWN8kFYGsIZoYiRREw8B7WY+71cWf+\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1979-04-06T03:12:40.366Z\",\n          \"profile\": [\n            \"https://KMdAbaTBHDtpgrMXLUWSaruBnDKer.ssS2IiQ0OlAyqn,Z9QNyQBB4GyIIjo8xdXnuaLbxK1fa\",\n            \"http://gGHtoyMgbAFDrjblmJaHIhRjmKuOytZyC.tsOUc1Vnpq2qr0sWq7npytsOOpxX1+J4G,Vf+mc,0pmSJ1NKc\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"include\"\n      }\n    },\n    {\n      \"fullUrl\": \"https://nkZjN.hiaiIjmF1lOfuDeueuKpdQYtKuYNnAmpeXICVUiXHAgnnDyy\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1997-09-14T09:50:56.447Z\",\n          \"profile\": [\n            \"http://SeLFiD.yvlde+O,VzmkYl7cf5\",\n            \"http://EoclhtSNetYvpVJZxn.iraoEmArxirD3lmBO87YU.K8VRszR-npbIeNo6rgdVDBBo42JrSgKPEtHgaIPMhil\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"outcome\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a719f76-63e4-484b-94f6-facdca94482c",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://iJrLN.qlSq3-McFTlmM3zetXPjdBBN4TExiZhIr-Mhh3DaQiSZ3dNe0waCg\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://KZMAXkS.exyBCRQh+zDQlul\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://znerobkam.leoKDf4q.HZOGWM7+Jy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://uercxgytAoWinjZyFtDSEtIqXbLg.zzpDyuSblIQGsR0MUB4jVmygfh+ncAg5U\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3480061d-84d5-4302-87c5-e14a2b9d26e8",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://iJrLN.qlSq3-McFTlmM3zetXPjdBBN4TExiZhIr-Mhh3DaQiSZ3dNe0waCg\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://KZMAXkS.exyBCRQh+zDQlul\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://znerobkam.leoKDf4q.HZOGWM7+Jy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://uercxgytAoWinjZyFtDSEtIqXbLg.zzpDyuSblIQGsR0MUB4jVmygfh+ncAg5U\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abfedc3b-84cb-452c-ae48-18573e3c2e07",
+          "name": "Orion Health Create a new observation",
+          "request": {
+            "name": "Orion Health Create a new observation",
+            "description": {
+              "content": "Create a new Observation resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Observation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/fhir+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"system\": \"<uri>\",\n    \"code\": \"<string>\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fff4746f-e544-426f-a416-1a70b091dbe9",
+              "name": "Observation resource created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://CdlvlxnXGjUQWQIAITvrI.fvnphBTyTCOzTRwW-HTh.ztf-mA2ZFq+EJ51nesjf\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://RqewbtfpOSsOAVAefmw.jhpL4DOTNtRQtxnrsFe3xQ-PUjxljljAQ4x1GGe\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://UyUObDngUtrGdv.pfzPbkm3Wj9urQWKZT5lOcTNNroQtY9RKhAC6VidVuqf9gm9i8Sjp2u6ywDYqIafu\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://FvyayzvTHXmUbBb.gbaNQrRfLLwBK1uA,AX,lCkYhKffI7edcwcrxv,YocjtdZcHwm-\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"https://kBAknPkVNZILeIKgvBkSDLpuySk.pmdA-uVxJyoyYy5uIdjhroO6vL.TnS.0+-d3h.P9Jyka3DjZr5GvZzRYbJGt0LMvYYmI5cl\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://BtEKhJGdNBjFtICgyHztLDjxVsY.auJA6L3qZGZLaSk0Jb.bB1EZSIlaG\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"subject\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": 7920.739443194738,\n    \"unit\": \"string\",\n    \"system\": \"http://nAoarFeKunvjWYChldKTl.lcyosuGNd5,AK+Yxp29Z6RMpBBFhYDfQ2sWhZl\",\n    \"code\": \"string\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"https://FZQfxajhzVpsZnfbHPKBMitVDXVLJL.itffa0W,wa0Zz6rVVy8P2Y2-yM+gtfMxg,IFVFI6Bzi7mH9UFWTvK-RlZeeysLKM,BvMx\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://zTRfaTIdd.vwZdUmLMKNeWK\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://au.xzdztOczjsy11fOaau5X\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://kcSoiwfbImFDlqHNyHDPvYXRMNdKWbtM.sgesfPPtrEA\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://LqgdWxlKcsdFykAMgRczcgVZ.kneB7-JVsI6TAEkWuIQRIA0\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://IVfokhDVnStOGLQPoaKznsFebiqnGPG.ykc5bmv7SIZ97D5hRVBzQl7DYkOso+AsKdSpb\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": 5304.353092641819,\n        \"unit\": \"string\",\n        \"system\": \"https://U.jslfSXd\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 5912.100128120685,\n        \"unit\": \"string\",\n        \"system\": \"https://RdSgWAphzdYvXMAJEeIrHYhxHAmis.onxtjmLJaihUoQARnsO+UNHTfQZoPq4bRA\",\n        \"code\": \"string\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": 2777.819055952121,\n        \"unit\": \"string\",\n        \"system\": \"https://mFhsbfAllJKllFJglKpUqKqgd.zvb.fghoua5FA5W6euONfyjeQok35J3xGom2urnh7\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 2468.7903284882595,\n        \"unit\": \"string\",\n        \"system\": \"http://sEBwmfQHyLMNAecJldSLjnydvh.kabsUDjCwvX,iM5nCegrx,-UWx\",\n        \"code\": \"string\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"status\": \"corrected\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"https://UJFxoyPuEKlrvNhbpAaWeiSvpwNdJI.szoddETGwmGrtEUFBgU1KKPJgTPAhnECj3jGThEtOxrlNfjwOe3StEKZ-sPnL4tvtG\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://KzVgFuIIbVpqTNKvJScEEUeYTUGQoAOqV.uklmSxt\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://XWaDjSVvU.hkr0Nky7SO,KNDG7yaRpBpizemgO.yQmaLP+Z8Jiqru8rYDlGzbs\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://cJmfHpnWncIlgoHDCyVgZdasUnPl.hgkQw4xaxq9Wuzrvb23rmC8+QeUQ88Eezh\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"http://OwLoKZkwdrNOvaSPcGSOb.bmlvU1eRPr-FfJdUkH+eFAJKyng0Bab5Iuqs5xtpgevvhcparbVL2zCW\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://pfeuuZyyblpmc.sliHcrtTW3y1WXw1FEv7xRKCuonWKkI\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"subject\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"effectiveDateTime\": \"1974-06-28T04:01:01.683Z\",\n  \"valueQuantity\": {\n    \"value\": 5368.890145133341,\n    \"unit\": \"string\",\n    \"system\": \"https://xULaUaOBbMiuPZSdDwjlkrTr.kkqUM.HuaAUk+PwtE6ZEMnuWpwmqeOLwDi6tWx3Nxa8cGP5MAqIKfj0\",\n    \"code\": \"string\"\n  },\n  \"valueString\": \"string\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"http://ePTHlTbsiiSVTPnoCEmkEWcTrW.olikKqxb2E.eQH.riwNjCqpxr+d4SJDCc\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://MqGpyHZEsOgiayCEInbKNrrZxV.vttkCdSTiH5piIzPGXkkKfoa,6XhX3CfJ+dRL4kGQEw\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://VbDJmNoSpScojLBweTocjlSnRoom.eghSgQSFGzH0Q\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://xMzjuWcVbDXbDwsBnDCLQ.mgxvA1BKVmpGM3aQArhNBAN2\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://zpshuSOmFotVgcNFdZzoPYA.kzGHnM5suNVMpcAfgdJIugaaufl1NXCktePsFN.4zA\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://ApyxoJiSJSvccshGTQgcWZPip.bpgnkFPzgOpFJsaus0PXlH7eaalYPx5xw\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": 8512.348545473233,\n        \"unit\": \"string\",\n        \"system\": \"http://ldZPsUjis.fesW.z5enSvwXor98X6zGXZdMAnuf-8CORYo40M,.S7zNInIxkMmhpO6xzFAWgW3ZWuAEg4O\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 3597.6457672879324,\n        \"unit\": \"string\",\n        \"system\": \"https://jEvnGvQgBj.iqbzVByvuT-hM+lDzLhxs8br-pAkCFrHWwhWWzPmk\",\n        \"code\": \"string\"\n      },\n      \"text\": \"string\"\n    },\n    {\n      \"low\": {\n        \"value\": 6581.529947925527,\n        \"unit\": \"string\",\n        \"system\": \"https://SprPiBhPPagiQSZ.soed,vmQ8wa.gRSuO0bL-42hvXeuLVWveIDWM\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 4778.371700861542,\n        \"unit\": \"string\",\n        \"system\": \"https://GrIz.ecgmYNUkNo\",\n        \"code\": \"string\"\n      },\n      \"text\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0970724-652c-416e-8370-4098c08e3c2f",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://CdlvlxnXGjUQWQIAITvrI.fvnphBTyTCOzTRwW-HTh.ztf-mA2ZFq+EJ51nesjf\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://RqewbtfpOSsOAVAefmw.jhpL4DOTNtRQtxnrsFe3xQ-PUjxljljAQ4x1GGe\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://UyUObDngUtrGdv.pfzPbkm3Wj9urQWKZT5lOcTNNroQtY9RKhAC6VidVuqf9gm9i8Sjp2u6ywDYqIafu\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://FvyayzvTHXmUbBb.gbaNQrRfLLwBK1uA,AX,lCkYhKffI7edcwcrxv,YocjtdZcHwm-\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"https://kBAknPkVNZILeIKgvBkSDLpuySk.pmdA-uVxJyoyYy5uIdjhroO6vL.TnS.0+-d3h.P9Jyka3DjZr5GvZzRYbJGt0LMvYYmI5cl\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://BtEKhJGdNBjFtICgyHztLDjxVsY.auJA6L3qZGZLaSk0Jb.bB1EZSIlaG\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"subject\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": 7920.739443194738,\n    \"unit\": \"string\",\n    \"system\": \"http://nAoarFeKunvjWYChldKTl.lcyosuGNd5,AK+Yxp29Z6RMpBBFhYDfQ2sWhZl\",\n    \"code\": \"string\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"https://FZQfxajhzVpsZnfbHPKBMitVDXVLJL.itffa0W,wa0Zz6rVVy8P2Y2-yM+gtfMxg,IFVFI6Bzi7mH9UFWTvK-RlZeeysLKM,BvMx\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://zTRfaTIdd.vwZdUmLMKNeWK\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://au.xzdztOczjsy11fOaau5X\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://kcSoiwfbImFDlqHNyHDPvYXRMNdKWbtM.sgesfPPtrEA\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://LqgdWxlKcsdFykAMgRczcgVZ.kneB7-JVsI6TAEkWuIQRIA0\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://IVfokhDVnStOGLQPoaKznsFebiqnGPG.ykc5bmv7SIZ97D5hRVBzQl7DYkOso+AsKdSpb\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": 5304.353092641819,\n        \"unit\": \"string\",\n        \"system\": \"https://U.jslfSXd\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 5912.100128120685,\n        \"unit\": \"string\",\n        \"system\": \"https://RdSgWAphzdYvXMAJEeIrHYhxHAmis.onxtjmLJaihUoQARnsO+UNHTfQZoPq4bRA\",\n        \"code\": \"string\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": 2777.819055952121,\n        \"unit\": \"string\",\n        \"system\": \"https://mFhsbfAllJKllFJglKpUqKqgd.zvb.fghoua5FA5W6euONfyjeQok35J3xGom2urnh7\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 2468.7903284882595,\n        \"unit\": \"string\",\n        \"system\": \"http://sEBwmfQHyLMNAecJldSLjnydvh.kabsUDjCwvX,iM5nCegrx,-UWx\",\n        \"code\": \"string\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://FUyCWmvFIMnqRcOqqOFwpDZUZgasBh.klzrH.PypZF+VIlN7UJf646gTv6P\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://NrmmSlOIQBlRnQMhjJCS.dsuvkRPLObHyWaA\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://VhKnMazK.kfUm98iuzGzT7IJ7l.UH-O6p\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://NkMa.gtLzDSvCEis-6RgfC.Y6PkiwSZO4vVgdBdgdilO4pVuxSfFJYqcv\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e178054-3256-402c-aa40-c3794cce53d0",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://CdlvlxnXGjUQWQIAITvrI.fvnphBTyTCOzTRwW-HTh.ztf-mA2ZFq+EJ51nesjf\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://RqewbtfpOSsOAVAefmw.jhpL4DOTNtRQtxnrsFe3xQ-PUjxljljAQ4x1GGe\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://UyUObDngUtrGdv.pfzPbkm3Wj9urQWKZT5lOcTNNroQtY9RKhAC6VidVuqf9gm9i8Sjp2u6ywDYqIafu\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://FvyayzvTHXmUbBb.gbaNQrRfLLwBK1uA,AX,lCkYhKffI7edcwcrxv,YocjtdZcHwm-\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"https://kBAknPkVNZILeIKgvBkSDLpuySk.pmdA-uVxJyoyYy5uIdjhroO6vL.TnS.0+-d3h.P9Jyka3DjZr5GvZzRYbJGt0LMvYYmI5cl\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://BtEKhJGdNBjFtICgyHztLDjxVsY.auJA6L3qZGZLaSk0Jb.bB1EZSIlaG\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"subject\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": 7920.739443194738,\n    \"unit\": \"string\",\n    \"system\": \"http://nAoarFeKunvjWYChldKTl.lcyosuGNd5,AK+Yxp29Z6RMpBBFhYDfQ2sWhZl\",\n    \"code\": \"string\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"https://FZQfxajhzVpsZnfbHPKBMitVDXVLJL.itffa0W,wa0Zz6rVVy8P2Y2-yM+gtfMxg,IFVFI6Bzi7mH9UFWTvK-RlZeeysLKM,BvMx\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://zTRfaTIdd.vwZdUmLMKNeWK\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://au.xzdztOczjsy11fOaau5X\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://kcSoiwfbImFDlqHNyHDPvYXRMNdKWbtM.sgesfPPtrEA\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://LqgdWxlKcsdFykAMgRczcgVZ.kneB7-JVsI6TAEkWuIQRIA0\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://IVfokhDVnStOGLQPoaKznsFebiqnGPG.ykc5bmv7SIZ97D5hRVBzQl7DYkOso+AsKdSpb\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": 5304.353092641819,\n        \"unit\": \"string\",\n        \"system\": \"https://U.jslfSXd\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 5912.100128120685,\n        \"unit\": \"string\",\n        \"system\": \"https://RdSgWAphzdYvXMAJEeIrHYhxHAmis.onxtjmLJaihUoQARnsO+UNHTfQZoPq4bRA\",\n        \"code\": \"string\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": 2777.819055952121,\n        \"unit\": \"string\",\n        \"system\": \"https://mFhsbfAllJKllFJglKpUqKqgd.zvb.fghoua5FA5W6euONfyjeQok35J3xGom2urnh7\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 2468.7903284882595,\n        \"unit\": \"string\",\n        \"system\": \"http://sEBwmfQHyLMNAecJldSLjnydvh.kabsUDjCwvX,iM5nCegrx,-UWx\",\n        \"code\": \"string\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://FUyCWmvFIMnqRcOqqOFwpDZUZgasBh.klzrH.PypZF+VIlN7UJf646gTv6P\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://NrmmSlOIQBlRnQMhjJCS.dsuvkRPLObHyWaA\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://VhKnMazK.kfUm98iuzGzT7IJ7l.UH-O6p\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://NkMa.gtLzDSvCEis-6RgfC.Y6PkiwSZO4vVgdBdgdilO4pVuxSfFJYqcv\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba4b7d56-eaf7-44e2-9a38-40ae9dcbef1b",
+              "name": "Resource failed validation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://CdlvlxnXGjUQWQIAITvrI.fvnphBTyTCOzTRwW-HTh.ztf-mA2ZFq+EJ51nesjf\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://RqewbtfpOSsOAVAefmw.jhpL4DOTNtRQtxnrsFe3xQ-PUjxljljAQ4x1GGe\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://UyUObDngUtrGdv.pfzPbkm3Wj9urQWKZT5lOcTNNroQtY9RKhAC6VidVuqf9gm9i8Sjp2u6ywDYqIafu\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://FvyayzvTHXmUbBb.gbaNQrRfLLwBK1uA,AX,lCkYhKffI7edcwcrxv,YocjtdZcHwm-\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"https://kBAknPkVNZILeIKgvBkSDLpuySk.pmdA-uVxJyoyYy5uIdjhroO6vL.TnS.0+-d3h.P9Jyka3DjZr5GvZzRYbJGt0LMvYYmI5cl\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://BtEKhJGdNBjFtICgyHztLDjxVsY.auJA6L3qZGZLaSk0Jb.bB1EZSIlaG\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"subject\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": 7920.739443194738,\n    \"unit\": \"string\",\n    \"system\": \"http://nAoarFeKunvjWYChldKTl.lcyosuGNd5,AK+Yxp29Z6RMpBBFhYDfQ2sWhZl\",\n    \"code\": \"string\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"https://FZQfxajhzVpsZnfbHPKBMitVDXVLJL.itffa0W,wa0Zz6rVVy8P2Y2-yM+gtfMxg,IFVFI6Bzi7mH9UFWTvK-RlZeeysLKM,BvMx\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"http://zTRfaTIdd.vwZdUmLMKNeWK\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://au.xzdztOczjsy11fOaau5X\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://kcSoiwfbImFDlqHNyHDPvYXRMNdKWbtM.sgesfPPtrEA\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://LqgdWxlKcsdFykAMgRczcgVZ.kneB7-JVsI6TAEkWuIQRIA0\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://IVfokhDVnStOGLQPoaKznsFebiqnGPG.ykc5bmv7SIZ97D5hRVBzQl7DYkOso+AsKdSpb\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": 5304.353092641819,\n        \"unit\": \"string\",\n        \"system\": \"https://U.jslfSXd\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 5912.100128120685,\n        \"unit\": \"string\",\n        \"system\": \"https://RdSgWAphzdYvXMAJEeIrHYhxHAmis.onxtjmLJaihUoQARnsO+UNHTfQZoPq4bRA\",\n        \"code\": \"string\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": 2777.819055952121,\n        \"unit\": \"string\",\n        \"system\": \"https://mFhsbfAllJKllFJglKpUqKqgd.zvb.fghoua5FA5W6euONfyjeQok35J3xGom2urnh7\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 2468.7903284882595,\n        \"unit\": \"string\",\n        \"system\": \"http://sEBwmfQHyLMNAecJldSLjnydvh.kabsUDjCwvX,iM5nCegrx,-UWx\",\n        \"code\": \"string\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://iJrLN.qlSq3-McFTlmM3zetXPjdBBN4TExiZhIr-Mhh3DaQiSZ3dNe0waCg\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://KZMAXkS.exyBCRQh+zDQlul\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://znerobkam.leoKDf4q.HZOGWM7+Jy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://uercxgytAoWinjZyFtDSEtIqXbLg.zzpDyuSblIQGsR0MUB4jVmygfh+ncAg5U\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3dc2e5a-2560-4627-b8ba-259a9e57c194",
+          "name": "Orion Health Read an observation by ID",
+          "request": {
+            "name": "Orion Health Read an observation by ID",
+            "description": {
+              "content": "Retrieve a specific Observation resource by its logical ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Observation",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Logical ID of the FHIR resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea6d2b0d-43c1-4941-9eb3-965f445456cc",
+              "name": "Observation resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"status\": \"corrected\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"https://UJFxoyPuEKlrvNhbpAaWeiSvpwNdJI.szoddETGwmGrtEUFBgU1KKPJgTPAhnECj3jGThEtOxrlNfjwOe3StEKZ-sPnL4tvtG\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://KzVgFuIIbVpqTNKvJScEEUeYTUGQoAOqV.uklmSxt\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://XWaDjSVvU.hkr0Nky7SO,KNDG7yaRpBpizemgO.yQmaLP+Z8Jiqru8rYDlGzbs\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://cJmfHpnWncIlgoHDCyVgZdasUnPl.hgkQw4xaxq9Wuzrvb23rmC8+QeUQ88Eezh\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"http://OwLoKZkwdrNOvaSPcGSOb.bmlvU1eRPr-FfJdUkH+eFAJKyng0Bab5Iuqs5xtpgevvhcparbVL2zCW\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://pfeuuZyyblpmc.sliHcrtTW3y1WXw1FEv7xRKCuonWKkI\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"subject\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"effectiveDateTime\": \"1974-06-28T04:01:01.683Z\",\n  \"valueQuantity\": {\n    \"value\": 5368.890145133341,\n    \"unit\": \"string\",\n    \"system\": \"https://xULaUaOBbMiuPZSdDwjlkrTr.kkqUM.HuaAUk+PwtE6ZEMnuWpwmqeOLwDi6tWx3Nxa8cGP5MAqIKfj0\",\n    \"code\": \"string\"\n  },\n  \"valueString\": \"string\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"http://ePTHlTbsiiSVTPnoCEmkEWcTrW.olikKqxb2E.eQH.riwNjCqpxr+d4SJDCc\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      },\n      {\n        \"system\": \"https://MqGpyHZEsOgiayCEInbKNrrZxV.vttkCdSTiH5piIzPGXkkKfoa,6XhX3CfJ+dRL4kGQEw\",\n        \"code\": \"string\",\n        \"display\": \"string\"\n      }\n    ],\n    \"text\": \"string\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://VbDJmNoSpScojLBweTocjlSnRoom.eghSgQSFGzH0Q\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://xMzjuWcVbDXbDwsBnDCLQ.mgxvA1BKVmpGM3aQArhNBAN2\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://zpshuSOmFotVgcNFdZzoPYA.kzGHnM5suNVMpcAfgdJIugaaufl1NXCktePsFN.4zA\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://ApyxoJiSJSvccshGTQgcWZPip.bpgnkFPzgOpFJsaus0PXlH7eaalYPx5xw\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": 8512.348545473233,\n        \"unit\": \"string\",\n        \"system\": \"http://ldZPsUjis.fesW.z5enSvwXor98X6zGXZdMAnuf-8CORYo40M,.S7zNInIxkMmhpO6xzFAWgW3ZWuAEg4O\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 3597.6457672879324,\n        \"unit\": \"string\",\n        \"system\": \"https://jEvnGvQgBj.iqbzVByvuT-hM+lDzLhxs8br-pAkCFrHWwhWWzPmk\",\n        \"code\": \"string\"\n      },\n      \"text\": \"string\"\n    },\n    {\n      \"low\": {\n        \"value\": 6581.529947925527,\n        \"unit\": \"string\",\n        \"system\": \"https://SprPiBhPPagiQSZ.soed,vmQ8wa.gRSuO0bL-42hvXeuLVWveIDWM\",\n        \"code\": \"string\"\n      },\n      \"high\": {\n        \"value\": 4778.371700861542,\n        \"unit\": \"string\",\n        \"system\": \"https://GrIz.ecgmYNUkNo\",\n        \"code\": \"string\"\n      },\n      \"text\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05b8c516-aa6c-4997-8466-55e1957f975d",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"https://FUyCWmvFIMnqRcOqqOFwpDZUZgasBh.klzrH.PypZF+VIlN7UJf646gTv6P\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://NrmmSlOIQBlRnQMhjJCS.dsuvkRPLObHyWaA\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://VhKnMazK.kfUm98iuzGzT7IJ7l.UH-O6p\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://NkMa.gtLzDSvCEis-6RgfC.Y6PkiwSZO4vVgdBdgdilO4pVuxSfFJYqcv\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da5df1d0-3a3c-4542-9cc7-67f684457678",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Observation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://iJrLN.qlSq3-McFTlmM3zetXPjdBBN4TExiZhIr-Mhh3DaQiSZ3dNe0waCg\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://KZMAXkS.exyBCRQh+zDQlul\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://znerobkam.leoKDf4q.HZOGWM7+Jy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://uercxgytAoWinjZyFtDSEtIqXbLg.zzpDyuSblIQGsR0MUB4jVmygfh+ncAg5U\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d6f93a8d-8efe-46d9-a0b6-00d96b9c1673",
+    "name": "Orion Health FHIR Alerts Observation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

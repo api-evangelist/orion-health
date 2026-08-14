@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Patient Identity API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patient Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Match a patient across organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/patients/match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform patient identity matching across the HIE network using demographics, identifiers, and probabilistic matching algorithms to find existing records in the Master Patient Index (MPI)."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get patient cross-reference identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/patients/:patientId/identifiers",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization"
+              }
+            ]
+          },
+          "docs": "Retrieve all known identifiers for a patient across participating organizations in the HIE network."
+        },
+        {
+          "info": {
+            "name": "Orion Health Locate patient records across organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/patients/:patientId/record-locator",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source organization"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document type"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query the HIE network to locate clinical records for a patient across participating organizations. Returns available document references without retrieving the full documents."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

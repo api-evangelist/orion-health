@@ -1,0 +1,1381 @@
+openapi: 3.1.0
+info:
+  title: Orion Health HIE API
+  description: >-
+    The Orion Health Health Information Exchange (HIE) API enables sharing of
+    patient health information across healthcare organizations. It provides
+    capabilities for patient identity matching, document exchange, consent
+    management, provider directory lookups, and audit logging in compliance
+    with healthcare interoperability standards. The API supports IHE profiles
+    including XDS, XCA, and PDQ.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+  - url: https://api.orionhealth.com/hie
+    description: Production HIE Server
+  - url: https://sandbox.orionhealth.com/hie
+    description: Sandbox HIE Server
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Audit
+    description: Audit log access for compliance
+  - name: Consent
+    description: Patient consent management for data sharing
+  - name: Documents
+    description: Clinical document exchange and retrieval
+  - name: Notifications
+    description: Admission, discharge, and transfer notifications
+  - name: Patient Identity
+    description: Patient identity matching and cross-referencing (MPI)
+  - name: Provider Directory
+    description: Provider and organization directory lookups
+paths:
+  /patients/match:
+    post:
+      operationId: matchPatient
+      summary: Orion Health Match a patient across organizations
+      description: >-
+        Perform patient identity matching across the HIE network using
+        demographics, identifiers, and probabilistic matching algorithms
+        to find existing records in the Master Patient Index (MPI).
+      tags:
+        - Patient Identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientMatchRequest'
+      responses:
+        '200':
+          description: Patient match results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientMatchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /patients/{patientId}/identifiers:
+    get:
+      operationId: getPatientIdentifiers
+      summary: Orion Health Get patient cross-reference identifiers
+      description: >-
+        Retrieve all known identifiers for a patient across participating
+        organizations in the HIE network.
+      tags:
+        - Patient Identity
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: Filter by organization
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Patient identifiers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientIdentifiers'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /patients/{patientId}/record-locator:
+    get:
+      operationId: locatePatientRecords
+      summary: Orion Health Locate patient records across organizations
+      description: >-
+        Query the HIE network to locate clinical records for a patient
+        across participating organizations. Returns available document
+        references without retrieving the full documents.
+      tags:
+        - Documents
+        - Patient Identity
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: Filter by source organization
+          schema:
+            type: string
+        - name: documentType
+          in: query
+          description: Filter by document type
+          schema:
+            type: string
+            enum:
+              - ccd
+              - discharge-summary
+              - progress-note
+              - lab-report
+              - radiology-report
+              - referral
+              - consult-note
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Located record references
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RecordLocatorResult'
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /documents:
+    get:
+      operationId: searchDocuments
+      summary: Orion Health Search for clinical documents
+      description: >-
+        Search for clinical documents in the HIE document registry
+        by patient, organization, document type, and date range.
+      tags:
+        - Documents
+      parameters:
+        - name: patientId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: documentType
+          in: query
+          schema:
+            type: string
+            enum:
+              - ccd
+              - discharge-summary
+              - progress-note
+              - lab-report
+              - radiology-report
+              - referral
+              - consult-note
+              - operative-note
+              - pathology-report
+        - name: sourceOrganization
+          in: query
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: format
+          in: query
+          description: Document format
+          schema:
+            type: string
+            enum:
+              - cda
+              - fhir
+              - pdf
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of matching documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DocumentMetadata'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: submitDocument
+      summary: Orion Health Submit a clinical document
+      description: >-
+        Submit a clinical document to the HIE document repository for
+        sharing with other participating organizations.
+      tags:
+        - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentSubmission'
+      responses:
+        '201':
+          description: Document submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentMetadata'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          description: Document validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /documents/{documentId}:
+    get:
+      operationId: getDocument
+      summary: Orion Health Retrieve a clinical document
+      description: >-
+        Retrieve the full content of a clinical document from the HIE
+        document repository by its document ID.
+      tags:
+        - Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: format
+          in: query
+          description: Requested document format
+          schema:
+            type: string
+            enum:
+              - cda
+              - fhir
+              - pdf
+              - original
+      responses:
+        '200':
+          description: Clinical document content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentContent'
+            application/xml:
+              schema:
+                type: string
+                description: CDA XML document
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          description: Consent not on file or access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /consent:
+    get:
+      operationId: searchConsents
+      summary: Orion Health Search for patient consents
+      description: >-
+        Search for patient consent directives governing the sharing
+        of health information within the HIE network.
+      tags:
+        - Consent
+      parameters:
+        - name: patientId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - revoked
+              - expired
+        - name: purpose
+          in: query
+          description: Purpose of use
+          schema:
+            type: string
+            enum:
+              - treatment
+              - payment
+              - operations
+              - research
+              - public-health
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of consent directives
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Consent'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createConsent
+      summary: Orion Health Create a patient consent directive
+      description: >-
+        Record a new patient consent directive specifying permissions
+        for sharing health information within the HIE network.
+      tags:
+        - Consent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentCreate'
+      responses:
+        '201':
+          description: Consent directive created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /consent/{consentId}:
+    get:
+      operationId: getConsent
+      summary: Orion Health Get a consent directive
+      description: Retrieve a specific patient consent directive.
+      tags:
+        - Consent
+      parameters:
+        - name: consentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Consent directive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateConsent
+      summary: Orion Health Update a consent directive
+      description: Update an existing patient consent directive.
+      tags:
+        - Consent
+      parameters:
+        - name: consentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentCreate'
+      responses:
+        '200':
+          description: Consent directive updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /consent/{consentId}/revoke:
+    post:
+      operationId: revokeConsent
+      summary: Orion Health Revoke a consent directive
+      description: Revoke a patient consent directive, preventing further data sharing.
+      tags:
+        - Consent
+      parameters:
+        - name: consentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Reason for revocation
+                effectiveDate:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Consent revoked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /providers:
+    get:
+      operationId: searchProviders
+      summary: Orion Health Search the provider directory
+      description: >-
+        Search the HIE provider directory for healthcare providers
+        and organizations participating in the exchange network.
+      tags:
+        - Provider Directory
+      parameters:
+        - name: name
+          in: query
+          description: Provider or organization name
+          schema:
+            type: string
+        - name: npi
+          in: query
+          description: National Provider Identifier
+          schema:
+            type: string
+        - name: specialty
+          in: query
+          description: Provider specialty
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Provider type
+          schema:
+            type: string
+            enum:
+              - individual
+              - organization
+        - name: city
+          in: query
+          schema:
+            type: string
+        - name: state
+          in: query
+          schema:
+            type: string
+        - name: active
+          in: query
+          schema:
+            type: boolean
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: Provider search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Provider'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /providers/{providerId}:
+    get:
+      operationId: getProvider
+      summary: Orion Health Get provider details
+      description: Retrieve details of a specific provider in the HIE directory.
+      tags:
+        - Provider Directory
+      parameters:
+        - name: providerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Provider details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Provider'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /notifications:
+    get:
+      operationId: listNotifications
+      summary: Orion Health List ADT notifications
+      description: >-
+        Retrieve admission, discharge, and transfer (ADT) notifications
+        for subscribed patients and organizations.
+      tags:
+        - Notifications
+      parameters:
+        - name: patientId
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum:
+              - admission
+              - discharge
+              - transfer
+              - registration
+        - name: organization
+          in: query
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - pending
+              - delivered
+              - read
+              - failed
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of notifications
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Notification'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /notifications/subscriptions:
+    get:
+      operationId: listNotificationSubscriptions
+      summary: Orion Health List notification subscriptions
+      description: Retrieve current ADT notification subscriptions.
+      tags:
+        - Notifications
+      responses:
+        '200':
+          description: List of subscriptions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NotificationSubscription'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createNotificationSubscription
+      summary: Orion Health Create a notification subscription
+      description: >-
+        Subscribe to ADT notifications for specific patients, organizations,
+        or event types.
+      tags:
+        - Notifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationSubscriptionCreate'
+      responses:
+        '201':
+          description: Subscription created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSubscription'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /audit-logs:
+    get:
+      operationId: searchAuditLogs
+      summary: Orion Health Search audit logs
+      description: >-
+        Search audit logs for data access and exchange events within the
+        HIE network for compliance and accountability purposes.
+      tags:
+        - Audit
+      parameters:
+        - name: patientId
+          in: query
+          schema:
+            type: string
+        - name: userId
+          in: query
+          schema:
+            type: string
+        - name: action
+          in: query
+          schema:
+            type: string
+            enum:
+              - query
+              - retrieve
+              - submit
+              - update
+              - consent-change
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: outcome
+          in: query
+          schema:
+            type: string
+            enum:
+              - success
+              - failure
+              - denied
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: Audit log entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuditLogEntry'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          description: Insufficient permissions for audit access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            hie:patient-query: Query patient identity
+            hie:document-read: Retrieve documents
+            hie:document-write: Submit documents
+            hie:consent-read: Read consent directives
+            hie:consent-write: Manage consent directives
+            hie:provider-read: Query provider directory
+            hie:notification-read: Read notifications
+            hie:notification-manage: Manage notification subscriptions
+            hie:audit-read: Read audit logs
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  schemas:
+    PatientMatchRequest:
+      type: object
+      properties:
+        familyName:
+          type: string
+        givenName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+            - other
+            - unknown
+        identifier:
+          type: object
+          properties:
+            system:
+              type: string
+              description: Identifier system (e.g., MRN namespace)
+            value:
+              type: string
+        ssn:
+          type: string
+          description: Last four digits of SSN for matching
+        address:
+          type: object
+          properties:
+            line:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+        phone:
+          type: string
+        matchThreshold:
+          type: number
+          description: Minimum match confidence score (0-1)
+          default: 0.85
+    PatientMatchResponse:
+      type: object
+      properties:
+        matches:
+          type: array
+          items:
+            type: object
+            properties:
+              patientId:
+                type: string
+              confidence:
+                type: number
+                description: Match confidence score (0-1)
+              matchGrade:
+                type: string
+                enum:
+                  - certain
+                  - probable
+                  - possible
+                  - no-match
+              identifiers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                    value:
+                      type: string
+                    organization:
+                      type: string
+              demographics:
+                type: object
+                properties:
+                  familyName:
+                    type: string
+                  givenName:
+                    type: string
+                  dateOfBirth:
+                    type: string
+                    format: date
+                  gender:
+                    type: string
+        totalMatches:
+          type: integer
+    PatientIdentifiers:
+      type: object
+      properties:
+        patientId:
+          type: string
+        identifiers:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              value:
+                type: string
+              organization:
+                type: string
+              organizationName:
+                type: string
+              assigningAuthority:
+                type: string
+              active:
+                type: boolean
+    RecordLocatorResult:
+      type: object
+      properties:
+        documentId:
+          type: string
+          format: uuid
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        size:
+          type: integer
+          description: Document size in bytes
+        availableFormats:
+          type: array
+          items:
+            type: string
+    DocumentMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        authorSpecialty:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        submittedDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
+        hash:
+          type: string
+          description: SHA-256 hash of the document content
+        status:
+          type: string
+          enum:
+            - available
+            - deprecated
+            - deleted
+    DocumentSubmission:
+      type: object
+      required:
+        - patientId
+        - documentType
+        - content
+      properties:
+        patientId:
+          type: string
+        documentType:
+          type: string
+          enum:
+            - ccd
+            - discharge-summary
+            - progress-note
+            - lab-report
+            - radiology-report
+            - referral
+            - consult-note
+            - operative-note
+            - pathology-report
+        title:
+          type: string
+        format:
+          type: string
+          enum:
+            - cda
+            - fhir-bundle
+            - pdf
+        content:
+          type: string
+          description: Base64-encoded document content
+        metadata:
+          type: object
+          properties:
+            authorName:
+              type: string
+            authorSpecialty:
+              type: string
+            encounterDate:
+              type: string
+              format: date-time
+            confidentialityCode:
+              type: string
+              enum:
+                - normal
+                - restricted
+                - very-restricted
+    DocumentContent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        metadata:
+          $ref: '#/components/schemas/DocumentMetadata'
+        content:
+          type: string
+          description: Base64-encoded document content
+        format:
+          type: string
+    Consent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+            - revoked
+            - expired
+        scope:
+          type: string
+          enum:
+            - opt-in
+            - opt-out
+        purposes:
+          type: array
+          items:
+            type: string
+            enum:
+              - treatment
+              - payment
+              - operations
+              - research
+              - public-health
+        grantedOrganizations:
+          type: array
+          items:
+            type: string
+          description: Organizations allowed to access data (opt-in)
+        deniedOrganizations:
+          type: array
+          items:
+            type: string
+          description: Organizations denied access (opt-out)
+        documentTypes:
+          type: array
+          items:
+            type: string
+          description: Document types covered by consent
+        effectiveDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ConsentCreate:
+      type: object
+      required:
+        - patientId
+        - scope
+        - purposes
+      properties:
+        patientId:
+          type: string
+        scope:
+          type: string
+          enum:
+            - opt-in
+            - opt-out
+        purposes:
+          type: array
+          items:
+            type: string
+            enum:
+              - treatment
+              - payment
+              - operations
+              - research
+              - public-health
+        grantedOrganizations:
+          type: array
+          items:
+            type: string
+        deniedOrganizations:
+          type: array
+          items:
+            type: string
+        documentTypes:
+          type: array
+          items:
+            type: string
+        effectiveDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+    Provider:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - individual
+            - organization
+        npi:
+          type: string
+        name:
+          type: string
+        specialty:
+          type: string
+        organization:
+          type: string
+        address:
+          type: object
+          properties:
+            line:
+              type: array
+              items:
+                type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+        phone:
+          type: string
+        fax:
+          type: string
+        email:
+          type: string
+        active:
+          type: boolean
+        supportedTransactions:
+          type: array
+          items:
+            type: string
+            enum:
+              - xds-query
+              - xds-retrieve
+              - xds-submit
+              - direct-messaging
+              - fhir
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - admission
+            - discharge
+            - transfer
+            - registration
+        patientId:
+          type: string
+        patientName:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        facility:
+          type: string
+        eventDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - pending
+            - delivered
+            - read
+            - failed
+        details:
+          type: object
+          properties:
+            admitReason:
+              type: string
+            dischargeDisposition:
+              type: string
+            attendingProvider:
+              type: string
+            department:
+              type: string
+        createdAt:
+          type: string
+          format: date-time
+    NotificationSubscription:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        eventTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - admission
+              - discharge
+              - transfer
+              - registration
+        patientIds:
+          type: array
+          items:
+            type: string
+          description: Specific patient IDs to monitor (empty means all)
+        sourceOrganizations:
+          type: array
+          items:
+            type: string
+        callbackUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+            - active
+            - paused
+            - disabled
+        createdAt:
+          type: string
+          format: date-time
+    NotificationSubscriptionCreate:
+      type: object
+      required:
+        - eventTypes
+        - callbackUrl
+      properties:
+        eventTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - admission
+              - discharge
+              - transfer
+              - registration
+        patientIds:
+          type: array
+          items:
+            type: string
+        sourceOrganizations:
+          type: array
+          items:
+            type: string
+        callbackUrl:
+          type: string
+          format: uri
+    AuditLogEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        action:
+          type: string
+          enum:
+            - query
+            - retrieve
+            - submit
+            - update
+            - consent-change
+        outcome:
+          type: string
+          enum:
+            - success
+            - failure
+            - denied
+        patientId:
+          type: string
+        userId:
+          type: string
+        userName:
+          type: string
+        organization:
+          type: string
+        organizationName:
+          type: string
+        resourceType:
+          type: string
+        resourceId:
+          type: string
+        sourceIp:
+          type: string
+        details:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

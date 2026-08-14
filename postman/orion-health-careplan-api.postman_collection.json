@@ -1,0 +1,580 @@
+{
+  "info": {
+    "_postman_id": "95491703-b931-4621-9c11-d39c30d1039a",
+    "name": "Orion Health FHIR Alerts CarePlan API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:04.000Z",
+    "updatedAt": "2026-07-28T02:29:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-95491703-b931-4621-9c11-d39c30d1039a"
+  },
+  "item": [
+    {
+      "name": "CarePlan",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Orion Health Read a care plan by ID",
+              "id": "d7b197a2-6773-472a-8122-79257dee602e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/CarePlan/:id?_format=application/fhir+xml",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "CarePlan",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "9456e107-d4ca-4284-bdc9-c4acc0c4609f",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific CarePlan resource by its logical ID."
+              },
+              "response": [
+                {
+                  "id": "72757672-9629-4188-a557-fb52bcccb1e7",
+                  "name": "CarePlan resource",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/CarePlan/:id?_format=application/fhir+xml",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "CarePlan",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+xml"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"intent\": \"order\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"period\": {\n    \"start\": \"<dateTime>\",\n    \"end\": \"<dateTime>\"\n  },\n  \"activity\": [\n    {\n      \"detail\": {\n        \"status\": \"<string>\",\n        \"code\": {\n          \"coding\": [\n            {\n              \"system\": \"<uri>\",\n              \"code\": \"<string>\",\n              \"display\": \"<string>\"\n            },\n            {\n              \"system\": \"<uri>\",\n              \"code\": \"<string>\",\n              \"display\": \"<string>\"\n            }\n          ],\n          \"text\": \"<string>\"\n        },\n        \"description\": \"<string>\"\n      }\n    },\n    {\n      \"detail\": {\n        \"status\": \"<string>\",\n        \"code\": {\n          \"coding\": [\n            {\n              \"system\": \"<uri>\",\n              \"code\": \"<string>\",\n              \"display\": \"<string>\"\n            },\n            {\n              \"system\": \"<uri>\",\n              \"code\": \"<string>\",\n              \"display\": \"<string>\"\n            }\n          ],\n          \"text\": \"<string>\"\n        },\n        \"description\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:04.000Z",
+                  "updatedAt": "2026-07-28T02:29:04.000Z",
+                  "uid": "35240-72757672-9629-4188-a557-fb52bcccb1e7"
+                },
+                {
+                  "id": "6fcd011e-d28f-404f-a712-99d32c9ee901",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/CarePlan/:id?_format=application/fhir+xml",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "CarePlan",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+xml"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:04.000Z",
+                  "updatedAt": "2026-07-28T02:29:04.000Z",
+                  "uid": "35240-6fcd011e-d28f-404f-a712-99d32c9ee901"
+                },
+                {
+                  "id": "c929a4ee-7b05-4d54-bbd1-f6395f261d70",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/CarePlan/:id?_format=application/fhir+xml",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "CarePlan",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+xml"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:04.000Z",
+                  "updatedAt": "2026-07-28T02:29:04.000Z",
+                  "uid": "35240-c929a4ee-7b05-4d54-bbd1-f6395f261d70"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:04.000Z",
+              "updatedAt": "2026-07-28T02:29:04.000Z",
+              "uid": "35240-d7b197a2-6773-472a-8122-79257dee602e"
+            }
+          ],
+          "id": "0dcf576b-2a3b-432c-b993-6e9ca13d0e30",
+          "createdAt": "2026-07-28T02:29:04.000Z",
+          "updatedAt": "2026-07-28T02:29:04.000Z",
+          "uid": "35240-0dcf576b-2a3b-432c-b993-6e9ca13d0e30"
+        },
+        {
+          "name": "Orion Health Search for care plans",
+          "id": "3cf2d691-40d8-42ab-8295-bc37467bb215",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/CarePlan?_format=application/fhir+xml&_count=20&_offset=0&patient=<string>&status=active&category=<string>&date=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "CarePlan"
+              ],
+              "query": [
+                {
+                  "description": "Response format",
+                  "key": "_format",
+                  "value": "application/fhir+xml"
+                },
+                {
+                  "description": "Maximum number of results per page",
+                  "key": "_count",
+                  "value": "20"
+                },
+                {
+                  "description": "Starting offset for paging",
+                  "key": "_offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Reference to the patient",
+                  "key": "patient",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Care plan status",
+                  "key": "status",
+                  "value": "active"
+                },
+                {
+                  "description": "Type of care plan",
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Care plan period",
+                  "key": "date",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Search for CarePlan resources describing planned healthcare activities and goals for patients."
+          },
+          "response": [
+            {
+              "id": "cff45e6e-5943-41c4-9d20-c62c8d39619d",
+              "name": "Bundle of matching CarePlan resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/CarePlan?_format=application/fhir+xml&_count=20&_offset=0&patient=<string>&status=active&category=<string>&date=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "CarePlan"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+xml"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Care plan status",
+                      "key": "status",
+                      "value": "active"
+                    },
+                    {
+                      "description": "Type of care plan",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Care plan period",
+                      "key": "date",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"type\": \"batch-response\",\n  \"total\": \"<integer>\",\n  \"link\": [\n    {\n      \"relation\": \"last\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"relation\": \"last\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"<uri>\",\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"id\": \"<string>\",\n        \"meta\": {\n          \"versionId\": \"<string>\",\n          \"lastUpdated\": \"<dateTime>\",\n          \"profile\": [\n            \"<uri>\",\n            \"<uri>\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    },\n    {\n      \"fullUrl\": \"<uri>\",\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"id\": \"<string>\",\n        \"meta\": {\n          \"versionId\": \"<string>\",\n          \"lastUpdated\": \"<dateTime>\",\n          \"profile\": [\n            \"<uri>\",\n            \"<uri>\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:04.000Z",
+              "updatedAt": "2026-07-28T02:29:04.000Z",
+              "uid": "35240-cff45e6e-5943-41c4-9d20-c62c8d39619d"
+            },
+            {
+              "id": "3c5534e9-91f5-4f39-8cda-f3b56a5d7824",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/CarePlan?_format=application/fhir+xml&_count=20&_offset=0&patient=<string>&status=active&category=<string>&date=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "CarePlan"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+xml"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Care plan status",
+                      "key": "status",
+                      "value": "active"
+                    },
+                    {
+                      "description": "Type of care plan",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Care plan period",
+                      "key": "date",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:04.000Z",
+              "updatedAt": "2026-07-28T02:29:04.000Z",
+              "uid": "35240-3c5534e9-91f5-4f39-8cda-f3b56a5d7824"
+            },
+            {
+              "id": "d7841bc8-2608-455b-9ac9-fada62950d31",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/CarePlan?_format=application/fhir+xml&_count=20&_offset=0&patient=<string>&status=active&category=<string>&date=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "CarePlan"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+xml"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Care plan status",
+                      "key": "status",
+                      "value": "active"
+                    },
+                    {
+                      "description": "Type of care plan",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Care plan period",
+                      "key": "date",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:04.000Z",
+              "updatedAt": "2026-07-28T02:29:04.000Z",
+              "uid": "35240-d7841bc8-2608-455b-9ac9-fada62950d31"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:04.000Z",
+          "updatedAt": "2026-07-28T02:29:04.000Z",
+          "uid": "35240-3cf2d691-40d8-42ab-8295-bc37467bb215"
+        }
+      ],
+      "id": "1f9eac9d-3aad-4a82-96a1-70c6dc1497e9",
+      "createdAt": "2026-07-28T02:29:04.000Z",
+      "updatedAt": "2026-07-28T02:29:04.000Z",
+      "uid": "35240-1f9eac9d-3aad-4a82-96a1-70c6dc1497e9"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

@@ -1,0 +1,1203 @@
+{
+  "info": {
+    "_postman_id": "7028f810-2c5a-41f5-801c-dc769d71e8b3",
+    "name": "Orion Health FHIR Alerts Documents API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:14.000Z",
+    "updatedAt": "2026-07-28T02:29:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7028f810-2c5a-41f5-801c-dc769d71e8b3"
+  },
+  "item": [
+    {
+      "name": "patients",
+      "item": [
+        {
+          "name": "{patientId}",
+          "item": [
+            {
+              "name": "record-locator",
+              "item": [
+                {
+                  "name": "Orion Health Locate patient records across organizations",
+                  "id": "1e534dd9-d88e-4183-ad77-5c25d3946e64",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId/record-locator?organization=<string>&documentType=referral&dateFrom=<date>&dateTo=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId",
+                        "record-locator"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by source organization",
+                          "key": "organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by document type",
+                          "key": "documentType",
+                          "value": "referral"
+                        },
+                        {
+                          "key": "dateFrom",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "dateTo",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "afd86789-9f06-4c9c-ae16-f47c9b341f31",
+                          "key": "patientId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Query the HIE network to locate clinical records for a patient across participating organizations. Returns available document references without retrieving the full documents."
+                  },
+                  "response": [
+                    {
+                      "id": "c97ec2ba-7d55-4c6f-abaa-2551acc15ed1",
+                      "name": "Located record references",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/record-locator?organization=<string>&documentType=referral&dateFrom=<date>&dateTo=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "record-locator"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by source organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by document type",
+                              "key": "documentType",
+                              "value": "referral"
+                            },
+                            {
+                              "key": "dateFrom",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "dateTo",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"documentId\": \"<uuid>\",\n      \"documentType\": \"<string>\",\n      \"title\": \"<string>\",\n      \"sourceOrganization\": \"<string>\",\n      \"sourceOrganizationName\": \"<string>\",\n      \"authorName\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"format\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"availableFormats\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"documentId\": \"<uuid>\",\n      \"documentType\": \"<string>\",\n      \"title\": \"<string>\",\n      \"sourceOrganization\": \"<string>\",\n      \"sourceOrganizationName\": \"<string>\",\n      \"authorName\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"format\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"availableFormats\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:29:15.000Z",
+                      "updatedAt": "2026-07-28T02:29:15.000Z",
+                      "uid": "35240-c97ec2ba-7d55-4c6f-abaa-2551acc15ed1"
+                    },
+                    {
+                      "id": "8019f1ac-8932-43e9-a490-277dda7b918b",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/record-locator?organization=<string>&documentType=referral&dateFrom=<date>&dateTo=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "record-locator"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by source organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by document type",
+                              "key": "documentType",
+                              "value": "referral"
+                            },
+                            {
+                              "key": "dateFrom",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "dateTo",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:15.000Z",
+                      "updatedAt": "2026-07-28T02:29:15.000Z",
+                      "uid": "35240-8019f1ac-8932-43e9-a490-277dda7b918b"
+                    },
+                    {
+                      "id": "2dfc71a8-1f9d-4470-861e-b7be77c6903f",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/record-locator?organization=<string>&documentType=referral&dateFrom=<date>&dateTo=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "record-locator"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by source organization",
+                              "key": "organization",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by document type",
+                              "key": "documentType",
+                              "value": "referral"
+                            },
+                            {
+                              "key": "dateFrom",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "dateTo",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:15.000Z",
+                      "updatedAt": "2026-07-28T02:29:15.000Z",
+                      "uid": "35240-2dfc71a8-1f9d-4470-861e-b7be77c6903f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:15.000Z",
+                  "updatedAt": "2026-07-28T02:29:15.000Z",
+                  "uid": "35240-1e534dd9-d88e-4183-ad77-5c25d3946e64"
+                }
+              ],
+              "id": "1eb667bd-82b3-4f09-b7f8-60a264e512b2",
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-1eb667bd-82b3-4f09-b7f8-60a264e512b2"
+            }
+          ],
+          "id": "a0e8cbf0-c9a3-47d4-b022-a63cd2844192",
+          "createdAt": "2026-07-28T02:29:15.000Z",
+          "updatedAt": "2026-07-28T02:29:15.000Z",
+          "uid": "35240-a0e8cbf0-c9a3-47d4-b022-a63cd2844192"
+        }
+      ],
+      "id": "588bcb54-b90f-465d-ac27-245d9067d33f",
+      "createdAt": "2026-07-28T02:29:15.000Z",
+      "updatedAt": "2026-07-28T02:29:15.000Z",
+      "uid": "35240-588bcb54-b90f-465d-ac27-245d9067d33f"
+    },
+    {
+      "name": "documents",
+      "item": [
+        {
+          "name": "{documentId}",
+          "item": [
+            {
+              "name": "Orion Health Retrieve a clinical document",
+              "id": "7a7d5000-b5e2-4207-afac-b0adf0e88eeb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/documents/:documentId?format=pdf",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents",
+                    ":documentId"
+                  ],
+                  "query": [
+                    {
+                      "description": "Requested document format",
+                      "key": "format",
+                      "value": "pdf"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "d377077e-de06-4423-81b7-e506a5ef5ecb",
+                      "key": "documentId",
+                      "value": "<uuid>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve the full content of a clinical document from the HIE document repository by its document ID."
+              },
+              "response": [
+                {
+                  "id": "16caed69-7b18-4e0c-9752-25ca614a5d96",
+                  "name": "Clinical document content",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:documentId?format=pdf",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":documentId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Requested document format",
+                          "key": "format",
+                          "value": "pdf"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "documentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"metadata\": {\n    \"id\": \"<uuid>\",\n    \"patientId\": \"<string>\",\n    \"documentType\": \"<string>\",\n    \"title\": \"<string>\",\n    \"sourceOrganization\": \"<string>\",\n    \"sourceOrganizationName\": \"<string>\",\n    \"authorName\": \"<string>\",\n    \"authorSpecialty\": \"<string>\",\n    \"createdDate\": \"<dateTime>\",\n    \"submittedDate\": \"<dateTime>\",\n    \"format\": \"<string>\",\n    \"mimeType\": \"<string>\",\n    \"size\": \"<integer>\",\n    \"hash\": \"<string>\",\n    \"status\": \"deleted\"\n  },\n  \"content\": \"<string>\",\n  \"format\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:29:15.000Z",
+                  "updatedAt": "2026-07-28T02:29:15.000Z",
+                  "uid": "35240-16caed69-7b18-4e0c-9752-25ca614a5d96"
+                },
+                {
+                  "id": "48cd10b1-b9ac-49fc-9044-3eee3648a876",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:documentId?format=pdf",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":documentId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Requested document format",
+                          "key": "format",
+                          "value": "pdf"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "documentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:15.000Z",
+                  "updatedAt": "2026-07-28T02:29:15.000Z",
+                  "uid": "35240-48cd10b1-b9ac-49fc-9044-3eee3648a876"
+                },
+                {
+                  "id": "1ee7812e-ab7f-45a7-88a0-b3b34bfc11ec",
+                  "name": "Consent not on file or access denied",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:documentId?format=pdf",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":documentId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Requested document format",
+                          "key": "format",
+                          "value": "pdf"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "documentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:15.000Z",
+                  "updatedAt": "2026-07-28T02:29:15.000Z",
+                  "uid": "35240-1ee7812e-ab7f-45a7-88a0-b3b34bfc11ec"
+                },
+                {
+                  "id": "be1fe763-fa46-4a05-82c3-a33c1994ff1c",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/documents/:documentId?format=pdf",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "documents",
+                        ":documentId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Requested document format",
+                          "key": "format",
+                          "value": "pdf"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "documentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:15.000Z",
+                  "updatedAt": "2026-07-28T02:29:15.000Z",
+                  "uid": "35240-be1fe763-fa46-4a05-82c3-a33c1994ff1c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-7a7d5000-b5e2-4207-afac-b0adf0e88eeb"
+            }
+          ],
+          "id": "b5a190fe-b134-4f32-aa58-6630046b6ea1",
+          "createdAt": "2026-07-28T02:29:15.000Z",
+          "updatedAt": "2026-07-28T02:29:15.000Z",
+          "uid": "35240-b5a190fe-b134-4f32-aa58-6630046b6ea1"
+        },
+        {
+          "name": "Orion Health Search for clinical documents",
+          "id": "aae81a11-6835-4e28-b9db-6a6e7d50f583",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/documents?patientId=<string>&documentType=pathology-report&sourceOrganization=<string>&dateFrom=<date>&dateTo=<date>&format=pdf&offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "patientId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "documentType",
+                  "value": "pathology-report"
+                },
+                {
+                  "key": "sourceOrganization",
+                  "value": "<string>"
+                },
+                {
+                  "key": "dateFrom",
+                  "value": "<date>"
+                },
+                {
+                  "key": "dateTo",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Document format",
+                  "key": "format",
+                  "value": "pdf"
+                },
+                {
+                  "description": "Number of items to skip",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Search for clinical documents in the HIE document registry by patient, organization, document type, and date range."
+          },
+          "response": [
+            {
+              "id": "6a6da678-2087-4a3a-87c8-49cfd71b260e",
+              "name": "List of matching documents",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/documents?patientId=<string>&documentType=pathology-report&sourceOrganization=<string>&dateFrom=<date>&dateTo=<date>&format=pdf&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentType",
+                      "value": "pathology-report"
+                    },
+                    {
+                      "key": "sourceOrganization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Document format",
+                      "key": "format",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"patientId\": \"<string>\",\n      \"documentType\": \"<string>\",\n      \"title\": \"<string>\",\n      \"sourceOrganization\": \"<string>\",\n      \"sourceOrganizationName\": \"<string>\",\n      \"authorName\": \"<string>\",\n      \"authorSpecialty\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"submittedDate\": \"<dateTime>\",\n      \"format\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"hash\": \"<string>\",\n      \"status\": \"deprecated\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"patientId\": \"<string>\",\n      \"documentType\": \"<string>\",\n      \"title\": \"<string>\",\n      \"sourceOrganization\": \"<string>\",\n      \"sourceOrganizationName\": \"<string>\",\n      \"authorName\": \"<string>\",\n      \"authorSpecialty\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"submittedDate\": \"<dateTime>\",\n      \"format\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"hash\": \"<string>\",\n      \"status\": \"deleted\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-6a6da678-2087-4a3a-87c8-49cfd71b260e"
+            },
+            {
+              "id": "3e740aa8-692b-439f-96e8-f227d4470f68",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/documents?patientId=<string>&documentType=pathology-report&sourceOrganization=<string>&dateFrom=<date>&dateTo=<date>&format=pdf&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentType",
+                      "value": "pathology-report"
+                    },
+                    {
+                      "key": "sourceOrganization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Document format",
+                      "key": "format",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-3e740aa8-692b-439f-96e8-f227d4470f68"
+            },
+            {
+              "id": "babf58a9-9b0f-4e61-ab16-062698b997c8",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/documents?patientId=<string>&documentType=pathology-report&sourceOrganization=<string>&dateFrom=<date>&dateTo=<date>&format=pdf&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentType",
+                      "value": "pathology-report"
+                    },
+                    {
+                      "key": "sourceOrganization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Document format",
+                      "key": "format",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-babf58a9-9b0f-4e61-ab16-062698b997c8"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:15.000Z",
+          "updatedAt": "2026-07-28T02:29:15.000Z",
+          "uid": "35240-aae81a11-6835-4e28-b9db-6a6e7d50f583"
+        },
+        {
+          "name": "Orion Health Submit a clinical document",
+          "id": "920da750-6118-4d92-b655-ae47401dc2bc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"<string>\",\n  \"documentType\": \"lab-report\",\n  \"content\": \"<string>\",\n  \"title\": \"<string>\",\n  \"format\": \"pdf\",\n  \"metadata\": {\n    \"authorName\": \"<string>\",\n    \"authorSpecialty\": \"<string>\",\n    \"encounterDate\": \"<dateTime>\",\n    \"confidentialityCode\": \"restricted\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents"
+              ]
+            },
+            "description": "Submit a clinical document to the HIE document repository for sharing with other participating organizations."
+          },
+          "response": [
+            {
+              "id": "54718dd2-fc16-40c0-9d74-b9d0e84040f4",
+              "name": "Document submitted",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"documentType\": \"lab-report\",\n  \"content\": \"<string>\",\n  \"title\": \"<string>\",\n  \"format\": \"pdf\",\n  \"metadata\": {\n    \"authorName\": \"<string>\",\n    \"authorSpecialty\": \"<string>\",\n    \"encounterDate\": \"<dateTime>\",\n    \"confidentialityCode\": \"restricted\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"patientId\": \"<string>\",\n  \"documentType\": \"<string>\",\n  \"title\": \"<string>\",\n  \"sourceOrganization\": \"<string>\",\n  \"sourceOrganizationName\": \"<string>\",\n  \"authorName\": \"<string>\",\n  \"authorSpecialty\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"submittedDate\": \"<dateTime>\",\n  \"format\": \"<string>\",\n  \"mimeType\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"hash\": \"<string>\",\n  \"status\": \"available\"\n}",
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-54718dd2-fc16-40c0-9d74-b9d0e84040f4"
+            },
+            {
+              "id": "6fe453c0-6ce3-4a56-aeb0-d4bb80a58a1f",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"documentType\": \"lab-report\",\n  \"content\": \"<string>\",\n  \"title\": \"<string>\",\n  \"format\": \"pdf\",\n  \"metadata\": {\n    \"authorName\": \"<string>\",\n    \"authorSpecialty\": \"<string>\",\n    \"encounterDate\": \"<dateTime>\",\n    \"confidentialityCode\": \"restricted\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-6fe453c0-6ce3-4a56-aeb0-d4bb80a58a1f"
+            },
+            {
+              "id": "4a7ffaf5-06e0-4b3d-aad1-09c81260d081",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"documentType\": \"lab-report\",\n  \"content\": \"<string>\",\n  \"title\": \"<string>\",\n  \"format\": \"pdf\",\n  \"metadata\": {\n    \"authorName\": \"<string>\",\n    \"authorSpecialty\": \"<string>\",\n    \"encounterDate\": \"<dateTime>\",\n    \"confidentialityCode\": \"restricted\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-4a7ffaf5-06e0-4b3d-aad1-09c81260d081"
+            },
+            {
+              "id": "22659bd1-f63d-429a-b9a2-34f77586b940",
+              "name": "Document validation failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patientId\": \"<string>\",\n  \"documentType\": \"lab-report\",\n  \"content\": \"<string>\",\n  \"title\": \"<string>\",\n  \"format\": \"pdf\",\n  \"metadata\": {\n    \"authorName\": \"<string>\",\n    \"authorSpecialty\": \"<string>\",\n    \"encounterDate\": \"<dateTime>\",\n    \"confidentialityCode\": \"restricted\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:15.000Z",
+              "updatedAt": "2026-07-28T02:29:15.000Z",
+              "uid": "35240-22659bd1-f63d-429a-b9a2-34f77586b940"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:15.000Z",
+          "updatedAt": "2026-07-28T02:29:15.000Z",
+          "uid": "35240-920da750-6118-4d92-b655-ae47401dc2bc"
+        }
+      ],
+      "id": "3c3fdfa8-0dff-4085-9cf0-c3ac2fffb2b7",
+      "createdAt": "2026-07-28T02:29:15.000Z",
+      "updatedAt": "2026-07-28T02:29:15.000Z",
+      "uid": "35240-3c3fdfa8-0dff-4085-9cf0-c3ac2fffb2b7"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

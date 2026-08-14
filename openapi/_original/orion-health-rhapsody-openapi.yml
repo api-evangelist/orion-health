@@ -1,0 +1,1605 @@
+openapi: 3.1.0
+info:
+  title: Orion Health Rhapsody Integration API
+  description: >-
+    The Orion Health Rhapsody Integration Engine API provides management and
+    monitoring capabilities for the Rhapsody healthcare integration platform.
+    It enables programmatic control of integration routes, communication points,
+    message queues, and system monitoring. Rhapsody supports HL7v2, FHIR, CDA,
+    X12, DICOM, and other healthcare messaging standards for connecting
+    disparate healthcare systems.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+  - url: https://api.orionhealth.com/rhapsody
+    description: Rhapsody Management API
+  - url: https://sandbox.orionhealth.com/rhapsody
+    description: Sandbox Rhapsody API
+security:
+  - oauth2: []
+  - bearerAuth: []
+  - apiKeyAuth: []
+tags:
+  - name: Communication Points
+    description: Communication point configuration and management
+  - name: Configuration
+    description: Engine configuration management
+  - name: Lookup Tables
+    description: Lookup table management for data mapping
+  - name: Message Queues
+    description: Message queue monitoring and management
+  - name: Messages
+    description: Message search, inspection, and reprocessing
+  - name: Monitoring
+    description: System health and performance monitoring
+  - name: Routes
+    description: Integration route management
+paths:
+  /routes:
+    get:
+      operationId: listRoutes
+      summary: Orion Health List integration routes
+      description: >-
+        Retrieve all integration routes configured in the Rhapsody engine,
+        including their current operational status.
+      tags:
+        - Routes
+      parameters:
+        - name: status
+          in: query
+          description: Filter by route status
+          schema:
+            type: string
+            enum:
+              - started
+              - stopped
+              - error
+              - disabled
+        - name: folder
+          in: query
+          description: Filter by route folder path
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: Search routes by name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of integration routes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Route'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /routes/{routeId}:
+    get:
+      operationId: getRoute
+      summary: Orion Health Get route details
+      description: Retrieve detailed information about a specific integration route.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Route details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /routes/{routeId}/start:
+    post:
+      operationId: startRoute
+      summary: Orion Health Start a route
+      description: Start a stopped integration route to begin processing messages.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Route started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Route already started or in error state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /routes/{routeId}/stop:
+    post:
+      operationId: stopRoute
+      summary: Orion Health Stop a route
+      description: Stop an active integration route from processing messages.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Route stopped
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /routes/{routeId}/restart:
+    post:
+      operationId: restartRoute
+      summary: Orion Health Restart a route
+      description: Restart an integration route by stopping and starting it.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Route restarted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /routes/{routeId}/statistics:
+    get:
+      operationId: getRouteStatistics
+      summary: Orion Health Get route processing statistics
+      description: >-
+        Retrieve message processing statistics for a specific route
+        including throughput, error rates, and processing times.
+      tags:
+        - Monitoring
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: periodStart
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: periodEnd
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: interval
+          in: query
+          description: Statistics aggregation interval
+          schema:
+            type: string
+            enum:
+              - minute
+              - hour
+              - day
+              - week
+      responses:
+        '200':
+          description: Route statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteStatistics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /communication-points:
+    get:
+      operationId: listCommunicationPoints
+      summary: Orion Health List communication points
+      description: >-
+        Retrieve all communication points (input and output connectors)
+        configured in the Rhapsody engine.
+      tags:
+        - Communication Points
+      parameters:
+        - name: type
+          in: query
+          description: Communication point type
+          schema:
+            type: string
+            enum:
+              - input
+              - output
+              - bidirectional
+        - name: protocol
+          in: query
+          description: Communication protocol
+          schema:
+            type: string
+            enum:
+              - tcp
+              - http
+              - https
+              - sftp
+              - database
+              - file
+              - web-service
+              - mllp
+              - smtp
+              - pop3
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - started
+              - stopped
+              - error
+              - disabled
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of communication points
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CommunicationPoint'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /communication-points/{commPointId}:
+    get:
+      operationId: getCommunicationPoint
+      summary: Orion Health Get communication point details
+      description: Retrieve detailed configuration of a specific communication point.
+      tags:
+        - Communication Points
+      parameters:
+        - name: commPointId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Communication point details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunicationPointDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /communication-points/{commPointId}/start:
+    post:
+      operationId: startCommunicationPoint
+      summary: Orion Health Start a communication point
+      description: Start a stopped communication point.
+      tags:
+        - Communication Points
+      parameters:
+        - name: commPointId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Communication point started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  status:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /communication-points/{commPointId}/stop:
+    post:
+      operationId: stopCommunicationPoint
+      summary: Orion Health Stop a communication point
+      description: Stop an active communication point.
+      tags:
+        - Communication Points
+      parameters:
+        - name: commPointId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Communication point stopped
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  status:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /queues:
+    get:
+      operationId: listQueues
+      summary: Orion Health List message queues
+      description: >-
+        Retrieve all message queues in the Rhapsody engine with their
+        current depth and status.
+      tags:
+        - Message Queues
+      parameters:
+        - name: routeId
+          in: query
+          description: Filter by route ID
+          schema:
+            type: integer
+        - name: hasErrors
+          in: query
+          description: Only show queues with errors
+          schema:
+            type: boolean
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of message queues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Queue'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /queues/{queueId}:
+    get:
+      operationId: getQueue
+      summary: Orion Health Get queue details
+      description: Retrieve details of a specific message queue.
+      tags:
+        - Message Queues
+      parameters:
+        - name: queueId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Queue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueueDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /queues/{queueId}/messages:
+    get:
+      operationId: listQueueMessages
+      summary: Orion Health List messages in a queue
+      description: Retrieve messages currently held in a specific queue.
+      tags:
+        - Message Queues
+        - Messages
+      parameters:
+        - name: queueId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - queued
+              - error
+              - held
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /messages/{messageId}:
+    get:
+      operationId: getMessage
+      summary: Orion Health Get message details
+      description: >-
+        Retrieve the full content and metadata of a specific message,
+        including its processing history.
+      tags:
+        - Messages
+      parameters:
+        - name: messageId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: includeBody
+          in: query
+          description: Include message body content
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Message details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /messages/search:
+    get:
+      operationId: searchMessages
+      summary: Orion Health Search messages
+      description: >-
+        Search for messages across all routes and queues using various
+        criteria including message content, type, and date range.
+      tags:
+        - Messages
+      parameters:
+        - name: query
+          in: query
+          description: Full-text search query against message content
+          schema:
+            type: string
+        - name: messageType
+          in: query
+          description: HL7 message type (e.g., ADT^A01)
+          schema:
+            type: string
+        - name: routeId
+          in: query
+          schema:
+            type: integer
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - processed
+              - error
+              - held
+              - queued
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: patientId
+          in: query
+          description: Search by patient identifier in message content
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /messages/{messageId}/reprocess:
+    post:
+      operationId: reprocessMessage
+      summary: Orion Health Reprocess a message
+      description: Resubmit a held or errored message for reprocessing through its route.
+      tags:
+        - Messages
+      parameters:
+        - name: messageId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Message resubmitted for processing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messageId:
+                    type: integer
+                  status:
+                    type: string
+                  reprocessedAt:
+                    type: string
+                    format: date-time
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Message cannot be reprocessed in current state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /monitoring/dashboard:
+    get:
+      operationId: getMonitoringDashboard
+      summary: Orion Health Get monitoring dashboard
+      description: >-
+        Retrieve an overview of the Rhapsody engine status including
+        system health, active routes, queue depths, and error counts.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Dashboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /monitoring/health:
+    get:
+      operationId: getHealthStatus
+      summary: Orion Health Get system health status
+      description: >-
+        Retrieve the overall health status of the Rhapsody engine
+        including component-level health checks.
+      tags:
+        - Monitoring
+      security: []
+      responses:
+        '200':
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+        '503':
+          description: System is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+  /monitoring/alerts:
+    get:
+      operationId: listMonitoringAlerts
+      summary: Orion Health List monitoring alerts
+      description: Retrieve active monitoring alerts for the Rhapsody engine.
+      tags:
+        - Monitoring
+      parameters:
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum:
+              - info
+              - warning
+              - error
+              - critical
+        - name: acknowledged
+          in: query
+          schema:
+            type: boolean
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of alerts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MonitoringAlert'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /monitoring/alerts/{alertId}/acknowledge:
+    post:
+      operationId: acknowledgeAlert
+      summary: Orion Health Acknowledge a monitoring alert
+      description: Acknowledge a monitoring alert to indicate it has been reviewed.
+      tags:
+        - Monitoring
+      parameters:
+        - name: alertId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  type: string
+      responses:
+        '200':
+          description: Alert acknowledged
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringAlert'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /lookup-tables:
+    get:
+      operationId: listLookupTables
+      summary: Orion Health List lookup tables
+      description: >-
+        Retrieve lookup tables used for data transformation and mapping
+        within integration routes.
+      tags:
+        - Lookup Tables
+      parameters:
+        - name: search
+          in: query
+          description: Search by table name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of lookup tables
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LookupTable'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /lookup-tables/{tableId}:
+    get:
+      operationId: getLookupTable
+      summary: Orion Health Get lookup table contents
+      description: Retrieve the contents of a specific lookup table.
+      tags:
+        - Lookup Tables
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lookup table contents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupTableDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateLookupTable
+      summary: Orion Health Update lookup table contents
+      description: Replace the contents of a lookup table.
+      tags:
+        - Lookup Tables
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LookupTableUpdate'
+      responses:
+        '200':
+          description: Lookup table updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupTableDetail'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /lookup-tables/{tableId}/lookup:
+    get:
+      operationId: lookupValue
+      summary: Orion Health Look up a value
+      description: Look up a value in a specific lookup table by key.
+      tags:
+        - Lookup Tables
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: key
+          in: query
+          required: true
+          description: Lookup key
+          schema:
+            type: string
+        - name: column
+          in: query
+          description: Column name to return
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lookup result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  value:
+                    type: string
+                  row:
+                    type: object
+                    additionalProperties:
+                      type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /configuration/engine:
+    get:
+      operationId: getEngineConfiguration
+      summary: Orion Health Get engine configuration
+      description: Retrieve the current Rhapsody engine configuration settings.
+      tags:
+        - Configuration
+      responses:
+        '200':
+          description: Engine configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineConfiguration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /configuration/components:
+    get:
+      operationId: listComponents
+      summary: Orion Health List installed components
+      description: >-
+        List all installed Rhapsody components including filters,
+        communication point types, and custom modules.
+      tags:
+        - Configuration
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum:
+              - filter
+              - communication-point
+              - module
+              - connector
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of installed components
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Component'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            rhapsody:read: Read access to Rhapsody engine
+            rhapsody:write: Write access to Rhapsody engine
+            rhapsody:admin: Administrative access
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  schemas:
+    Route:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        folderPath:
+          type: string
+        status:
+          type: string
+          enum:
+            - started
+            - stopped
+            - error
+            - disabled
+        inputCommPointCount:
+          type: integer
+        outputCommPointCount:
+          type: integer
+        filterCount:
+          type: integer
+        messagesProcessed:
+          type: integer
+          description: Total messages processed since last restart
+        errorCount:
+          type: integer
+        lastMessageTime:
+          type: string
+          format: date-time
+    RouteDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        folderPath:
+          type: string
+        status:
+          type: string
+          enum:
+            - started
+            - stopped
+            - error
+            - disabled
+        inputCommunicationPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommunicationPoint'
+        outputCommunicationPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommunicationPoint'
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              type:
+                type: string
+              order:
+                type: integer
+        messagesProcessed:
+          type: integer
+        errorCount:
+          type: integer
+        averageProcessingTimeMs:
+          type: number
+        lastMessageTime:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+    RouteStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+            - started
+            - stopped
+            - error
+            - disabled
+        statusChangedAt:
+          type: string
+          format: date-time
+    RouteStatistics:
+      type: object
+      properties:
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+        totalMessages:
+          type: integer
+        successfulMessages:
+          type: integer
+        errorMessages:
+          type: integer
+        averageProcessingTimeMs:
+          type: number
+        maxProcessingTimeMs:
+          type: number
+        messagesPerSecond:
+          type: number
+        timeline:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              messagesProcessed:
+                type: integer
+              errors:
+                type: integer
+              avgProcessingTimeMs:
+                type: number
+    CommunicationPoint:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - input
+            - output
+            - bidirectional
+        protocol:
+          type: string
+          enum:
+            - tcp
+            - http
+            - https
+            - sftp
+            - database
+            - file
+            - web-service
+            - mllp
+            - smtp
+            - pop3
+        status:
+          type: string
+          enum:
+            - started
+            - stopped
+            - error
+            - disabled
+        routeId:
+          type: integer
+        connectionCount:
+          type: integer
+    CommunicationPointDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        protocol:
+          type: string
+        status:
+          type: string
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        configuration:
+          type: object
+          properties:
+            host:
+              type: string
+            port:
+              type: integer
+            path:
+              type: string
+            encoding:
+              type: string
+            timeout:
+              type: integer
+            retryCount:
+              type: integer
+            retryInterval:
+              type: integer
+            ssl:
+              type: boolean
+        connectionCount:
+          type: integer
+        messagesProcessed:
+          type: integer
+        lastMessageTime:
+          type: string
+          format: date-time
+    Queue:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        depth:
+          type: integer
+          description: Number of messages in the queue
+        errorCount:
+          type: integer
+        heldCount:
+          type: integer
+        oldestMessageTime:
+          type: string
+          format: date-time
+    QueueDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        depth:
+          type: integer
+        errorCount:
+          type: integer
+        heldCount:
+          type: integer
+        maxDepth:
+          type: integer
+        oldestMessageTime:
+          type: string
+          format: date-time
+        averageWaitTimeMs:
+          type: number
+        throughputPerSecond:
+          type: number
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+        messageType:
+          type: string
+          description: 'HL7 message type (e.g., ADT^A01, ORM^O01)'
+        status:
+          type: string
+          enum:
+            - processed
+            - error
+            - held
+            - queued
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        receivedAt:
+          type: string
+          format: date-time
+        processedAt:
+          type: string
+          format: date-time
+        size:
+          type: integer
+          description: Message size in bytes
+        errorMessage:
+          type: string
+    MessageDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        messageType:
+          type: string
+        status:
+          type: string
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        body:
+          type: string
+          description: Full message content
+        properties:
+          type: object
+          additionalProperties:
+            type: string
+          description: Message metadata properties
+        receivedAt:
+          type: string
+          format: date-time
+        processedAt:
+          type: string
+          format: date-time
+        processingTimeMs:
+          type: integer
+        size:
+          type: integer
+        errorMessage:
+          type: string
+        processingHistory:
+          type: array
+          items:
+            type: object
+            properties:
+              step:
+                type: string
+              componentName:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              status:
+                type: string
+              details:
+                type: string
+    Dashboard:
+      type: object
+      properties:
+        engineStatus:
+          type: string
+          enum:
+            - running
+            - starting
+            - stopping
+            - stopped
+            - error
+        uptime:
+          type: string
+          description: Engine uptime duration
+        uptimeSeconds:
+          type: integer
+        routes:
+          type: object
+          properties:
+            total:
+              type: integer
+            started:
+              type: integer
+            stopped:
+              type: integer
+            error:
+              type: integer
+        communicationPoints:
+          type: object
+          properties:
+            total:
+              type: integer
+            started:
+              type: integer
+            stopped:
+              type: integer
+            error:
+              type: integer
+        queues:
+          type: object
+          properties:
+            totalDepth:
+              type: integer
+            totalErrors:
+              type: integer
+            totalHeld:
+              type: integer
+        messages:
+          type: object
+          properties:
+            processedToday:
+              type: integer
+            errorsToday:
+              type: integer
+            throughputPerSecond:
+              type: number
+        memory:
+          type: object
+          properties:
+            usedMb:
+              type: number
+            maxMb:
+              type: number
+            percentUsed:
+              type: number
+        disk:
+          type: object
+          properties:
+            usedGb:
+              type: number
+            totalGb:
+              type: number
+            percentUsed:
+              type: number
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - healthy
+            - degraded
+            - unhealthy
+        timestamp:
+          type: string
+          format: date-time
+        components:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              status:
+                type: string
+                enum:
+                  - healthy
+                  - degraded
+                  - unhealthy
+              message:
+                type: string
+              lastChecked:
+                type: string
+                format: date-time
+    MonitoringAlert:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        severity:
+          type: string
+          enum:
+            - info
+            - warning
+            - error
+            - critical
+        source:
+          type: string
+          description: Component that generated the alert
+        title:
+          type: string
+        message:
+          type: string
+        acknowledged:
+          type: boolean
+        acknowledgedBy:
+          type: string
+        acknowledgedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+    LookupTable:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        columnCount:
+          type: integer
+        rowCount:
+          type: integer
+        lastModified:
+          type: string
+          format: date-time
+    LookupTableDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        columns:
+          type: array
+          items:
+            type: string
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        lastModified:
+          type: string
+          format: date-time
+    LookupTableUpdate:
+      type: object
+      required:
+        - columns
+        - rows
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    EngineConfiguration:
+      type: object
+      properties:
+        version:
+          type: string
+        buildNumber:
+          type: string
+        hostname:
+          type: string
+        port:
+          type: integer
+        maxMemoryMb:
+          type: integer
+        dataDirectory:
+          type: string
+        logLevel:
+          type: string
+          enum:
+            - debug
+            - info
+            - warn
+            - error
+        features:
+          type: object
+          properties:
+            messageArchiving:
+              type: boolean
+            messageSearchIndexing:
+              type: boolean
+            highAvailability:
+              type: boolean
+            clustering:
+              type: boolean
+    Component:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - filter
+            - communication-point
+            - module
+            - connector
+        version:
+          type: string
+        vendor:
+          type: string
+        description:
+          type: string
+        installed:
+          type: boolean
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

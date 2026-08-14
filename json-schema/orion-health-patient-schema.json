@@ -1,0 +1,396 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.orionhealth.com/fhir/patient.json",
+  "title": "Orion Health FHIR Patient",
+  "description": "A FHIR R4 Patient resource as represented in the Orion Health platform. Contains demographic information, identifiers, contact details, and communication preferences for an individual receiving healthcare services.",
+  "type": "object",
+  "required": ["resourceType"],
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "const": "Patient",
+      "description": "FHIR resource type identifier"
+    },
+    "id": {
+      "type": "string",
+      "description": "Logical ID of the patient resource"
+    },
+    "meta": {
+      "$ref": "#/$defs/Meta"
+    },
+    "identifier": {
+      "type": "array",
+      "description": "Patient identifiers including MRN, SSN, and organization-specific IDs",
+      "items": {
+        "$ref": "#/$defs/Identifier"
+      }
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the patient record is in active use"
+    },
+    "name": {
+      "type": "array",
+      "description": "Names associated with the patient",
+      "items": {
+        "$ref": "#/$defs/HumanName"
+      }
+    },
+    "telecom": {
+      "type": "array",
+      "description": "Contact details for the patient",
+      "items": {
+        "$ref": "#/$defs/ContactPoint"
+      }
+    },
+    "gender": {
+      "type": "string",
+      "enum": ["male", "female", "other", "unknown"],
+      "description": "Administrative gender"
+    },
+    "birthDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of birth"
+    },
+    "deceasedBoolean": {
+      "type": "boolean",
+      "description": "Indicates if the patient is deceased"
+    },
+    "deceasedDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of death if deceased"
+    },
+    "address": {
+      "type": "array",
+      "description": "Addresses for the patient",
+      "items": {
+        "$ref": "#/$defs/Address"
+      }
+    },
+    "maritalStatus": {
+      "$ref": "#/$defs/CodeableConcept",
+      "description": "Marital status of the patient"
+    },
+    "multipleBirthBoolean": {
+      "type": "boolean",
+      "description": "Whether patient is part of a multiple birth"
+    },
+    "multipleBirthInteger": {
+      "type": "integer",
+      "description": "Birth order in a multiple birth"
+    },
+    "contact": {
+      "type": "array",
+      "description": "Emergency contacts and next of kin",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relationship": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/CodeableConcept"
+            }
+          },
+          "name": {
+            "$ref": "#/$defs/HumanName"
+          },
+          "telecom": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/ContactPoint"
+            }
+          },
+          "address": {
+            "$ref": "#/$defs/Address"
+          },
+          "gender": {
+            "type": "string",
+            "enum": ["male", "female", "other", "unknown"]
+          },
+          "organization": {
+            "$ref": "#/$defs/Reference"
+          }
+        }
+      }
+    },
+    "communication": {
+      "type": "array",
+      "description": "Languages the patient can communicate in",
+      "items": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "$ref": "#/$defs/CodeableConcept"
+          },
+          "preferred": {
+            "type": "boolean"
+          }
+        },
+        "required": ["language"]
+      }
+    },
+    "generalPractitioner": {
+      "type": "array",
+      "description": "Patient's nominated primary care provider",
+      "items": {
+        "$ref": "#/$defs/Reference"
+      }
+    },
+    "managingOrganization": {
+      "$ref": "#/$defs/Reference",
+      "description": "Organization managing the patient record"
+    },
+    "link": {
+      "type": "array",
+      "description": "Links to other patient resources (e.g., merged records)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "other": {
+            "$ref": "#/$defs/Reference"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["replaced-by", "replaces", "refer", "seealso"]
+          }
+        },
+        "required": ["other", "type"]
+      }
+    }
+  },
+  "$defs": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "versionId": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "type": "string",
+          "format": "uri"
+        },
+        "profile": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "security": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Coding"
+          }
+        },
+        "tag": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Coding"
+          }
+        }
+      }
+    },
+    "Identifier": {
+      "type": "object",
+      "properties": {
+        "use": {
+          "type": "string",
+          "enum": ["usual", "official", "temp", "secondary", "old"]
+        },
+        "type": {
+          "$ref": "#/$defs/CodeableConcept"
+        },
+        "system": {
+          "type": "string",
+          "format": "uri",
+          "description": "Namespace for the identifier value"
+        },
+        "value": {
+          "type": "string",
+          "description": "The identifier value"
+        },
+        "period": {
+          "$ref": "#/$defs/Period"
+        },
+        "assigner": {
+          "$ref": "#/$defs/Reference"
+        }
+      }
+    },
+    "HumanName": {
+      "type": "object",
+      "properties": {
+        "use": {
+          "type": "string",
+          "enum": ["usual", "official", "temp", "nickname", "anonymous", "old", "maiden"]
+        },
+        "text": {
+          "type": "string",
+          "description": "Full text representation of the name"
+        },
+        "family": {
+          "type": "string",
+          "description": "Family name (surname)"
+        },
+        "given": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Given names (first, middle)"
+        },
+        "prefix": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "suffix": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "period": {
+          "$ref": "#/$defs/Period"
+        }
+      }
+    },
+    "ContactPoint": {
+      "type": "object",
+      "properties": {
+        "system": {
+          "type": "string",
+          "enum": ["phone", "fax", "email", "pager", "url", "sms", "other"]
+        },
+        "value": {
+          "type": "string"
+        },
+        "use": {
+          "type": "string",
+          "enum": ["home", "work", "temp", "old", "mobile"]
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "period": {
+          "$ref": "#/$defs/Period"
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "use": {
+          "type": "string",
+          "enum": ["home", "work", "temp", "old", "billing"]
+        },
+        "type": {
+          "type": "string",
+          "enum": ["postal", "physical", "both"]
+        },
+        "text": {
+          "type": "string"
+        },
+        "line": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "city": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "period": {
+          "$ref": "#/$defs/Period"
+        }
+      }
+    },
+    "CodeableConcept": {
+      "type": "object",
+      "properties": {
+        "coding": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Coding"
+          }
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "Coding": {
+      "type": "object",
+      "properties": {
+        "system": {
+          "type": "string",
+          "format": "uri"
+        },
+        "version": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        },
+        "userSelected": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": "string",
+          "description": "Relative or absolute reference to a resource"
+        },
+        "type": {
+          "type": "string",
+          "format": "uri"
+        },
+        "identifier": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "display": {
+          "type": "string"
+        }
+      }
+    },
+    "Period": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

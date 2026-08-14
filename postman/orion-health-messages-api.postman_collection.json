@@ -1,0 +1,1056 @@
+{
+  "info": {
+    "_postman_id": "f6e1b859-0a82-4b09-b3c1-baee91489a17",
+    "name": "Orion Health FHIR Alerts Messages API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:22.000Z",
+    "updatedAt": "2026-07-28T02:29:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f6e1b859-0a82-4b09-b3c1-baee91489a17"
+  },
+  "item": [
+    {
+      "name": "queues",
+      "item": [
+        {
+          "name": "{queueId}",
+          "item": [
+            {
+              "name": "messages",
+              "item": [
+                {
+                  "name": "Orion Health List messages in a queue",
+                  "id": "fb05b4c6-94bf-4a25-be2c-87bb21b390db",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/queues/:queueId/messages?status=held&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queues",
+                        ":queueId",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "held"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "9a684084-02f7-487d-aedf-660e5f58c104",
+                          "key": "queueId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve messages currently held in a specific queue."
+                  },
+                  "response": [
+                    {
+                      "id": "247e3cb8-9066-44b5-99d5-776601f7cc85",
+                      "name": "List of messages",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/queues/:queueId/messages?status=held&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "queues",
+                            ":queueId",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "held"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "queueId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"messageType\": \"<string>\",\n      \"status\": \"queued\",\n      \"routeId\": \"<integer>\",\n      \"routeName\": \"<string>\",\n      \"receivedAt\": \"<dateTime>\",\n      \"processedAt\": \"<dateTime>\",\n      \"size\": \"<integer>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"messageType\": \"<string>\",\n      \"status\": \"error\",\n      \"routeId\": \"<integer>\",\n      \"routeName\": \"<string>\",\n      \"receivedAt\": \"<dateTime>\",\n      \"processedAt\": \"<dateTime>\",\n      \"size\": \"<integer>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:29:22.000Z",
+                      "updatedAt": "2026-07-28T02:29:22.000Z",
+                      "uid": "35240-247e3cb8-9066-44b5-99d5-776601f7cc85"
+                    },
+                    {
+                      "id": "0fd6b38e-c08b-40e9-aaec-8833774d4c09",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/queues/:queueId/messages?status=held&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "queues",
+                            ":queueId",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "held"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "queueId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:22.000Z",
+                      "updatedAt": "2026-07-28T02:29:22.000Z",
+                      "uid": "35240-0fd6b38e-c08b-40e9-aaec-8833774d4c09"
+                    },
+                    {
+                      "id": "4ca99b22-54ab-41c6-8327-b6d0bb332b30",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/queues/:queueId/messages?status=held&offset=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "queues",
+                            ":queueId",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "held"
+                            },
+                            {
+                              "description": "Number of items to skip",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "queueId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:22.000Z",
+                      "updatedAt": "2026-07-28T02:29:22.000Z",
+                      "uid": "35240-4ca99b22-54ab-41c6-8327-b6d0bb332b30"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:22.000Z",
+                  "updatedAt": "2026-07-28T02:29:22.000Z",
+                  "uid": "35240-fb05b4c6-94bf-4a25-be2c-87bb21b390db"
+                }
+              ],
+              "id": "dc9b8382-05b1-4fea-aa71-5a1eb7b843cc",
+              "createdAt": "2026-07-28T02:29:22.000Z",
+              "updatedAt": "2026-07-28T02:29:22.000Z",
+              "uid": "35240-dc9b8382-05b1-4fea-aa71-5a1eb7b843cc"
+            }
+          ],
+          "id": "69e4cf4b-d770-49d3-9752-7d1f0eb1f072",
+          "createdAt": "2026-07-28T02:29:22.000Z",
+          "updatedAt": "2026-07-28T02:29:22.000Z",
+          "uid": "35240-69e4cf4b-d770-49d3-9752-7d1f0eb1f072"
+        }
+      ],
+      "id": "f676be55-4ca9-422c-ba9d-d94812425f4d",
+      "createdAt": "2026-07-28T02:29:22.000Z",
+      "updatedAt": "2026-07-28T02:29:22.000Z",
+      "uid": "35240-f676be55-4ca9-422c-ba9d-d94812425f4d"
+    },
+    {
+      "name": "messages",
+      "item": [
+        {
+          "name": "{messageId}",
+          "item": [
+            {
+              "name": "reprocess",
+              "item": [
+                {
+                  "name": "Orion Health Reprocess a message",
+                  "id": "81f92b1a-d65e-4a91-afdd-78728d520bd6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/messages/:messageId/reprocess",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "messages",
+                        ":messageId",
+                        "reprocess"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e89688b2-b624-42b1-9086-ab376e15d9f5",
+                          "key": "messageId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Resubmit a held or errored message for reprocessing through its route."
+                  },
+                  "response": [
+                    {
+                      "id": "0a8bfcd4-66b5-4095-900f-84e12411d439",
+                      "name": "Message resubmitted for processing",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/messages/:messageId/reprocess",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "messages",
+                            ":messageId",
+                            "reprocess"
+                          ],
+                          "variable": [
+                            {
+                              "key": "messageId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"messageId\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"reprocessedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:29:22.000Z",
+                      "updatedAt": "2026-07-28T02:29:22.000Z",
+                      "uid": "35240-0a8bfcd4-66b5-4095-900f-84e12411d439"
+                    },
+                    {
+                      "id": "1c37a2e3-e488-4ea2-b38e-307906ffcf0a",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/messages/:messageId/reprocess",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "messages",
+                            ":messageId",
+                            "reprocess"
+                          ],
+                          "variable": [
+                            {
+                              "key": "messageId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:22.000Z",
+                      "updatedAt": "2026-07-28T02:29:22.000Z",
+                      "uid": "35240-1c37a2e3-e488-4ea2-b38e-307906ffcf0a"
+                    },
+                    {
+                      "id": "ed9da8ea-b67f-4685-920c-78c005f92a2d",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/messages/:messageId/reprocess",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "messages",
+                            ":messageId",
+                            "reprocess"
+                          ],
+                          "variable": [
+                            {
+                              "key": "messageId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:22.000Z",
+                      "updatedAt": "2026-07-28T02:29:22.000Z",
+                      "uid": "35240-ed9da8ea-b67f-4685-920c-78c005f92a2d"
+                    },
+                    {
+                      "id": "1443107d-9c1d-4a9d-b2a1-3e7ec6096534",
+                      "name": "Message cannot be reprocessed in current state",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/messages/:messageId/reprocess",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "messages",
+                            ":messageId",
+                            "reprocess"
+                          ],
+                          "variable": [
+                            {
+                              "key": "messageId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:22.000Z",
+                      "updatedAt": "2026-07-28T02:29:22.000Z",
+                      "uid": "35240-1443107d-9c1d-4a9d-b2a1-3e7ec6096534"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:22.000Z",
+                  "updatedAt": "2026-07-28T02:29:22.000Z",
+                  "uid": "35240-81f92b1a-d65e-4a91-afdd-78728d520bd6"
+                }
+              ],
+              "id": "0af559af-1ef9-4d42-8b2d-1e6ffbe4ce7c",
+              "createdAt": "2026-07-28T02:29:22.000Z",
+              "updatedAt": "2026-07-28T02:29:22.000Z",
+              "uid": "35240-0af559af-1ef9-4d42-8b2d-1e6ffbe4ce7c"
+            },
+            {
+              "name": "Orion Health Get message details",
+              "id": "a2ef1a8b-c6d4-4e42-828c-c5a8d2efc7aa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/messages/:messageId?includeBody=true",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "messages",
+                    ":messageId"
+                  ],
+                  "query": [
+                    {
+                      "description": "Include message body content",
+                      "key": "includeBody",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "ed03b53a-2b26-45ff-b4da-ba2df573d555",
+                      "key": "messageId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve the full content and metadata of a specific message, including its processing history."
+              },
+              "response": [
+                {
+                  "id": "a28e93ef-0bad-41b2-95f1-aba3ac86be53",
+                  "name": "Message details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/messages/:messageId?includeBody=true",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "messages",
+                        ":messageId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Include message body content",
+                          "key": "includeBody",
+                          "value": "true"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "messageId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"messageType\": \"<string>\",\n  \"status\": \"<string>\",\n  \"routeId\": \"<integer>\",\n  \"routeName\": \"<string>\",\n  \"body\": \"<string>\",\n  \"properties\": {\n    \"Loremfa\": \"<string>\",\n    \"sed_b\": \"<string>\",\n    \"qui9\": \"<string>\",\n    \"Excepteur_5b7\": \"<string>\"\n  },\n  \"receivedAt\": \"<dateTime>\",\n  \"processedAt\": \"<dateTime>\",\n  \"processingTimeMs\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"errorMessage\": \"<string>\",\n  \"processingHistory\": [\n    {\n      \"step\": \"<string>\",\n      \"componentName\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"details\": \"<string>\"\n    },\n    {\n      \"step\": \"<string>\",\n      \"componentName\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"details\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:22.000Z",
+                  "updatedAt": "2026-07-28T02:29:22.000Z",
+                  "uid": "35240-a28e93ef-0bad-41b2-95f1-aba3ac86be53"
+                },
+                {
+                  "id": "3db3e7e3-11c4-4a05-9bea-b97abf0ca8a3",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/messages/:messageId?includeBody=true",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "messages",
+                        ":messageId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Include message body content",
+                          "key": "includeBody",
+                          "value": "true"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "messageId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:22.000Z",
+                  "updatedAt": "2026-07-28T02:29:22.000Z",
+                  "uid": "35240-3db3e7e3-11c4-4a05-9bea-b97abf0ca8a3"
+                },
+                {
+                  "id": "ecbb62e1-309a-4bdd-9a46-b604f7371834",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/messages/:messageId?includeBody=true",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "messages",
+                        ":messageId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Include message body content",
+                          "key": "includeBody",
+                          "value": "true"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "messageId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:22.000Z",
+                  "updatedAt": "2026-07-28T02:29:22.000Z",
+                  "uid": "35240-ecbb62e1-309a-4bdd-9a46-b604f7371834"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:22.000Z",
+              "updatedAt": "2026-07-28T02:29:22.000Z",
+              "uid": "35240-a2ef1a8b-c6d4-4e42-828c-c5a8d2efc7aa"
+            }
+          ],
+          "id": "bc81ca52-f12d-48f6-8b24-931df26f2861",
+          "createdAt": "2026-07-28T02:29:22.000Z",
+          "updatedAt": "2026-07-28T02:29:22.000Z",
+          "uid": "35240-bc81ca52-f12d-48f6-8b24-931df26f2861"
+        },
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "Orion Health Search messages",
+              "id": "7e8bc5d5-a144-47ff-bc3d-78211c158aeb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/messages/search?query=<string>&messageType=<string>&routeId=<integer>&status=queued&dateFrom=<dateTime>&dateTo=<dateTime>&patientId=<string>&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "messages",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "description": "Full-text search query against message content",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "HL7 message type (e.g., ADT^A01)",
+                      "key": "messageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "routeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "queued"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Search by patient identifier in message content",
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                },
+                "description": "Search for messages across all routes and queues using various criteria including message content, type, and date range."
+              },
+              "response": [
+                {
+                  "id": "f30e08e5-1afb-4586-883d-29837c45d8f7",
+                  "name": "Search results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/messages/search?query=<string>&messageType=<string>&routeId=<integer>&status=queued&dateFrom=<dateTime>&dateTo=<dateTime>&patientId=<string>&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "messages",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Full-text search query against message content",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "HL7 message type (e.g., ADT^A01)",
+                          "key": "messageType",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "routeId",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "queued"
+                        },
+                        {
+                          "key": "dateFrom",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "dateTo",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Search by patient identifier in message content",
+                          "key": "patientId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"messageType\": \"<string>\",\n      \"status\": \"queued\",\n      \"routeId\": \"<integer>\",\n      \"routeName\": \"<string>\",\n      \"receivedAt\": \"<dateTime>\",\n      \"processedAt\": \"<dateTime>\",\n      \"size\": \"<integer>\",\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"messageType\": \"<string>\",\n      \"status\": \"error\",\n      \"routeId\": \"<integer>\",\n      \"routeName\": \"<string>\",\n      \"receivedAt\": \"<dateTime>\",\n      \"processedAt\": \"<dateTime>\",\n      \"size\": \"<integer>\",\n      \"errorMessage\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:29:22.000Z",
+                  "updatedAt": "2026-07-28T02:29:22.000Z",
+                  "uid": "35240-f30e08e5-1afb-4586-883d-29837c45d8f7"
+                },
+                {
+                  "id": "8ec71859-0bfb-48e3-8997-7e41d78a90f6",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/messages/search?query=<string>&messageType=<string>&routeId=<integer>&status=queued&dateFrom=<dateTime>&dateTo=<dateTime>&patientId=<string>&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "messages",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Full-text search query against message content",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "HL7 message type (e.g., ADT^A01)",
+                          "key": "messageType",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "routeId",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "queued"
+                        },
+                        {
+                          "key": "dateFrom",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "dateTo",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Search by patient identifier in message content",
+                          "key": "patientId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:22.000Z",
+                  "updatedAt": "2026-07-28T02:29:22.000Z",
+                  "uid": "35240-8ec71859-0bfb-48e3-8997-7e41d78a90f6"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:22.000Z",
+              "updatedAt": "2026-07-28T02:29:22.000Z",
+              "uid": "35240-7e8bc5d5-a144-47ff-bc3d-78211c158aeb"
+            }
+          ],
+          "id": "08bfa309-59c8-4723-9ae9-d3146541b594",
+          "createdAt": "2026-07-28T02:29:22.000Z",
+          "updatedAt": "2026-07-28T02:29:22.000Z",
+          "uid": "35240-08bfa309-59c8-4723-9ae9-d3146541b594"
+        }
+      ],
+      "id": "aea9e65e-8c40-468d-874b-440129577cdb",
+      "createdAt": "2026-07-28T02:29:22.000Z",
+      "updatedAt": "2026-07-28T02:29:22.000Z",
+      "uid": "35240-aea9e65e-8c40-468d-874b-440129577cdb"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

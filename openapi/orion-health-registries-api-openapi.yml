@@ -1,0 +1,321 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Registries API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Registries
+  description: Patient registry management
+paths:
+  /registries:
+    get:
+      operationId: listRegistries
+      summary: Orion Health List patient registries
+      description: Retrieve a list of patient registries configured for the organization, such as diabetes, heart failure, or chronic disease registries.
+      tags:
+      - Registries
+      parameters:
+      - name: type
+        in: query
+        description: Filter by registry type
+        schema:
+          type: string
+          enum:
+          - chronic-disease
+          - preventive-care
+          - behavioral-health
+          - maternal-health
+          - pediatric
+          - custom
+      - name: status
+        in: query
+        description: Filter by registry status
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - archived
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of patient registries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Registry'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /registries/{registryId}:
+    get:
+      operationId: getRegistry
+      summary: Orion Health Get a patient registry
+      description: Retrieve details of a specific patient registry.
+      tags:
+      - Registries
+      parameters:
+      - name: registryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Registry details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /registries/{registryId}/patients:
+    get:
+      operationId: listRegistryPatients
+      summary: Orion Health List patients in a registry
+      description: Retrieve the list of patients enrolled in a specific registry, with optional filtering by risk level and care status.
+      tags:
+      - Registries
+      parameters:
+      - name: registryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: riskLevel
+        in: query
+        description: Filter by risk stratification level
+        schema:
+          type: string
+          enum:
+          - low
+          - moderate
+          - high
+          - critical
+      - name: careStatus
+        in: query
+        description: Filter by care management status
+        schema:
+          type: string
+          enum:
+          - enrolled
+          - active
+          - completed
+          - discharged
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of patients in the registry
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RegistryPatient'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    RegistryPatient:
+      type: object
+      properties:
+        patientId:
+          type: string
+        patientName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+        riskLevel:
+          type: string
+          enum:
+          - low
+          - moderate
+          - high
+          - critical
+        riskScore:
+          type: number
+        careStatus:
+          type: string
+          enum:
+          - enrolled
+          - active
+          - completed
+          - discharged
+        primaryConditions:
+          type: array
+          items:
+            type: string
+        lastEncounterDate:
+          type: string
+          format: date
+        assignedCareManager:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    Registry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - chronic-disease
+          - preventive-care
+          - behavioral-health
+          - maternal-health
+          - pediatric
+          - custom
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - archived
+        patientCount:
+          type: integer
+        criteria:
+          type: object
+          properties:
+            conditions:
+              type: array
+              items:
+                type: string
+            ageRange:
+              type: object
+              properties:
+                min:
+                  type: integer
+                max:
+                  type: integer
+            gender:
+              type: array
+              items:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

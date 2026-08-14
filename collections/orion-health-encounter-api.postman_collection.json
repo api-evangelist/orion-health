@@ -1,0 +1,587 @@
+{
+  "item": [
+    {
+      "id": "c55a58c3-0e97-47dd-b5cf-adbef443d00d",
+      "name": "Encounter",
+      "description": {
+        "content": "Operations on Encounter resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ae6dfe7-63e8-4ffd-98c5-40bb47b93365",
+          "name": "Orion Health Search for encounters",
+          "request": {
+            "name": "Orion Health Search for encounters",
+            "description": {
+              "content": "Search for Encounter resources representing patient visits, admissions, and other clinical interactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Encounter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "20",
+                  "description": "Maximum number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "Starting offset for paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "patient",
+                  "value": "<string>",
+                  "description": "Reference to the patient"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Encounter date or date range"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Encounter status"
+                },
+                {
+                  "disabled": false,
+                  "key": "class",
+                  "value": "<string>",
+                  "description": "Classification of the encounter (e.g., ambulatory, inpatient)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Specific type of encounter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4538ff79-dac6-44ae-bd19-f7718293a69c",
+              "name": "Bundle of matching Encounter resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Encounter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"type\": \"history\",\n  \"total\": 9670,\n  \"link\": [\n    {\n      \"relation\": \"next\",\n      \"url\": \"https://lQqGLKhgGnMeBqlZWQYAKfGgA.axozqRpG2L6XOttCiaR\"\n    },\n    {\n      \"relation\": \"next\",\n      \"url\": \"https://CIho.nclfmdb+\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"https://kDHDiqrCTSZuEVLMDHKZh.idvygsqORZjHmRsDkqsMxJ2mofxZYUx1MGmadxApTyF7m,kMjFVzbxm\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"2010-05-26T08:48:23.361Z\",\n          \"profile\": [\n            \"https://ihEfUxkrZHeRGcUpCZcHXbbBpq.nqtnDfTFjWCSs+2fzUvXM.WJlxfZ3YNdPe\",\n            \"http://OWTEiOCfTxnQvNiHOHPia.nhnY8NFyYq9-rSihuhRYDdny43fWHnYG2HS,iJfUytFGYLp-SHx\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    },\n    {\n      \"fullUrl\": \"https://FYJMWGgXbxwslKxkIUEAxyH.edqpoL\",\n      \"resource\": {\n        \"resourceType\": \"string\",\n        \"id\": \"string\",\n        \"meta\": {\n          \"versionId\": \"string\",\n          \"lastUpdated\": \"1954-05-01T23:33:50.493Z\",\n          \"profile\": [\n            \"http://tSLHbbLSEKGuuDDugTvffNJtBHZH.qrxkuwPYqwV0RNg\",\n            \"https://rqcXCeFkxuwN.qwAEGwL,-bpHAtatbZs1SZToddx\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"outcome\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0554bca1-f6de-4d9a-ab2d-caefcdf113e3",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Encounter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://ROZPexEazprPVWVElSKNl.avKWkwspRvtrHND2elTlZVHvUg++xG-iESLXkAn8b81bvmbUVSt\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://pYAKWLgtuNgRzlYnngzFGDyWXyS.mluzBjOzaO5SnLsnSyoWc\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://JhptGGJHsGlRkFwWxHJ.rdmgHTVx015dlq\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://GPNUHHWgklTwqpSZvBYmtqDs.tbWU4+Db3IN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dc29ddb-0552-42e8-9b9b-bd2fbb73d39e",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Encounter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://ROZPexEazprPVWVElSKNl.avKWkwspRvtrHND2elTlZVHvUg++xG-iESLXkAn8b81bvmbUVSt\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://pYAKWLgtuNgRzlYnngzFGDyWXyS.mluzBjOzaO5SnLsnSyoWc\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://JhptGGJHsGlRkFwWxHJ.rdmgHTVx015dlq\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://GPNUHHWgklTwqpSZvBYmtqDs.tbWU4+Db3IN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10ae51e4-a6ab-4761-b141-d5adc19d4882",
+          "name": "Orion Health Read an encounter by ID",
+          "request": {
+            "name": "Orion Health Read an encounter by ID",
+            "description": {
+              "content": "Retrieve a specific Encounter resource by its logical ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Encounter",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_format",
+                  "value": "<string>",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Logical ID of the FHIR resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2a1ed8a-f6c8-41d7-990e-4192f31d085a",
+              "name": "Encounter resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Encounter",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"id\": \"string\",\n  \"status\": \"triaged\",\n  \"class\": {\n    \"system\": \"https://NezoUZGVjEEZKKuJogFKUpWxouvYEqe.mbqqpZa,MOWmBuv+Xrog7Lj3ashWCuwV45QdpBT7Pai\",\n    \"code\": \"string\",\n    \"display\": \"string\"\n  },\n  \"type\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"http://BDoOQdIqYOukEldnIFgRQYN.ptqcFCQ9k8YEBloKdu5165HJUaWi2Y1wor2nLA8X-HDC8XrM.KqjnwsWrWx-cLYgq\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://XkNdcaspSLEmHSPap.tiwbjaI-JeRUbF6lkO\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"https://bGHbQdxjMJJyFcyEtfZeDW.mvLBigFaLaEVRcjCjVPjMLdiV6zfZMTVZPJ-5e9+,Nt\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"https://aGFtUBaeOvcLrzO.fmb4jlsCXP6NRKlsnhvCcc-zyNdVX1oKBh.JCB1x3aQkHCTGZf3bW\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"subject\": {\n    \"reference\": \"string\",\n    \"display\": \"string\"\n  },\n  \"period\": {\n    \"start\": \"2008-04-20T19:19:29.490Z\",\n    \"end\": \"1961-05-12T22:25:29.729Z\"\n  },\n  \"reasonCode\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"https://bdh.dzoaKX.EJ-bgj3u+IxMQ3T8ODa8KFnr.zG+NMrIPqbWjNz+3SiXhSKId1tzZV\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://PuJmHQYKsam.lbxmmznw9y-,8uOceNMLTbrdKFVBSbKhB\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"https://iiDoxujklT.wsvrhyLezEZcyaf\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        },\n        {\n          \"system\": \"http://QIhQlbZsUJCPRHYqqJEZtMBXMhtf.ryufTW3j6zLOvbb90IApIX4ocURlUMv236LYPzd90\",\n          \"code\": \"string\",\n          \"display\": \"string\"\n        }\n      ],\n      \"text\": \"string\"\n    }\n  ],\n  \"participant\": [\n    {\n      \"type\": [\n        {\n          \"coding\": [\n            {\n              \"system\": \"https://ma.tfzuhDIBCuUcZ\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"http://zWbYQUDJliYFJDnqMQ.jgxj\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        },\n        {\n          \"coding\": [\n            {\n              \"system\": \"https://DNUGNdQWaqAX.rjwh-ohg.Iiqk-We9TEuBgHUE4T-0PooSZ7KgWSeKWmFeB54\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"http://MpOLlagHzpHMrApFZHDfQ.xjaxTmIXFNg\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        }\n      ],\n      \"individual\": {\n        \"reference\": \"string\",\n        \"display\": \"string\"\n      }\n    },\n    {\n      \"type\": [\n        {\n          \"coding\": [\n            {\n              \"system\": \"https://xmljTsGMXFnWqSYgMOQbDADaBhbE.pdjI3JtoNuHa\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"http://vhuYvdIXduusuwXMRTRwoUMDXmSP.wjmn.U94fpTwNquXIJ\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        },\n        {\n          \"coding\": [\n            {\n              \"system\": \"http://vGVhrFpBNGSGVssIdzzbpaSBtqL.qnN,1AFT5BDi+FOfVcqvaOjnmEdvADsCkg17V\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            },\n            {\n              \"system\": \"http://zOCwgKWweqfeWbfafKHnOhVYZFVYMmiP.tjqIMY,Swj5Sa.KvfCmYT3nY-1RrSKhtkpzpeIErOZWUOnPIDV5KX\",\n              \"code\": \"string\",\n              \"display\": \"string\"\n            }\n          ],\n          \"text\": \"string\"\n        }\n      ],\n      \"individual\": {\n        \"reference\": \"string\",\n        \"display\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bed5b30f-4a73-4a65-af9c-87155f41532a",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Encounter",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"warning\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://ImoBYgNZWKIxAyxigtggBhLkkJJ.fzldv+8whuyOEkqeVtpdT5wxw.U0qEG.UkBp+jguQWwd2xm6n8mvghsWNrU3iyJVvNukiljfy\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://zCvGfhWNOKMqTX.rcPNDniF7l6BjkAq7Q,OkPv9YulCpRP5jmHCzagp8E31aqBqhLEnbWwQhW+1\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://DJyGVCDZxMjOU.rgvsbJSpv67YgQhAcTBKonxrNv,qtwpNGf2UnpsQF2U,wBgCDC-3jB\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"https://f.ugTUvoBk9wvHhEM.JMHaLTwEViQB0XqEm7XZSoOWWw7kcuV\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6374a563-7ebd-4f9f-b135-629e35579502",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Encounter",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://ROZPexEazprPVWVElSKNl.avKWkwspRvtrHND2elTlZVHvUg++xG-iESLXkAn8b81bvmbUVSt\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://pYAKWLgtuNgRzlYnngzFGDyWXyS.mluzBjOzaO5SnLsnSyoWc\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    },\n    {\n      \"severity\": \"error\",\n      \"code\": \"string\",\n      \"diagnostics\": \"string\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"http://JhptGGJHsGlRkFwWxHJ.rdmgHTVx015dlq\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          },\n          {\n            \"system\": \"http://GPNUHHWgklTwqpSZvBYmtqDs.tbWU4+Db3IN\",\n            \"code\": \"string\",\n            \"display\": \"string\"\n          }\n        ],\n        \"text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a4800d9-fc78-4e73-baf3-c4d0724fbe2d",
+    "name": "Orion Health FHIR Alerts Encounter API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

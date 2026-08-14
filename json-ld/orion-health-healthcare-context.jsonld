@@ -1,0 +1,291 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "orion": "https://schema.orionhealth.com/",
+    "fhir": "http://hl7.org/fhir/",
+    "schema": "https://schema.org/",
+    "snomed": "http://snomed.info/id/",
+    "loinc": "http://loinc.org/rdf#",
+    "icd10": "http://hl7.org/fhir/sid/icd-10-cm/",
+    "rxnorm": "http://www.nlm.nih.gov/research/umls/rxnorm/",
+    "cvx": "http://hl7.org/fhir/sid/cvx/",
+    "npi": "http://hl7.org/fhir/sid/us-npi/",
+    "hie": "https://schema.orionhealth.com/hie/",
+    "phm": "https://schema.orionhealth.com/population-health/",
+
+    "Patient": {
+      "@id": "fhir:Patient",
+      "@context": {
+        "resourceType": "fhir:resourceType",
+        "identifier": {
+          "@id": "fhir:identifier",
+          "@type": "@id"
+        },
+        "active": "fhir:active",
+        "name": "fhir:name",
+        "family": "fhir:name.family",
+        "given": "fhir:name.given",
+        "telecom": "fhir:telecom",
+        "gender": "fhir:gender",
+        "birthDate": {
+          "@id": "fhir:birthDate",
+          "@type": "schema:Date"
+        },
+        "address": "fhir:address",
+        "maritalStatus": "fhir:maritalStatus",
+        "communication": "fhir:communication",
+        "generalPractitioner": {
+          "@id": "fhir:generalPractitioner",
+          "@type": "@id"
+        },
+        "managingOrganization": {
+          "@id": "fhir:managingOrganization",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Observation": {
+      "@id": "fhir:Observation",
+      "@context": {
+        "resourceType": "fhir:resourceType",
+        "status": "fhir:status",
+        "category": "fhir:category",
+        "code": "fhir:code",
+        "subject": {
+          "@id": "fhir:subject",
+          "@type": "@id"
+        },
+        "encounter": {
+          "@id": "fhir:encounter",
+          "@type": "@id"
+        },
+        "effectiveDateTime": {
+          "@id": "fhir:effectiveDateTime",
+          "@type": "schema:DateTime"
+        },
+        "valueQuantity": "fhir:valueQuantity",
+        "valueString": "fhir:valueString",
+        "interpretation": "fhir:interpretation",
+        "referenceRange": "fhir:referenceRange",
+        "component": "fhir:component"
+      }
+    },
+
+    "Encounter": {
+      "@id": "fhir:Encounter",
+      "@context": {
+        "resourceType": "fhir:resourceType",
+        "status": "fhir:status",
+        "class": "fhir:class",
+        "type": "fhir:type",
+        "subject": {
+          "@id": "fhir:subject",
+          "@type": "@id"
+        },
+        "period": "fhir:period",
+        "participant": "fhir:participant",
+        "reasonCode": "fhir:reasonCode"
+      }
+    },
+
+    "Condition": {
+      "@id": "fhir:Condition",
+      "@context": {
+        "resourceType": "fhir:resourceType",
+        "clinicalStatus": "fhir:clinicalStatus",
+        "verificationStatus": "fhir:verificationStatus",
+        "category": "fhir:category",
+        "severity": "fhir:severity",
+        "code": "fhir:code",
+        "subject": {
+          "@id": "fhir:subject",
+          "@type": "@id"
+        },
+        "onsetDateTime": {
+          "@id": "fhir:onsetDateTime",
+          "@type": "schema:DateTime"
+        }
+      }
+    },
+
+    "MedicationRequest": {
+      "@id": "fhir:MedicationRequest",
+      "@context": {
+        "resourceType": "fhir:resourceType",
+        "status": "fhir:status",
+        "intent": "fhir:intent",
+        "medicationCodeableConcept": "fhir:medicationCodeableConcept",
+        "subject": {
+          "@id": "fhir:subject",
+          "@type": "@id"
+        },
+        "authoredOn": {
+          "@id": "fhir:authoredOn",
+          "@type": "schema:DateTime"
+        },
+        "requester": {
+          "@id": "fhir:requester",
+          "@type": "@id"
+        },
+        "dosageInstruction": "fhir:dosageInstruction"
+      }
+    },
+
+    "CarePlan": {
+      "@id": "fhir:CarePlan",
+      "@context": {
+        "resourceType": "fhir:resourceType",
+        "status": "fhir:status",
+        "intent": "fhir:intent",
+        "category": "fhir:category",
+        "subject": {
+          "@id": "fhir:subject",
+          "@type": "@id"
+        },
+        "period": "fhir:period",
+        "activity": "fhir:activity",
+        "goal": {
+          "@id": "fhir:goal",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "DocumentReference": {
+      "@id": "fhir:DocumentReference",
+      "@context": {
+        "resourceType": "fhir:resourceType",
+        "status": "fhir:status",
+        "type": "fhir:type",
+        "category": "fhir:category",
+        "subject": {
+          "@id": "fhir:subject",
+          "@type": "@id"
+        },
+        "date": {
+          "@id": "fhir:date",
+          "@type": "schema:DateTime"
+        },
+        "content": "fhir:content"
+      }
+    },
+
+    "HealthInformationExchange": {
+      "@id": "hie:HealthInformationExchange",
+      "@context": {
+        "participatingOrganization": {
+          "@id": "hie:participatingOrganization",
+          "@type": "@id"
+        },
+        "consentDirective": {
+          "@id": "hie:consentDirective",
+          "@type": "@id"
+        },
+        "documentExchange": "hie:documentExchange",
+        "patientMatch": "hie:patientMatch"
+      }
+    },
+
+    "PopulationHealthRegistry": {
+      "@id": "phm:Registry",
+      "@context": {
+        "registryType": "phm:registryType",
+        "patientCount": "phm:patientCount",
+        "riskStratification": "phm:riskStratification",
+        "careProgram": {
+          "@id": "phm:careProgram",
+          "@type": "@id"
+        },
+        "qualityMeasure": "phm:qualityMeasure",
+        "cohort": {
+          "@id": "phm:cohort",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "RiskScore": {
+      "@id": "phm:RiskScore",
+      "@context": {
+        "patient": {
+          "@id": "phm:patient",
+          "@type": "@id"
+        },
+        "riskModel": "phm:riskModel",
+        "score": "phm:score",
+        "riskLevel": "phm:riskLevel",
+        "riskFactors": "phm:riskFactors",
+        "calculatedAt": {
+          "@id": "phm:calculatedAt",
+          "@type": "schema:DateTime"
+        }
+      }
+    },
+
+    "IntegrationRoute": {
+      "@id": "orion:IntegrationRoute",
+      "@context": {
+        "routeName": "orion:routeName",
+        "routeStatus": "orion:routeStatus",
+        "communicationPoint": {
+          "@id": "orion:communicationPoint",
+          "@type": "@id"
+        },
+        "messageType": "orion:messageType",
+        "protocol": "orion:protocol"
+      }
+    },
+
+    "CodeableConcept": {
+      "@id": "fhir:CodeableConcept",
+      "@context": {
+        "coding": "fhir:coding",
+        "text": "fhir:text"
+      }
+    },
+
+    "Coding": {
+      "@id": "fhir:Coding",
+      "@context": {
+        "system": {
+          "@id": "fhir:system",
+          "@type": "@id"
+        },
+        "code": "fhir:code",
+        "display": "fhir:display"
+      }
+    },
+
+    "Reference": {
+      "@id": "fhir:Reference",
+      "@context": {
+        "reference": {
+          "@id": "fhir:reference",
+          "@type": "@id"
+        },
+        "display": "fhir:display"
+      }
+    },
+
+    "Organization": {
+      "@id": "fhir:Organization",
+      "@type": "schema:Organization"
+    },
+
+    "Practitioner": {
+      "@id": "fhir:Practitioner",
+      "@type": "schema:Physician"
+    },
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "email": "schema:email",
+    "telephone": "schema:telephone",
+    "address": "schema:address"
+  }
+}

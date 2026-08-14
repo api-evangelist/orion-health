@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Communication Points API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Communication Points",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health List communication points",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/communication-points",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Communication point type"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Communication protocol"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve all communication points (input and output connectors) configured in the Rhapsody engine."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get communication point details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/communication-points/:commPointId",
+            "params": [
+              {
+                "name": "commPointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed configuration of a specific communication point."
+        },
+        {
+          "info": {
+            "name": "Orion Health Start a communication point",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/communication-points/:commPointId/start",
+            "params": [
+              {
+                "name": "commPointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Start a stopped communication point."
+        },
+        {
+          "info": {
+            "name": "Orion Health Stop a communication point",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/communication-points/:commPointId/stop",
+            "params": [
+              {
+                "name": "commPointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stop an active communication point."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

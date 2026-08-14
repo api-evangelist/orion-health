@@ -1,0 +1,84 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Orion Health
+providerId: orion
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - FHIR
+  - Healthcare
+  - HIE
+  - Interoperability
+  - Rate Limiting
+description: >-
+  Orion Health does not publish public per-second or per-minute rate-limit
+  numbers for its FHIR, Population Health, HIE, or Rhapsody Integration APIs.
+  Deployments are typically customer-managed (on-premises or customer cloud)
+  or Orion-hosted with rate limits agreed in the underlying customer
+  contract. Throughput on the Rhapsody integration engine is capacity-planned
+  per deployment.
+sources:
+  - https://www.orionhealth.com/
+  - https://www.orionhealth.com/global/products/
+notes: >-
+  No public rate-limit documentation is available. Rate limits are negotiated
+  per customer agreement; set reconciled to true after capturing
+  deployment-specific numbers from a contract or operations runbook.
+responseCodes:
+  unauthorized: 401
+  forbidden: 403
+  notFound: 404
+  serverError: 500
+  serviceUnavailable: 503
+limits:
+  - name: FHIR API Throughput
+    scope: deployment
+    metric: varies
+    limit: bound by deployment sizing
+    notes: >-
+      Throughput is governed by the deployed Orion Health environment
+      (Orion-hosted or customer-managed) rather than a public per-tenancy
+      rate.
+  - name: Population Health API Throughput
+    scope: deployment
+    metric: varies
+    limit: bound by deployment sizing
+  - name: HIE API Throughput
+    scope: deployment
+    metric: varies
+    limit: bound by deployment sizing
+  - name: Rhapsody Integration Throughput
+    scope: deployment
+    metric: messages_per_second
+    limit: bound by Rhapsody engine sizing
+    notes: >-
+      Rhapsody throughput is capacity-planned per engine deployment and
+      depends on the configured routes, filters, and downstream
+      destinations.
+policies:
+  - name: Capacity-Bound Throttling
+    description: >-
+      Throughput limits are determined by the deployment sizing
+      (Orion-hosted or customer-managed) rather than a public per-tenancy
+      rate-limit table.
+  - name: Backoff Strategy
+    description: >-
+      Clients should implement exponential backoff with jitter on 5xx
+      responses; honor any Retry-After header when present.
+  - name: HL7 / FHIR Bulk Patterns
+    description: >-
+      For large-population data exchange use FHIR Bulk Data ($export) or
+      Rhapsody batch routes rather than transactional FHIR REST calls.
+  - name: Customer Agreement
+    description: >-
+      Specific rate-limit numbers, SLAs, and capacity commitments are
+      defined in the underlying customer agreement and operations
+      runbook for each deployment.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

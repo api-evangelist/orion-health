@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Encounter API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Encounter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for encounters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Encounter",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Encounter date or date range"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Encounter status"
+              },
+              {
+                "name": "class",
+                "value": "",
+                "type": "query",
+                "description": "Classification of the encounter (e.g., ambulatory, inpatient)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Specific type of encounter"
+              }
+            ]
+          },
+          "docs": "Search for Encounter resources representing patient visits, admissions, and other clinical interactions."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read an encounter by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Encounter/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Encounter resource by its logical ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

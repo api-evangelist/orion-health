@@ -1,0 +1,375 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts MedicationRequest API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: MedicationRequest
+  description: Operations on MedicationRequest resources
+paths:
+  /MedicationRequest:
+    get:
+      operationId: searchMedicationRequests
+      summary: Orion Health Search for medication requests
+      description: Search for MedicationRequest resources representing prescriptions and medication orders.
+      tags:
+      - MedicationRequest
+      parameters:
+      - $ref: '#/components/parameters/FhirFormat'
+      - $ref: '#/components/parameters/FhirCount'
+      - $ref: '#/components/parameters/FhirOffset'
+      - name: patient
+        in: query
+        description: Reference to the patient
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Prescription status
+        schema:
+          type: string
+          enum:
+          - active
+          - on-hold
+          - cancelled
+          - completed
+          - entered-in-error
+          - stopped
+          - draft
+          - unknown
+      - name: intent
+        in: query
+        description: Kind of medication request
+        schema:
+          type: string
+      - name: authoredon
+        in: query
+        description: Date the prescription was written
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Bundle of matching MedicationRequest resources
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /MedicationRequest/{id}:
+    get:
+      operationId: getMedicationRequest
+      summary: Orion Health Read a medication request by ID
+      description: Retrieve a specific MedicationRequest resource by its logical ID.
+      tags:
+      - MedicationRequest
+      parameters:
+      - $ref: '#/components/parameters/ResourceId'
+      - $ref: '#/components/parameters/FhirFormat'
+      responses:
+        '200':
+          description: MedicationRequest resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/MedicationRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Coding:
+      type: object
+      properties:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
+    OperationOutcome:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+    Bundle:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Bundle
+        type:
+          type: string
+          enum:
+          - searchset
+          - batch-response
+          - history
+        total:
+          type: integer
+          description: Total number of matching results
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                enum:
+                - self
+                - next
+                - previous
+                - first
+                - last
+              url:
+                type: string
+                format: uri
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                format: uri
+              resource:
+                $ref: '#/components/schemas/Resource'
+              search:
+                type: object
+                properties:
+                  mode:
+                    type: string
+                    enum:
+                    - match
+                    - include
+                    - outcome
+    MedicationRequest:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: MedicationRequest
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - on-hold
+          - cancelled
+          - completed
+          - entered-in-error
+          - stopped
+          - draft
+          - unknown
+        intent:
+          type: string
+          enum:
+          - proposal
+          - plan
+          - order
+          - original-order
+          - reflex-order
+          - filler-order
+          - instance-order
+          - option
+        medicationCodeableConcept:
+          $ref: '#/components/schemas/CodeableConcept'
+        medicationReference:
+          $ref: '#/components/schemas/Reference'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        authoredOn:
+          type: string
+          format: date-time
+        requester:
+          $ref: '#/components/schemas/Reference'
+        dosageInstruction:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              timing:
+                type: object
+                properties:
+                  repeat:
+                    type: object
+                    properties:
+                      frequency:
+                        type: integer
+                      period:
+                        type: number
+                      periodUnit:
+                        type: string
+              doseAndRate:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    doseQuantity:
+                      $ref: '#/components/schemas/Quantity'
+    Quantity:
+      type: object
+      properties:
+        value:
+          type: number
+        unit:
+          type: string
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
+    Reference:
+      type: object
+      properties:
+        reference:
+          type: string
+        display:
+          type: string
+  parameters:
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,131 @@
+{
+  "item": [
+    {
+      "id": "9c3ce471-ece4-4417-acd1-6055aceb0e39",
+      "name": "Metadata",
+      "description": {
+        "content": "Server capability and metadata operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b32c38a9-b111-43c4-af5a-4531a6f42a77",
+          "name": "Orion Health Get server capability statement",
+          "request": {
+            "name": "Orion Health Get server capability statement",
+            "description": {
+              "content": "Returns the server's CapabilityStatement resource describing the FHIR operations, resources, and search parameters supported.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b13464c-2a61-41dc-b20a-e361638537ae",
+              "name": "CapabilityStatement resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"status\": \"string\",\n  \"date\": \"1999-12-22T05:03:31.186Z\",\n  \"kind\": \"string\",\n  \"fhirVersion\": \"string\",\n  \"format\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rest\": [\n    {\n      \"mode\": \"string\",\n      \"resource\": [\n        {\n          \"type\": \"string\",\n          \"interaction\": [\n            {\n              \"code\": \"string\"\n            },\n            {\n              \"code\": \"string\"\n            }\n          ]\n        },\n        {\n          \"type\": \"string\",\n          \"interaction\": [\n            {\n              \"code\": \"string\"\n            },\n            {\n              \"code\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"mode\": \"string\",\n      \"resource\": [\n        {\n          \"type\": \"string\",\n          \"interaction\": [\n            {\n              \"code\": \"string\"\n            },\n            {\n              \"code\": \"string\"\n            }\n          ]\n        },\n        {\n          \"type\": \"string\",\n          \"interaction\": [\n            {\n              \"code\": \"string\"\n            },\n            {\n              \"code\": \"string\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "04f44991-740b-4275-ba3c-a6b358b1a66e",
+    "name": "Orion Health FHIR Alerts Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

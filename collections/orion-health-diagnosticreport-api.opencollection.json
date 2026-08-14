@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts DiagnosticReport API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DiagnosticReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for diagnostic reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/DiagnosticReport",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Report category (e.g., LAB, RAD)"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "LOINC code for the report"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Report date or date range"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Report status"
+              }
+            ]
+          },
+          "docs": "Search for DiagnosticReport resources including lab reports, pathology, radiology, and other diagnostic findings."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read a diagnostic report by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/DiagnosticReport/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific DiagnosticReport resource by its logical ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

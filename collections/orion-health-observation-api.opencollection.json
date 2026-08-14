@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Observation API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Observation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for observations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Observation",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Observation category (e.g., vital-signs, laboratory)"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "LOINC or SNOMED code for the observation"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Observation date or date range"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Observation status"
+              }
+            ]
+          },
+          "docs": "Search for Observation resources including vital signs, laboratory results, imaging findings, and other clinical measurements."
+        },
+        {
+          "info": {
+            "name": "Orion Health Create a new observation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/Observation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Observation resource."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read an observation by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Observation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Observation resource by its logical ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

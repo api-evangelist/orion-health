@@ -1,0 +1,356 @@
+{
+  "info": {
+    "_postman_id": "2a766838-1c1b-4111-9850-d562de757ef0",
+    "name": "Orion Health FHIR Alerts Configuration API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:10.000Z",
+    "updatedAt": "2026-07-28T02:29:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a766838-1c1b-4111-9850-d562de757ef0"
+  },
+  "item": [
+    {
+      "name": "configuration",
+      "item": [
+        {
+          "name": "engine",
+          "item": [
+            {
+              "name": "Orion Health Get engine configuration",
+              "id": "3fce8fd5-74ae-4479-8f25-84755baa25a7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/configuration/engine",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "configuration",
+                    "engine"
+                  ]
+                },
+                "description": "Retrieve the current Rhapsody engine configuration settings."
+              },
+              "response": [
+                {
+                  "id": "ae3d5067-aa2a-4c03-b258-aa0915aa2318",
+                  "name": "Engine configuration",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/configuration/engine",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "configuration",
+                        "engine"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"version\": \"<string>\",\n  \"buildNumber\": \"<string>\",\n  \"hostname\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"maxMemoryMb\": \"<integer>\",\n  \"dataDirectory\": \"<string>\",\n  \"logLevel\": \"error\",\n  \"features\": {\n    \"messageArchiving\": \"<boolean>\",\n    \"messageSearchIndexing\": \"<boolean>\",\n    \"highAvailability\": \"<boolean>\",\n    \"clustering\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:29:11.000Z",
+                  "updatedAt": "2026-07-28T02:29:11.000Z",
+                  "uid": "35240-ae3d5067-aa2a-4c03-b258-aa0915aa2318"
+                },
+                {
+                  "id": "589d75ff-7e3a-4fb0-ae1e-c155c74973c4",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/configuration/engine",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "configuration",
+                        "engine"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:11.000Z",
+                  "updatedAt": "2026-07-28T02:29:11.000Z",
+                  "uid": "35240-589d75ff-7e3a-4fb0-ae1e-c155c74973c4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:11.000Z",
+              "updatedAt": "2026-07-28T02:29:11.000Z",
+              "uid": "35240-3fce8fd5-74ae-4479-8f25-84755baa25a7"
+            }
+          ],
+          "id": "11549049-ae9e-4792-9943-da692da2e9e2",
+          "createdAt": "2026-07-28T02:29:11.000Z",
+          "updatedAt": "2026-07-28T02:29:11.000Z",
+          "uid": "35240-11549049-ae9e-4792-9943-da692da2e9e2"
+        },
+        {
+          "name": "components",
+          "item": [
+            {
+              "name": "Orion Health List installed components",
+              "id": "78400e2d-671f-44c5-adb4-0f0704e65526",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/configuration/components?type=filter&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "configuration",
+                    "components"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "filter"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                },
+                "description": "List all installed Rhapsody components including filters, communication point types, and custom modules."
+              },
+              "response": [
+                {
+                  "id": "87e8d282-b1a2-40ba-b3fc-d200c8dd3195",
+                  "name": "List of installed components",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/configuration/components?type=filter&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "configuration",
+                        "components"
+                      ],
+                      "query": [
+                        {
+                          "key": "type",
+                          "value": "filter"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"communication-point\",\n      \"version\": \"<string>\",\n      \"vendor\": \"<string>\",\n      \"description\": \"<string>\",\n      \"installed\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"filter\",\n      \"version\": \"<string>\",\n      \"vendor\": \"<string>\",\n      \"description\": \"<string>\",\n      \"installed\": \"<boolean>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:29:11.000Z",
+                  "updatedAt": "2026-07-28T02:29:11.000Z",
+                  "uid": "35240-87e8d282-b1a2-40ba-b3fc-d200c8dd3195"
+                },
+                {
+                  "id": "0dbc6884-27dc-4a19-81d2-f75b0a0ee33a",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/configuration/components?type=filter&offset=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "configuration",
+                        "components"
+                      ],
+                      "query": [
+                        {
+                          "key": "type",
+                          "value": "filter"
+                        },
+                        {
+                          "description": "Number of items to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:11.000Z",
+                  "updatedAt": "2026-07-28T02:29:11.000Z",
+                  "uid": "35240-0dbc6884-27dc-4a19-81d2-f75b0a0ee33a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:11.000Z",
+              "updatedAt": "2026-07-28T02:29:11.000Z",
+              "uid": "35240-78400e2d-671f-44c5-adb4-0f0704e65526"
+            }
+          ],
+          "id": "2367cd0e-77a4-4097-aca4-c0cdabeaa7b2",
+          "createdAt": "2026-07-28T02:29:11.000Z",
+          "updatedAt": "2026-07-28T02:29:11.000Z",
+          "uid": "35240-2367cd0e-77a4-4097-aca4-c0cdabeaa7b2"
+        }
+      ],
+      "id": "b9d46480-abb2-4ff3-b20a-439b2e8cf2af",
+      "createdAt": "2026-07-28T02:29:11.000Z",
+      "updatedAt": "2026-07-28T02:29:11.000Z",
+      "uid": "35240-b9d46480-abb2-4ff3-b20a-439b2e8cf2af"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

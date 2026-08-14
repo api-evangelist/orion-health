@@ -1,0 +1,1340 @@
+{
+  "info": {
+    "_postman_id": "a739e45c-c053-4bb6-b396-5789976ed6d6",
+    "name": "Orion Health FHIR Alerts Routes API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:39.000Z",
+    "updatedAt": "2026-07-28T02:29:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a739e45c-c053-4bb6-b396-5789976ed6d6"
+  },
+  "item": [
+    {
+      "name": "routes",
+      "item": [
+        {
+          "name": "{routeId}",
+          "item": [
+            {
+              "name": "start",
+              "item": [
+                {
+                  "name": "Orion Health Start a route",
+                  "id": "8511ddc1-50fa-42af-84f1-b867aa397838",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routes/:routeId/start",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routes",
+                        ":routeId",
+                        "start"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e4e0ac61-8887-4296-87f1-4d1c9bb7bba2",
+                          "key": "routeId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Start a stopped integration route to begin processing messages."
+                  },
+                  "response": [
+                    {
+                      "id": "121da086-7e62-4a90-8199-c805fc2f854b",
+                      "name": "Route started",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"error\",\n  \"statusChangedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-121da086-7e62-4a90-8199-c805fc2f854b"
+                    },
+                    {
+                      "id": "3f668823-f117-4575-9d33-5d86f7b6d295",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-3f668823-f117-4575-9d33-5d86f7b6d295"
+                    },
+                    {
+                      "id": "61623870-36a4-407e-b033-72bfa941452f",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-61623870-36a4-407e-b033-72bfa941452f"
+                    },
+                    {
+                      "id": "7953f0ff-03ca-488d-8aec-d5e1b4a6c88e",
+                      "name": "Route already started or in error state",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-7953f0ff-03ca-488d-8aec-d5e1b4a6c88e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:39.000Z",
+                  "updatedAt": "2026-07-28T02:29:39.000Z",
+                  "uid": "35240-8511ddc1-50fa-42af-84f1-b867aa397838"
+                }
+              ],
+              "id": "ffb820c8-d99f-4aa5-a319-e93538dd3f09",
+              "createdAt": "2026-07-28T02:29:39.000Z",
+              "updatedAt": "2026-07-28T02:29:39.000Z",
+              "uid": "35240-ffb820c8-d99f-4aa5-a319-e93538dd3f09"
+            },
+            {
+              "name": "stop",
+              "item": [
+                {
+                  "name": "Orion Health Stop a route",
+                  "id": "d29cc40a-1e24-44c3-93c2-241d63428c60",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routes/:routeId/stop",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routes",
+                        ":routeId",
+                        "stop"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0a14feab-fadf-45b8-b049-3254d8db9ceb",
+                          "key": "routeId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Stop an active integration route from processing messages."
+                  },
+                  "response": [
+                    {
+                      "id": "d43c9dc2-44ed-4d72-85a7-43b53dbf6f76",
+                      "name": "Route stopped",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"error\",\n  \"statusChangedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-d43c9dc2-44ed-4d72-85a7-43b53dbf6f76"
+                    },
+                    {
+                      "id": "39a66080-fcbc-43ae-a259-3499a998454f",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-39a66080-fcbc-43ae-a259-3499a998454f"
+                    },
+                    {
+                      "id": "f05e4cc9-60fc-4d04-b3f0-09f3a2f43764",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-f05e4cc9-60fc-4d04-b3f0-09f3a2f43764"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:39.000Z",
+                  "updatedAt": "2026-07-28T02:29:39.000Z",
+                  "uid": "35240-d29cc40a-1e24-44c3-93c2-241d63428c60"
+                }
+              ],
+              "id": "6cfea787-abb5-4c55-ab03-a5ccc4671baf",
+              "createdAt": "2026-07-28T02:29:39.000Z",
+              "updatedAt": "2026-07-28T02:29:39.000Z",
+              "uid": "35240-6cfea787-abb5-4c55-ab03-a5ccc4671baf"
+            },
+            {
+              "name": "restart",
+              "item": [
+                {
+                  "name": "Orion Health Restart a route",
+                  "id": "470c86eb-adc2-4f09-b410-25a914230f34",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routes/:routeId/restart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routes",
+                        ":routeId",
+                        "restart"
+                      ],
+                      "variable": [
+                        {
+                          "id": "631d8bf2-cca2-44f4-bf88-98b8c126f21a",
+                          "key": "routeId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Restart an integration route by stopping and starting it."
+                  },
+                  "response": [
+                    {
+                      "id": "3ef2b74e-71e5-4221-9671-5b3c565a1846",
+                      "name": "Route restarted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/restart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "restart"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"error\",\n  \"statusChangedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-3ef2b74e-71e5-4221-9671-5b3c565a1846"
+                    },
+                    {
+                      "id": "bb7b7845-81ef-4271-8195-87ef37b7c338",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/restart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "restart"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-bb7b7845-81ef-4271-8195-87ef37b7c338"
+                    },
+                    {
+                      "id": "e06ce3b6-1fa2-44a9-a6af-5cd672d43fca",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/restart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "restart"
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-e06ce3b6-1fa2-44a9-a6af-5cd672d43fca"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:39.000Z",
+                  "updatedAt": "2026-07-28T02:29:39.000Z",
+                  "uid": "35240-470c86eb-adc2-4f09-b410-25a914230f34"
+                }
+              ],
+              "id": "f4d0d90f-ab11-4ac1-94c8-e4467f607e09",
+              "createdAt": "2026-07-28T02:29:39.000Z",
+              "updatedAt": "2026-07-28T02:29:39.000Z",
+              "uid": "35240-f4d0d90f-ab11-4ac1-94c8-e4467f607e09"
+            },
+            {
+              "name": "statistics",
+              "item": [
+                {
+                  "name": "Orion Health Get route processing statistics",
+                  "id": "7b3a424f-a6cc-4d2d-b831-8a796e06067c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routes/:routeId/statistics?periodStart=<dateTime>&periodEnd=<dateTime>&interval=day",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routes",
+                        ":routeId",
+                        "statistics"
+                      ],
+                      "query": [
+                        {
+                          "key": "periodStart",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "periodEnd",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Statistics aggregation interval",
+                          "key": "interval",
+                          "value": "day"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "b87da05b-42b5-43d1-a873-d182f12c09e9",
+                          "key": "routeId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve message processing statistics for a specific route including throughput, error rates, and processing times."
+                  },
+                  "response": [
+                    {
+                      "id": "4d884c37-85b0-4a5c-8170-bbf1018f418d",
+                      "name": "Route statistics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/statistics?periodStart=<dateTime>&periodEnd=<dateTime>&interval=day",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "statistics"
+                          ],
+                          "query": [
+                            {
+                              "key": "periodStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Statistics aggregation interval",
+                              "key": "interval",
+                              "value": "day"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"routeId\": \"<integer>\",\n  \"routeName\": \"<string>\",\n  \"period\": {\n    \"start\": \"<dateTime>\",\n    \"end\": \"<dateTime>\"\n  },\n  \"totalMessages\": \"<integer>\",\n  \"successfulMessages\": \"<integer>\",\n  \"errorMessages\": \"<integer>\",\n  \"averageProcessingTimeMs\": \"<number>\",\n  \"maxProcessingTimeMs\": \"<number>\",\n  \"messagesPerSecond\": \"<number>\",\n  \"timeline\": [\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"messagesProcessed\": \"<integer>\",\n      \"errors\": \"<integer>\",\n      \"avgProcessingTimeMs\": \"<number>\"\n    },\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"messagesProcessed\": \"<integer>\",\n      \"errors\": \"<integer>\",\n      \"avgProcessingTimeMs\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-4d884c37-85b0-4a5c-8170-bbf1018f418d"
+                    },
+                    {
+                      "id": "10447aea-81aa-444a-b565-7ab9347682cf",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/statistics?periodStart=<dateTime>&periodEnd=<dateTime>&interval=day",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "statistics"
+                          ],
+                          "query": [
+                            {
+                              "key": "periodStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Statistics aggregation interval",
+                              "key": "interval",
+                              "value": "day"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-10447aea-81aa-444a-b565-7ab9347682cf"
+                    },
+                    {
+                      "id": "7e784434-28b7-448f-8bda-f1286dfddc87",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/routes/:routeId/statistics?periodStart=<dateTime>&periodEnd=<dateTime>&interval=day",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "routes",
+                            ":routeId",
+                            "statistics"
+                          ],
+                          "query": [
+                            {
+                              "key": "periodStart",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Statistics aggregation interval",
+                              "key": "interval",
+                              "value": "day"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "routeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:39.000Z",
+                      "updatedAt": "2026-07-28T02:29:39.000Z",
+                      "uid": "35240-7e784434-28b7-448f-8bda-f1286dfddc87"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:39.000Z",
+                  "updatedAt": "2026-07-28T02:29:39.000Z",
+                  "uid": "35240-7b3a424f-a6cc-4d2d-b831-8a796e06067c"
+                }
+              ],
+              "id": "60eecb61-718f-4690-96af-7960d35d7227",
+              "createdAt": "2026-07-28T02:29:39.000Z",
+              "updatedAt": "2026-07-28T02:29:39.000Z",
+              "uid": "35240-60eecb61-718f-4690-96af-7960d35d7227"
+            },
+            {
+              "name": "Orion Health Get route details",
+              "id": "f6b3f83e-b7b2-46dd-92d4-5e47bc0f2cfc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/routes/:routeId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routes",
+                    ":routeId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b82bc5f3-3355-4484-b864-32d69c5bbf3e",
+                      "key": "routeId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed information about a specific integration route."
+              },
+              "response": [
+                {
+                  "id": "ea06dcf8-4fd3-48b9-b8a3-c48b2d2e0279",
+                  "name": "Route details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routes/:routeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routes",
+                        ":routeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "routeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderPath\": \"<string>\",\n  \"status\": \"stopped\",\n  \"inputCommunicationPoints\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"output\",\n      \"protocol\": \"tcp\",\n      \"status\": \"started\",\n      \"routeId\": \"<integer>\",\n      \"connectionCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"output\",\n      \"protocol\": \"http\",\n      \"status\": \"error\",\n      \"routeId\": \"<integer>\",\n      \"connectionCount\": \"<integer>\"\n    }\n  ],\n  \"outputCommunicationPoints\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"input\",\n      \"protocol\": \"smtp\",\n      \"status\": \"error\",\n      \"routeId\": \"<integer>\",\n      \"connectionCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"output\",\n      \"protocol\": \"file\",\n      \"status\": \"stopped\",\n      \"routeId\": \"<integer>\",\n      \"connectionCount\": \"<integer>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ],\n  \"messagesProcessed\": \"<integer>\",\n  \"errorCount\": \"<integer>\",\n  \"averageProcessingTimeMs\": \"<number>\",\n  \"lastMessageTime\": \"<dateTime>\",\n  \"createdAt\": \"<dateTime>\",\n  \"modifiedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:29:39.000Z",
+                  "updatedAt": "2026-07-28T02:29:39.000Z",
+                  "uid": "35240-ea06dcf8-4fd3-48b9-b8a3-c48b2d2e0279"
+                },
+                {
+                  "id": "c2c8d2d5-e36d-4351-aec1-16485da5b4f8",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routes/:routeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routes",
+                        ":routeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "routeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:39.000Z",
+                  "updatedAt": "2026-07-28T02:29:39.000Z",
+                  "uid": "35240-c2c8d2d5-e36d-4351-aec1-16485da5b4f8"
+                },
+                {
+                  "id": "dcf3ae6e-61e9-41ab-9a69-15bf7dbd0d9c",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/routes/:routeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routes",
+                        ":routeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "routeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:39.000Z",
+                  "updatedAt": "2026-07-28T02:29:39.000Z",
+                  "uid": "35240-dcf3ae6e-61e9-41ab-9a69-15bf7dbd0d9c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:39.000Z",
+              "updatedAt": "2026-07-28T02:29:39.000Z",
+              "uid": "35240-f6b3f83e-b7b2-46dd-92d4-5e47bc0f2cfc"
+            }
+          ],
+          "id": "36b4461b-13ca-4ef0-be64-c2125f44e547",
+          "createdAt": "2026-07-28T02:29:39.000Z",
+          "updatedAt": "2026-07-28T02:29:39.000Z",
+          "uid": "35240-36b4461b-13ca-4ef0-be64-c2125f44e547"
+        },
+        {
+          "name": "Orion Health List integration routes",
+          "id": "45872ae2-416e-40c9-84d0-d0d024b34807",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/routes?status=started&folder=<string>&search=<string>&offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "routes"
+              ],
+              "query": [
+                {
+                  "description": "Filter by route status",
+                  "key": "status",
+                  "value": "started"
+                },
+                {
+                  "description": "Filter by route folder path",
+                  "key": "folder",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Search routes by name",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Number of items to skip",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Retrieve all integration routes configured in the Rhapsody engine, including their current operational status."
+          },
+          "response": [
+            {
+              "id": "55c9b2f9-e1fa-4ff4-b0b7-444520f05d73",
+              "name": "List of integration routes",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/routes?status=started&folder=<string>&search=<string>&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by route status",
+                      "key": "status",
+                      "value": "started"
+                    },
+                    {
+                      "description": "Filter by route folder path",
+                      "key": "folder",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search routes by name",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"folderPath\": \"<string>\",\n      \"status\": \"disabled\",\n      \"inputCommPointCount\": \"<integer>\",\n      \"outputCommPointCount\": \"<integer>\",\n      \"filterCount\": \"<integer>\",\n      \"messagesProcessed\": \"<integer>\",\n      \"errorCount\": \"<integer>\",\n      \"lastMessageTime\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"folderPath\": \"<string>\",\n      \"status\": \"error\",\n      \"inputCommPointCount\": \"<integer>\",\n      \"outputCommPointCount\": \"<integer>\",\n      \"filterCount\": \"<integer>\",\n      \"messagesProcessed\": \"<integer>\",\n      \"errorCount\": \"<integer>\",\n      \"lastMessageTime\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:29:39.000Z",
+              "updatedAt": "2026-07-28T02:29:39.000Z",
+              "uid": "35240-55c9b2f9-e1fa-4ff4-b0b7-444520f05d73"
+            },
+            {
+              "id": "6c56c91d-0b34-496c-b93b-792b3b2f92bf",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/routes?status=started&folder=<string>&search=<string>&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by route status",
+                      "key": "status",
+                      "value": "started"
+                    },
+                    {
+                      "description": "Filter by route folder path",
+                      "key": "folder",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search routes by name",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:39.000Z",
+              "updatedAt": "2026-07-28T02:29:39.000Z",
+              "uid": "35240-6c56c91d-0b34-496c-b93b-792b3b2f92bf"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:39.000Z",
+          "updatedAt": "2026-07-28T02:29:39.000Z",
+          "uid": "35240-45872ae2-416e-40c9-84d0-d0d024b34807"
+        }
+      ],
+      "id": "8b7e7dac-dc2a-4b63-bf42-22bb72993307",
+      "createdAt": "2026-07-28T02:29:39.000Z",
+      "updatedAt": "2026-07-28T02:29:39.000Z",
+      "uid": "35240-8b7e7dac-dc2a-4b63-bf42-22bb72993307"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

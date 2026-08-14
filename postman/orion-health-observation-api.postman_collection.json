@@ -1,0 +1,869 @@
+{
+  "info": {
+    "_postman_id": "93c3a224-1978-481a-9ecb-56efb0e49293",
+    "name": "Orion Health FHIR Alerts Observation API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:26.000Z",
+    "updatedAt": "2026-07-28T02:29:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-93c3a224-1978-481a-9ecb-56efb0e49293"
+  },
+  "item": [
+    {
+      "name": "Observation",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Orion Health Read an observation by ID",
+              "id": "0a58c1da-2a2a-4226-8289-ff20a971a2b1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Observation/:id?_format=application/fhir+json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Observation",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "894eeab9-7349-4d53-83a5-36c19e0cfb8e",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific Observation resource by its logical ID."
+              },
+              "response": [
+                {
+                  "id": "2b3e7a19-b7c8-47a9-af63-ddf2351c119f",
+                  "name": "Observation resource",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Observation/:id?_format=application/fhir+json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Observation",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+json"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"system\": \"<uri>\",\n    \"code\": \"<string>\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:26.000Z",
+                  "updatedAt": "2026-07-28T02:29:26.000Z",
+                  "uid": "35240-2b3e7a19-b7c8-47a9-af63-ddf2351c119f"
+                },
+                {
+                  "id": "156e7be3-7409-4a0b-83d3-1eb0c14fab18",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Observation/:id?_format=application/fhir+json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Observation",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+json"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:26.000Z",
+                  "updatedAt": "2026-07-28T02:29:26.000Z",
+                  "uid": "35240-156e7be3-7409-4a0b-83d3-1eb0c14fab18"
+                },
+                {
+                  "id": "69465dd9-1809-4dec-8efe-af386dec9128",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Observation/:id?_format=application/fhir+json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Observation",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+json"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:26.000Z",
+                  "updatedAt": "2026-07-28T02:29:26.000Z",
+                  "uid": "35240-69465dd9-1809-4dec-8efe-af386dec9128"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:26.000Z",
+              "updatedAt": "2026-07-28T02:29:26.000Z",
+              "uid": "35240-0a58c1da-2a2a-4226-8289-ff20a971a2b1"
+            }
+          ],
+          "id": "33869de4-77b6-47d4-b4e1-e0956acdef07",
+          "createdAt": "2026-07-28T02:29:26.000Z",
+          "updatedAt": "2026-07-28T02:29:26.000Z",
+          "uid": "35240-33869de4-77b6-47d4-b4e1-e0956acdef07"
+        },
+        {
+          "name": "Orion Health Search for observations",
+          "id": "8eeb5af2-990d-4375-a657-75163f06375d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Observation?_format=application/fhir+json&_count=20&_offset=0&patient=<string>&category=<string>&code=<string>&date=<string>&status=registered",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Observation"
+              ],
+              "query": [
+                {
+                  "description": "Response format",
+                  "key": "_format",
+                  "value": "application/fhir+json"
+                },
+                {
+                  "description": "Maximum number of results per page",
+                  "key": "_count",
+                  "value": "20"
+                },
+                {
+                  "description": "Starting offset for paging",
+                  "key": "_offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Reference to the patient",
+                  "key": "patient",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Observation category (e.g., vital-signs, laboratory)",
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "description": "LOINC or SNOMED code for the observation",
+                  "key": "code",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Observation date or date range",
+                  "key": "date",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Observation status",
+                  "key": "status",
+                  "value": "registered"
+                }
+              ]
+            },
+            "description": "Search for Observation resources including vital signs, laboratory results, imaging findings, and other clinical measurements."
+          },
+          "response": [
+            {
+              "id": "71cb9c64-c328-404d-ac8d-4d80c60c750b",
+              "name": "Bundle of matching Observation resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Observation?_format=application/fhir+json&_count=20&_offset=0&patient=<string>&category=<string>&code=<string>&date=<string>&status=registered",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Observation"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+json"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation category (e.g., vital-signs, laboratory)",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "LOINC or SNOMED code for the observation",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation date or date range",
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation status",
+                      "key": "status",
+                      "value": "registered"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"type\": \"batch-response\",\n  \"total\": \"<integer>\",\n  \"link\": [\n    {\n      \"relation\": \"previous\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"relation\": \"last\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"<uri>\",\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"id\": \"<string>\",\n        \"meta\": {\n          \"versionId\": \"<string>\",\n          \"lastUpdated\": \"<dateTime>\",\n          \"profile\": [\n            \"<uri>\",\n            \"<uri>\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"include\"\n      }\n    },\n    {\n      \"fullUrl\": \"<uri>\",\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"id\": \"<string>\",\n        \"meta\": {\n          \"versionId\": \"<string>\",\n          \"lastUpdated\": \"<dateTime>\",\n          \"profile\": [\n            \"<uri>\",\n            \"<uri>\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:26.000Z",
+              "updatedAt": "2026-07-28T02:29:26.000Z",
+              "uid": "35240-71cb9c64-c328-404d-ac8d-4d80c60c750b"
+            },
+            {
+              "id": "0ed253c9-2747-48b8-a8f7-957f9860303e",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Observation?_format=application/fhir+json&_count=20&_offset=0&patient=<string>&category=<string>&code=<string>&date=<string>&status=registered",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Observation"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+json"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation category (e.g., vital-signs, laboratory)",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "LOINC or SNOMED code for the observation",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation date or date range",
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation status",
+                      "key": "status",
+                      "value": "registered"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:26.000Z",
+              "updatedAt": "2026-07-28T02:29:26.000Z",
+              "uid": "35240-0ed253c9-2747-48b8-a8f7-957f9860303e"
+            },
+            {
+              "id": "09f7d12b-206d-4e4e-a369-7b7a399308c1",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Observation?_format=application/fhir+json&_count=20&_offset=0&patient=<string>&category=<string>&code=<string>&date=<string>&status=registered",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Observation"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+json"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation category (e.g., vital-signs, laboratory)",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "LOINC or SNOMED code for the observation",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation date or date range",
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Observation status",
+                      "key": "status",
+                      "value": "registered"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:26.000Z",
+              "updatedAt": "2026-07-28T02:29:26.000Z",
+              "uid": "35240-09f7d12b-206d-4e4e-a369-7b7a399308c1"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:26.000Z",
+          "updatedAt": "2026-07-28T02:29:26.000Z",
+          "uid": "35240-8eeb5af2-990d-4375-a657-75163f06375d"
+        },
+        {
+          "name": "Orion Health Create a new observation",
+          "id": "65079360-155b-45ab-8d9f-8e99be6af0e8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/fhir+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"system\": \"<uri>\",\n    \"code\": \"<string>\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/Observation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Observation"
+              ]
+            },
+            "description": "Create a new Observation resource."
+          },
+          "response": [
+            {
+              "id": "2aeb43c2-bd2f-49bf-a7eb-78bc84186ea6",
+              "name": "Observation resource created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"system\": \"<uri>\",\n    \"code\": \"<string>\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Observation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Observation"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"system\": \"<uri>\",\n    \"code\": \"<string>\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:26.000Z",
+              "updatedAt": "2026-07-28T02:29:26.000Z",
+              "uid": "35240-2aeb43c2-bd2f-49bf-a7eb-78bc84186ea6"
+            },
+            {
+              "id": "9a5b11d2-6bed-4261-8f06-6dc534f38714",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"system\": \"<uri>\",\n    \"code\": \"<string>\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Observation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Observation"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:26.000Z",
+              "updatedAt": "2026-07-28T02:29:26.000Z",
+              "uid": "35240-9a5b11d2-6bed-4261-8f06-6dc534f38714"
+            },
+            {
+              "id": "97409137-44f3-44fe-b9c2-561ff65eed8a",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"system\": \"<uri>\",\n    \"code\": \"<string>\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Observation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Observation"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:26.000Z",
+              "updatedAt": "2026-07-28T02:29:26.000Z",
+              "uid": "35240-97409137-44f3-44fe-b9c2-561ff65eed8a"
+            },
+            {
+              "id": "78a96b53-f6dc-435a-9bc7-182a9ea5e4f9",
+              "name": "Resource failed validation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"category\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"effectiveDateTime\": \"<dateTime>\",\n  \"valueQuantity\": {\n    \"value\": \"<number>\",\n    \"unit\": \"<string>\",\n    \"system\": \"<uri>\",\n    \"code\": \"<string>\"\n  },\n  \"valueString\": \"<string>\",\n  \"valueCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"interpretation\": [\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    },\n    {\n      \"coding\": [\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        },\n        {\n          \"system\": \"<uri>\",\n          \"code\": \"<string>\",\n          \"display\": \"<string>\"\n        }\n      ],\n      \"text\": \"<string>\"\n    }\n  ],\n  \"referenceRange\": [\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    },\n    {\n      \"low\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"high\": {\n        \"value\": \"<number>\",\n        \"unit\": \"<string>\",\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\"\n      },\n      \"text\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Observation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Observation"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"warning\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:26.000Z",
+              "updatedAt": "2026-07-28T02:29:26.000Z",
+              "uid": "35240-78a96b53-f6dc-435a-9bc7-182a9ea5e4f9"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:26.000Z",
+          "updatedAt": "2026-07-28T02:29:26.000Z",
+          "uid": "35240-65079360-155b-45ab-8d9f-8e99be6af0e8"
+        }
+      ],
+      "id": "1a33477d-5d1e-4e49-b3cb-ac0ade0c8500",
+      "createdAt": "2026-07-28T02:29:26.000Z",
+      "updatedAt": "2026-07-28T02:29:26.000Z",
+      "uid": "35240-1a33477d-5d1e-4e49-b3cb-ac0ade0c8500"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

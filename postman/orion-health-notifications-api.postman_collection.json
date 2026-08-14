@@ -1,0 +1,621 @@
+{
+  "info": {
+    "_postman_id": "15f6e089-339b-413d-bd66-fc4aeee65966",
+    "name": "Orion Health FHIR Alerts Notifications API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:25.000Z",
+    "updatedAt": "2026-07-28T02:29:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-15f6e089-339b-413d-bd66-fc4aeee65966"
+  },
+  "item": [
+    {
+      "name": "notifications",
+      "item": [
+        {
+          "name": "subscriptions",
+          "item": [
+            {
+              "name": "Orion Health List notification subscriptions",
+              "id": "0387bbb0-0d47-46a3-b31d-368929457485",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notifications/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications",
+                    "subscriptions"
+                  ]
+                },
+                "description": "Retrieve current ADT notification subscriptions."
+              },
+              "response": [
+                {
+                  "id": "8217cb2d-8a9e-4c44-b0e1-b564b5768dbe",
+                  "name": "List of subscriptions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/subscriptions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        "subscriptions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"eventTypes\": [\n        \"admission\",\n        \"registration\"\n      ],\n      \"patientIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sourceOrganizations\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"callbackUrl\": \"<uri>\",\n      \"status\": \"active\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"eventTypes\": [\n        \"transfer\",\n        \"admission\"\n      ],\n      \"patientIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sourceOrganizations\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"callbackUrl\": \"<uri>\",\n      \"status\": \"disabled\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:25.000Z",
+                  "updatedAt": "2026-07-28T02:29:25.000Z",
+                  "uid": "35240-8217cb2d-8a9e-4c44-b0e1-b564b5768dbe"
+                },
+                {
+                  "id": "e4cb569c-d414-4486-87e0-0f3fbe710c69",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/subscriptions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        "subscriptions"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:25.000Z",
+                  "updatedAt": "2026-07-28T02:29:25.000Z",
+                  "uid": "35240-e4cb569c-d414-4486-87e0-0f3fbe710c69"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:25.000Z",
+              "updatedAt": "2026-07-28T02:29:25.000Z",
+              "uid": "35240-0387bbb0-0d47-46a3-b31d-368929457485"
+            },
+            {
+              "name": "Orion Health Create a notification subscription",
+              "id": "9116a91c-d794-491c-83f4-5ed4c0069411",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eventTypes\": [\n    \"admission\",\n    \"transfer\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"patientIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sourceOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notifications/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications",
+                    "subscriptions"
+                  ]
+                },
+                "description": "Subscribe to ADT notifications for specific patients, organizations, or event types."
+              },
+              "response": [
+                {
+                  "id": "c6048175-b8ff-4a83-bcbf-eee4ae988186",
+                  "name": "Subscription created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"eventTypes\": [\n    \"admission\",\n    \"transfer\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"patientIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sourceOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/subscriptions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        "subscriptions"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"eventTypes\": [\n    \"admission\",\n    \"transfer\"\n  ],\n  \"patientIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sourceOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"status\": \"paused\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:29:25.000Z",
+                  "updatedAt": "2026-07-28T02:29:25.000Z",
+                  "uid": "35240-c6048175-b8ff-4a83-bcbf-eee4ae988186"
+                },
+                {
+                  "id": "d504a9e4-5a50-4079-91dd-9467db39bd52",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"eventTypes\": [\n    \"admission\",\n    \"transfer\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"patientIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sourceOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/subscriptions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        "subscriptions"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:25.000Z",
+                  "updatedAt": "2026-07-28T02:29:25.000Z",
+                  "uid": "35240-d504a9e4-5a50-4079-91dd-9467db39bd52"
+                },
+                {
+                  "id": "f927795c-badf-4598-8557-7d7863547734",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"eventTypes\": [\n    \"admission\",\n    \"transfer\"\n  ],\n  \"callbackUrl\": \"<uri>\",\n  \"patientIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sourceOrganizations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notifications/subscriptions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notifications",
+                        "subscriptions"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:25.000Z",
+                  "updatedAt": "2026-07-28T02:29:25.000Z",
+                  "uid": "35240-f927795c-badf-4598-8557-7d7863547734"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:25.000Z",
+              "updatedAt": "2026-07-28T02:29:25.000Z",
+              "uid": "35240-9116a91c-d794-491c-83f4-5ed4c0069411"
+            }
+          ],
+          "id": "6afbf31f-0568-4c0f-9945-bb265bcede13",
+          "createdAt": "2026-07-28T02:29:25.000Z",
+          "updatedAt": "2026-07-28T02:29:25.000Z",
+          "uid": "35240-6afbf31f-0568-4c0f-9945-bb265bcede13"
+        },
+        {
+          "name": "Orion Health List ADT notifications",
+          "id": "18f2b9e7-2bad-40a5-b705-862f7ad155a3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications?patientId=<string>&type=transfer&organization=<string>&dateFrom=<dateTime>&dateTo=<dateTime>&status=read&offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications"
+              ],
+              "query": [
+                {
+                  "key": "patientId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "type",
+                  "value": "transfer"
+                },
+                {
+                  "key": "organization",
+                  "value": "<string>"
+                },
+                {
+                  "key": "dateFrom",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "dateTo",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "status",
+                  "value": "read"
+                },
+                {
+                  "description": "Number of items to skip",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Retrieve admission, discharge, and transfer (ADT) notifications for subscribed patients and organizations."
+          },
+          "response": [
+            {
+              "id": "d6a3a836-a557-4234-93e8-f0fee5277df5",
+              "name": "List of notifications",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notifications?patientId=<string>&type=transfer&organization=<string>&dateFrom=<dateTime>&dateTo=<dateTime>&status=read&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications"
+                  ],
+                  "query": [
+                    {
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "transfer"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "read"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"type\": \"discharge\",\n      \"patientId\": \"<string>\",\n      \"patientName\": \"<string>\",\n      \"sourceOrganization\": \"<string>\",\n      \"sourceOrganizationName\": \"<string>\",\n      \"facility\": \"<string>\",\n      \"eventDate\": \"<dateTime>\",\n      \"status\": \"delivered\",\n      \"details\": {\n        \"admitReason\": \"<string>\",\n        \"dischargeDisposition\": \"<string>\",\n        \"attendingProvider\": \"<string>\",\n        \"department\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"type\": \"discharge\",\n      \"patientId\": \"<string>\",\n      \"patientName\": \"<string>\",\n      \"sourceOrganization\": \"<string>\",\n      \"sourceOrganizationName\": \"<string>\",\n      \"facility\": \"<string>\",\n      \"eventDate\": \"<dateTime>\",\n      \"status\": \"pending\",\n      \"details\": {\n        \"admitReason\": \"<string>\",\n        \"dischargeDisposition\": \"<string>\",\n        \"attendingProvider\": \"<string>\",\n        \"department\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:29:25.000Z",
+              "updatedAt": "2026-07-28T02:29:25.000Z",
+              "uid": "35240-d6a3a836-a557-4234-93e8-f0fee5277df5"
+            },
+            {
+              "id": "dae25987-ecc0-461e-8740-da1138b20ec1",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notifications?patientId=<string>&type=transfer&organization=<string>&dateFrom=<dateTime>&dateTo=<dateTime>&status=read&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notifications"
+                  ],
+                  "query": [
+                    {
+                      "key": "patientId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "transfer"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "read"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:25.000Z",
+              "updatedAt": "2026-07-28T02:29:25.000Z",
+              "uid": "35240-dae25987-ecc0-461e-8740-da1138b20ec1"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:25.000Z",
+          "updatedAt": "2026-07-28T02:29:25.000Z",
+          "uid": "35240-18f2b9e7-2bad-40a5-b705-862f7ad155a3"
+        }
+      ],
+      "id": "7ef0b3bd-f9f1-4354-b588-959aedf9e2c4",
+      "createdAt": "2026-07-28T02:29:25.000Z",
+      "updatedAt": "2026-07-28T02:29:25.000Z",
+      "uid": "35240-7ef0b3bd-f9f1-4354-b588-959aedf9e2c4"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

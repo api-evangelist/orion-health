@@ -1,0 +1,90 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Orion Health
+providerId: orion
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - EHR
+  - FHIR
+  - Healthcare
+  - HIE
+  - HL7
+  - Interoperability
+  - Population Health
+description: >-
+  Orion Health is a healthcare interoperability and population-health vendor
+  selling Amadeus Digital Care Record, Virtuoso Digital Front Door, Orchestral
+  Health Intelligence Platform, Communicate (Direct Secure Messaging), and the
+  Rhapsody integration engine. Orion Health does not publish a public pricing
+  page or a self-service developer portal for its FHIR, Population Health,
+  HIE, or Rhapsody Integration APIs. Commercial terms are negotiated as
+  enterprise agreements with health systems, payers, and government health
+  authorities, typically scoped by population size, deployment model
+  (on-premises, customer-managed cloud, or Orion-hosted), and product
+  bundle. Engage Orion Health Sales for the applicable rate.
+sources:
+  - https://www.orionhealth.com/
+  - https://www.orionhealth.com/global/products/
+  - https://www.orionhealth.com/contact-us/
+notes: >-
+  Orion Health publishes no public pricing or self-service developer portal
+  (verified via WebFetch of orionhealth.com/global/products and
+  orionhealth.com/developers - the latter returns 404). Plan structure
+  preserved as a single enterprise tier; replace with negotiated values once
+  available from a customer agreement.
+plans:
+  - id: orion-enterprise
+    name: Enterprise Agreement
+    type: enterprise
+    description: >-
+      Negotiated enterprise license for Orion Health products and APIs.
+      Typically scoped by population size, product bundle (Amadeus DCR,
+      Virtuoso DFD, Orchestral HIP, Communicate, Rhapsody), and deployment
+      model (on-premises, customer-managed cloud, or Orion-hosted).
+      Includes contractual SLAs, security and HIPAA / GDPR review, and
+      named technical account management.
+    entries:
+      - label: Population Size
+        name: population_size
+        type: subscription
+        metric: lives
+        limit: -1
+        timeFrame: year
+        geo: configurable
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+      - label: Product Bundle
+        name: product_bundle
+        type: subscription
+        metric: bundle
+        limit: -1
+        timeFrame: year
+        geo: configurable
+        unit: 1
+        price: custom
+        userMultiplied: false
+      - label: API Access (included)
+        name: api_access
+        type: quota
+        metric: requests
+        limit: -1
+        timeFrame: month
+        geo: configurable
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Orion Health FHIR API
+      - name: Orion Health Population Health API
+      - name: Orion Health HIE API
+      - name: Orion Health Rhapsody Integration API
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

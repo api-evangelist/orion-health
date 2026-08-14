@@ -1,0 +1,697 @@
+{
+  "info": {
+    "_postman_id": "28fb7b54-1519-418c-845d-dcb5f70edb45",
+    "name": "Orion Health FHIR Alerts Analytics API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:01.000Z",
+    "updatedAt": "2026-07-28T02:29:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-28fb7b54-1519-418c-845d-dcb5f70edb45"
+  },
+  "item": [
+    {
+      "name": "cohorts",
+      "item": [
+        {
+          "name": "{cohortId}",
+          "item": [
+            {
+              "name": "analytics",
+              "item": [
+                {
+                  "name": "Orion Health Get cohort analytics",
+                  "id": "37bcff59-45f3-463d-8002-1db246a57733",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cohorts/:cohortId/analytics?metrics=<string>&periodStart=<date>&periodEnd=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cohorts",
+                        ":cohortId",
+                        "analytics"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of metrics to include",
+                          "key": "metrics",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "periodStart",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "periodEnd",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c4f98fd6-a637-4f87-b870-f600b04baebb",
+                          "key": "cohortId",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve analytics and aggregate statistics for a patient cohort including demographics, utilization, and outcome metrics."
+                  },
+                  "response": [
+                    {
+                      "id": "0c32a4c3-f43c-4b75-ba79-6058e8a2a61b",
+                      "name": "Cohort analytics data",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cohorts/:cohortId/analytics?metrics=<string>&periodStart=<date>&periodEnd=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cohorts",
+                            ":cohortId",
+                            "analytics"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of metrics to include",
+                              "key": "metrics",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "periodStart",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "cohortId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"cohortId\": \"<uuid>\",\n  \"memberCount\": \"<integer>\",\n  \"demographics\": {\n    \"averageAge\": \"<number>\",\n    \"genderDistribution\": {\n      \"ea9\": \"<integer>\",\n      \"ade\": \"<integer>\",\n      \"pariatur_e0\": \"<integer>\"\n    },\n    \"ageDistribution\": [\n      {\n        \"ageRange\": \"<string>\",\n        \"count\": \"<integer>\"\n      },\n      {\n        \"ageRange\": \"<string>\",\n        \"count\": \"<integer>\"\n      }\n    ]\n  },\n  \"topConditions\": [\n    {\n      \"condition\": \"<string>\",\n      \"code\": \"<string>\",\n      \"prevalence\": \"<number>\",\n      \"count\": \"<integer>\"\n    },\n    {\n      \"condition\": \"<string>\",\n      \"code\": \"<string>\",\n      \"prevalence\": \"<number>\",\n      \"count\": \"<integer>\"\n    }\n  ],\n  \"riskDistribution\": {\n    \"low\": \"<integer>\",\n    \"moderate\": \"<integer>\",\n    \"high\": \"<integer>\",\n    \"critical\": \"<integer>\"\n  },\n  \"utilization\": {\n    \"edVisitsPerThousand\": \"<number>\",\n    \"admissionsPerThousand\": \"<number>\",\n    \"readmissionRate\": \"<number>\",\n    \"averageLengthOfStay\": \"<number>\"\n  },\n  \"period\": {\n    \"start\": \"<date>\",\n    \"end\": \"<date>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:29:01.000Z",
+                      "updatedAt": "2026-07-28T02:29:01.000Z",
+                      "uid": "35240-0c32a4c3-f43c-4b75-ba79-6058e8a2a61b"
+                    },
+                    {
+                      "id": "a8b1ad1a-9216-4f74-9fce-45650cc703f5",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cohorts/:cohortId/analytics?metrics=<string>&periodStart=<date>&periodEnd=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cohorts",
+                            ":cohortId",
+                            "analytics"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of metrics to include",
+                              "key": "metrics",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "periodStart",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "cohortId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:01.000Z",
+                      "updatedAt": "2026-07-28T02:29:01.000Z",
+                      "uid": "35240-a8b1ad1a-9216-4f74-9fce-45650cc703f5"
+                    },
+                    {
+                      "id": "0d79b88a-8d87-4625-97a4-3df733fc9444",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cohorts/:cohortId/analytics?metrics=<string>&periodStart=<date>&periodEnd=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cohorts",
+                            ":cohortId",
+                            "analytics"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of metrics to include",
+                              "key": "metrics",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "periodStart",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "periodEnd",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "cohortId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:01.000Z",
+                      "updatedAt": "2026-07-28T02:29:01.000Z",
+                      "uid": "35240-0d79b88a-8d87-4625-97a4-3df733fc9444"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:01.000Z",
+                  "updatedAt": "2026-07-28T02:29:01.000Z",
+                  "uid": "35240-37bcff59-45f3-463d-8002-1db246a57733"
+                }
+              ],
+              "id": "e06e4c9c-d75f-438d-865e-6139370c6a1f",
+              "createdAt": "2026-07-28T02:29:01.000Z",
+              "updatedAt": "2026-07-28T02:29:01.000Z",
+              "uid": "35240-e06e4c9c-d75f-438d-865e-6139370c6a1f"
+            }
+          ],
+          "id": "8b3d5800-adf5-494c-9fcc-9b1bf88abc8e",
+          "createdAt": "2026-07-28T02:29:01.000Z",
+          "updatedAt": "2026-07-28T02:29:01.000Z",
+          "uid": "35240-8b3d5800-adf5-494c-9fcc-9b1bf88abc8e"
+        }
+      ],
+      "id": "9f7dd531-75e9-4cfc-82ad-199bd8527533",
+      "createdAt": "2026-07-28T02:29:01.000Z",
+      "updatedAt": "2026-07-28T02:29:01.000Z",
+      "uid": "35240-9f7dd531-75e9-4cfc-82ad-199bd8527533"
+    },
+    {
+      "name": "analytics",
+      "item": [
+        {
+          "name": "population-summary",
+          "item": [
+            {
+              "name": "Orion Health Get population summary analytics",
+              "id": "d989692e-1229-4303-8665-e2a6c9016b11",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/analytics/population-summary?registryId=<uuid>&periodStart=<date>&periodEnd=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "analytics",
+                    "population-summary"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter to a specific registry",
+                      "key": "registryId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "periodStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "periodEnd",
+                      "value": "<date>"
+                    }
+                  ]
+                },
+                "description": "Retrieve aggregate population health summary including demographics, top conditions, utilization patterns, and risk distribution."
+              },
+              "response": [
+                {
+                  "id": "a41c3032-dc2b-4f92-a85c-2eb9e33cb4b7",
+                  "name": "Population summary data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/analytics/population-summary?registryId=<uuid>&periodStart=<date>&periodEnd=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "analytics",
+                        "population-summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter to a specific registry",
+                          "key": "registryId",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "periodStart",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "periodEnd",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"totalPatients\": \"<integer>\",\n  \"demographics\": {\n    \"averageAge\": \"<number>\",\n    \"genderDistribution\": {\n      \"ut59\": \"<integer>\",\n      \"minimd\": \"<integer>\"\n    }\n  },\n  \"riskDistribution\": {\n    \"low\": \"<integer>\",\n    \"moderate\": \"<integer>\",\n    \"high\": \"<integer>\",\n    \"critical\": \"<integer>\"\n  },\n  \"topConditions\": [\n    {\n      \"condition\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"prevalence\": \"<number>\"\n    },\n    {\n      \"condition\": \"<string>\",\n      \"count\": \"<integer>\",\n      \"prevalence\": \"<number>\"\n    }\n  ],\n  \"careGaps\": {\n    \"total\": \"<integer>\",\n    \"byPriority\": {\n      \"dolore7f\": \"<integer>\"\n    }\n  },\n  \"period\": {\n    \"start\": \"<date>\",\n    \"end\": \"<date>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:29:01.000Z",
+                  "updatedAt": "2026-07-28T02:29:01.000Z",
+                  "uid": "35240-a41c3032-dc2b-4f92-a85c-2eb9e33cb4b7"
+                },
+                {
+                  "id": "20bcd7fc-9170-4bfa-a5a5-bf0596e3e8ae",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/analytics/population-summary?registryId=<uuid>&periodStart=<date>&periodEnd=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "analytics",
+                        "population-summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter to a specific registry",
+                          "key": "registryId",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "periodStart",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "periodEnd",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:01.000Z",
+                  "updatedAt": "2026-07-28T02:29:01.000Z",
+                  "uid": "35240-20bcd7fc-9170-4bfa-a5a5-bf0596e3e8ae"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:01.000Z",
+              "updatedAt": "2026-07-28T02:29:01.000Z",
+              "uid": "35240-d989692e-1229-4303-8665-e2a6c9016b11"
+            }
+          ],
+          "id": "338ace09-9ed3-482b-b881-22b1faab922b",
+          "createdAt": "2026-07-28T02:29:01.000Z",
+          "updatedAt": "2026-07-28T02:29:01.000Z",
+          "uid": "35240-338ace09-9ed3-482b-b881-22b1faab922b"
+        },
+        {
+          "name": "utilization",
+          "item": [
+            {
+              "name": "Orion Health Get utilization analytics",
+              "id": "75000ffc-8d01-4536-bca2-69ad9dc0ef3a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/analytics/utilization?registryId=<uuid>&cohortId=<uuid>&periodStart=<date>&periodEnd=<date>&groupBy=year",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "analytics",
+                    "utilization"
+                  ],
+                  "query": [
+                    {
+                      "key": "registryId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "cohortId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "periodStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "periodEnd",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Group results by time period",
+                      "key": "groupBy",
+                      "value": "year"
+                    }
+                  ]
+                },
+                "description": "Retrieve healthcare utilization analytics including ED visits, hospital admissions, readmissions, and ambulatory utilization."
+              },
+              "response": [
+                {
+                  "id": "62d1e379-e6c1-4e34-bec7-996046e21c45",
+                  "name": "Utilization analytics data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/analytics/utilization?registryId=<uuid>&cohortId=<uuid>&periodStart=<date>&periodEnd=<date>&groupBy=year",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "analytics",
+                        "utilization"
+                      ],
+                      "query": [
+                        {
+                          "key": "registryId",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "cohortId",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "periodStart",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "periodEnd",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Group results by time period",
+                          "key": "groupBy",
+                          "value": "year"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"edVisits\": {\n    \"total\": \"<integer>\",\n    \"perThousand\": \"<number>\",\n    \"trend\": [\n      {\n        \"period\": \"<string>\",\n        \"count\": \"<integer>\"\n      },\n      {\n        \"period\": \"<string>\",\n        \"count\": \"<integer>\"\n      }\n    ]\n  },\n  \"admissions\": {\n    \"total\": \"<integer>\",\n    \"perThousand\": \"<number>\",\n    \"averageLOS\": \"<number>\"\n  },\n  \"readmissions\": {\n    \"total\": \"<integer>\",\n    \"rate\": \"<number>\",\n    \"thirtyDayRate\": \"<number>\"\n  },\n  \"ambulatoryVisits\": {\n    \"total\": \"<integer>\",\n    \"perThousand\": \"<number>\"\n  },\n  \"period\": {\n    \"start\": \"<date>\",\n    \"end\": \"<date>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:29:01.000Z",
+                  "updatedAt": "2026-07-28T02:29:01.000Z",
+                  "uid": "35240-62d1e379-e6c1-4e34-bec7-996046e21c45"
+                },
+                {
+                  "id": "af90d75b-3b1c-42e5-9378-3146d5157c8b",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/analytics/utilization?registryId=<uuid>&cohortId=<uuid>&periodStart=<date>&periodEnd=<date>&groupBy=year",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "analytics",
+                        "utilization"
+                      ],
+                      "query": [
+                        {
+                          "key": "registryId",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "cohortId",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "periodStart",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "periodEnd",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Group results by time period",
+                          "key": "groupBy",
+                          "value": "year"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:01.000Z",
+                  "updatedAt": "2026-07-28T02:29:01.000Z",
+                  "uid": "35240-af90d75b-3b1c-42e5-9378-3146d5157c8b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:01.000Z",
+              "updatedAt": "2026-07-28T02:29:01.000Z",
+              "uid": "35240-75000ffc-8d01-4536-bca2-69ad9dc0ef3a"
+            }
+          ],
+          "id": "17308f0c-4dab-45e5-8369-89147dced680",
+          "createdAt": "2026-07-28T02:29:01.000Z",
+          "updatedAt": "2026-07-28T02:29:01.000Z",
+          "uid": "35240-17308f0c-4dab-45e5-8369-89147dced680"
+        }
+      ],
+      "id": "8b25410d-72bc-4546-8ce7-916fb715d64d",
+      "createdAt": "2026-07-28T02:29:01.000Z",
+      "updatedAt": "2026-07-28T02:29:01.000Z",
+      "uid": "35240-8b25410d-72bc-4546-8ce7-916fb715d64d"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

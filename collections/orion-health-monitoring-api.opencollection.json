@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR Alerts Monitoring API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Get route processing statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/routes/:routeId/statistics",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Statistics aggregation interval"
+              }
+            ]
+          },
+          "docs": "Retrieve message processing statistics for a specific route including throughput, error rates, and processing times."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get monitoring dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/monitoring/dashboard"
+          },
+          "docs": "Retrieve an overview of the Rhapsody engine status including system health, active routes, queue depths, and error counts."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get system health status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/monitoring/health"
+          },
+          "docs": "Retrieve the overall health status of the Rhapsody engine including component-level health checks."
+        },
+        {
+          "info": {
+            "name": "Orion Health List monitoring alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/monitoring/alerts",
+            "params": [
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "acknowledged",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieve active monitoring alerts for the Rhapsody engine."
+        },
+        {
+          "info": {
+            "name": "Orion Health Acknowledge a monitoring alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/monitoring/alerts/:alertId/acknowledge",
+            "params": [
+              {
+                "name": "alertId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Acknowledge a monitoring alert to indicate it has been reviewed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

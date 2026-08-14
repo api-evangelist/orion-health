@@ -1,0 +1,834 @@
+{
+  "info": {
+    "_postman_id": "1380d3ba-31f5-4bfb-a4a9-1ced39a0ef0f",
+    "name": "Orion Health FHIR Alerts Communication Points API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:09.000Z",
+    "updatedAt": "2026-07-28T02:29:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1380d3ba-31f5-4bfb-a4a9-1ced39a0ef0f"
+  },
+  "item": [
+    {
+      "name": "communication-points",
+      "item": [
+        {
+          "name": "{commPointId}",
+          "item": [
+            {
+              "name": "start",
+              "item": [
+                {
+                  "name": "Orion Health Start a communication point",
+                  "id": "e10dd386-d06d-4dea-8880-db04ec21a95e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/communication-points/:commPointId/start",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "communication-points",
+                        ":commPointId",
+                        "start"
+                      ],
+                      "variable": [
+                        {
+                          "id": "76751640-50bc-43ce-9bb8-824ea608cc9d",
+                          "key": "commPointId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Start a stopped communication point."
+                  },
+                  "response": [
+                    {
+                      "id": "e7ce497e-0a66-4427-92b0-f4dbbead30ec",
+                      "name": "Communication point started",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/communication-points/:commPointId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "communication-points",
+                            ":commPointId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "commPointId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:29:09.000Z",
+                      "updatedAt": "2026-07-28T02:29:09.000Z",
+                      "uid": "35240-e7ce497e-0a66-4427-92b0-f4dbbead30ec"
+                    },
+                    {
+                      "id": "7870eed5-f188-4e4b-9d57-42e9ff410623",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/communication-points/:commPointId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "communication-points",
+                            ":commPointId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "commPointId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:09.000Z",
+                      "updatedAt": "2026-07-28T02:29:09.000Z",
+                      "uid": "35240-7870eed5-f188-4e4b-9d57-42e9ff410623"
+                    },
+                    {
+                      "id": "9f75992d-3252-433c-b67f-0815fcc96a3f",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/communication-points/:commPointId/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "communication-points",
+                            ":commPointId",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "commPointId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:09.000Z",
+                      "updatedAt": "2026-07-28T02:29:09.000Z",
+                      "uid": "35240-9f75992d-3252-433c-b67f-0815fcc96a3f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:09.000Z",
+                  "updatedAt": "2026-07-28T02:29:09.000Z",
+                  "uid": "35240-e10dd386-d06d-4dea-8880-db04ec21a95e"
+                }
+              ],
+              "id": "7154b1d5-b3b7-4ae0-bf02-af7d0258065d",
+              "createdAt": "2026-07-28T02:29:09.000Z",
+              "updatedAt": "2026-07-28T02:29:09.000Z",
+              "uid": "35240-7154b1d5-b3b7-4ae0-bf02-af7d0258065d"
+            },
+            {
+              "name": "stop",
+              "item": [
+                {
+                  "name": "Orion Health Stop a communication point",
+                  "id": "c65a3135-e2fe-435e-99d9-ad90f444c32c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/communication-points/:commPointId/stop",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "communication-points",
+                        ":commPointId",
+                        "stop"
+                      ],
+                      "variable": [
+                        {
+                          "id": "65fbe9cc-82f0-4780-84df-3b103b4f4d8b",
+                          "key": "commPointId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Stop an active communication point."
+                  },
+                  "response": [
+                    {
+                      "id": "878f1af4-8731-4802-9a49-e3c2c19ebf49",
+                      "name": "Communication point stopped",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/communication-points/:commPointId/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "communication-points",
+                            ":commPointId",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "commPointId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:29:09.000Z",
+                      "updatedAt": "2026-07-28T02:29:09.000Z",
+                      "uid": "35240-878f1af4-8731-4802-9a49-e3c2c19ebf49"
+                    },
+                    {
+                      "id": "26b81cb9-0ee4-46ae-96e9-0165157140d2",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/communication-points/:commPointId/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "communication-points",
+                            ":commPointId",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "commPointId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:09.000Z",
+                      "updatedAt": "2026-07-28T02:29:09.000Z",
+                      "uid": "35240-26b81cb9-0ee4-46ae-96e9-0165157140d2"
+                    },
+                    {
+                      "id": "518868e9-2920-427e-83f2-51cb163109aa",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/communication-points/:commPointId/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "communication-points",
+                            ":commPointId",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "commPointId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:29:09.000Z",
+                      "updatedAt": "2026-07-28T02:29:09.000Z",
+                      "uid": "35240-518868e9-2920-427e-83f2-51cb163109aa"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:29:09.000Z",
+                  "updatedAt": "2026-07-28T02:29:09.000Z",
+                  "uid": "35240-c65a3135-e2fe-435e-99d9-ad90f444c32c"
+                }
+              ],
+              "id": "2ab5c9bb-b0d1-4498-a49c-d38a24ee7a66",
+              "createdAt": "2026-07-28T02:29:09.000Z",
+              "updatedAt": "2026-07-28T02:29:09.000Z",
+              "uid": "35240-2ab5c9bb-b0d1-4498-a49c-d38a24ee7a66"
+            },
+            {
+              "name": "Orion Health Get communication point details",
+              "id": "c2a51373-7b3f-409e-864c-ae9388724525",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/communication-points/:commPointId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "communication-points",
+                    ":commPointId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f08a6cf2-f1b4-4009-b33e-cbebafde0ee1",
+                      "key": "commPointId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed configuration of a specific communication point."
+              },
+              "response": [
+                {
+                  "id": "df4134dc-1f65-409a-bb86-c41c6130433f",
+                  "name": "Communication point details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/communication-points/:commPointId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "communication-points",
+                        ":commPointId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "commPointId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"protocol\": \"<string>\",\n  \"status\": \"<string>\",\n  \"routeId\": \"<integer>\",\n  \"routeName\": \"<string>\",\n  \"configuration\": {\n    \"host\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"path\": \"<string>\",\n    \"encoding\": \"<string>\",\n    \"timeout\": \"<integer>\",\n    \"retryCount\": \"<integer>\",\n    \"retryInterval\": \"<integer>\",\n    \"ssl\": \"<boolean>\"\n  },\n  \"connectionCount\": \"<integer>\",\n  \"messagesProcessed\": \"<integer>\",\n  \"lastMessageTime\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:29:09.000Z",
+                  "updatedAt": "2026-07-28T02:29:09.000Z",
+                  "uid": "35240-df4134dc-1f65-409a-bb86-c41c6130433f"
+                },
+                {
+                  "id": "6bcde0dd-5518-4d3d-a0b2-d90eab5e4c64",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/communication-points/:commPointId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "communication-points",
+                        ":commPointId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "commPointId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:09.000Z",
+                  "updatedAt": "2026-07-28T02:29:09.000Z",
+                  "uid": "35240-6bcde0dd-5518-4d3d-a0b2-d90eab5e4c64"
+                },
+                {
+                  "id": "cc58a5b4-4988-4e2d-b43c-a12e279121f5",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/communication-points/:commPointId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "communication-points",
+                        ":commPointId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "commPointId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:09.000Z",
+                  "updatedAt": "2026-07-28T02:29:09.000Z",
+                  "uid": "35240-cc58a5b4-4988-4e2d-b43c-a12e279121f5"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:09.000Z",
+              "updatedAt": "2026-07-28T02:29:09.000Z",
+              "uid": "35240-c2a51373-7b3f-409e-864c-ae9388724525"
+            }
+          ],
+          "id": "690f00e6-3d2e-44bf-9330-1aab3963d88e",
+          "createdAt": "2026-07-28T02:29:09.000Z",
+          "updatedAt": "2026-07-28T02:29:09.000Z",
+          "uid": "35240-690f00e6-3d2e-44bf-9330-1aab3963d88e"
+        },
+        {
+          "name": "Orion Health List communication points",
+          "id": "ec1ca3bc-0c95-4d3f-82e3-372593bafefc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/communication-points?type=input&protocol=web-service&status=started&offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "communication-points"
+              ],
+              "query": [
+                {
+                  "description": "Communication point type",
+                  "key": "type",
+                  "value": "input"
+                },
+                {
+                  "description": "Communication protocol",
+                  "key": "protocol",
+                  "value": "web-service"
+                },
+                {
+                  "key": "status",
+                  "value": "started"
+                },
+                {
+                  "description": "Number of items to skip",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Retrieve all communication points (input and output connectors) configured in the Rhapsody engine."
+          },
+          "response": [
+            {
+              "id": "b8729145-c4cc-4a08-9814-051f509488c3",
+              "name": "List of communication points",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/communication-points?type=input&protocol=web-service&status=started&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "communication-points"
+                  ],
+                  "query": [
+                    {
+                      "description": "Communication point type",
+                      "key": "type",
+                      "value": "input"
+                    },
+                    {
+                      "description": "Communication protocol",
+                      "key": "protocol",
+                      "value": "web-service"
+                    },
+                    {
+                      "key": "status",
+                      "value": "started"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"bidirectional\",\n      \"protocol\": \"pop3\",\n      \"status\": \"error\",\n      \"routeId\": \"<integer>\",\n      \"connectionCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"input\",\n      \"protocol\": \"smtp\",\n      \"status\": \"disabled\",\n      \"routeId\": \"<integer>\",\n      \"connectionCount\": \"<integer>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:29:09.000Z",
+              "updatedAt": "2026-07-28T02:29:09.000Z",
+              "uid": "35240-b8729145-c4cc-4a08-9814-051f509488c3"
+            },
+            {
+              "id": "a909f6b9-a07b-4de0-b468-01d20e5d16e4",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/communication-points?type=input&protocol=web-service&status=started&offset=0&limit=20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "communication-points"
+                  ],
+                  "query": [
+                    {
+                      "description": "Communication point type",
+                      "key": "type",
+                      "value": "input"
+                    },
+                    {
+                      "description": "Communication protocol",
+                      "key": "protocol",
+                      "value": "web-service"
+                    },
+                    {
+                      "key": "status",
+                      "value": "started"
+                    },
+                    {
+                      "description": "Number of items to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:09.000Z",
+              "updatedAt": "2026-07-28T02:29:09.000Z",
+              "uid": "35240-a909f6b9-a07b-4de0-b468-01d20e5d16e4"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:09.000Z",
+          "updatedAt": "2026-07-28T02:29:09.000Z",
+          "uid": "35240-ec1ca3bc-0c95-4d3f-82e3-372593bafefc"
+        }
+      ],
+      "id": "0a8bd6fe-7b0f-4700-a74a-3e4cdc2d2854",
+      "createdAt": "2026-07-28T02:29:09.000Z",
+      "updatedAt": "2026-07-28T02:29:09.000Z",
+      "uid": "35240-0a8bd6fe-7b0f-4700-a74a-3e4cdc2d2854"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

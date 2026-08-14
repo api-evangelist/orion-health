@@ -1,0 +1,580 @@
+{
+  "info": {
+    "_postman_id": "24a127b3-5fbb-47ff-9ee8-ff3bddf9ac57",
+    "name": "Orion Health FHIR Alerts MedicationRequest API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:20.000Z",
+    "updatedAt": "2026-07-28T02:29:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-24a127b3-5fbb-47ff-9ee8-ff3bddf9ac57"
+  },
+  "item": [
+    {
+      "name": "MedicationRequest",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Orion Health Read a medication request by ID",
+              "id": "68fa7234-468a-4016-a626-2b4ef63b9710",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/MedicationRequest/:id?_format=application/fhir+json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "MedicationRequest",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "26ed7731-f700-40ca-ae0f-7dd86a8f0d62",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific MedicationRequest resource by its logical ID."
+              },
+              "response": [
+                {
+                  "id": "72f486ec-8e35-4e2b-90d5-8280c064a72e",
+                  "name": "MedicationRequest resource",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/MedicationRequest/:id?_format=application/fhir+json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "MedicationRequest",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+json"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"on-hold\",\n  \"intent\": \"option\",\n  \"medicationCodeableConcept\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"medicationReference\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"authoredOn\": \"<dateTime>\",\n  \"requester\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"dosageInstruction\": [\n    {\n      \"text\": \"<string>\",\n      \"timing\": {\n        \"repeat\": {\n          \"frequency\": \"<integer>\",\n          \"period\": \"<number>\",\n          \"periodUnit\": \"<string>\"\n        }\n      },\n      \"doseAndRate\": [\n        {\n          \"doseQuantity\": {\n            \"value\": \"<number>\",\n            \"unit\": \"<string>\",\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\"\n          }\n        },\n        {\n          \"doseQuantity\": {\n            \"value\": \"<number>\",\n            \"unit\": \"<string>\",\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\"\n          }\n        }\n      ]\n    },\n    {\n      \"text\": \"<string>\",\n      \"timing\": {\n        \"repeat\": {\n          \"frequency\": \"<integer>\",\n          \"period\": \"<number>\",\n          \"periodUnit\": \"<string>\"\n        }\n      },\n      \"doseAndRate\": [\n        {\n          \"doseQuantity\": {\n            \"value\": \"<number>\",\n            \"unit\": \"<string>\",\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\"\n          }\n        },\n        {\n          \"doseQuantity\": {\n            \"value\": \"<number>\",\n            \"unit\": \"<string>\",\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:21.000Z",
+                  "updatedAt": "2026-07-28T02:29:21.000Z",
+                  "uid": "35240-72f486ec-8e35-4e2b-90d5-8280c064a72e"
+                },
+                {
+                  "id": "99ae8554-118f-49ff-9bf4-41a604c8a666",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/MedicationRequest/:id?_format=application/fhir+json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "MedicationRequest",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+json"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:21.000Z",
+                  "updatedAt": "2026-07-28T02:29:21.000Z",
+                  "uid": "35240-99ae8554-118f-49ff-9bf4-41a604c8a666"
+                },
+                {
+                  "id": "9f296e09-f8cd-4de5-b257-0665588e1262",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/MedicationRequest/:id?_format=application/fhir+json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "MedicationRequest",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+json"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:21.000Z",
+                  "updatedAt": "2026-07-28T02:29:21.000Z",
+                  "uid": "35240-9f296e09-f8cd-4de5-b257-0665588e1262"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:21.000Z",
+              "updatedAt": "2026-07-28T02:29:21.000Z",
+              "uid": "35240-68fa7234-468a-4016-a626-2b4ef63b9710"
+            }
+          ],
+          "id": "61783328-90c6-496e-84a9-df110764a511",
+          "createdAt": "2026-07-28T02:29:21.000Z",
+          "updatedAt": "2026-07-28T02:29:21.000Z",
+          "uid": "35240-61783328-90c6-496e-84a9-df110764a511"
+        },
+        {
+          "name": "Orion Health Search for medication requests",
+          "id": "bf71b663-d63c-46c8-9439-20996796c46b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/MedicationRequest?_format=application/fhir+json&_count=20&_offset=0&patient=<string>&status=on-hold&intent=<string>&authoredon=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "MedicationRequest"
+              ],
+              "query": [
+                {
+                  "description": "Response format",
+                  "key": "_format",
+                  "value": "application/fhir+json"
+                },
+                {
+                  "description": "Maximum number of results per page",
+                  "key": "_count",
+                  "value": "20"
+                },
+                {
+                  "description": "Starting offset for paging",
+                  "key": "_offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Reference to the patient",
+                  "key": "patient",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Prescription status",
+                  "key": "status",
+                  "value": "on-hold"
+                },
+                {
+                  "description": "Kind of medication request",
+                  "key": "intent",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Date the prescription was written",
+                  "key": "authoredon",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Search for MedicationRequest resources representing prescriptions and medication orders."
+          },
+          "response": [
+            {
+              "id": "83bd895e-802c-46be-95ac-ee0e407a49d7",
+              "name": "Bundle of matching MedicationRequest resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/MedicationRequest?_format=application/fhir+json&_count=20&_offset=0&patient=<string>&status=on-hold&intent=<string>&authoredon=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "MedicationRequest"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+json"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Prescription status",
+                      "key": "status",
+                      "value": "on-hold"
+                    },
+                    {
+                      "description": "Kind of medication request",
+                      "key": "intent",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Date the prescription was written",
+                      "key": "authoredon",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"type\": \"history\",\n  \"total\": \"<integer>\",\n  \"link\": [\n    {\n      \"relation\": \"next\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"relation\": \"first\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"<uri>\",\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"id\": \"<string>\",\n        \"meta\": {\n          \"versionId\": \"<string>\",\n          \"lastUpdated\": \"<dateTime>\",\n          \"profile\": [\n            \"<uri>\",\n            \"<uri>\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"match\"\n      }\n    },\n    {\n      \"fullUrl\": \"<uri>\",\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"id\": \"<string>\",\n        \"meta\": {\n          \"versionId\": \"<string>\",\n          \"lastUpdated\": \"<dateTime>\",\n          \"profile\": [\n            \"<uri>\",\n            \"<uri>\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"include\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:21.000Z",
+              "updatedAt": "2026-07-28T02:29:21.000Z",
+              "uid": "35240-83bd895e-802c-46be-95ac-ee0e407a49d7"
+            },
+            {
+              "id": "0bc996d8-7d5a-41e5-bb45-89fafb1dc1d4",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/MedicationRequest?_format=application/fhir+json&_count=20&_offset=0&patient=<string>&status=on-hold&intent=<string>&authoredon=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "MedicationRequest"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+json"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Prescription status",
+                      "key": "status",
+                      "value": "on-hold"
+                    },
+                    {
+                      "description": "Kind of medication request",
+                      "key": "intent",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Date the prescription was written",
+                      "key": "authoredon",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:21.000Z",
+              "updatedAt": "2026-07-28T02:29:21.000Z",
+              "uid": "35240-0bc996d8-7d5a-41e5-bb45-89fafb1dc1d4"
+            },
+            {
+              "id": "35b64d07-9dfb-4379-accd-528ea64f5afc",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/MedicationRequest?_format=application/fhir+json&_count=20&_offset=0&patient=<string>&status=on-hold&intent=<string>&authoredon=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "MedicationRequest"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+json"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Prescription status",
+                      "key": "status",
+                      "value": "on-hold"
+                    },
+                    {
+                      "description": "Kind of medication request",
+                      "key": "intent",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Date the prescription was written",
+                      "key": "authoredon",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"error\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"information\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:21.000Z",
+              "updatedAt": "2026-07-28T02:29:21.000Z",
+              "uid": "35240-35b64d07-9dfb-4379-accd-528ea64f5afc"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:21.000Z",
+          "updatedAt": "2026-07-28T02:29:21.000Z",
+          "uid": "35240-bf71b663-d63c-46c8-9439-20996796c46b"
+        }
+      ],
+      "id": "828a2d1b-e443-40f1-a5f1-aebcd311b100",
+      "createdAt": "2026-07-28T02:29:21.000Z",
+      "updatedAt": "2026-07-28T02:29:21.000Z",
+      "uid": "35240-828a2d1b-e443-40f1-a5f1-aebcd311b100"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

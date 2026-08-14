@@ -1,0 +1,376 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Analytics API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Analytics
+  description: Population health analytics and reporting
+paths:
+  /cohorts/{cohortId}/analytics:
+    get:
+      operationId: getCohortAnalytics
+      summary: Orion Health Get cohort analytics
+      description: Retrieve analytics and aggregate statistics for a patient cohort including demographics, utilization, and outcome metrics.
+      tags:
+      - Analytics
+      parameters:
+      - name: cohortId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: metrics
+        in: query
+        description: Comma-separated list of metrics to include
+        schema:
+          type: string
+      - name: periodStart
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: periodEnd
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Cohort analytics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CohortAnalytics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /analytics/population-summary:
+    get:
+      operationId: getPopulationSummary
+      summary: Orion Health Get population summary analytics
+      description: Retrieve aggregate population health summary including demographics, top conditions, utilization patterns, and risk distribution.
+      tags:
+      - Analytics
+      parameters:
+      - name: registryId
+        in: query
+        description: Filter to a specific registry
+        schema:
+          type: string
+          format: uuid
+      - name: periodStart
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: periodEnd
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Population summary data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PopulationSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /analytics/utilization:
+    get:
+      operationId: getUtilizationAnalytics
+      summary: Orion Health Get utilization analytics
+      description: Retrieve healthcare utilization analytics including ED visits, hospital admissions, readmissions, and ambulatory utilization.
+      tags:
+      - Analytics
+      parameters:
+      - name: registryId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: cohortId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: periodStart
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: periodEnd
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: groupBy
+        in: query
+        description: Group results by time period
+        schema:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          - quarter
+          - year
+      responses:
+        '200':
+          description: Utilization analytics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UtilizationAnalytics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CohortAnalytics:
+      type: object
+      properties:
+        cohortId:
+          type: string
+          format: uuid
+        memberCount:
+          type: integer
+        demographics:
+          type: object
+          properties:
+            averageAge:
+              type: number
+            genderDistribution:
+              type: object
+              additionalProperties:
+                type: integer
+            ageDistribution:
+              type: array
+              items:
+                type: object
+                properties:
+                  ageRange:
+                    type: string
+                  count:
+                    type: integer
+        topConditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition:
+                type: string
+              code:
+                type: string
+              prevalence:
+                type: number
+              count:
+                type: integer
+        riskDistribution:
+          type: object
+          properties:
+            low:
+              type: integer
+            moderate:
+              type: integer
+            high:
+              type: integer
+            critical:
+              type: integer
+        utilization:
+          type: object
+          properties:
+            edVisitsPerThousand:
+              type: number
+            admissionsPerThousand:
+              type: number
+            readmissionRate:
+              type: number
+            averageLengthOfStay:
+              type: number
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    PopulationSummary:
+      type: object
+      properties:
+        totalPatients:
+          type: integer
+        demographics:
+          type: object
+          properties:
+            averageAge:
+              type: number
+            genderDistribution:
+              type: object
+              additionalProperties:
+                type: integer
+        riskDistribution:
+          type: object
+          properties:
+            low:
+              type: integer
+            moderate:
+              type: integer
+            high:
+              type: integer
+            critical:
+              type: integer
+        topConditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition:
+                type: string
+              count:
+                type: integer
+              prevalence:
+                type: number
+        careGaps:
+          type: object
+          properties:
+            total:
+              type: integer
+            byPriority:
+              type: object
+              additionalProperties:
+                type: integer
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+    UtilizationAnalytics:
+      type: object
+      properties:
+        edVisits:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+            trend:
+              type: array
+              items:
+                type: object
+                properties:
+                  period:
+                    type: string
+                  count:
+                    type: integer
+        admissions:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+            averageLOS:
+              type: number
+        readmissions:
+          type: object
+          properties:
+            total:
+              type: integer
+            rate:
+              type: number
+            thirtyDayRate:
+              type: number
+        ambulatoryVisits:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,1147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orion Health FHIR API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.orionhealth.com/oauth2/authorize",
+      "accessTokenUrl": "https://auth.orionhealth.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Get server capability statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/metadata"
+          },
+          "docs": "Returns the server's CapabilityStatement resource describing the FHIR operations, resources, and search parameters supported."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Patient",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Patient",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "_id",
+                "value": "",
+                "type": "query",
+                "description": "Logical ID of the patient resource"
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Patient identifier (e.g., MRN, SSN) in format system|value"
+              },
+              {
+                "name": "family",
+                "value": "",
+                "type": "query",
+                "description": "Family (last) name of the patient"
+              },
+              {
+                "name": "given",
+                "value": "",
+                "type": "query",
+                "description": "Given (first) name of the patient"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Any part of the patient name"
+              },
+              {
+                "name": "birthdate",
+                "value": "",
+                "type": "query",
+                "description": "Patient date of birth (YYYY-MM-DD)"
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Patient gender"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Any part of the patient address"
+              },
+              {
+                "name": "telecom",
+                "value": "",
+                "type": "query",
+                "description": "Patient phone number or email"
+              }
+            ]
+          },
+          "docs": "Search for Patient resources using standard FHIR search parameters including name, identifier, birthdate, gender, and address."
+        },
+        {
+          "info": {
+            "name": "Orion Health Create a new patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/Patient",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Patient resource on the server."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read a patient by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Patient/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Patient resource by its logical ID."
+        },
+        {
+          "info": {
+            "name": "Orion Health Update a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.orionhealth.com/fhir/Patient/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing Patient resource by its logical ID."
+        },
+        {
+          "info": {
+            "name": "Orion Health Get patient version history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Patient/:id/_history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieve the version history of a specific Patient resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Encounter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for encounters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Encounter",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Encounter date or date range"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Encounter status"
+              },
+              {
+                "name": "class",
+                "value": "",
+                "type": "query",
+                "description": "Classification of the encounter (e.g., ambulatory, inpatient)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Specific type of encounter"
+              }
+            ]
+          },
+          "docs": "Search for Encounter resources representing patient visits, admissions, and other clinical interactions."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read an encounter by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Encounter/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Encounter resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Observation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for observations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Observation",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Observation category (e.g., vital-signs, laboratory)"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "LOINC or SNOMED code for the observation"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Observation date or date range"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Observation status"
+              }
+            ]
+          },
+          "docs": "Search for Observation resources including vital signs, laboratory results, imaging findings, and other clinical measurements."
+        },
+        {
+          "info": {
+            "name": "Orion Health Create a new observation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orionhealth.com/fhir/Observation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Observation resource."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read an observation by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Observation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Observation resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Condition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Condition",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "ICD-10 or SNOMED code for the condition"
+              },
+              {
+                "name": "clinical-status",
+                "value": "",
+                "type": "query",
+                "description": "Clinical status of the condition"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Condition category"
+              },
+              {
+                "name": "onset-date",
+                "value": "",
+                "type": "query",
+                "description": "Date of onset"
+              }
+            ]
+          },
+          "docs": "Search for Condition resources representing diagnoses, problems, and health concerns."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read a condition by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Condition/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Condition resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "MedicationRequest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for medication requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/MedicationRequest",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Prescription status"
+              },
+              {
+                "name": "intent",
+                "value": "",
+                "type": "query",
+                "description": "Kind of medication request"
+              },
+              {
+                "name": "authoredon",
+                "value": "",
+                "type": "query",
+                "description": "Date the prescription was written"
+              }
+            ]
+          },
+          "docs": "Search for MedicationRequest resources representing prescriptions and medication orders."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read a medication request by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/MedicationRequest/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific MedicationRequest resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AllergyIntolerance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for allergy intolerances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/AllergyIntolerance",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "clinical-status",
+                "value": "",
+                "type": "query",
+                "description": "Clinical status of the allergy"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "allergy or intolerance"
+              },
+              {
+                "name": "criticality",
+                "value": "",
+                "type": "query",
+                "description": "Criticality level"
+              }
+            ]
+          },
+          "docs": "Search for AllergyIntolerance resources representing patient allergies and adverse reactions."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read an allergy intolerance by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/AllergyIntolerance/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific AllergyIntolerance resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Procedure",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Procedure",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "CPT or SNOMED code for the procedure"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Procedure date or date range"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Procedure status"
+              }
+            ]
+          },
+          "docs": "Search for Procedure resources representing clinical procedures performed on patients."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read a procedure by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Procedure/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Procedure resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DiagnosticReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for diagnostic reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/DiagnosticReport",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Report category (e.g., LAB, RAD)"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "LOINC code for the report"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Report date or date range"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Report status"
+              }
+            ]
+          },
+          "docs": "Search for DiagnosticReport resources including lab reports, pathology, radiology, and other diagnostic findings."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read a diagnostic report by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/DiagnosticReport/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific DiagnosticReport resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CarePlan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for care plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/CarePlan",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Care plan status"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Type of care plan"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Care plan period"
+              }
+            ]
+          },
+          "docs": "Search for CarePlan resources describing planned healthcare activities and goals for patients."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read a care plan by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/CarePlan/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific CarePlan resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Immunization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for immunizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Immunization",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Vaccination date or date range"
+              },
+              {
+                "name": "vaccine-code",
+                "value": "",
+                "type": "query",
+                "description": "CVX code for the vaccine"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Immunization status"
+              }
+            ]
+          },
+          "docs": "Search for Immunization resources representing vaccine administrations."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read an immunization by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/Immunization/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Immunization resource by its logical ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DocumentReference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orion Health Search for document references",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/DocumentReference",
+            "params": [
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for paging"
+              },
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the patient"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Document type code"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Document category"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Document date or date range"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Document status"
+              }
+            ]
+          },
+          "docs": "Search for DocumentReference resources representing clinical documents, notes, and reports."
+        },
+        {
+          "info": {
+            "name": "Orion Health Read a document reference by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orionhealth.com/fhir/DocumentReference/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Logical ID of the FHIR resource"
+              },
+              {
+                "name": "_format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific DocumentReference resource by its logical ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

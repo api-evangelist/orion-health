@@ -1,0 +1,1566 @@
+openapi: 3.1.0
+info:
+  title: Orion Health Population Health API
+  description: >-
+    The Orion Health Population Health API provides programmatic access to
+    population health management capabilities including patient registries,
+    risk stratification, care coordination, cohort analytics, and health
+    outcome tracking. It enables healthcare organizations to identify at-risk
+    populations, manage care programs, and track quality measures across
+    patient cohorts.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+  - url: https://api.orionhealth.com/population-health
+    description: Production Server
+  - url: https://sandbox.orionhealth.com/population-health
+    description: Sandbox Server
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Alerts
+    description: Clinical and population health alerts
+  - name: Analytics
+    description: Population health analytics and reporting
+  - name: Care Programs
+    description: Care program management and enrollment
+  - name: Cohorts
+    description: Patient cohort definition and analysis
+  - name: Quality Measures
+    description: Healthcare quality measure tracking
+  - name: Registries
+    description: Patient registry management
+  - name: Risk Stratification
+    description: Patient risk scoring and stratification
+paths:
+  /registries:
+    get:
+      operationId: listRegistries
+      summary: Orion Health List patient registries
+      description: >-
+        Retrieve a list of patient registries configured for the organization,
+        such as diabetes, heart failure, or chronic disease registries.
+      tags:
+        - Registries
+      parameters:
+        - name: type
+          in: query
+          description: Filter by registry type
+          schema:
+            type: string
+            enum:
+              - chronic-disease
+              - preventive-care
+              - behavioral-health
+              - maternal-health
+              - pediatric
+              - custom
+        - name: status
+          in: query
+          description: Filter by registry status
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - archived
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of patient registries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Registry'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /registries/{registryId}:
+    get:
+      operationId: getRegistry
+      summary: Orion Health Get a patient registry
+      description: Retrieve details of a specific patient registry.
+      tags:
+        - Registries
+      parameters:
+        - name: registryId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Registry details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /registries/{registryId}/patients:
+    get:
+      operationId: listRegistryPatients
+      summary: Orion Health List patients in a registry
+      description: >-
+        Retrieve the list of patients enrolled in a specific registry,
+        with optional filtering by risk level and care status.
+      tags:
+        - Registries
+      parameters:
+        - name: registryId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: riskLevel
+          in: query
+          description: Filter by risk stratification level
+          schema:
+            type: string
+            enum:
+              - low
+              - moderate
+              - high
+              - critical
+        - name: careStatus
+          in: query
+          description: Filter by care management status
+          schema:
+            type: string
+            enum:
+              - enrolled
+              - active
+              - completed
+              - discharged
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of patients in the registry
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RegistryPatient'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /risk-stratification/scores:
+    get:
+      operationId: listRiskScores
+      summary: Orion Health List patient risk scores
+      description: >-
+        Retrieve risk stratification scores for patients, calculated using
+        configurable risk models based on clinical data, claims, and
+        social determinants.
+      tags:
+        - Risk Stratification
+      parameters:
+        - name: patientId
+          in: query
+          description: Filter by patient identifier
+          schema:
+            type: string
+        - name: model
+          in: query
+          description: Risk model used for scoring
+          schema:
+            type: string
+            enum:
+              - hcc
+              - charlson
+              - elixhauser
+              - framingham
+              - custom
+        - name: riskLevel
+          in: query
+          description: Filter by risk level
+          schema:
+            type: string
+            enum:
+              - low
+              - moderate
+              - high
+              - critical
+        - name: calculatedAfter
+          in: query
+          description: Only return scores calculated after this date
+          schema:
+            type: string
+            format: date-time
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of risk scores
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RiskScore'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /risk-stratification/scores/{patientId}:
+    get:
+      operationId: getPatientRiskScore
+      summary: Orion Health Get risk score for a patient
+      description: >-
+        Retrieve the current risk stratification score and risk factors
+        for a specific patient.
+      tags:
+        - Risk Stratification
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: model
+          in: query
+          description: Risk model to use
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Patient risk score details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskScore'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /cohorts:
+    get:
+      operationId: listCohorts
+      summary: Orion Health List patient cohorts
+      description: >-
+        Retrieve defined patient cohorts used for population analytics
+        and targeted interventions.
+      tags:
+        - Cohorts
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - draft
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of cohorts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cohort'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCohort
+      summary: Orion Health Create a patient cohort
+      description: >-
+        Define a new patient cohort based on clinical criteria, demographics,
+        diagnoses, or other population characteristics.
+      tags:
+        - Cohorts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CohortCreate'
+      responses:
+        '201':
+          description: Cohort created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cohort'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cohorts/{cohortId}:
+    get:
+      operationId: getCohort
+      summary: Orion Health Get cohort details
+      description: Retrieve details of a specific patient cohort including membership criteria.
+      tags:
+        - Cohorts
+      parameters:
+        - name: cohortId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Cohort details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cohort'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCohort
+      summary: Orion Health Update a cohort
+      description: Update the definition or criteria of an existing patient cohort.
+      tags:
+        - Cohorts
+      parameters:
+        - name: cohortId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CohortCreate'
+      responses:
+        '200':
+          description: Cohort updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cohort'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCohort
+      summary: Orion Health Delete a cohort
+      description: Delete a patient cohort definition.
+      tags:
+        - Cohorts
+      parameters:
+        - name: cohortId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Cohort deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /cohorts/{cohortId}/analytics:
+    get:
+      operationId: getCohortAnalytics
+      summary: Orion Health Get cohort analytics
+      description: >-
+        Retrieve analytics and aggregate statistics for a patient cohort
+        including demographics, utilization, and outcome metrics.
+      tags:
+        - Analytics
+        - Cohorts
+      parameters:
+        - name: cohortId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: metrics
+          in: query
+          description: Comma-separated list of metrics to include
+          schema:
+            type: string
+        - name: periodStart
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: periodEnd
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Cohort analytics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CohortAnalytics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /care-programs:
+    get:
+      operationId: listCarePrograms
+      summary: Orion Health List care programs
+      description: >-
+        Retrieve care programs configured for the organization, such as
+        chronic disease management, wellness, and transition-of-care programs.
+      tags:
+        - Care Programs
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - draft
+        - name: type
+          in: query
+          description: Program type
+          schema:
+            type: string
+            enum:
+              - chronic-disease
+              - wellness
+              - transition-of-care
+              - behavioral-health
+              - maternity
+              - custom
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of care programs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CareProgram'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /care-programs/{programId}:
+    get:
+      operationId: getCareProgram
+      summary: Orion Health Get care program details
+      description: Retrieve details of a specific care program.
+      tags:
+        - Care Programs
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Care program details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CareProgram'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /care-programs/{programId}/enrollments:
+    get:
+      operationId: listProgramEnrollments
+      summary: Orion Health List program enrollments
+      description: Retrieve patient enrollments in a care program.
+      tags:
+        - Care Programs
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - enrolled
+              - active
+              - completed
+              - withdrawn
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of enrollments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Enrollment'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: enrollPatient
+      summary: Orion Health Enroll a patient in a care program
+      description: Enroll a patient in a specific care program.
+      tags:
+        - Care Programs
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentCreate'
+      responses:
+        '201':
+          description: Patient enrolled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Enrollment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Patient already enrolled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /quality-measures:
+    get:
+      operationId: listQualityMeasures
+      summary: Orion Health List quality measures
+      description: >-
+        Retrieve healthcare quality measures being tracked, including
+        HEDIS, CMS, and custom measures.
+      tags:
+        - Quality Measures
+      parameters:
+        - name: type
+          in: query
+          description: Measure framework
+          schema:
+            type: string
+            enum:
+              - hedis
+              - cms
+              - nqf
+              - custom
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of quality measures
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/QualityMeasure'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /quality-measures/{measureId}/results:
+    get:
+      operationId: getQualityMeasureResults
+      summary: Orion Health Get quality measure results
+      description: >-
+        Retrieve performance results for a specific quality measure,
+        including numerator, denominator, and compliance rates.
+      tags:
+        - Quality Measures
+      parameters:
+        - name: measureId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: periodStart
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: periodEnd
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Quality measure results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityMeasureResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /alerts:
+    get:
+      operationId: listAlerts
+      summary: Orion Health List population health alerts
+      description: >-
+        Retrieve clinical and population health alerts such as care gap
+        notifications, risk changes, and quality measure compliance alerts.
+      tags:
+        - Alerts
+      parameters:
+        - name: patientId
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum:
+              - care-gap
+              - risk-change
+              - quality-measure
+              - utilization
+              - custom
+        - name: priority
+          in: query
+          schema:
+            type: string
+            enum:
+              - low
+              - medium
+              - high
+              - urgent
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - new
+              - acknowledged
+              - resolved
+              - dismissed
+        - $ref: '#/components/parameters/PageOffset'
+        - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of alerts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /alerts/{alertId}:
+    put:
+      operationId: updateAlert
+      summary: Orion Health Update an alert
+      description: Update the status of a population health alert.
+      tags:
+        - Alerts
+      parameters:
+        - name: alertId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - acknowledged
+                    - resolved
+                    - dismissed
+                note:
+                  type: string
+                  description: Optional note about the status change
+      responses:
+        '200':
+          description: Alert updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /analytics/population-summary:
+    get:
+      operationId: getPopulationSummary
+      summary: Orion Health Get population summary analytics
+      description: >-
+        Retrieve aggregate population health summary including demographics,
+        top conditions, utilization patterns, and risk distribution.
+      tags:
+        - Analytics
+      parameters:
+        - name: registryId
+          in: query
+          description: Filter to a specific registry
+          schema:
+            type: string
+            format: uuid
+        - name: periodStart
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: periodEnd
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Population summary data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PopulationSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /analytics/utilization:
+    get:
+      operationId: getUtilizationAnalytics
+      summary: Orion Health Get utilization analytics
+      description: >-
+        Retrieve healthcare utilization analytics including ED visits,
+        hospital admissions, readmissions, and ambulatory utilization.
+      tags:
+        - Analytics
+      parameters:
+        - name: registryId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: cohortId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: periodStart
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: periodEnd
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: groupBy
+          in: query
+          description: Group results by time period
+          schema:
+            type: string
+            enum:
+              - day
+              - week
+              - month
+              - quarter
+              - year
+      responses:
+        '200':
+          description: Utilization analytics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UtilizationAnalytics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            population-health:read: Read population health data
+            population-health:write: Write population health data
+            population-health:admin: Administrative access
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  schemas:
+    Registry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - chronic-disease
+            - preventive-care
+            - behavioral-health
+            - maternal-health
+            - pediatric
+            - custom
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+            - archived
+        patientCount:
+          type: integer
+        criteria:
+          type: object
+          properties:
+            conditions:
+              type: array
+              items:
+                type: string
+            ageRange:
+              type: object
+              properties:
+                min:
+                  type: integer
+                max:
+                  type: integer
+            gender:
+              type: array
+              items:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    RegistryPatient:
+      type: object
+      properties:
+        patientId:
+          type: string
+        patientName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+        riskLevel:
+          type: string
+          enum:
+            - low
+            - moderate
+            - high
+            - critical
+        riskScore:
+          type: number
+        careStatus:
+          type: string
+          enum:
+            - enrolled
+            - active
+            - completed
+            - discharged
+        primaryConditions:
+          type: array
+          items:
+            type: string
+        lastEncounterDate:
+          type: string
+          format: date
+        assignedCareManager:
+          type: string
+    RiskScore:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        model:
+          type: string
+        score:
+          type: number
+          description: Numeric risk score
+        riskLevel:
+          type: string
+          enum:
+            - low
+            - moderate
+            - high
+            - critical
+        factors:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              category:
+                type: string
+              weight:
+                type: number
+              description:
+                type: string
+        calculatedAt:
+          type: string
+          format: date-time
+        validUntil:
+          type: string
+          format: date-time
+    Cohort:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+            - draft
+        criteria:
+          $ref: '#/components/schemas/CohortCriteria'
+        memberCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CohortCreate:
+      type: object
+      required:
+        - name
+        - criteria
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        criteria:
+          $ref: '#/components/schemas/CohortCriteria'
+    CohortCriteria:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              system:
+                type: string
+                enum:
+                  - icd-10
+                  - snomed
+              status:
+                type: string
+        demographics:
+          type: object
+          properties:
+            ageRange:
+              type: object
+              properties:
+                min:
+                  type: integer
+                max:
+                  type: integer
+            gender:
+              type: array
+              items:
+                type: string
+            zipCodes:
+              type: array
+              items:
+                type: string
+        riskLevel:
+          type: array
+          items:
+            type: string
+            enum:
+              - low
+              - moderate
+              - high
+              - critical
+        medications:
+          type: array
+          items:
+            type: string
+        utilizationCriteria:
+          type: object
+          properties:
+            edVisits:
+              type: object
+              properties:
+                min:
+                  type: integer
+                period:
+                  type: string
+            admissions:
+              type: object
+              properties:
+                min:
+                  type: integer
+                period:
+                  type: string
+    CohortAnalytics:
+      type: object
+      properties:
+        cohortId:
+          type: string
+          format: uuid
+        memberCount:
+          type: integer
+        demographics:
+          type: object
+          properties:
+            averageAge:
+              type: number
+            genderDistribution:
+              type: object
+              additionalProperties:
+                type: integer
+            ageDistribution:
+              type: array
+              items:
+                type: object
+                properties:
+                  ageRange:
+                    type: string
+                  count:
+                    type: integer
+        topConditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition:
+                type: string
+              code:
+                type: string
+              prevalence:
+                type: number
+              count:
+                type: integer
+        riskDistribution:
+          type: object
+          properties:
+            low:
+              type: integer
+            moderate:
+              type: integer
+            high:
+              type: integer
+            critical:
+              type: integer
+        utilization:
+          type: object
+          properties:
+            edVisitsPerThousand:
+              type: number
+            admissionsPerThousand:
+              type: number
+            readmissionRate:
+              type: number
+            averageLengthOfStay:
+              type: number
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+    CareProgram:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - chronic-disease
+            - wellness
+            - transition-of-care
+            - behavioral-health
+            - maternity
+            - custom
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+            - draft
+        enrollmentCount:
+          type: integer
+        eligibilityCriteria:
+          type: object
+          properties:
+            conditions:
+              type: array
+              items:
+                type: string
+            riskLevels:
+              type: array
+              items:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Enrollment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        programId:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        status:
+          type: string
+          enum:
+            - enrolled
+            - active
+            - completed
+            - withdrawn
+        enrolledAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        assignedCareManager:
+          type: string
+        goals:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              status:
+                type: string
+                enum:
+                  - pending
+                  - in-progress
+                  - achieved
+                  - not-achieved
+              targetDate:
+                type: string
+                format: date
+    EnrollmentCreate:
+      type: object
+      required:
+        - patientId
+      properties:
+        patientId:
+          type: string
+        assignedCareManager:
+          type: string
+        goals:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              targetDate:
+                type: string
+                format: date
+    QualityMeasure:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - hedis
+            - cms
+            - nqf
+            - custom
+        measureId:
+          type: string
+          description: External measure identifier (e.g., HEDIS measure ID)
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+    QualityMeasureResult:
+      type: object
+      properties:
+        measureId:
+          type: string
+          format: uuid
+        measureName:
+          type: string
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+        denominator:
+          type: integer
+          description: Total eligible patients
+        numerator:
+          type: integer
+          description: Patients meeting the measure
+        exclusions:
+          type: integer
+        complianceRate:
+          type: number
+          description: Percentage of compliance (0-100)
+        benchmark:
+          type: number
+          description: Target benchmark percentage
+        trend:
+          type: array
+          items:
+            type: object
+            properties:
+              period:
+                type: string
+              complianceRate:
+                type: number
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - care-gap
+            - risk-change
+            - quality-measure
+            - utilization
+            - custom
+        priority:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+            - urgent
+        status:
+          type: string
+          enum:
+            - new
+            - acknowledged
+            - resolved
+            - dismissed
+        patientId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PopulationSummary:
+      type: object
+      properties:
+        totalPatients:
+          type: integer
+        demographics:
+          type: object
+          properties:
+            averageAge:
+              type: number
+            genderDistribution:
+              type: object
+              additionalProperties:
+                type: integer
+        riskDistribution:
+          type: object
+          properties:
+            low:
+              type: integer
+            moderate:
+              type: integer
+            high:
+              type: integer
+            critical:
+              type: integer
+        topConditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition:
+                type: string
+              count:
+                type: integer
+              prevalence:
+                type: number
+        careGaps:
+          type: object
+          properties:
+            total:
+              type: integer
+            byPriority:
+              type: object
+              additionalProperties:
+                type: integer
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+    UtilizationAnalytics:
+      type: object
+      properties:
+        edVisits:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+            trend:
+              type: array
+              items:
+                type: object
+                properties:
+                  period:
+                    type: string
+                  count:
+                    type: integer
+        admissions:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+            averageLOS:
+              type: number
+        readmissions:
+          type: object
+          properties:
+            total:
+              type: integer
+            rate:
+              type: number
+            thirtyDayRate:
+              type: number
+        ambulatoryVisits:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

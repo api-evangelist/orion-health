@@ -1,0 +1,580 @@
+{
+  "info": {
+    "_postman_id": "f2cd87bc-d87e-417e-ae89-86b9d131c093",
+    "name": "Orion Health FHIR Alerts Procedure API",
+    "description": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:29:32.000Z",
+    "updatedAt": "2026-07-28T02:29:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f2cd87bc-d87e-417e-ae89-86b9d131c093"
+  },
+  "item": [
+    {
+      "name": "Procedure",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Orion Health Read a procedure by ID",
+              "id": "b37954bf-9820-4fe3-a7e3-c3fb3e1afa69",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Procedure/:id?_format=application/fhir+xml",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Procedure",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "c1f05df2-4e77-4318-a201-d03daac96fe6",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Logical ID of the FHIR resource"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific Procedure resource by its logical ID."
+              },
+              "response": [
+                {
+                  "id": "a8bffd8d-c6f0-4829-b154-c4426a658105",
+                  "name": "Procedure resource",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Procedure/:id?_format=application/fhir+xml",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Procedure",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+xml"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"unknown\",\n  \"code\": {\n    \"coding\": [\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      },\n      {\n        \"system\": \"<uri>\",\n        \"code\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    ],\n    \"text\": \"<string>\"\n  },\n  \"subject\": {\n    \"reference\": \"<string>\",\n    \"display\": \"<string>\"\n  },\n  \"performedDateTime\": \"<dateTime>\",\n  \"performedPeriod\": {\n    \"start\": \"<dateTime>\",\n    \"end\": \"<dateTime>\"\n  },\n  \"performer\": [\n    {\n      \"actor\": {\n        \"reference\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    },\n    {\n      \"actor\": {\n        \"reference\": \"<string>\",\n        \"display\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:33.000Z",
+                  "updatedAt": "2026-07-28T02:29:33.000Z",
+                  "uid": "35240-a8bffd8d-c6f0-4829-b154-c4426a658105"
+                },
+                {
+                  "id": "13057680-d5a6-4eab-954c-38b3edf917ad",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Procedure/:id?_format=application/fhir+xml",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Procedure",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+xml"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:33.000Z",
+                  "updatedAt": "2026-07-28T02:29:33.000Z",
+                  "uid": "35240-13057680-d5a6-4eab-954c-38b3edf917ad"
+                },
+                {
+                  "id": "d7830986-1c6d-4982-bdcf-94785f503c21",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/fhir+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Procedure/:id?_format=application/fhir+xml",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Procedure",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format",
+                          "key": "_format",
+                          "value": "application/fhir+xml"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/fhir+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:29:33.000Z",
+                  "updatedAt": "2026-07-28T02:29:33.000Z",
+                  "uid": "35240-d7830986-1c6d-4982-bdcf-94785f503c21"
+                }
+              ],
+              "createdAt": "2026-07-28T02:29:33.000Z",
+              "updatedAt": "2026-07-28T02:29:33.000Z",
+              "uid": "35240-b37954bf-9820-4fe3-a7e3-c3fb3e1afa69"
+            }
+          ],
+          "id": "78b6d563-74d9-47b7-a5f2-c61eb6ff74ea",
+          "createdAt": "2026-07-28T02:29:33.000Z",
+          "updatedAt": "2026-07-28T02:29:33.000Z",
+          "uid": "35240-78b6d563-74d9-47b7-a5f2-c61eb6ff74ea"
+        },
+        {
+          "name": "Orion Health Search for procedures",
+          "id": "ac690e99-79c7-43d1-aa59-a6c37f35c5ef",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Procedure?_format=application/fhir+xml&_count=20&_offset=0&patient=<string>&code=<string>&date=<string>&status=not-done",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Procedure"
+              ],
+              "query": [
+                {
+                  "description": "Response format",
+                  "key": "_format",
+                  "value": "application/fhir+xml"
+                },
+                {
+                  "description": "Maximum number of results per page",
+                  "key": "_count",
+                  "value": "20"
+                },
+                {
+                  "description": "Starting offset for paging",
+                  "key": "_offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Reference to the patient",
+                  "key": "patient",
+                  "value": "<string>"
+                },
+                {
+                  "description": "CPT or SNOMED code for the procedure",
+                  "key": "code",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Procedure date or date range",
+                  "key": "date",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Procedure status",
+                  "key": "status",
+                  "value": "not-done"
+                }
+              ]
+            },
+            "description": "Search for Procedure resources representing clinical procedures performed on patients."
+          },
+          "response": [
+            {
+              "id": "bce79f77-d31a-4300-96c4-0c1f37f1b9c5",
+              "name": "Bundle of matching Procedure resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Procedure?_format=application/fhir+xml&_count=20&_offset=0&patient=<string>&code=<string>&date=<string>&status=not-done",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Procedure"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+xml"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "CPT or SNOMED code for the procedure",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Procedure date or date range",
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Procedure status",
+                      "key": "status",
+                      "value": "not-done"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"type\": \"batch-response\",\n  \"total\": \"<integer>\",\n  \"link\": [\n    {\n      \"relation\": \"last\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"relation\": \"first\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"<uri>\",\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"id\": \"<string>\",\n        \"meta\": {\n          \"versionId\": \"<string>\",\n          \"lastUpdated\": \"<dateTime>\",\n          \"profile\": [\n            \"<uri>\",\n            \"<uri>\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"include\"\n      }\n    },\n    {\n      \"fullUrl\": \"<uri>\",\n      \"resource\": {\n        \"resourceType\": \"<string>\",\n        \"id\": \"<string>\",\n        \"meta\": {\n          \"versionId\": \"<string>\",\n          \"lastUpdated\": \"<dateTime>\",\n          \"profile\": [\n            \"<uri>\",\n            \"<uri>\"\n          ]\n        }\n      },\n      \"search\": {\n        \"mode\": \"include\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:33.000Z",
+              "updatedAt": "2026-07-28T02:29:33.000Z",
+              "uid": "35240-bce79f77-d31a-4300-96c4-0c1f37f1b9c5"
+            },
+            {
+              "id": "c35dbb06-b652-4e6c-8357-fe2e7b320fef",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Procedure?_format=application/fhir+xml&_count=20&_offset=0&patient=<string>&code=<string>&date=<string>&status=not-done",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Procedure"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+xml"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "CPT or SNOMED code for the procedure",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Procedure date or date range",
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Procedure status",
+                      "key": "status",
+                      "value": "not-done"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:33.000Z",
+              "updatedAt": "2026-07-28T02:29:33.000Z",
+              "uid": "35240-c35dbb06-b652-4e6c-8357-fe2e7b320fef"
+            },
+            {
+              "id": "c9f4077f-456d-4bee-9f93-fd1130d7db0c",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Procedure?_format=application/fhir+xml&_count=20&_offset=0&patient=<string>&code=<string>&date=<string>&status=not-done",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Procedure"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format",
+                      "key": "_format",
+                      "value": "application/fhir+xml"
+                    },
+                    {
+                      "description": "Maximum number of results per page",
+                      "key": "_count",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Starting offset for paging",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Reference to the patient",
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "CPT or SNOMED code for the procedure",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Procedure date or date range",
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Procedure status",
+                      "key": "status",
+                      "value": "not-done"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"resourceType\": \"<string>\",\n  \"issue\": [\n    {\n      \"severity\": \"information\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    },\n    {\n      \"severity\": \"fatal\",\n      \"code\": \"<string>\",\n      \"diagnostics\": \"<string>\",\n      \"details\": {\n        \"coding\": [\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          },\n          {\n            \"system\": \"<uri>\",\n            \"code\": \"<string>\",\n            \"display\": \"<string>\"\n          }\n        ],\n        \"text\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:29:33.000Z",
+              "updatedAt": "2026-07-28T02:29:33.000Z",
+              "uid": "35240-c9f4077f-456d-4bee-9f93-fd1130d7db0c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:29:33.000Z",
+          "updatedAt": "2026-07-28T02:29:33.000Z",
+          "uid": "35240-ac690e99-79c7-43d1-aa59-a6c37f35c5ef"
+        }
+      ],
+      "id": "8c1fc8e9-dc64-4a82-97f7-8afa37b20cde",
+      "createdAt": "2026-07-28T02:29:33.000Z",
+      "updatedAt": "2026-07-28T02:29:33.000Z",
+      "uid": "35240-8c1fc8e9-dc64-4a82-97f7-8afa37b20cde"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.orionhealth.com/fhir"
+    }
+  ]
+}

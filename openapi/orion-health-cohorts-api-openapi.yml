@@ -1,0 +1,460 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Cohorts API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Cohorts
+  description: Patient cohort definition and analysis
+paths:
+  /cohorts:
+    get:
+      operationId: listCohorts
+      summary: Orion Health List patient cohorts
+      description: Retrieve defined patient cohorts used for population analytics and targeted interventions.
+      tags:
+      - Cohorts
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - draft
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of cohorts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cohort'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCohort
+      summary: Orion Health Create a patient cohort
+      description: Define a new patient cohort based on clinical criteria, demographics, diagnoses, or other population characteristics.
+      tags:
+      - Cohorts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CohortCreate'
+      responses:
+        '201':
+          description: Cohort created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cohort'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cohorts/{cohortId}:
+    get:
+      operationId: getCohort
+      summary: Orion Health Get cohort details
+      description: Retrieve details of a specific patient cohort including membership criteria.
+      tags:
+      - Cohorts
+      parameters:
+      - name: cohortId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Cohort details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cohort'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCohort
+      summary: Orion Health Update a cohort
+      description: Update the definition or criteria of an existing patient cohort.
+      tags:
+      - Cohorts
+      parameters:
+      - name: cohortId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CohortCreate'
+      responses:
+        '200':
+          description: Cohort updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cohort'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCohort
+      summary: Orion Health Delete a cohort
+      description: Delete a patient cohort definition.
+      tags:
+      - Cohorts
+      parameters:
+      - name: cohortId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: Cohort deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /cohorts/{cohortId}/analytics:
+    get:
+      operationId: getCohortAnalytics
+      summary: Orion Health Get cohort analytics
+      description: Retrieve analytics and aggregate statistics for a patient cohort including demographics, utilization, and outcome metrics.
+      tags:
+      - Cohorts
+      parameters:
+      - name: cohortId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: metrics
+        in: query
+        description: Comma-separated list of metrics to include
+        schema:
+          type: string
+      - name: periodStart
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: periodEnd
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Cohort analytics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CohortAnalytics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CohortCriteria:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              system:
+                type: string
+                enum:
+                - icd-10
+                - snomed
+              status:
+                type: string
+        demographics:
+          type: object
+          properties:
+            ageRange:
+              type: object
+              properties:
+                min:
+                  type: integer
+                max:
+                  type: integer
+            gender:
+              type: array
+              items:
+                type: string
+            zipCodes:
+              type: array
+              items:
+                type: string
+        riskLevel:
+          type: array
+          items:
+            type: string
+            enum:
+            - low
+            - moderate
+            - high
+            - critical
+        medications:
+          type: array
+          items:
+            type: string
+        utilizationCriteria:
+          type: object
+          properties:
+            edVisits:
+              type: object
+              properties:
+                min:
+                  type: integer
+                period:
+                  type: string
+            admissions:
+              type: object
+              properties:
+                min:
+                  type: integer
+                period:
+                  type: string
+    CohortAnalytics:
+      type: object
+      properties:
+        cohortId:
+          type: string
+          format: uuid
+        memberCount:
+          type: integer
+        demographics:
+          type: object
+          properties:
+            averageAge:
+              type: number
+            genderDistribution:
+              type: object
+              additionalProperties:
+                type: integer
+            ageDistribution:
+              type: array
+              items:
+                type: object
+                properties:
+                  ageRange:
+                    type: string
+                  count:
+                    type: integer
+        topConditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition:
+                type: string
+              code:
+                type: string
+              prevalence:
+                type: number
+              count:
+                type: integer
+        riskDistribution:
+          type: object
+          properties:
+            low:
+              type: integer
+            moderate:
+              type: integer
+            high:
+              type: integer
+            critical:
+              type: integer
+        utilization:
+          type: object
+          properties:
+            edVisitsPerThousand:
+              type: number
+            admissionsPerThousand:
+              type: number
+            readmissionRate:
+              type: number
+            averageLengthOfStay:
+              type: number
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    Cohort:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - draft
+        criteria:
+          $ref: '#/components/schemas/CohortCriteria'
+        memberCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CohortCreate:
+      type: object
+      required:
+      - name
+      - criteria
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        criteria:
+          $ref: '#/components/schemas/CohortCriteria'
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

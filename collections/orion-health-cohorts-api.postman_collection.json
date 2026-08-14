@@ -1,0 +1,1372 @@
+{
+  "item": [
+    {
+      "id": "0fcb8182-ab5d-4721-b45d-8b6a3b36d499",
+      "name": "Cohorts",
+      "description": {
+        "content": "Patient cohort definition and analysis",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72cd0e0f-2784-4715-a224-7a9c43aef32e",
+          "name": "Orion Health List patient cohorts",
+          "request": {
+            "name": "Orion Health List patient cohorts",
+            "description": {
+              "content": "Retrieve defined patient cohorts used for population analytics and targeted interventions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cohorts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f0f83db-abf4-4f0e-9433-8b192ba70597",
+              "name": "List of cohorts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"ecdf809a-9e80-055b-848a-8cc98ee5bede\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"active\",\n      \"criteria\": {\n        \"conditions\": [\n          {\n            \"code\": \"string\",\n            \"system\": \"icd-10\",\n            \"status\": \"string\"\n          },\n          {\n            \"code\": \"string\",\n            \"system\": \"icd-10\",\n            \"status\": \"string\"\n          }\n        ],\n        \"demographics\": {\n          \"ageRange\": {\n            \"min\": 2256,\n            \"max\": 8600\n          },\n          \"gender\": [\n            \"string\",\n            \"string\"\n          ],\n          \"zipCodes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"riskLevel\": [\n          \"moderate\",\n          \"low\"\n        ],\n        \"medications\": [\n          \"string\",\n          \"string\"\n        ],\n        \"utilizationCriteria\": {\n          \"edVisits\": {\n            \"min\": 7279,\n            \"period\": \"string\"\n          },\n          \"admissions\": {\n            \"min\": 166,\n            \"period\": \"string\"\n          }\n        }\n      },\n      \"memberCount\": 7575,\n      \"createdAt\": \"2008-01-28T12:30:59.137Z\",\n      \"updatedAt\": \"1954-11-13T16:21:12.128Z\"\n    },\n    {\n      \"id\": \"01edc7eb-f346-ba75-c8c1-7ecd9f088ed4\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"active\",\n      \"criteria\": {\n        \"conditions\": [\n          {\n            \"code\": \"string\",\n            \"system\": \"snomed\",\n            \"status\": \"string\"\n          },\n          {\n            \"code\": \"string\",\n            \"system\": \"snomed\",\n            \"status\": \"string\"\n          }\n        ],\n        \"demographics\": {\n          \"ageRange\": {\n            \"min\": 1161,\n            \"max\": 8423\n          },\n          \"gender\": [\n            \"string\",\n            \"string\"\n          ],\n          \"zipCodes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"riskLevel\": [\n          \"critical\",\n          \"critical\"\n        ],\n        \"medications\": [\n          \"string\",\n          \"string\"\n        ],\n        \"utilizationCriteria\": {\n          \"edVisits\": {\n            \"min\": 2530,\n            \"period\": \"string\"\n          },\n          \"admissions\": {\n            \"min\": 5350,\n            \"period\": \"string\"\n          }\n        }\n      },\n      \"memberCount\": 4220,\n      \"createdAt\": \"2002-11-14T01:43:19.746Z\",\n      \"updatedAt\": \"1990-06-03T09:35:57.882Z\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 2926,\n    \"limit\": 4994,\n    \"total\": 9753,\n    \"hasMore\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98958e06-2e47-4415-ae9b-2bcbf3633a07",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ee39aa6-b2e5-4b0e-9009-fc351dd3250e",
+          "name": "Orion Health Create a patient cohort",
+          "request": {
+            "name": "Orion Health Create a patient cohort",
+            "description": {
+              "content": "Define a new patient cohort based on clinical criteria, demographics, diagnoses, or other population characteristics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cohorts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"<string>\",\n        \"system\": \"<string>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"code\": \"<string>\",\n        \"system\": \"<string>\",\n        \"status\": \"<string>\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": \"<integer>\",\n        \"max\": \"<integer>\"\n      },\n      \"gender\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"zipCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"riskLevel\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"medications\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": \"<integer>\",\n        \"period\": \"<string>\"\n      },\n      \"admissions\": {\n        \"min\": \"<integer>\",\n        \"period\": \"<string>\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61f8e182-bfe8-49be-8675-4fcf0fed9cd4",
+              "name": "Cohort created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 9886,\n        \"max\": 4570\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"critical\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 8066,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 5011,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9cbc5cb9-1b26-fd89-c013-25fcd7cfb7de\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"active\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"snomed\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 368,\n        \"max\": 3701\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"low\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 9985,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 8594,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"memberCount\": 5239,\n  \"createdAt\": \"1996-04-08T14:17:35.409Z\",\n  \"updatedAt\": \"1996-08-19T22:49:02.736Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b33e232-0f6b-415d-a45e-dd802bf94cdd",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 9886,\n        \"max\": 4570\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"critical\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 8066,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 5011,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48f7eb9a-80cd-49dd-9428-530bd7f398e2",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 9886,\n        \"max\": 4570\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"critical\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 8066,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 5011,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "322bd393-398b-4468-8120-4cd655fdf635",
+          "name": "Orion Health Get cohort details",
+          "request": {
+            "name": "Orion Health Get cohort details",
+            "description": {
+              "content": "Retrieve details of a specific patient cohort including membership criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cohorts",
+                ":cohortId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cohortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2f342ad-70ee-4fb7-9035-77f73da907ec",
+              "name": "Cohort details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9cbc5cb9-1b26-fd89-c013-25fcd7cfb7de\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"active\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"snomed\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 368,\n        \"max\": 3701\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"low\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 9985,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 8594,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"memberCount\": 5239,\n  \"createdAt\": \"1996-04-08T14:17:35.409Z\",\n  \"updatedAt\": \"1996-08-19T22:49:02.736Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1f651e1-046a-4e51-ad77-7d4ebe91c8bf",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50cee82f-77ed-4bf0-9eca-87975b1b32fd",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29d5a525-f6e6-475e-832e-f15ca01af9f9",
+          "name": "Orion Health Update a cohort",
+          "request": {
+            "name": "Orion Health Update a cohort",
+            "description": {
+              "content": "Update the definition or criteria of an existing patient cohort.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cohorts",
+                ":cohortId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cohortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"<string>\",\n        \"system\": \"<string>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"code\": \"<string>\",\n        \"system\": \"<string>\",\n        \"status\": \"<string>\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": \"<integer>\",\n        \"max\": \"<integer>\"\n      },\n      \"gender\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"zipCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"riskLevel\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"medications\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": \"<integer>\",\n        \"period\": \"<string>\"\n      },\n      \"admissions\": {\n        \"min\": \"<integer>\",\n        \"period\": \"<string>\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86a86a22-a09b-4485-af25-0d6c58e98154",
+              "name": "Cohort updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 9886,\n        \"max\": 4570\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"critical\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 8066,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 5011,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9cbc5cb9-1b26-fd89-c013-25fcd7cfb7de\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"active\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"snomed\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 368,\n        \"max\": 3701\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"low\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 9985,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 8594,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"memberCount\": 5239,\n  \"createdAt\": \"1996-04-08T14:17:35.409Z\",\n  \"updatedAt\": \"1996-08-19T22:49:02.736Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4831d37-5e5c-45dc-b257-9791389a62bb",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 9886,\n        \"max\": 4570\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"critical\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 8066,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 5011,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e71fb7e0-f09e-4064-89dc-0993a55f14d9",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 9886,\n        \"max\": 4570\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"critical\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 8066,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 5011,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea90c3e5-1630-4e41-bdf9-e2ea4ecc0fbd",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": {\n    \"conditions\": [\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"system\": \"icd-10\",\n        \"status\": \"string\"\n      }\n    ],\n    \"demographics\": {\n      \"ageRange\": {\n        \"min\": 9886,\n        \"max\": 4570\n      },\n      \"gender\": [\n        \"string\",\n        \"string\"\n      ],\n      \"zipCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"riskLevel\": [\n      \"critical\",\n      \"low\"\n    ],\n    \"medications\": [\n      \"string\",\n      \"string\"\n    ],\n    \"utilizationCriteria\": {\n      \"edVisits\": {\n        \"min\": 8066,\n        \"period\": \"string\"\n      },\n      \"admissions\": {\n        \"min\": 5011,\n        \"period\": \"string\"\n      }\n    }\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2f80e10-ddac-4829-93a1-6647369ae2ce",
+          "name": "Orion Health Delete a cohort",
+          "request": {
+            "name": "Orion Health Delete a cohort",
+            "description": {
+              "content": "Delete a patient cohort definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cohorts",
+                ":cohortId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cohortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eb190d9-92f7-4fc3-931e-e36721186204",
+              "name": "Cohort deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57d39d3b-3e89-4e62-87b0-24938e577e88",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c285e447-aca1-46b6-aeb0-2e3c265da41e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6576c264-6a94-44f9-b291-82ea1fb861e9",
+          "name": "Orion Health Get cohort analytics",
+          "request": {
+            "name": "Orion Health Get cohort analytics",
+            "description": {
+              "content": "Retrieve analytics and aggregate statistics for a patient cohort including demographics, utilization, and outcome metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cohorts",
+                ":cohortId",
+                "analytics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>",
+                  "description": "Comma-separated list of metrics to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "periodStart",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "periodEnd",
+                  "value": "<date>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cohortId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b44430b6-e8e9-4611-abd0-9bb32e6d206f",
+              "name": "Cohort analytics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId",
+                    "analytics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "periodStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "periodEnd",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cohortId\": \"c739101b-066b-006c-285a-2a211a20a18f\",\n  \"memberCount\": 542,\n  \"demographics\": {\n    \"averageAge\": 6720.97526077925,\n    \"genderDistribution\": {\n      \"key_0\": 9432\n    },\n    \"ageDistribution\": [\n      {\n        \"ageRange\": \"string\",\n        \"count\": 7853\n      },\n      {\n        \"ageRange\": \"string\",\n        \"count\": 8484\n      }\n    ]\n  },\n  \"topConditions\": [\n    {\n      \"condition\": \"string\",\n      \"code\": \"string\",\n      \"prevalence\": 6945.273228658738,\n      \"count\": 1540\n    },\n    {\n      \"condition\": \"string\",\n      \"code\": \"string\",\n      \"prevalence\": 4257.248048994496,\n      \"count\": 3295\n    }\n  ],\n  \"riskDistribution\": {\n    \"low\": 4203,\n    \"moderate\": 9389,\n    \"high\": 6831,\n    \"critical\": 9076\n  },\n  \"utilization\": {\n    \"edVisitsPerThousand\": 4207.850405438572,\n    \"admissionsPerThousand\": 67.58305115701968,\n    \"readmissionRate\": 6600.174623741996,\n    \"averageLengthOfStay\": 4678.156780304978\n  },\n  \"period\": {\n    \"start\": \"2002-04-14\",\n    \"end\": \"1958-09-18\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f967e11-7935-4b90-917c-8931b4d021b4",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId",
+                    "analytics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "periodStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "periodEnd",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ace9ceb0-6908-449a-8c6d-084ef98723aa",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cohorts",
+                    ":cohortId",
+                    "analytics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "periodStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "periodEnd",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cohortId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orionhealth.com/fhir",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient/*.read patient/*.write patient/Patient.read patient/Observation.read patient/Condition.read patient/MedicationRequest.read launch openid fhirUser"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.orionhealth.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.orionhealth.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "22cb28de-042d-4848-87d1-7747f90c8173",
+    "name": "Orion Health FHIR Alerts Cohorts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.\n\nContact Support:\n Name: Orion Health API Support\n Email: apisupport@orionhealth.com",
+      "type": "text/plain"
+    }
+  }
+}

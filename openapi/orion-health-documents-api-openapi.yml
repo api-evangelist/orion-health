@@ -1,0 +1,450 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Documents API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Documents
+  description: Clinical document exchange and retrieval
+paths:
+  /patients/{patientId}/record-locator:
+    get:
+      operationId: locatePatientRecords
+      summary: Orion Health Locate patient records across organizations
+      description: Query the HIE network to locate clinical records for a patient across participating organizations. Returns available document references without retrieving the full documents.
+      tags:
+      - Documents
+      parameters:
+      - name: patientId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: organization
+        in: query
+        description: Filter by source organization
+        schema:
+          type: string
+      - name: documentType
+        in: query
+        description: Filter by document type
+        schema:
+          type: string
+          enum:
+          - ccd
+          - discharge-summary
+          - progress-note
+          - lab-report
+          - radiology-report
+          - referral
+          - consult-note
+      - name: dateFrom
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: dateTo
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Located record references
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RecordLocatorResult'
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /documents:
+    get:
+      operationId: searchDocuments
+      summary: Orion Health Search for clinical documents
+      description: Search for clinical documents in the HIE document registry by patient, organization, document type, and date range.
+      tags:
+      - Documents
+      parameters:
+      - name: patientId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: documentType
+        in: query
+        schema:
+          type: string
+          enum:
+          - ccd
+          - discharge-summary
+          - progress-note
+          - lab-report
+          - radiology-report
+          - referral
+          - consult-note
+          - operative-note
+          - pathology-report
+      - name: sourceOrganization
+        in: query
+        schema:
+          type: string
+      - name: dateFrom
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: dateTo
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: format
+        in: query
+        description: Document format
+        schema:
+          type: string
+          enum:
+          - cda
+          - fhir
+          - pdf
+      - $ref: '#/components/parameters/PageOffset'
+      - $ref: '#/components/parameters/PageLimit'
+      responses:
+        '200':
+          description: List of matching documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DocumentMetadata'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: submitDocument
+      summary: Orion Health Submit a clinical document
+      description: Submit a clinical document to the HIE document repository for sharing with other participating organizations.
+      tags:
+      - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentSubmission'
+      responses:
+        '201':
+          description: Document submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentMetadata'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          description: Document validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /documents/{documentId}:
+    get:
+      operationId: getDocument
+      summary: Orion Health Retrieve a clinical document
+      description: Retrieve the full content of a clinical document from the HIE document repository by its document ID.
+      tags:
+      - Documents
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: format
+        in: query
+        description: Requested document format
+        schema:
+          type: string
+          enum:
+          - cda
+          - fhir
+          - pdf
+          - original
+      responses:
+        '200':
+          description: Clinical document content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentContent'
+            application/xml:
+              schema:
+                type: string
+                description: CDA XML document
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          description: Consent not on file or access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    DocumentSubmission:
+      type: object
+      required:
+      - patientId
+      - documentType
+      - content
+      properties:
+        patientId:
+          type: string
+        documentType:
+          type: string
+          enum:
+          - ccd
+          - discharge-summary
+          - progress-note
+          - lab-report
+          - radiology-report
+          - referral
+          - consult-note
+          - operative-note
+          - pathology-report
+        title:
+          type: string
+        format:
+          type: string
+          enum:
+          - cda
+          - fhir-bundle
+          - pdf
+        content:
+          type: string
+          description: Base64-encoded document content
+        metadata:
+          type: object
+          properties:
+            authorName:
+              type: string
+            authorSpecialty:
+              type: string
+            encounterDate:
+              type: string
+              format: date-time
+            confidentialityCode:
+              type: string
+              enum:
+              - normal
+              - restricted
+              - very-restricted
+    DocumentMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        authorSpecialty:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        submittedDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
+        hash:
+          type: string
+          description: SHA-256 hash of the document content
+        status:
+          type: string
+          enum:
+          - available
+          - deprecated
+          - deleted
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    DocumentContent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        metadata:
+          $ref: '#/components/schemas/DocumentMetadata'
+        content:
+          type: string
+          description: Base64-encoded document content
+        format:
+          type: string
+    RecordLocatorResult:
+      type: object
+      properties:
+        documentId:
+          type: string
+          format: uuid
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        size:
+          type: integer
+          description: Document size in bytes
+        availableFormats:
+          type: array
+          items:
+            type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

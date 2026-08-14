@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Orion Health FHIR Alerts Metadata API
+  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  version: 1.0.0
+  contact:
+    name: Orion Health API Support
+    email: apisupport@orionhealth.com
+    url: https://www.orionhealth.com/support
+  license:
+    name: Proprietary
+    url: https://www.orionhealth.com/terms-of-service
+  termsOfService: https://www.orionhealth.com/terms-of-service
+servers:
+- url: https://api.orionhealth.com/fhir
+  description: Production FHIR Server
+- url: https://sandbox.orionhealth.com/fhir
+  description: Sandbox FHIR Server
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Metadata
+  description: Server capability and metadata operations
+paths:
+  /metadata:
+    get:
+      operationId: getCapabilityStatement
+      summary: Orion Health Get server capability statement
+      description: Returns the server's CapabilityStatement resource describing the FHIR operations, resources, and search parameters supported.
+      tags:
+      - Metadata
+      security: []
+      responses:
+        '200':
+          description: CapabilityStatement resource
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/CapabilityStatement'
+components:
+  schemas:
+    CapabilityStatement:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: CapabilityStatement
+        status:
+          type: string
+        date:
+          type: string
+          format: date-time
+        kind:
+          type: string
+        fhirVersion:
+          type: string
+        format:
+          type: array
+          items:
+            type: string
+        rest:
+          type: array
+          items:
+            type: object
+            properties:
+              mode:
+                type: string
+              resource:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    interaction:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authorization using SMART on FHIR
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+          tokenUrl: https://auth.orionhealth.com/oauth2/token
+          scopes:
+            patient/*.read: Read access to all patient data
+            patient/*.write: Write access to all patient data
+            patient/Patient.read: Read access to Patient resources
+            patient/Observation.read: Read access to Observation resources
+            patient/Condition.read: Read access to Condition resources
+            patient/MedicationRequest.read: Read access to MedicationRequest resources
+            launch: Launch context
+            openid: OpenID Connect
+            fhirUser: FHIR user identity
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
