@@ -725,6 +725,8 @@ apis:
   humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
   baseURL: https://api.orionhealth.com/fhir
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -833,6 +835,8 @@ apis:
   humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
   baseURL: https://api.orionhealth.com/fhir
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
