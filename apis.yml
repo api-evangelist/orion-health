@@ -1,4 +1,16 @@
 aid: orion-health
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -1192,6 +1204,9 @@ apis:
   - type: GettingStarted
     url: https://www.orionhealth.com/developers/getting-started
 common:
+- type: CapabilityMap
+  url: capabilities/orion-health-capability-edges.yml
+  name: Orion Health Business Capability Map
 - type: DomainSecurity
   url: security/orion-health-domain-security.yml
 - type: Website
