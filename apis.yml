@@ -557,6 +557,8 @@ apis:
   humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
   baseURL: https://api.orionhealth.com/fhir
   tags:
+  - Message Queue
+  tags_raw:
   - Message Queues
   properties:
   - type: OpenAPI
@@ -777,6 +779,8 @@ apis:
   humanURL: https://www.orionhealth.com/products/rhapsody-integration-engine/
   baseURL: https://api.orionhealth.com/fhir
   tags:
+  - Patients
+  tags_raw:
   - Patient
   properties:
   - type: OpenAPI
@@ -1065,6 +1069,8 @@ apis:
   humanURL: https://developer.orionhealth.io/
   baseURL: https://developer.orionhealth.io/
   tags:
+  - AllergyIntolerance
+  tags_raw:
   - Allergy Intolerance
   properties:
   - type: OpenAPI
@@ -1101,6 +1107,8 @@ apis:
   humanURL: https://developer.orionhealth.io/
   baseURL: https://developer.orionhealth.io/
   tags:
+  - CarePlan
+  tags_raw:
   - Care plan
   properties:
   - type: OpenAPI
@@ -1137,6 +1145,8 @@ apis:
   humanURL: https://developer.orionhealth.io/
   baseURL: https://developer.orionhealth.io/
   tags:
+  - DocumentReference
+  tags_raw:
   - Document Reference
   properties:
   - type: OpenAPI
@@ -1173,6 +1183,8 @@ apis:
   humanURL: https://developer.orionhealth.io/
   baseURL: https://developer.orionhealth.io/
   tags:
+  - MedicationRequest
+  tags_raw:
   - Medication Request
   properties:
   - type: OpenAPI
