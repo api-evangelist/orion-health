@@ -1,0 +1,27 @@
+slug: orion-health
+provider: Orion Health
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Routes
+  spec_file: orion-health-routes-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.72
+  evidence: GET /routes 'List integration routes'; POST /routes/{routeId}/start 'Start a route'; POST
+    /routes/{routeId}/restart 'Restart a route'; GET /routes/{routeId}/statistics 'Get route processing
+    statistics'; schema CommunicationPoint
+  reason: Despite the clinical spec title, these operations administer an integration engine's message
+    routes — start/stop/restart and processing statistics of communication points. That is day-to-day
+    IT operations and monitoring of integration infrastructure, not any clinical capability.
