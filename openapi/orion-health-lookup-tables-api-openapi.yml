@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts Lookup Tables API
-  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  title: Orion Health Rhapsody Integration Lookup Tables API
+  description: The Orion Health Rhapsody Integration Engine API provides management and monitoring capabilities for the Rhapsody healthcare integration platform. It enables programmatic control of integration routes, communication points, message queues, and system monitoring. Rhapsody supports HL7v2, FHIR, CDA, X12, DICOM, and other healthcare messaging standards for connecting disparate healthcare systems.
   version: 1.0.0
   contact:
     name: Orion Health API Support
@@ -12,13 +12,14 @@ info:
     url: https://www.orionhealth.com/terms-of-service
   termsOfService: https://www.orionhealth.com/terms-of-service
 servers:
-- url: https://api.orionhealth.com/fhir
-  description: Production FHIR Server
-- url: https://sandbox.orionhealth.com/fhir
-  description: Sandbox FHIR Server
+- url: https://api.orionhealth.com/rhapsody
+  description: Rhapsody Management API
+- url: https://sandbox.orionhealth.com/rhapsody
+  description: Sandbox Rhapsody API
 security:
 - oauth2: []
 - bearerAuth: []
+- apiKeyAuth: []
 tags:
 - name: Lookup Tables
   description: Lookup table management for data mapping
@@ -158,48 +159,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    LookupTableDetail:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        columns:
-          type: array
-          items:
-            type: string
-        rows:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: string
-        lastModified:
-          type: string
-          format: date-time
     LookupTable:
       type: object
       properties:
@@ -216,22 +176,6 @@ components:
         lastModified:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
     LookupTableUpdate:
       type: object
       required:
@@ -259,7 +203,53 @@ components:
           type: integer
         hasMore:
           type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    LookupTableDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        columns:
+          type: array
+          items:
+            type: string
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        lastModified:
+          type: string
+          format: date-time
   parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     PageLimit:
       name: limit
       in: query
@@ -269,33 +259,40 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2
-      description: OAuth 2.0 authorization using SMART on FHIR
       flows:
-        authorizationCode:
-          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+        clientCredentials:
           tokenUrl: https://auth.orionhealth.com/oauth2/token
           scopes:
-            patient/*.read: Read access to all patient data
-            patient/*.write: Write access to all patient data
-            patient/Patient.read: Read access to Patient resources
-            patient/Observation.read: Read access to Observation resources
-            patient/Condition.read: Read access to Condition resources
-            patient/MedicationRequest.read: Read access to MedicationRequest resources
-            launch: Launch context
-            openid: OpenID Connect
-            fhirUser: FHIR user identity
+            rhapsody:read: Read access to Rhapsody engine
+            rhapsody:write: Write access to Rhapsody engine
+            rhapsody:admin: Administrative access
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

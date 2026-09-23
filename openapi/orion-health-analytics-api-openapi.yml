@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts Analytics API
-  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  title: Orion Health Population Health Analytics API
+  description: The Orion Health Population Health API provides programmatic access to population health management capabilities including patient registries, risk stratification, care coordination, cohort analytics, and health outcome tracking. It enables healthcare organizations to identify at-risk populations, manage care programs, and track quality measures across patient cohorts.
   version: 1.0.0
   contact:
     name: Orion Health API Support
@@ -12,10 +12,10 @@ info:
     url: https://www.orionhealth.com/terms-of-service
   termsOfService: https://www.orionhealth.com/terms-of-service
 servers:
-- url: https://api.orionhealth.com/fhir
-  description: Production FHIR Server
-- url: https://sandbox.orionhealth.com/fhir
-  description: Sandbox FHIR Server
+- url: https://api.orionhealth.com/population-health
+  description: Production Server
+- url: https://sandbox.orionhealth.com/population-health
+  description: Sandbox Server
 security:
 - oauth2: []
 - bearerAuth: []
@@ -145,19 +145,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     CohortAnalytics:
       type: object
@@ -245,6 +232,59 @@ components:
                 type: string
               message:
                 type: string
+    UtilizationAnalytics:
+      type: object
+      properties:
+        edVisits:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+            trend:
+              type: array
+              items:
+                type: object
+                properties:
+                  period:
+                    type: string
+                  count:
+                    type: integer
+        admissions:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+            averageLOS:
+              type: number
+        readmissions:
+          type: object
+          properties:
+            total:
+              type: integer
+            rate:
+              type: number
+            thirtyDayRate:
+              type: number
+        ambulatoryVisits:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
     PopulationSummary:
       type: object
       properties:
@@ -299,77 +339,29 @@ components:
             end:
               type: string
               format: date
-    UtilizationAnalytics:
-      type: object
-      properties:
-        edVisits:
-          type: object
-          properties:
-            total:
-              type: integer
-            perThousand:
-              type: number
-            trend:
-              type: array
-              items:
-                type: object
-                properties:
-                  period:
-                    type: string
-                  count:
-                    type: integer
-        admissions:
-          type: object
-          properties:
-            total:
-              type: integer
-            perThousand:
-              type: number
-            averageLOS:
-              type: number
-        readmissions:
-          type: object
-          properties:
-            total:
-              type: integer
-            rate:
-              type: number
-            thirtyDayRate:
-              type: number
-        ambulatoryVisits:
-          type: object
-          properties:
-            total:
-              type: integer
-            perThousand:
-              type: number
-        period:
-          type: object
-          properties:
-            start:
-              type: string
-              format: date
-            end:
-              type: string
-              format: date
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2
-      description: OAuth 2.0 authorization using SMART on FHIR
       flows:
-        authorizationCode:
-          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+        clientCredentials:
           tokenUrl: https://auth.orionhealth.com/oauth2/token
           scopes:
-            patient/*.read: Read access to all patient data
-            patient/*.write: Write access to all patient data
-            patient/Patient.read: Read access to Patient resources
-            patient/Observation.read: Read access to Observation resources
-            patient/Condition.read: Read access to Condition resources
-            patient/MedicationRequest.read: Read access to MedicationRequest resources
-            launch: Launch context
-            openid: OpenID Connect
-            fhirUser: FHIR user identity
+            population-health:read: Read population health data
+            population-health:write: Write population health data
+            population-health:admin: Administrative access
     bearerAuth:
       type: http
       scheme: bearer

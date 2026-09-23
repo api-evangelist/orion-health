@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts AllergyIntolerance API
+  title: Orion Health FHIR Care Plan API
   description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
   version: 1.0.0
   contact:
@@ -20,16 +20,16 @@ security:
 - oauth2: []
 - bearerAuth: []
 tags:
-- name: AllergyIntolerance
-  description: Operations on AllergyIntolerance resources
+- name: Care plan
+  description: Operations on CarePlan resources
 paths:
-  /AllergyIntolerance:
+  /CarePlan:
     get:
-      operationId: searchAllergyIntolerances
-      summary: Orion Health Search for allergy intolerances
-      description: Search for AllergyIntolerance resources representing patient allergies and adverse reactions.
+      operationId: searchCarePlans
+      summary: Orion Health Search for care plans
+      description: Search for CarePlan resources describing planned healthcare activities and goals for patients.
       tags:
-      - AllergyIntolerance
+      - Care plan
       parameters:
       - $ref: '#/components/parameters/FhirFormat'
       - $ref: '#/components/parameters/FhirCount'
@@ -39,35 +39,32 @@ paths:
         description: Reference to the patient
         schema:
           type: string
-      - name: clinical-status
+      - name: status
         in: query
-        description: Clinical status of the allergy
+        description: Care plan status
         schema:
           type: string
           enum:
+          - draft
           - active
-          - inactive
-          - resolved
-      - name: type
+          - on-hold
+          - revoked
+          - completed
+          - entered-in-error
+          - unknown
+      - name: category
         in: query
-        description: allergy or intolerance
+        description: Type of care plan
         schema:
           type: string
-          enum:
-          - allergy
-          - intolerance
-      - name: criticality
+      - name: date
         in: query
-        description: Criticality level
+        description: Care plan period
         schema:
           type: string
-          enum:
-          - low
-          - high
-          - unable-to-assess
       responses:
         '200':
-          description: Bundle of matching AllergyIntolerance resources
+          description: Bundle of matching CarePlan resources
           content:
             application/fhir+json:
               schema:
@@ -76,39 +73,67 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
-  /AllergyIntolerance/{id}:
+  /CarePlan/{id}:
     get:
-      operationId: getAllergyIntolerance
-      summary: Orion Health Read an allergy intolerance by ID
-      description: Retrieve a specific AllergyIntolerance resource by its logical ID.
+      operationId: getCarePlan
+      summary: Orion Health Read a care plan by ID
+      description: Retrieve a specific CarePlan resource by its logical ID.
       tags:
-      - AllergyIntolerance
+      - Care plan
       parameters:
       - $ref: '#/components/parameters/ResourceId'
       - $ref: '#/components/parameters/FhirFormat'
       responses:
         '200':
-          description: AllergyIntolerance resource
+          description: CarePlan resource
           content:
             application/fhir+json:
               schema:
-                $ref: '#/components/schemas/AllergyIntolerance'
+                $ref: '#/components/schemas/CarePlan'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Coding:
+    Reference:
       type: object
       properties:
-        system:
-          type: string
-          format: uri
-        code:
+        reference:
           type: string
         display:
           type: string
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
     OperationOutcome:
       type: object
       properties:
@@ -133,15 +158,25 @@ components:
                 type: string
               details:
                 $ref: '#/components/schemas/CodeableConcept'
-    CodeableConcept:
+    Coding:
       type: object
       properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
+        system:
           type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
+    Period:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
     Bundle:
       type: object
       properties:
@@ -192,122 +227,53 @@ components:
                     - match
                     - include
                     - outcome
-    AllergyIntolerance:
+    CarePlan:
       type: object
       properties:
         resourceType:
           type: string
-          const: AllergyIntolerance
+          const: CarePlan
         id:
           type: string
-        clinicalStatus:
-          $ref: '#/components/schemas/CodeableConcept'
-        verificationStatus:
-          $ref: '#/components/schemas/CodeableConcept'
-        type:
+        status:
           type: string
           enum:
-          - allergy
-          - intolerance
+          - draft
+          - active
+          - on-hold
+          - revoked
+          - completed
+          - entered-in-error
+          - unknown
+        intent:
+          type: string
+          enum:
+          - proposal
+          - plan
+          - order
+          - option
         category:
           type: array
           items:
-            type: string
-            enum:
-            - food
-            - medication
-            - environment
-            - biologic
-        criticality:
-          type: string
-          enum:
-          - low
-          - high
-          - unable-to-assess
-        code:
-          $ref: '#/components/schemas/CodeableConcept'
-        patient:
+            $ref: '#/components/schemas/CodeableConcept'
+        subject:
           $ref: '#/components/schemas/Reference'
-        reaction:
+        period:
+          $ref: '#/components/schemas/Period'
+        activity:
           type: array
           items:
             type: object
             properties:
-              substance:
-                $ref: '#/components/schemas/CodeableConcept'
-              manifestation:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CodeableConcept'
-              severity:
-                type: string
-                enum:
-                - mild
-                - moderate
-                - severe
-    Resource:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          description: Type of FHIR resource
-        id:
-          type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
-                type: string
-                format: uri
-    Reference:
-      type: object
-      properties:
-        reference:
-          type: string
-        display:
-          type: string
-  parameters:
-    FhirFormat:
-      name: _format
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - application/fhir+json
-        - application/fhir+xml
-    FhirCount:
-      name: _count
-      in: query
-      description: Maximum number of results per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
+              detail:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  code:
+                    $ref: '#/components/schemas/CodeableConcept'
+                  description:
+                    type: string
   responses:
     NotFound:
       description: Resource not found
@@ -327,6 +293,40 @@ components:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
+  parameters:
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
   securitySchemes:
     oauth2:
       type: oauth2

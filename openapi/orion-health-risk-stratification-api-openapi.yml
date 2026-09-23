@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts Risk Stratification API
-  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  title: Orion Health Population Health Risk Stratification API
+  description: The Orion Health Population Health API provides programmatic access to population health management capabilities including patient registries, risk stratification, care coordination, cohort analytics, and health outcome tracking. It enables healthcare organizations to identify at-risk populations, manage care programs, and track quality measures across patient cohorts.
   version: 1.0.0
   contact:
     name: Orion Health API Support
@@ -12,10 +12,10 @@ info:
     url: https://www.orionhealth.com/terms-of-service
   termsOfService: https://www.orionhealth.com/terms-of-service
 servers:
-- url: https://api.orionhealth.com/fhir
-  description: Production FHIR Server
-- url: https://sandbox.orionhealth.com/fhir
-  description: Sandbox FHIR Server
+- url: https://api.orionhealth.com/population-health
+  description: Production Server
+- url: https://sandbox.orionhealth.com/population-health
+  description: Sandbox Server
 security:
 - oauth2: []
 - bearerAuth: []
@@ -151,6 +151,17 @@ components:
         validUntil:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
     Error:
       type: object
       properties:
@@ -167,17 +178,24 @@ components:
                 type: string
               message:
                 type: string
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
+  parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
   responses:
     NotFound:
       description: Resource not found
@@ -191,42 +209,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2
-      description: OAuth 2.0 authorization using SMART on FHIR
       flows:
-        authorizationCode:
-          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+        clientCredentials:
           tokenUrl: https://auth.orionhealth.com/oauth2/token
           scopes:
-            patient/*.read: Read access to all patient data
-            patient/*.write: Write access to all patient data
-            patient/Patient.read: Read access to Patient resources
-            patient/Observation.read: Read access to Observation resources
-            patient/Condition.read: Read access to Condition resources
-            patient/MedicationRequest.read: Read access to MedicationRequest resources
-            launch: Launch context
-            openid: OpenID Connect
-            fhirUser: FHIR user identity
+            population-health:read: Read population health data
+            population-health:write: Write population health data
+            population-health:admin: Administrative access
     bearerAuth:
       type: http
       scheme: bearer

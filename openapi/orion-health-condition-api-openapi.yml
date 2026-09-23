@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts Condition API
+  title: Orion Health FHIR Condition API
   description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
   version: 1.0.0
   contact:
@@ -100,6 +100,72 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Condition:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Condition
+        id:
+          type: string
+        clinicalStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        verificationStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        severity:
+          $ref: '#/components/schemas/CodeableConcept'
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        onsetDateTime:
+          type: string
+          format: date-time
+        recordedDate:
+          type: string
+          format: date-time
+    Reference:
+      type: object
+      properties:
+        reference:
+          type: string
+        display:
+          type: string
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
     Coding:
       type: object
       properties:
@@ -109,39 +175,6 @@ components:
         code:
           type: string
         display:
-          type: string
-    OperationOutcome:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: OperationOutcome
-        issue:
-          type: array
-          items:
-            type: object
-            properties:
-              severity:
-                type: string
-                enum:
-                - fatal
-                - error
-                - warning
-                - information
-              code:
-                type: string
-              diagnostics:
-                type: string
-              details:
-                $ref: '#/components/schemas/CodeableConcept'
-    CodeableConcept:
-      type: object
-      properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
           type: string
     Bundle:
       type: object
@@ -193,106 +226,39 @@ components:
                     - match
                     - include
                     - outcome
-    Condition:
+    OperationOutcome:
       type: object
       properties:
         resourceType:
           type: string
-          const: Condition
-        id:
-          type: string
-        clinicalStatus:
-          $ref: '#/components/schemas/CodeableConcept'
-        verificationStatus:
-          $ref: '#/components/schemas/CodeableConcept'
-        category:
+          const: OperationOutcome
+        issue:
           type: array
           items:
-            $ref: '#/components/schemas/CodeableConcept'
-        severity:
-          $ref: '#/components/schemas/CodeableConcept'
-        code:
-          $ref: '#/components/schemas/CodeableConcept'
-        subject:
-          $ref: '#/components/schemas/Reference'
-        onsetDateTime:
-          type: string
-          format: date-time
-        recordedDate:
-          type: string
-          format: date-time
-    Resource:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          description: Type of FHIR resource
-        id:
-          type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
+            type: object
+            properties:
+              severity:
                 type: string
-                format: uri
-    Reference:
-      type: object
-      properties:
-        reference:
-          type: string
-        display:
-          type: string
-  parameters:
-    FhirFormat:
-      name: _format
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - application/fhir+json
-        - application/fhir+xml
-    FhirCount:
-      name: _count
-      in: query
-      description: Maximum number of results per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
   responses:
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
-    BadRequest:
-      description: Invalid request parameters
+    NotFound:
+      description: Resource not found
       content:
         application/fhir+json:
           schema:
@@ -303,6 +269,40 @@ components:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
+  parameters:
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts MedicationRequest API
+  title: Orion Health FHIR Allergy Intolerance API
   description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
   version: 1.0.0
   contact:
@@ -20,16 +20,16 @@ security:
 - oauth2: []
 - bearerAuth: []
 tags:
-- name: MedicationRequest
-  description: Operations on MedicationRequest resources
+- name: Allergy Intolerance
+  description: Operations on AllergyIntolerance resources
 paths:
-  /MedicationRequest:
+  /AllergyIntolerance:
     get:
-      operationId: searchMedicationRequests
-      summary: Orion Health Search for medication requests
-      description: Search for MedicationRequest resources representing prescriptions and medication orders.
+      operationId: searchAllergyIntolerances
+      summary: Orion Health Search for allergy intolerances
+      description: Search for AllergyIntolerance resources representing patient allergies and adverse reactions.
       tags:
-      - MedicationRequest
+      - Allergy Intolerance
       parameters:
       - $ref: '#/components/parameters/FhirFormat'
       - $ref: '#/components/parameters/FhirCount'
@@ -39,33 +39,35 @@ paths:
         description: Reference to the patient
         schema:
           type: string
-      - name: status
+      - name: clinical-status
         in: query
-        description: Prescription status
+        description: Clinical status of the allergy
         schema:
           type: string
           enum:
           - active
-          - on-hold
-          - cancelled
-          - completed
-          - entered-in-error
-          - stopped
-          - draft
-          - unknown
-      - name: intent
+          - inactive
+          - resolved
+      - name: type
         in: query
-        description: Kind of medication request
+        description: allergy or intolerance
         schema:
           type: string
-      - name: authoredon
+          enum:
+          - allergy
+          - intolerance
+      - name: criticality
         in: query
-        description: Date the prescription was written
+        description: Criticality level
         schema:
           type: string
+          enum:
+          - low
+          - high
+          - unable-to-assess
       responses:
         '200':
-          description: Bundle of matching MedicationRequest resources
+          description: Bundle of matching AllergyIntolerance resources
           content:
             application/fhir+json:
               schema:
@@ -74,39 +76,67 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
-  /MedicationRequest/{id}:
+  /AllergyIntolerance/{id}:
     get:
-      operationId: getMedicationRequest
-      summary: Orion Health Read a medication request by ID
-      description: Retrieve a specific MedicationRequest resource by its logical ID.
+      operationId: getAllergyIntolerance
+      summary: Orion Health Read an allergy intolerance by ID
+      description: Retrieve a specific AllergyIntolerance resource by its logical ID.
       tags:
-      - MedicationRequest
+      - Allergy Intolerance
       parameters:
       - $ref: '#/components/parameters/ResourceId'
       - $ref: '#/components/parameters/FhirFormat'
       responses:
         '200':
-          description: MedicationRequest resource
+          description: AllergyIntolerance resource
           content:
             application/fhir+json:
               schema:
-                $ref: '#/components/schemas/MedicationRequest'
+                $ref: '#/components/schemas/AllergyIntolerance'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Coding:
+    Reference:
       type: object
       properties:
-        system:
-          type: string
-          format: uri
-        code:
+        reference:
           type: string
         display:
           type: string
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
     OperationOutcome:
       type: object
       properties:
@@ -131,14 +161,15 @@ components:
                 type: string
               details:
                 $ref: '#/components/schemas/CodeableConcept'
-    CodeableConcept:
+    Coding:
       type: object
       properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
           type: string
     Bundle:
       type: object
@@ -190,148 +221,59 @@ components:
                     - match
                     - include
                     - outcome
-    MedicationRequest:
+    AllergyIntolerance:
       type: object
       properties:
         resourceType:
           type: string
-          const: MedicationRequest
+          const: AllergyIntolerance
         id:
           type: string
-        status:
-          type: string
-          enum:
-          - active
-          - on-hold
-          - cancelled
-          - completed
-          - entered-in-error
-          - stopped
-          - draft
-          - unknown
-        intent:
-          type: string
-          enum:
-          - proposal
-          - plan
-          - order
-          - original-order
-          - reflex-order
-          - filler-order
-          - instance-order
-          - option
-        medicationCodeableConcept:
+        clinicalStatus:
           $ref: '#/components/schemas/CodeableConcept'
-        medicationReference:
-          $ref: '#/components/schemas/Reference'
-        subject:
-          $ref: '#/components/schemas/Reference'
-        authoredOn:
+        verificationStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        type:
           type: string
-          format: date-time
-        requester:
+          enum:
+          - allergy
+          - intolerance
+        category:
+          type: array
+          items:
+            type: string
+            enum:
+            - food
+            - medication
+            - environment
+            - biologic
+        criticality:
+          type: string
+          enum:
+          - low
+          - high
+          - unable-to-assess
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        patient:
           $ref: '#/components/schemas/Reference'
-        dosageInstruction:
+        reaction:
           type: array
           items:
             type: object
             properties:
-              text:
-                type: string
-              timing:
-                type: object
-                properties:
-                  repeat:
-                    type: object
-                    properties:
-                      frequency:
-                        type: integer
-                      period:
-                        type: number
-                      periodUnit:
-                        type: string
-              doseAndRate:
+              substance:
+                $ref: '#/components/schemas/CodeableConcept'
+              manifestation:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    doseQuantity:
-                      $ref: '#/components/schemas/Quantity'
-    Quantity:
-      type: object
-      properties:
-        value:
-          type: number
-        unit:
-          type: string
-        system:
-          type: string
-          format: uri
-        code:
-          type: string
-    Resource:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          description: Type of FHIR resource
-        id:
-          type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
+                  $ref: '#/components/schemas/CodeableConcept'
+              severity:
                 type: string
-                format: uri
-    Reference:
-      type: object
-      properties:
-        reference:
-          type: string
-        display:
-          type: string
-  parameters:
-    FhirFormat:
-      name: _format
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - application/fhir+json
-        - application/fhir+xml
-    FhirCount:
-      name: _count
-      in: query
-      description: Maximum number of results per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
+                enum:
+                - mild
+                - moderate
+                - severe
   responses:
     NotFound:
       description: Resource not found
@@ -351,6 +293,40 @@ components:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
+  parameters:
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
   securitySchemes:
     oauth2:
       type: oauth2

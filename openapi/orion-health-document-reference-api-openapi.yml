@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts CarePlan API
+  title: Orion Health FHIR Document Reference API
   description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
   version: 1.0.0
   contact:
@@ -20,16 +20,16 @@ security:
 - oauth2: []
 - bearerAuth: []
 tags:
-- name: CarePlan
-  description: Operations on CarePlan resources
+- name: Document Reference
+  description: Operations on DocumentReference resources
 paths:
-  /CarePlan:
+  /DocumentReference:
     get:
-      operationId: searchCarePlans
-      summary: Orion Health Search for care plans
-      description: Search for CarePlan resources describing planned healthcare activities and goals for patients.
+      operationId: searchDocumentReferences
+      summary: Orion Health Search for document references
+      description: Search for DocumentReference resources representing clinical documents, notes, and reports.
       tags:
-      - CarePlan
+      - Document Reference
       parameters:
       - $ref: '#/components/parameters/FhirFormat'
       - $ref: '#/components/parameters/FhirCount'
@@ -39,32 +39,33 @@ paths:
         description: Reference to the patient
         schema:
           type: string
-      - name: status
+      - name: type
         in: query
-        description: Care plan status
+        description: Document type code
         schema:
           type: string
-          enum:
-          - draft
-          - active
-          - on-hold
-          - revoked
-          - completed
-          - entered-in-error
-          - unknown
       - name: category
         in: query
-        description: Type of care plan
+        description: Document category
         schema:
           type: string
       - name: date
         in: query
-        description: Care plan period
+        description: Document date or date range
         schema:
           type: string
+      - name: status
+        in: query
+        description: Document status
+        schema:
+          type: string
+          enum:
+          - current
+          - superseded
+          - entered-in-error
       responses:
         '200':
-          description: Bundle of matching CarePlan resources
+          description: Bundle of matching DocumentReference resources
           content:
             application/fhir+json:
               schema:
@@ -73,29 +74,107 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
-  /CarePlan/{id}:
+  /DocumentReference/{id}:
     get:
-      operationId: getCarePlan
-      summary: Orion Health Read a care plan by ID
-      description: Retrieve a specific CarePlan resource by its logical ID.
+      operationId: getDocumentReference
+      summary: Orion Health Read a document reference by ID
+      description: Retrieve a specific DocumentReference resource by its logical ID.
       tags:
-      - CarePlan
+      - Document Reference
       parameters:
       - $ref: '#/components/parameters/ResourceId'
       - $ref: '#/components/parameters/FhirFormat'
       responses:
         '200':
-          description: CarePlan resource
+          description: DocumentReference resource
           content:
             application/fhir+json:
               schema:
-                $ref: '#/components/schemas/CarePlan'
+                $ref: '#/components/schemas/DocumentReference'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Reference:
+      type: object
+      properties:
+        reference:
+          type: string
+        display:
+          type: string
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+    DocumentReference:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: DocumentReference
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - current
+          - superseded
+          - entered-in-error
+        type:
+          $ref: '#/components/schemas/CodeableConcept'
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        date:
+          type: string
+          format: date-time
+        content:
+          type: array
+          items:
+            type: object
+            properties:
+              attachment:
+                type: object
+                properties:
+                  contentType:
+                    type: string
+                  url:
+                    type: string
+                    format: uri
+                  title:
+                    type: string
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
     Coding:
       type: object
       properties:
@@ -105,86 +184,6 @@ components:
         code:
           type: string
         display:
-          type: string
-    OperationOutcome:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: OperationOutcome
-        issue:
-          type: array
-          items:
-            type: object
-            properties:
-              severity:
-                type: string
-                enum:
-                - fatal
-                - error
-                - warning
-                - information
-              code:
-                type: string
-              diagnostics:
-                type: string
-              details:
-                $ref: '#/components/schemas/CodeableConcept'
-    CarePlan:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: CarePlan
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - active
-          - on-hold
-          - revoked
-          - completed
-          - entered-in-error
-          - unknown
-        intent:
-          type: string
-          enum:
-          - proposal
-          - plan
-          - order
-          - option
-        category:
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeableConcept'
-        subject:
-          $ref: '#/components/schemas/Reference'
-        period:
-          $ref: '#/components/schemas/Period'
-        activity:
-          type: array
-          items:
-            type: object
-            properties:
-              detail:
-                type: object
-                properties:
-                  status:
-                    type: string
-                  code:
-                    $ref: '#/components/schemas/CodeableConcept'
-                  description:
-                    type: string
-    CodeableConcept:
-      type: object
-      properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
           type: string
     Bundle:
       type: object
@@ -236,87 +235,39 @@ components:
                     - match
                     - include
                     - outcome
-    Period:
-      type: object
-      properties:
-        start:
-          type: string
-          format: date-time
-        end:
-          type: string
-          format: date-time
-    Resource:
+    OperationOutcome:
       type: object
       properties:
         resourceType:
           type: string
-          description: Type of FHIR resource
-        id:
-          type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
                 type: string
-                format: uri
-    Reference:
-      type: object
-      properties:
-        reference:
-          type: string
-        display:
-          type: string
-  parameters:
-    FhirFormat:
-      name: _format
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - application/fhir+json
-        - application/fhir+xml
-    FhirCount:
-      name: _count
-      in: query
-      description: Maximum number of results per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
   responses:
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
-    BadRequest:
-      description: Invalid request parameters
+    NotFound:
+      description: Resource not found
       content:
         application/fhir+json:
           schema:
@@ -327,6 +278,40 @@ components:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
+  parameters:
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
   securitySchemes:
     oauth2:
       type: oauth2

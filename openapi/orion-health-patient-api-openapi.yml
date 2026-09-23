@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts Patient API
+  title: Orion Health FHIR Patient API
   description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
   version: 1.0.0
   contact:
@@ -205,6 +205,86 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+    Identifier:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+          - usual
+          - official
+          - temp
+          - secondary
+          - old
+        system:
+          type: string
+          format: uri
+        value:
+          type: string
+    ContactPoint:
+      type: object
+      properties:
+        system:
+          type: string
+          enum:
+          - phone
+          - fax
+          - email
+          - pager
+          - url
+          - sms
+          - other
+        value:
+          type: string
+        use:
+          type: string
+          enum:
+          - home
+          - work
+          - temp
+          - old
+          - mobile
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
+    Coding:
+      type: object
+      properties:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
     Patient:
       type: object
       properties:
@@ -262,16 +342,30 @@ components:
                 $ref: '#/components/schemas/CodeableConcept'
               preferred:
                 type: boolean
-    Coding:
+    OperationOutcome:
       type: object
       properties:
-        system:
+        resourceType:
           type: string
-          format: uri
-        code:
-          type: string
-        display:
-          type: string
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
     Address:
       type: object
       properties:
@@ -301,45 +395,6 @@ components:
           type: string
         country:
           type: string
-    Identifier:
-      type: object
-      properties:
-        use:
-          type: string
-          enum:
-          - usual
-          - official
-          - temp
-          - secondary
-          - old
-        system:
-          type: string
-          format: uri
-        value:
-          type: string
-    ContactPoint:
-      type: object
-      properties:
-        system:
-          type: string
-          enum:
-          - phone
-          - fax
-          - email
-          - pager
-          - url
-          - sms
-          - other
-        value:
-          type: string
-        use:
-          type: string
-          enum:
-          - home
-          - work
-          - temp
-          - old
-          - mobile
     Bundle:
       type: object
       properties:
@@ -417,71 +472,14 @@ components:
           type: array
           items:
             type: string
-    Resource:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          description: Type of FHIR resource
-        id:
-          type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
-                type: string
-                format: uri
-    OperationOutcome:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: OperationOutcome
-        issue:
-          type: array
-          items:
-            type: object
-            properties:
-              severity:
-                type: string
-                enum:
-                - fatal
-                - error
-                - warning
-                - information
-              code:
-                type: string
-              diagnostics:
-                type: string
-              details:
-                $ref: '#/components/schemas/CodeableConcept'
-    CodeableConcept:
-      type: object
-      properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
-          type: string
   parameters:
-    FhirCount:
-      name: _count
-      in: query
-      description: Maximum number of results per page
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
       schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
+        type: string
     FhirFormat:
       name: _format
       in: query
@@ -491,6 +489,15 @@ components:
         enum:
         - application/fhir+json
         - application/fhir+xml
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
     FhirOffset:
       name: _offset
       in: query
@@ -499,22 +506,9 @@ components:
         type: integer
         minimum: 0
         default: 0
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    NotFound:
-      description: Resource not found
+    Conflict:
+      description: Version conflict during update
       content:
         application/fhir+json:
           schema:
@@ -525,8 +519,14 @@ components:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
-    Conflict:
-      description: Version conflict during update
+    NotFound:
+      description: Resource not found
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/fhir+json:
           schema:

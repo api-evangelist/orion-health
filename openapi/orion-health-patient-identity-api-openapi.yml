@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orion Health FHIR Alerts Patient Identity API
-  description: The Orion Health FHIR API provides standards-based access to healthcare data using the HL7 FHIR (Fast Healthcare Interoperability Resources) specification. It enables healthcare organizations to read, search, create, and update clinical resources including patients, encounters, observations, conditions, medications, allergies, procedures, diagnostic reports, and care plans. The API conforms to FHIR R4 (v4.0.1) and supports both JSON and XML representations.
+  title: Orion Health HIE Patient Identity API
+  description: The Orion Health Health Information Exchange (HIE) API enables sharing of patient health information across healthcare organizations. It provides capabilities for patient identity matching, document exchange, consent management, provider directory lookups, and audit logging in compliance with healthcare interoperability standards. The API supports IHE profiles including XDS, XCA, and PDQ.
   version: 1.0.0
   contact:
     name: Orion Health API Support
@@ -12,10 +12,10 @@ info:
     url: https://www.orionhealth.com/terms-of-service
   termsOfService: https://www.orionhealth.com/terms-of-service
 servers:
-- url: https://api.orionhealth.com/fhir
-  description: Production FHIR Server
-- url: https://sandbox.orionhealth.com/fhir
-  description: Sandbox FHIR Server
+- url: https://api.orionhealth.com/hie
+  description: Production HIE Server
+- url: https://sandbox.orionhealth.com/hie
+  description: Sandbox HIE Server
 security:
 - oauth2: []
 - bearerAuth: []
@@ -136,109 +136,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    PatientIdentifiers:
-      type: object
-      properties:
-        patientId:
-          type: string
-        identifiers:
-          type: array
-          items:
-            type: object
-            properties:
-              system:
-                type: string
-              value:
-                type: string
-              organization:
-                type: string
-              organizationName:
-                type: string
-              assigningAuthority:
-                type: string
-              active:
-                type: boolean
-    PatientMatchResponse:
-      type: object
-      properties:
-        matches:
-          type: array
-          items:
-            type: object
-            properties:
-              patientId:
-                type: string
-              confidence:
-                type: number
-                description: Match confidence score (0-1)
-              matchGrade:
-                type: string
-                enum:
-                - certain
-                - probable
-                - possible
-                - no-match
-              identifiers:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    system:
-                      type: string
-                    value:
-                      type: string
-                    organization:
-                      type: string
-              demographics:
-                type: object
-                properties:
-                  familyName:
-                    type: string
-                  givenName:
-                    type: string
-                  dateOfBirth:
-                    type: string
-                    format: date
-                  gender:
-                    type: string
-        totalMatches:
-          type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
     PatientMatchRequest:
       type: object
       properties:
@@ -284,6 +182,22 @@ components:
           type: number
           description: Minimum match confidence score (0-1)
           default: 0.85
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
     RecordLocatorResult:
       type: object
       properties:
@@ -312,24 +226,108 @@ components:
           type: array
           items:
             type: string
+    PatientMatchResponse:
+      type: object
+      properties:
+        matches:
+          type: array
+          items:
+            type: object
+            properties:
+              patientId:
+                type: string
+              confidence:
+                type: number
+                description: Match confidence score (0-1)
+              matchGrade:
+                type: string
+                enum:
+                - certain
+                - probable
+                - possible
+                - no-match
+              identifiers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                    value:
+                      type: string
+                    organization:
+                      type: string
+              demographics:
+                type: object
+                properties:
+                  familyName:
+                    type: string
+                  givenName:
+                    type: string
+                  dateOfBirth:
+                    type: string
+                    format: date
+                  gender:
+                    type: string
+        totalMatches:
+          type: integer
+    PatientIdentifiers:
+      type: object
+      properties:
+        patientId:
+          type: string
+        identifiers:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              value:
+                type: string
+              organization:
+                type: string
+              organizationName:
+                type: string
+              assigningAuthority:
+                type: string
+              active:
+                type: boolean
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2
-      description: OAuth 2.0 authorization using SMART on FHIR
       flows:
-        authorizationCode:
-          authorizationUrl: https://auth.orionhealth.com/oauth2/authorize
+        clientCredentials:
           tokenUrl: https://auth.orionhealth.com/oauth2/token
           scopes:
-            patient/*.read: Read access to all patient data
-            patient/*.write: Write access to all patient data
-            patient/Patient.read: Read access to Patient resources
-            patient/Observation.read: Read access to Observation resources
-            patient/Condition.read: Read access to Condition resources
-            patient/MedicationRequest.read: Read access to MedicationRequest resources
-            launch: Launch context
-            openid: OpenID Connect
-            fhirUser: FHIR user identity
+            hie:patient-query: Query patient identity
+            hie:document-read: Retrieve documents
+            hie:document-write: Submit documents
+            hie:consent-read: Read consent directives
+            hie:consent-write: Manage consent directives
+            hie:provider-read: Query provider directory
+            hie:notification-read: Read notifications
+            hie:notification-manage: Manage notification subscriptions
+            hie:audit-read: Read audit logs
     bearerAuth:
       type: http
       scheme: bearer
