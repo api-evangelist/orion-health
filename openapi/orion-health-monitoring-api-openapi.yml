@@ -178,60 +178,36 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Pagination:
+    Error:
       type: object
       properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
-    RouteStatistics:
-      type: object
-      properties:
-        routeId:
-          type: integer
-        routeName:
+        code:
           type: string
-        period:
-          type: object
-          properties:
-            start:
-              type: string
-              format: date-time
-            end:
-              type: string
-              format: date-time
-        totalMessages:
-          type: integer
-        successfulMessages:
-          type: integer
-        errorMessages:
-          type: integer
-        averageProcessingTimeMs:
-          type: number
-        maxProcessingTimeMs:
-          type: number
-        messagesPerSecond:
-          type: number
-        timeline:
+        message:
+          type: string
+        details:
           type: array
           items:
             type: object
             properties:
-              timestamp:
+              field:
                 type: string
-                format: date-time
-              messagesProcessed:
-                type: integer
-              errors:
-                type: integer
-              avgProcessingTimeMs:
-                type: number
+              message:
+                type: string
     Dashboard:
       type: object
       properties:
@@ -306,52 +282,17 @@ components:
               type: number
             percentUsed:
               type: number
-    MonitoringAlert:
+    Pagination:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        severity:
-          type: string
-          enum:
-          - info
-          - warning
-          - error
-          - critical
-        source:
-          type: string
-          description: Component that generated the alert
-        title:
-          type: string
-        message:
-          type: string
-        acknowledged:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
           type: boolean
-        acknowledgedBy:
-          type: string
-        acknowledgedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
     HealthStatus:
       type: object
       properties:
@@ -382,15 +323,79 @@ components:
               lastChecked:
                 type: string
                 format: date-time
+    MonitoringAlert:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        severity:
+          type: string
+          enum:
+          - info
+          - warning
+          - error
+          - critical
+        source:
+          type: string
+          description: Component that generated the alert
+        title:
+          type: string
+        message:
+          type: string
+        acknowledged:
+          type: boolean
+        acknowledgedBy:
+          type: string
+        acknowledgedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+    RouteStatistics:
+      type: object
+      properties:
+        routeId:
+          type: integer
+        routeName:
+          type: string
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+        totalMessages:
+          type: integer
+        successfulMessages:
+          type: integer
+        errorMessages:
+          type: integer
+        averageProcessingTimeMs:
+          type: number
+        maxProcessingTimeMs:
+          type: number
+        messagesPerSecond:
+          type: number
+        timeline:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              messagesProcessed:
+                type: integer
+              errors:
+                type: integer
+              avgProcessingTimeMs:
+                type: number
   parameters:
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageLimit:
       name: limit
       in: query
@@ -400,19 +405,14 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

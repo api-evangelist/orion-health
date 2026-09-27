@@ -176,7 +176,61 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    EnrollmentCreate:
+      type: object
+      required:
+      - patientId
+      properties:
+        patientId:
+          type: string
+        assignedCareManager:
+          type: string
+        goals:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              targetDate:
+                type: string
+                format: date
     Enrollment:
       type: object
       properties:
@@ -220,6 +274,17 @@ components:
               targetDate:
                 type: string
                 format: date
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
     CareProgram:
       type: object
       properties:
@@ -264,52 +329,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    EnrollmentCreate:
-      type: object
-      required:
-      - patientId
-      properties:
-        patientId:
-          type: string
-        assignedCareManager:
-          type: string
-        goals:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              targetDate:
-                type: string
-                format: date
   parameters:
     PageOffset:
       name: offset
@@ -328,25 +347,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

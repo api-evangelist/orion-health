@@ -126,91 +126,32 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    NotFound:
+      description: Resource not found
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    UnprocessableEntity:
+      description: Resource failed validation
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
   schemas:
-    Quantity:
-      type: object
-      properties:
-        value:
-          type: number
-        unit:
-          type: string
-        system:
-          type: string
-          format: uri
-        code:
-          type: string
-    Reference:
-      type: object
-      properties:
-        reference:
-          type: string
-        display:
-          type: string
-    CodeableConcept:
-      type: object
-      properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
-          type: string
-    Resource:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          description: Type of FHIR resource
-        id:
-          type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
-                type: string
-                format: uri
-    OperationOutcome:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: OperationOutcome
-        issue:
-          type: array
-          items:
-            type: object
-            properties:
-              severity:
-                type: string
-                enum:
-                - fatal
-                - error
-                - warning
-                - information
-              code:
-                type: string
-              diagnostics:
-                type: string
-              details:
-                $ref: '#/components/schemas/CodeableConcept'
-    Coding:
-      type: object
-      properties:
-        system:
-          type: string
-          format: uri
-        code:
-          type: string
-        display:
-          type: string
     Observation:
       type: object
       properties:
@@ -262,6 +203,56 @@ components:
                 $ref: '#/components/schemas/Quantity'
               text:
                 type: string
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
+    Reference:
+      type: object
+      properties:
+        reference:
+          type: string
+        display:
+          type: string
+    Quantity:
+      type: object
+      properties:
+        value:
+          type: number
+        unit:
+          type: string
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
     Bundle:
       type: object
       properties:
@@ -312,32 +303,48 @@ components:
                     - match
                     - include
                     - outcome
-  responses:
-    UnprocessableEntity:
-      description: Resource failed validation
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    NotFound:
-      description: Resource not found
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
+    OperationOutcome:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
+    Coding:
+      type: object
+      properties:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
   parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
     FhirCount:
       name: _count
       in: query
@@ -347,21 +354,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     FhirFormat:
       name: _format
       in: query
@@ -371,6 +363,14 @@ components:
         enum:
         - application/fhir+json
         - application/fhir+xml
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

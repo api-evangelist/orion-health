@@ -198,7 +198,42 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
     CohortCreate:
       type: object
       required:
@@ -211,6 +246,82 @@ components:
           type: string
         criteria:
           $ref: '#/components/schemas/CohortCriteria'
+    CohortCriteria:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              system:
+                type: string
+                enum:
+                - icd-10
+                - snomed
+              status:
+                type: string
+        demographics:
+          type: object
+          properties:
+            ageRange:
+              type: object
+              properties:
+                min:
+                  type: integer
+                max:
+                  type: integer
+            gender:
+              type: array
+              items:
+                type: string
+            zipCodes:
+              type: array
+              items:
+                type: string
+        riskLevel:
+          type: array
+          items:
+            type: string
+            enum:
+            - low
+            - moderate
+            - high
+            - critical
+        medications:
+          type: array
+          items:
+            type: string
+        utilizationCriteria:
+          type: object
+          properties:
+            edVisits:
+              type: object
+              properties:
+                min:
+                  type: integer
+                period:
+                  type: string
+            admissions:
+              type: object
+              properties:
+                min:
+                  type: integer
+                period:
+                  type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
     CohortAnalytics:
       type: object
       properties:
@@ -281,17 +392,6 @@ components:
             end:
               type: string
               format: date
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
     Cohort:
       type: object
       properties:
@@ -318,96 +418,7 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    CohortCriteria:
-      type: object
-      properties:
-        conditions:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              system:
-                type: string
-                enum:
-                - icd-10
-                - snomed
-              status:
-                type: string
-        demographics:
-          type: object
-          properties:
-            ageRange:
-              type: object
-              properties:
-                min:
-                  type: integer
-                max:
-                  type: integer
-            gender:
-              type: array
-              items:
-                type: string
-            zipCodes:
-              type: array
-              items:
-                type: string
-        riskLevel:
-          type: array
-          items:
-            type: string
-            enum:
-            - low
-            - moderate
-            - high
-            - critical
-        medications:
-          type: array
-          items:
-            type: string
-        utilizationCriteria:
-          type: object
-          properties:
-            edVisits:
-              type: object
-              properties:
-                min:
-                  type: integer
-                period:
-                  type: string
-            admissions:
-              type: object
-              properties:
-                min:
-                  type: integer
-                period:
-                  type: string
   parameters:
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageLimit:
       name: limit
       in: query
@@ -417,25 +428,14 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

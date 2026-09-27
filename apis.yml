@@ -41,7 +41,6 @@ apis:
   description: >-
     Medical platform which allows the development of applications for different healthcare scenarios
   humanURL: https://developer.orionhealth.io/
-  baseURL: https://developer.orionhealth.io/
   tags:
   - Health
   properties:
@@ -1067,10 +1066,8 @@ apis:
   name: Orion Health Allergy Intolerance API
   description: Operations on AllergyIntolerance resources
   humanURL: https://developer.orionhealth.io/
-  baseURL: https://developer.orionhealth.io/
+  baseURL: https://api.orionhealth.com/fhir
   tags:
-  - AllergyIntolerance
-  tags_raw:
   - Allergy Intolerance
   properties:
   - type: OpenAPI
@@ -1105,10 +1102,8 @@ apis:
   name: Orion Health Care plan API
   description: Operations on CarePlan resources
   humanURL: https://developer.orionhealth.io/
-  baseURL: https://developer.orionhealth.io/
+  baseURL: https://api.orionhealth.com/fhir
   tags:
-  - CarePlan
-  tags_raw:
   - Care plan
   properties:
   - type: OpenAPI
@@ -1143,10 +1138,8 @@ apis:
   name: Orion Health Document Reference API
   description: Operations on DocumentReference resources
   humanURL: https://developer.orionhealth.io/
-  baseURL: https://developer.orionhealth.io/
+  baseURL: https://api.orionhealth.com/fhir
   tags:
-  - DocumentReference
-  tags_raw:
   - Document Reference
   properties:
   - type: OpenAPI
@@ -1181,10 +1174,8 @@ apis:
   name: Orion Health Medication Request API
   description: Operations on MedicationRequest resources
   humanURL: https://developer.orionhealth.io/
-  baseURL: https://developer.orionhealth.io/
+  baseURL: https://api.orionhealth.com/fhir
   tags:
-  - MedicationRequest
-  tags_raw:
   - Medication Request
   properties:
   - type: OpenAPI

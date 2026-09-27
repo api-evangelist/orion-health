@@ -231,7 +231,42 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
     DocumentSubmission:
       type: object
       required:
@@ -291,6 +326,34 @@ components:
           type: integer
         hasMore:
           type: boolean
+    RecordLocatorResult:
+      type: object
+      properties:
+        documentId:
+          type: string
+          format: uuid
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        size:
+          type: integer
+          description: Document size in bytes
+        availableFormats:
+          type: array
+          items:
+            type: string
     DocumentMetadata:
       type: object
       properties:
@@ -332,50 +395,6 @@ components:
           - available
           - deprecated
           - deleted
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    RecordLocatorResult:
-      type: object
-      properties:
-        documentId:
-          type: string
-          format: uuid
-        documentType:
-          type: string
-        title:
-          type: string
-        sourceOrganization:
-          type: string
-        sourceOrganizationName:
-          type: string
-        authorName:
-          type: string
-        createdDate:
-          type: string
-          format: date-time
-        format:
-          type: string
-        size:
-          type: integer
-          description: Document size in bytes
-        availableFormats:
-          type: array
-          items:
-            type: string
     DocumentContent:
       type: object
       properties:
@@ -390,14 +409,6 @@ components:
         format:
           type: string
   parameters:
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageLimit:
       name: limit
       in: query
@@ -407,25 +418,14 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

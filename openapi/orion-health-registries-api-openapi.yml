@@ -150,18 +150,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
     Error:
       type: object
       properties:
@@ -178,43 +180,6 @@ components:
                 type: string
               message:
                 type: string
-    RegistryPatient:
-      type: object
-      properties:
-        patientId:
-          type: string
-        patientName:
-          type: string
-        dateOfBirth:
-          type: string
-          format: date
-        gender:
-          type: string
-        riskLevel:
-          type: string
-          enum:
-          - low
-          - moderate
-          - high
-          - critical
-        riskScore:
-          type: number
-        careStatus:
-          type: string
-          enum:
-          - enrolled
-          - active
-          - completed
-          - discharged
-        primaryConditions:
-          type: array
-          items:
-            type: string
-        lastEncounterDate:
-          type: string
-          format: date
-        assignedCareManager:
-          type: string
     Registry:
       type: object
       properties:
@@ -266,15 +231,55 @@ components:
         updatedAt:
           type: string
           format: date-time
+    RegistryPatient:
+      type: object
+      properties:
+        patientId:
+          type: string
+        patientName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+        riskLevel:
+          type: string
+          enum:
+          - low
+          - moderate
+          - high
+          - critical
+        riskScore:
+          type: number
+        careStatus:
+          type: string
+          enum:
+          - enrolled
+          - active
+          - completed
+          - discharged
+        primaryConditions:
+          type: array
+          items:
+            type: string
+        lastEncounterDate:
+          type: string
+          format: date
+        assignedCareManager:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
   parameters:
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageLimit:
       name: limit
       in: query
@@ -284,19 +289,14 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

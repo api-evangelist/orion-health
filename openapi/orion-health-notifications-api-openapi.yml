@@ -130,44 +130,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
-    NotificationSubscriptionCreate:
-      type: object
-      required:
-      - eventTypes
-      - callbackUrl
-      properties:
-        eventTypes:
-          type: array
-          items:
-            type: string
-            enum:
-            - admission
-            - discharge
-            - transfer
-            - registration
-        patientIds:
-          type: array
-          items:
-            type: string
-        sourceOrganizations:
-          type: array
-          items:
-            type: string
-        callbackUrl:
-          type: string
-          format: uri
     Notification:
       type: object
       properties:
@@ -231,6 +207,43 @@ components:
                 type: string
               message:
                 type: string
+    NotificationSubscriptionCreate:
+      type: object
+      required:
+      - eventTypes
+      - callbackUrl
+      properties:
+        eventTypes:
+          type: array
+          items:
+            type: string
+            enum:
+            - admission
+            - discharge
+            - transfer
+            - registration
+        patientIds:
+          type: array
+          items:
+            type: string
+        sourceOrganizations:
+          type: array
+          items:
+            type: string
+        callbackUrl:
+          type: string
+          format: uri
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
     NotificationSubscription:
       type: object
       properties:
@@ -268,14 +281,6 @@ components:
           type: string
           format: date-time
   parameters:
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageLimit:
       name: limit
       in: query
@@ -285,19 +290,14 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

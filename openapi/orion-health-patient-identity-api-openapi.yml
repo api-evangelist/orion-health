@@ -136,52 +136,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    PatientMatchRequest:
-      type: object
-      properties:
-        familyName:
-          type: string
-        givenName:
-          type: string
-        dateOfBirth:
-          type: string
-          format: date
-        gender:
-          type: string
-          enum:
-          - male
-          - female
-          - other
-          - unknown
-        identifier:
-          type: object
-          properties:
-            system:
-              type: string
-              description: Identifier system (e.g., MRN namespace)
-            value:
-              type: string
-        ssn:
-          type: string
-          description: Last four digits of SSN for matching
-        address:
-          type: object
-          properties:
-            line:
-              type: string
-            city:
-              type: string
-            state:
-              type: string
-            postalCode:
-              type: string
-        phone:
-          type: string
-        matchThreshold:
-          type: number
-          description: Minimum match confidence score (0-1)
-          default: 0.85
     Error:
       type: object
       properties:
@@ -198,34 +172,6 @@ components:
                 type: string
               message:
                 type: string
-    RecordLocatorResult:
-      type: object
-      properties:
-        documentId:
-          type: string
-          format: uuid
-        documentType:
-          type: string
-        title:
-          type: string
-        sourceOrganization:
-          type: string
-        sourceOrganizationName:
-          type: string
-        authorName:
-          type: string
-        createdDate:
-          type: string
-          format: date-time
-        format:
-          type: string
-        size:
-          type: integer
-          description: Document size in bytes
-        availableFormats:
-          type: array
-          items:
-            type: string
     PatientMatchResponse:
       type: object
       properties:
@@ -271,6 +217,79 @@ components:
                     type: string
         totalMatches:
           type: integer
+    RecordLocatorResult:
+      type: object
+      properties:
+        documentId:
+          type: string
+          format: uuid
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        size:
+          type: integer
+          description: Document size in bytes
+        availableFormats:
+          type: array
+          items:
+            type: string
+    PatientMatchRequest:
+      type: object
+      properties:
+        familyName:
+          type: string
+        givenName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+          - male
+          - female
+          - other
+          - unknown
+        identifier:
+          type: object
+          properties:
+            system:
+              type: string
+              description: Identifier system (e.g., MRN namespace)
+            value:
+              type: string
+        ssn:
+          type: string
+          description: Last four digits of SSN for matching
+        address:
+          type: object
+          properties:
+            line:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+        phone:
+          type: string
+        matchThreshold:
+          type: number
+          description: Minimum match confidence score (0-1)
+          default: 0.85
     PatientIdentifiers:
       type: object
       properties:
@@ -293,25 +312,6 @@ components:
                 type: string
               active:
                 type: boolean
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2
