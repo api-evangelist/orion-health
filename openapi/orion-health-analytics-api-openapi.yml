@@ -145,143 +145,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    PopulationSummary:
-      type: object
-      properties:
-        totalPatients:
-          type: integer
-        demographics:
-          type: object
-          properties:
-            averageAge:
-              type: number
-            genderDistribution:
-              type: object
-              additionalProperties:
-                type: integer
-        riskDistribution:
-          type: object
-          properties:
-            low:
-              type: integer
-            moderate:
-              type: integer
-            high:
-              type: integer
-            critical:
-              type: integer
-        topConditions:
-          type: array
-          items:
-            type: object
-            properties:
-              condition:
-                type: string
-              count:
-                type: integer
-              prevalence:
-                type: number
-        careGaps:
-          type: object
-          properties:
-            total:
-              type: integer
-            byPriority:
-              type: object
-              additionalProperties:
-                type: integer
-        period:
-          type: object
-          properties:
-            start:
-              type: string
-              format: date
-            end:
-              type: string
-              format: date
-    UtilizationAnalytics:
-      type: object
-      properties:
-        edVisits:
-          type: object
-          properties:
-            total:
-              type: integer
-            perThousand:
-              type: number
-            trend:
-              type: array
-              items:
-                type: object
-                properties:
-                  period:
-                    type: string
-                  count:
-                    type: integer
-        admissions:
-          type: object
-          properties:
-            total:
-              type: integer
-            perThousand:
-              type: number
-            averageLOS:
-              type: number
-        readmissions:
-          type: object
-          properties:
-            total:
-              type: integer
-            rate:
-              type: number
-            thirtyDayRate:
-              type: number
-        ambulatoryVisits:
-          type: object
-          properties:
-            total:
-              type: integer
-            perThousand:
-              type: number
-        period:
-          type: object
-          properties:
-            start:
-              type: string
-              format: date
-            end:
-              type: string
-              format: date
     CohortAnalytics:
       type: object
       properties:
@@ -352,6 +216,142 @@ components:
             end:
               type: string
               format: date
+    PopulationSummary:
+      type: object
+      properties:
+        totalPatients:
+          type: integer
+        demographics:
+          type: object
+          properties:
+            averageAge:
+              type: number
+            genderDistribution:
+              type: object
+              additionalProperties:
+                type: integer
+        riskDistribution:
+          type: object
+          properties:
+            low:
+              type: integer
+            moderate:
+              type: integer
+            high:
+              type: integer
+            critical:
+              type: integer
+        topConditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition:
+                type: string
+              count:
+                type: integer
+              prevalence:
+                type: number
+        careGaps:
+          type: object
+          properties:
+            total:
+              type: integer
+            byPriority:
+              type: object
+              additionalProperties:
+                type: integer
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    UtilizationAnalytics:
+      type: object
+      properties:
+        edVisits:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+            trend:
+              type: array
+              items:
+                type: object
+                properties:
+                  period:
+                    type: string
+                  count:
+                    type: integer
+        admissions:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+            averageLOS:
+              type: number
+        readmissions:
+          type: object
+          properties:
+            total:
+              type: integer
+            rate:
+              type: number
+            thirtyDayRate:
+              type: number
+        ambulatoryVisits:
+          type: object
+          properties:
+            total:
+              type: integer
+            perThousand:
+              type: number
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

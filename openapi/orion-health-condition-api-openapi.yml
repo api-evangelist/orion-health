@@ -99,26 +99,69 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    NotFound:
-      description: Resource not found
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
   schemas:
+    Condition:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Condition
+        id:
+          type: string
+        clinicalStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        verificationStatus:
+          $ref: '#/components/schemas/CodeableConcept'
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        severity:
+          $ref: '#/components/schemas/CodeableConcept'
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        onsetDateTime:
+          type: string
+          format: date-time
+        recordedDate:
+          type: string
+          format: date-time
+    Coding:
+      type: object
+      properties:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
+    OperationOutcome:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
     CodeableConcept:
       type: object
       properties:
@@ -127,13 +170,6 @@ components:
           items:
             $ref: '#/components/schemas/Coding'
         text:
-          type: string
-    Reference:
-      type: object
-      properties:
-        reference:
-          type: string
-        display:
           type: string
     Resource:
       type: object
@@ -157,6 +193,13 @@ components:
               items:
                 type: string
                 format: uri
+    Reference:
+      type: object
+      properties:
+        reference:
+          type: string
+        display:
+          type: string
     Bundle:
       type: object
       properties:
@@ -207,85 +250,34 @@ components:
                     - match
                     - include
                     - outcome
-    OperationOutcome:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: OperationOutcome
-        issue:
-          type: array
-          items:
-            type: object
-            properties:
-              severity:
-                type: string
-                enum:
-                - fatal
-                - error
-                - warning
-                - information
-              code:
-                type: string
-              diagnostics:
-                type: string
-              details:
-                $ref: '#/components/schemas/CodeableConcept'
-    Coding:
-      type: object
-      properties:
-        system:
-          type: string
-          format: uri
-        code:
-          type: string
-        display:
-          type: string
-    Condition:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: Condition
-        id:
-          type: string
-        clinicalStatus:
-          $ref: '#/components/schemas/CodeableConcept'
-        verificationStatus:
-          $ref: '#/components/schemas/CodeableConcept'
-        category:
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeableConcept'
-        severity:
-          $ref: '#/components/schemas/CodeableConcept'
-        code:
-          $ref: '#/components/schemas/CodeableConcept'
-        subject:
-          $ref: '#/components/schemas/Reference'
-        onsetDateTime:
-          type: string
-          format: date-time
-        recordedDate:
-          type: string
-          format: date-time
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    NotFound:
+      description: Resource not found
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
   parameters:
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
-    FhirCount:
-      name: _count
+    FhirOffset:
+      name: _offset
       in: query
-      description: Maximum number of results per page
+      description: Starting offset for paging
       schema:
         type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
+        minimum: 0
+        default: 0
     FhirFormat:
       name: _format
       in: query
@@ -295,14 +287,22 @@ components:
         enum:
         - application/fhir+json
         - application/fhir+xml
-    FhirOffset:
-      name: _offset
+    FhirCount:
+      name: _count
       in: query
-      description: Starting offset for paging
+      description: Maximum number of results per page
       schema:
         type: integer
-        minimum: 0
-        default: 0
+        minimum: 1
+        maximum: 100
+        default: 20
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

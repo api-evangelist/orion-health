@@ -212,22 +212,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
     ConsentCreate:
       type: object
       required:
@@ -270,6 +254,33 @@ components:
         expirationDate:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
     Consent:
       type: object
       properties:
@@ -327,18 +338,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
   parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     PageLimit:
       name: limit
       in: query
@@ -348,14 +356,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

@@ -160,6 +160,49 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    LookupTableUpdate:
+      type: object
+      required:
+      - columns
+      - rows
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    LookupTable:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        columnCount:
+          type: integer
+        rowCount:
+          type: integer
+        lastModified:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
     LookupTableDetail:
       type: object
       properties:
@@ -198,49 +241,6 @@ components:
                 type: string
               message:
                 type: string
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
-    LookupTableUpdate:
-      type: object
-      required:
-      - columns
-      - rows
-      properties:
-        columns:
-          type: array
-          items:
-            type: string
-        rows:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: string
-    LookupTable:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        columnCount:
-          type: integer
-        rowCount:
-          type: integer
-        lastModified:
-          type: string
-          format: date-time
   responses:
     BadRequest:
       description: Invalid request parameters
@@ -261,6 +261,14 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     PageLimit:
       name: limit
       in: query
@@ -270,14 +278,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

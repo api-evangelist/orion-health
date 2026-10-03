@@ -196,95 +196,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    EnrollmentCreate:
-      type: object
-      required:
-      - patientId
-      properties:
-        patientId:
-          type: string
-        assignedCareManager:
-          type: string
-        goals:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              targetDate:
-                type: string
-                format: date
-    Enrollment:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        programId:
-          type: string
-          format: uuid
-        patientId:
-          type: string
-        status:
-          type: string
-          enum:
-          - enrolled
-          - active
-          - completed
-          - withdrawn
-        enrolledAt:
-          type: string
-          format: date-time
-        completedAt:
-          type: string
-          format: date-time
-        assignedCareManager:
-          type: string
-        goals:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              status:
-                type: string
-                enum:
-                - pending
-                - in-progress
-                - achieved
-                - not-achieved
-              targetDate:
-                type: string
-                format: date
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
     CareProgram:
       type: object
       properties:
@@ -329,6 +240,95 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+    Enrollment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        programId:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        status:
+          type: string
+          enum:
+          - enrolled
+          - active
+          - completed
+          - withdrawn
+        enrolledAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        assignedCareManager:
+          type: string
+        goals:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              status:
+                type: string
+                enum:
+                - pending
+                - in-progress
+                - achieved
+                - not-achieved
+              targetDate:
+                type: string
+                format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    EnrollmentCreate:
+      type: object
+      required:
+      - patientId
+      properties:
+        patientId:
+          type: string
+        assignedCareManager:
+          type: string
+        goals:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              targetDate:
+                type: string
+                format: date
   parameters:
     PageOffset:
       name: offset

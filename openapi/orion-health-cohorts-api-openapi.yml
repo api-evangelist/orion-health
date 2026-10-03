@@ -217,35 +217,95 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
   schemas:
-    Error:
+    CohortAnalytics:
       type: object
       properties:
-        code:
+        cohortId:
           type: string
-        message:
-          type: string
-        details:
+          format: uuid
+        memberCount:
+          type: integer
+        demographics:
+          type: object
+          properties:
+            averageAge:
+              type: number
+            genderDistribution:
+              type: object
+              additionalProperties:
+                type: integer
+            ageDistribution:
+              type: array
+              items:
+                type: object
+                properties:
+                  ageRange:
+                    type: string
+                  count:
+                    type: integer
+        topConditions:
           type: array
           items:
             type: object
             properties:
-              field:
+              condition:
                 type: string
-              message:
+              code:
                 type: string
-    CohortCreate:
-      type: object
-      required:
-      - name
-      - criteria
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        criteria:
-          $ref: '#/components/schemas/CohortCriteria'
+              prevalence:
+                type: number
+              count:
+                type: integer
+        riskDistribution:
+          type: object
+          properties:
+            low:
+              type: integer
+            moderate:
+              type: integer
+            high:
+              type: integer
+            critical:
+              type: integer
+        utilization:
+          type: object
+          properties:
+            edVisitsPerThousand:
+              type: number
+            admissionsPerThousand:
+              type: number
+            readmissionRate:
+              type: number
+            averageLengthOfStay:
+              type: number
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
     CohortCriteria:
       type: object
       properties:
@@ -322,76 +382,6 @@ components:
           type: integer
         hasMore:
           type: boolean
-    CohortAnalytics:
-      type: object
-      properties:
-        cohortId:
-          type: string
-          format: uuid
-        memberCount:
-          type: integer
-        demographics:
-          type: object
-          properties:
-            averageAge:
-              type: number
-            genderDistribution:
-              type: object
-              additionalProperties:
-                type: integer
-            ageDistribution:
-              type: array
-              items:
-                type: object
-                properties:
-                  ageRange:
-                    type: string
-                  count:
-                    type: integer
-        topConditions:
-          type: array
-          items:
-            type: object
-            properties:
-              condition:
-                type: string
-              code:
-                type: string
-              prevalence:
-                type: number
-              count:
-                type: integer
-        riskDistribution:
-          type: object
-          properties:
-            low:
-              type: integer
-            moderate:
-              type: integer
-            high:
-              type: integer
-            critical:
-              type: integer
-        utilization:
-          type: object
-          properties:
-            edVisitsPerThousand:
-              type: number
-            admissionsPerThousand:
-              type: number
-            readmissionRate:
-              type: number
-            averageLengthOfStay:
-              type: number
-        period:
-          type: object
-          properties:
-            start:
-              type: string
-              format: date
-            end:
-              type: string
-              format: date
     Cohort:
       type: object
       properties:
@@ -418,24 +408,34 @@ components:
         updatedAt:
           type: string
           format: date-time
-  parameters:
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    CohortCreate:
+      type: object
+      required:
+      - name
+      - criteria
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        criteria:
+          $ref: '#/components/schemas/CohortCriteria'
   securitySchemes:
     oauth2:
       type: oauth2

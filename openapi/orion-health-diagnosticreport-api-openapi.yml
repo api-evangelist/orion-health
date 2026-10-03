@@ -103,15 +103,49 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
   responses:
-    Unauthorized:
-      description: Authentication required or token expired
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required or token expired
       content:
         application/fhir+json:
           schema:
@@ -123,6 +157,81 @@ components:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
   schemas:
+    DiagnosticReport:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: DiagnosticReport
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - registered
+          - partial
+          - preliminary
+          - final
+          - amended
+          - corrected
+          - appended
+          - cancelled
+          - entered-in-error
+          - unknown
+        category:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeableConcept'
+        code:
+          $ref: '#/components/schemas/CodeableConcept'
+        subject:
+          $ref: '#/components/schemas/Reference'
+        effectiveDateTime:
+          type: string
+          format: date-time
+        issued:
+          type: string
+          format: date-time
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+        conclusion:
+          type: string
+    Coding:
+      type: object
+      properties:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
+    OperationOutcome:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
     CodeableConcept:
       type: object
       properties:
@@ -131,13 +240,6 @@ components:
           items:
             $ref: '#/components/schemas/Coding'
         text:
-          type: string
-    Reference:
-      type: object
-      properties:
-        reference:
-          type: string
-        display:
           type: string
     Resource:
       type: object
@@ -161,6 +263,13 @@ components:
               items:
                 type: string
                 format: uri
+    Reference:
+      type: object
+      properties:
+        reference:
+          type: string
+        display:
+          type: string
     Bundle:
       type: object
       properties:
@@ -211,115 +320,6 @@ components:
                     - match
                     - include
                     - outcome
-    DiagnosticReport:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: DiagnosticReport
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - registered
-          - partial
-          - preliminary
-          - final
-          - amended
-          - corrected
-          - appended
-          - cancelled
-          - entered-in-error
-          - unknown
-        category:
-          type: array
-          items:
-            $ref: '#/components/schemas/CodeableConcept'
-        code:
-          $ref: '#/components/schemas/CodeableConcept'
-        subject:
-          $ref: '#/components/schemas/Reference'
-        effectiveDateTime:
-          type: string
-          format: date-time
-        issued:
-          type: string
-          format: date-time
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Reference'
-        conclusion:
-          type: string
-    OperationOutcome:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          const: OperationOutcome
-        issue:
-          type: array
-          items:
-            type: object
-            properties:
-              severity:
-                type: string
-                enum:
-                - fatal
-                - error
-                - warning
-                - information
-              code:
-                type: string
-              diagnostics:
-                type: string
-              details:
-                $ref: '#/components/schemas/CodeableConcept'
-    Coding:
-      type: object
-      properties:
-        system:
-          type: string
-          format: uri
-        code:
-          type: string
-        display:
-          type: string
-  parameters:
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
-    FhirCount:
-      name: _count
-      in: query
-      description: Maximum number of results per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    FhirFormat:
-      name: _format
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - application/fhir+json
-        - application/fhir+xml
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

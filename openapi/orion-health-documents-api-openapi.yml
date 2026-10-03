@@ -250,23 +250,49 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
   schemas:
-    Error:
+    Pagination:
       type: object
       properties:
-        code:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+    DocumentContent:
+      type: object
+      properties:
+        id:
           type: string
-        message:
+          format: uuid
+        metadata:
+          $ref: '#/components/schemas/DocumentMetadata'
+        content:
           type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
+          description: Base64-encoded document content
+        format:
+          type: string
     DocumentSubmission:
       type: object
       required:
@@ -315,45 +341,22 @@ components:
               - normal
               - restricted
               - very-restricted
-    Pagination:
+    Error:
       type: object
       properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
-    RecordLocatorResult:
-      type: object
-      properties:
-        documentId:
+        code:
           type: string
-          format: uuid
-        documentType:
+        message:
           type: string
-        title:
-          type: string
-        sourceOrganization:
-          type: string
-        sourceOrganizationName:
-          type: string
-        authorName:
-          type: string
-        createdDate:
-          type: string
-          format: date-time
-        format:
-          type: string
-        size:
-          type: integer
-          description: Document size in bytes
-        availableFormats:
+        details:
           type: array
           items:
-            type: string
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
     DocumentMetadata:
       type: object
       properties:
@@ -395,37 +398,34 @@ components:
           - available
           - deprecated
           - deleted
-    DocumentContent:
+    RecordLocatorResult:
       type: object
       properties:
-        id:
+        documentId:
           type: string
           format: uuid
-        metadata:
-          $ref: '#/components/schemas/DocumentMetadata'
-        content:
+        documentType:
           type: string
-          description: Base64-encoded document content
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
         format:
           type: string
-  parameters:
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
+        size:
+          type: integer
+          description: Document size in bytes
+        availableFormats:
+          type: array
+          items:
+            type: string
   securitySchemes:
     oauth2:
       type: oauth2

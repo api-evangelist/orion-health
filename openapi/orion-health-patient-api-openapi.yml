@@ -204,112 +204,79 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Conflict:
-      description: Version conflict during update
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    NotFound:
-      description: Resource not found
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
-    UnprocessableEntity:
-      description: Resource failed validation
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
+  parameters:
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
   schemas:
-    Bundle:
+    Identifier:
       type: object
       properties:
-        resourceType:
-          type: string
-          const: Bundle
-        type:
+        use:
           type: string
           enum:
-          - searchset
-          - batch-response
-          - history
-        total:
-          type: integer
-          description: Total number of matching results
-        link:
-          type: array
-          items:
-            type: object
-            properties:
-              relation:
-                type: string
-                enum:
-                - self
-                - next
-                - previous
-                - first
-                - last
-              url:
-                type: string
-                format: uri
-        entry:
-          type: array
-          items:
-            type: object
-            properties:
-              fullUrl:
-                type: string
-                format: uri
-              resource:
-                $ref: '#/components/schemas/Resource'
-              search:
-                type: object
-                properties:
-                  mode:
-                    type: string
-                    enum:
-                    - match
-                    - include
-                    - outcome
-    OperationOutcome:
+          - usual
+          - official
+          - temp
+          - secondary
+          - old
+        system:
+          type: string
+          format: uri
+        value:
+          type: string
+    Resource:
       type: object
       properties:
         resourceType:
           type: string
-          const: OperationOutcome
-        issue:
-          type: array
-          items:
-            type: object
-            properties:
-              severity:
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
                 type: string
-                enum:
-                - fatal
-                - error
-                - warning
-                - information
-              code:
-                type: string
-              diagnostics:
-                type: string
-              details:
-                $ref: '#/components/schemas/CodeableConcept'
+                format: uri
     Patient:
       type: object
       properties:
@@ -390,6 +357,93 @@ components:
           - temp
           - old
           - mobile
+    Coding:
+      type: object
+      properties:
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+        display:
+          type: string
+    Bundle:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          const: Bundle
+        type:
+          type: string
+          enum:
+          - searchset
+          - batch-response
+          - history
+        total:
+          type: integer
+          description: Total number of matching results
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+                enum:
+                - self
+                - next
+                - previous
+                - first
+                - last
+              url:
+                type: string
+                format: uri
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+                format: uri
+              resource:
+                $ref: '#/components/schemas/Resource'
+              search:
+                type: object
+                properties:
+                  mode:
+                    type: string
+                    enum:
+                    - match
+                    - include
+                    - outcome
+    HumanName:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+          - usual
+          - official
+          - temp
+          - nickname
+          - anonymous
+          - old
+          - maiden
+        family:
+          type: string
+        given:
+          type: array
+          items:
+            type: string
+        prefix:
+          type: array
+          items:
+            type: string
+        suffix:
+          type: array
+          items:
+            type: string
     Address:
       type: object
       properties:
@@ -428,115 +482,61 @@ components:
             $ref: '#/components/schemas/Coding'
         text:
           type: string
-    Resource:
+    OperationOutcome:
       type: object
       properties:
         resourceType:
           type: string
-          description: Type of FHIR resource
-        id:
-          type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
+          const: OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
                 type: string
-                format: uri
-    Identifier:
-      type: object
-      properties:
-        use:
-          type: string
-          enum:
-          - usual
-          - official
-          - temp
-          - secondary
-          - old
-        system:
-          type: string
-          format: uri
-        value:
-          type: string
-    HumanName:
-      type: object
-      properties:
-        use:
-          type: string
-          enum:
-          - usual
-          - official
-          - temp
-          - nickname
-          - anonymous
-          - old
-          - maiden
-        family:
-          type: string
-        given:
-          type: array
-          items:
-            type: string
-        prefix:
-          type: array
-          items:
-            type: string
-        suffix:
-          type: array
-          items:
-            type: string
-    Coding:
-      type: object
-      properties:
-        system:
-          type: string
-          format: uri
-        code:
-          type: string
-        display:
-          type: string
-  parameters:
-    FhirCount:
-      name: _count
-      in: query
-      description: Maximum number of results per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    FhirFormat:
-      name: _format
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - application/fhir+json
-        - application/fhir+xml
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
+                enum:
+                - fatal
+                - error
+                - warning
+                - information
+              code:
+                type: string
+              diagnostics:
+                type: string
+              details:
+                $ref: '#/components/schemas/CodeableConcept'
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    UnprocessableEntity:
+      description: Resource failed validation
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    Conflict:
+      description: Version conflict during update
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
   securitySchemes:
     oauth2:
       type: oauth2
