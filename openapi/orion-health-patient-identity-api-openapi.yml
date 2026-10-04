@@ -137,14 +137,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
@@ -156,72 +156,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    PatientIdentifiers:
-      type: object
-      properties:
-        patientId:
-          type: string
-        identifiers:
-          type: array
-          items:
-            type: object
-            properties:
-              system:
-                type: string
-              value:
-                type: string
-              organization:
-                type: string
-              organizationName:
-                type: string
-              assigningAuthority:
-                type: string
-              active:
-                type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    RecordLocatorResult:
-      type: object
-      properties:
-        documentId:
-          type: string
-          format: uuid
-        documentType:
-          type: string
-        title:
-          type: string
-        sourceOrganization:
-          type: string
-        sourceOrganizationName:
-          type: string
-        authorName:
-          type: string
-        createdDate:
-          type: string
-          format: date-time
-        format:
-          type: string
-        size:
-          type: integer
-          description: Document size in bytes
-        availableFormats:
-          type: array
-          items:
-            type: string
     PatientMatchResponse:
       type: object
       properties:
@@ -267,6 +201,56 @@ components:
                     type: string
         totalMatches:
           type: integer
+    PatientIdentifiers:
+      type: object
+      properties:
+        patientId:
+          type: string
+        identifiers:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              value:
+                type: string
+              organization:
+                type: string
+              organizationName:
+                type: string
+              assigningAuthority:
+                type: string
+              active:
+                type: boolean
+    RecordLocatorResult:
+      type: object
+      properties:
+        documentId:
+          type: string
+          format: uuid
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        size:
+          type: integer
+          description: Document size in bytes
+        availableFormats:
+          type: array
+          items:
+            type: string
     PatientMatchRequest:
       type: object
       properties:
@@ -312,6 +296,22 @@ components:
           type: number
           description: Minimum match confidence score (0-1)
           default: 0.85
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
   securitySchemes:
     oauth2:
       type: oauth2

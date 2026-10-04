@@ -76,47 +76,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
   schemas:
-    Component:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - filter
-          - communication-point
-          - module
-          - connector
-        version:
-          type: string
-        vendor:
-          type: string
-        description:
-          type: string
-        installed:
-          type: boolean
     Pagination:
       type: object
       properties:
@@ -161,6 +121,28 @@ components:
               type: boolean
             clustering:
               type: boolean
+    Component:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - filter
+          - communication-point
+          - module
+          - connector
+        version:
+          type: string
+        vendor:
+          type: string
+        description:
+          type: string
+        installed:
+          type: boolean
     Error:
       type: object
       properties:
@@ -184,6 +166,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

@@ -176,70 +176,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    CareProgram:
+    EnrollmentCreate:
       type: object
+      required:
+      - patientId
       properties:
-        id:
+        patientId:
           type: string
-          format: uuid
-        name:
+        assignedCareManager:
           type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - chronic-disease
-          - wellness
-          - transition-of-care
-          - behavioral-health
-          - maternity
-          - custom
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - draft
-        enrollmentCount:
-          type: integer
-        eligibilityCriteria:
-          type: object
-          properties:
-            conditions:
-              type: array
-              items:
+        goals:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
                 type: string
-            riskLevels:
-              type: array
-              items:
+              targetDate:
                 type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
+                format: date
     Pagination:
       type: object
       properties:
@@ -294,6 +250,50 @@ components:
               targetDate:
                 type: string
                 format: date
+    CareProgram:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - chronic-disease
+          - wellness
+          - transition-of-care
+          - behavioral-health
+          - maternity
+          - custom
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - draft
+        enrollmentCount:
+          type: integer
+        eligibilityCriteria:
+          type: object
+          properties:
+            conditions:
+              type: array
+              items:
+                type: string
+            riskLevels:
+              type: array
+              items:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     Error:
       type: object
       properties:
@@ -310,34 +310,26 @@ components:
                 type: string
               message:
                 type: string
-    EnrollmentCreate:
-      type: object
-      required:
-      - patientId
-      properties:
-        patientId:
-          type: string
-        assignedCareManager:
-          type: string
-        goals:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              targetDate:
-                type: string
-                format: date
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageLimit:
       name: limit
       in: query
@@ -347,6 +339,14 @@ components:
         minimum: 1
         maximum: 100
         default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

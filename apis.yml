@@ -1068,8 +1068,6 @@ apis:
   humanURL: https://developer.orionhealth.io/
   baseURL: https://api.orionhealth.com/fhir
   tags:
-  - AllergyIntolerance
-  tags_raw:
   - Allergy Intolerance
   properties:
   - type: OpenAPI
@@ -1106,8 +1104,6 @@ apis:
   humanURL: https://developer.orionhealth.io/
   baseURL: https://api.orionhealth.com/fhir
   tags:
-  - CarePlan
-  tags_raw:
   - Care plan
   properties:
   - type: OpenAPI
@@ -1144,8 +1140,6 @@ apis:
   humanURL: https://developer.orionhealth.io/
   baseURL: https://api.orionhealth.com/fhir
   tags:
-  - DocumentReference
-  tags_raw:
   - Document Reference
   properties:
   - type: OpenAPI
@@ -1182,8 +1176,6 @@ apis:
   humanURL: https://developer.orionhealth.io/
   baseURL: https://api.orionhealth.com/fhir
   tags:
-  - MedicationRequest
-  tags_raw:
   - Medication Request
   properties:
   - type: OpenAPI

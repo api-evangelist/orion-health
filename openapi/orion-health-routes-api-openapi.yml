@@ -217,67 +217,35 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    PageLimit:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
   schemas:
-    RouteStatistics:
+    Pagination:
       type: object
       properties:
-        routeId:
+        offset:
           type: integer
-        routeName:
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+    RouteStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
           type: string
-        period:
-          type: object
-          properties:
-            start:
-              type: string
-              format: date-time
-            end:
-              type: string
-              format: date-time
-        totalMessages:
-          type: integer
-        successfulMessages:
-          type: integer
-        errorMessages:
-          type: integer
-        averageProcessingTimeMs:
-          type: number
-        maxProcessingTimeMs:
-          type: number
-        messagesPerSecond:
-          type: number
-        timeline:
-          type: array
-          items:
-            type: object
-            properties:
-              timestamp:
-                type: string
-                format: date-time
-              messagesProcessed:
-                type: integer
-              errors:
-                type: integer
-              avgProcessingTimeMs:
-                type: number
+        status:
+          type: string
+          enum:
+          - started
+          - stopped
+          - error
+          - disabled
+        statusChangedAt:
+          type: string
+          format: date-time
     CommunicationPoint:
       type: object
       properties:
@@ -315,6 +283,36 @@ components:
           type: integer
         connectionCount:
           type: integer
+    Route:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        folderPath:
+          type: string
+        status:
+          type: string
+          enum:
+          - started
+          - stopped
+          - error
+          - disabled
+        inputCommPointCount:
+          type: integer
+        outputCommPointCount:
+          type: integer
+        filterCount:
+          type: integer
+        messagesProcessed:
+          type: integer
+          description: Total messages processed since last restart
+        errorCount:
+          type: integer
+        lastMessageTime:
+          type: string
+          format: date-time
     RouteDetail:
       type: object
       properties:
@@ -369,47 +367,6 @@ components:
         modifiedAt:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
-    Route:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        folderPath:
-          type: string
-        status:
-          type: string
-          enum:
-          - started
-          - stopped
-          - error
-          - disabled
-        inputCommPointCount:
-          type: integer
-        outputCommPointCount:
-          type: integer
-        filterCount:
-          type: integer
-        messagesProcessed:
-          type: integer
-          description: Total messages processed since last restart
-        errorCount:
-          type: integer
-        lastMessageTime:
-          type: string
-          format: date-time
     Error:
       type: object
       properties:
@@ -426,23 +383,48 @@ components:
                 type: string
               message:
                 type: string
-    RouteStatus:
+    RouteStatistics:
       type: object
       properties:
-        id:
+        routeId:
           type: integer
-        name:
+        routeName:
           type: string
-        status:
-          type: string
-          enum:
-          - started
-          - stopped
-          - error
-          - disabled
-        statusChangedAt:
-          type: string
-          format: date-time
+        period:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+        totalMessages:
+          type: integer
+        successfulMessages:
+          type: integer
+        errorMessages:
+          type: integer
+        averageProcessingTimeMs:
+          type: number
+        maxProcessingTimeMs:
+          type: number
+        messagesPerSecond:
+          type: number
+        timeline:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              messagesProcessed:
+                type: integer
+              errors:
+                type: integer
+              avgProcessingTimeMs:
+                type: number
   responses:
     Unauthorized:
       description: Authentication required
@@ -456,6 +438,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

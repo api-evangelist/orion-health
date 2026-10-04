@@ -97,14 +97,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     FhirFormat:
       name: _format
       in: query
@@ -114,6 +106,14 @@ components:
         enum:
         - application/fhir+json
         - application/fhir+xml
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     FhirCount:
       name: _count
       in: query
@@ -131,14 +131,14 @@ components:
       schema:
         type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required or token expired
       content:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
-    Unauthorized:
-      description: Authentication required or token expired
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/fhir+json:
           schema:
@@ -150,6 +150,28 @@ components:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
   schemas:
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
     DocumentReference:
       type: object
       properties:
@@ -190,15 +212,14 @@ components:
                     format: uri
                   title:
                     type: string
-    Coding:
+    CodeableConcept:
       type: object
       properties:
-        system:
-          type: string
-          format: uri
-        code:
-          type: string
-        display:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
           type: string
     OperationOutcome:
       type: object
@@ -224,37 +245,16 @@ components:
                 type: string
               details:
                 $ref: '#/components/schemas/CodeableConcept'
-    CodeableConcept:
+    Coding:
       type: object
       properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
+        system:
           type: string
-    Resource:
-      type: object
-      properties:
-        resourceType:
+          format: uri
+        code:
           type: string
-          description: Type of FHIR resource
-        id:
+        display:
           type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
-                type: string
-                format: uri
     Reference:
       type: object
       properties:
