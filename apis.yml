@@ -1207,6 +1207,12 @@ apis:
   - type: GettingStarted
     url: https://www.orionhealth.com/developers/getting-started
 common:
+- type: Plans
+  url: plans/orion-health-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/orion-health-rate-limits.yml
+- type: FinOps
+  url: finops/orion-health-finops.yml
 - type: CapabilityMap
   url: capabilities/orion-health-capability-edges.yml
   name: Orion Health Business Capability Map
