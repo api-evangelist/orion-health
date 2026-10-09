@@ -22,11 +22,11 @@ artifacts:
     method: derived
     evidence: openapi/orion-health-alerts-api
   collections/orion-health-allergyintolerance-api.opencollection.json:
-    method: derived
-    evidence: openapi/orion-health-allergyintolerance-api
+    method: unknown
+    evidence: no authorship recorded
   collections/orion-health-allergyintolerance-api.postman_collection.json:
-    method: derived
-    evidence: openapi/orion-health-allergyintolerance-api
+    method: unknown
+    evidence: no authorship recorded
   collections/orion-health-analytics-api.opencollection.json:
     method: derived
     evidence: openapi/orion-health-analytics-api
@@ -46,11 +46,11 @@ artifacts:
     method: derived
     evidence: openapi/orion-health-care-programs-api
   collections/orion-health-careplan-api.opencollection.json:
-    method: derived
-    evidence: openapi/orion-health-careplan-api
+    method: unknown
+    evidence: no authorship recorded
   collections/orion-health-careplan-api.postman_collection.json:
-    method: derived
-    evidence: openapi/orion-health-careplan-api
+    method: unknown
+    evidence: no authorship recorded
   collections/orion-health-cohorts-api.opencollection.json:
     method: derived
     evidence: openapi/orion-health-cohorts-api
@@ -88,11 +88,11 @@ artifacts:
     method: derived
     evidence: openapi/orion-health-diagnosticreport-api
   collections/orion-health-documentreference-api.opencollection.json:
-    method: derived
-    evidence: openapi/orion-health-documentreference-api
+    method: unknown
+    evidence: no authorship recorded
   collections/orion-health-documentreference-api.postman_collection.json:
-    method: derived
-    evidence: openapi/orion-health-documentreference-api
+    method: unknown
+    evidence: no authorship recorded
   collections/orion-health-documents-api.opencollection.json:
     method: derived
     evidence: openapi/orion-health-documents-api
@@ -130,11 +130,11 @@ artifacts:
     method: derived
     evidence: openapi/orion-health-lookup-tables-api
   collections/orion-health-medicationrequest-api.opencollection.json:
-    method: derived
-    evidence: openapi/orion-health-medicationrequest-api
+    method: unknown
+    evidence: no authorship recorded
   collections/orion-health-medicationrequest-api.postman_collection.json:
-    method: derived
-    evidence: openapi/orion-health-medicationrequest-api
+    method: unknown
+    evidence: no authorship recorded
   collections/orion-health-message-queues-api.opencollection.json:
     method: derived
     evidence: openapi/orion-health-message-queues-api
@@ -234,6 +234,9 @@ artifacts:
   finops/orion-health-finops.yml:
     method: generated
     evidence: declared in the artifact
+  front-door-ai/2026-09-17.yml:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/orion-health-healthcare-context.jsonld:
     method: unknown
     evidence: no authorship recorded
@@ -246,55 +249,7 @@ artifacts:
   json-schema/orion-health-patient-schema.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-17T064519.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T080027.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T082702.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T114122.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T165047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T191845.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T205517.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-21T110057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T064859.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T171257.yml:
+  kin/checks-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -381,22 +336,143 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T211151.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T233623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T205255.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T231945.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T165737.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T193153.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T205903.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T232958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T211425.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T233935.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-22T213221.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-23T000603.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090406.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   openapi/_original/orion-health-fhir-openapi.yml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/orion-health-hie-openapi.yml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/orion-health-population-health-openapi.yml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/orion-health-rhapsody-openapi.yml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/orion-health-alerts-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/orion-health-allergyintolerance-api-openapi.yml:
+  openapi/orion-health-allergy-intolerance-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/orion-health-analytics-api-openapi.yml:
@@ -405,10 +481,10 @@ artifacts:
   openapi/orion-health-audit-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/orion-health-care-programs-api-openapi.yml:
+  openapi/orion-health-care-plan-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/orion-health-careplan-api-openapi.yml:
+  openapi/orion-health-care-programs-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/orion-health-cohorts-api-openapi.yml:
@@ -429,7 +505,7 @@ artifacts:
   openapi/orion-health-diagnosticreport-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/orion-health-documentreference-api-openapi.yml:
+  openapi/orion-health-document-reference-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/orion-health-documents-api-openapi.yml:
@@ -444,7 +520,7 @@ artifacts:
   openapi/orion-health-lookup-tables-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/orion-health-medicationrequest-api-openapi.yml:
+  openapi/orion-health-medication-request-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/orion-health-message-queues-api-openapi.yml:
@@ -496,8 +572,8 @@ artifacts:
     method: derived
     evidence: openapi/orion-health-alerts-api
   postman/orion-health-allergyintolerance-api.postman_collection.json:
-    method: derived
-    evidence: openapi/orion-health-allergyintolerance-api
+    method: unknown
+    evidence: no authorship recorded
   postman/orion-health-analytics-api.postman_collection.json:
     method: derived
     evidence: openapi/orion-health-analytics-api
@@ -508,8 +584,8 @@ artifacts:
     method: derived
     evidence: openapi/orion-health-care-programs-api
   postman/orion-health-careplan-api.postman_collection.json:
-    method: derived
-    evidence: openapi/orion-health-careplan-api
+    method: unknown
+    evidence: no authorship recorded
   postman/orion-health-cohorts-api.postman_collection.json:
     method: derived
     evidence: openapi/orion-health-cohorts-api
@@ -529,8 +605,8 @@ artifacts:
     method: derived
     evidence: openapi/orion-health-diagnosticreport-api
   postman/orion-health-documentreference-api.postman_collection.json:
-    method: derived
-    evidence: openapi/orion-health-documentreference-api
+    method: unknown
+    evidence: no authorship recorded
   postman/orion-health-documents-api.postman_collection.json:
     method: derived
     evidence: openapi/orion-health-documents-api
@@ -544,8 +620,8 @@ artifacts:
     method: derived
     evidence: openapi/orion-health-lookup-tables-api
   postman/orion-health-medicationrequest-api.postman_collection.json:
-    method: derived
-    evidence: openapi/orion-health-medicationrequest-api
+    method: unknown
+    evidence: no authorship recorded
   postman/orion-health-message-queues-api.postman_collection.json:
     method: derived
     evidence: openapi/orion-health-message-queues-api
