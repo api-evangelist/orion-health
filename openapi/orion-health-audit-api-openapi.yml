@@ -93,17 +93,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
     AuditLogEntry:
       type: object
       properties:
@@ -161,6 +150,17 @@ components:
                 type: string
               message:
                 type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
   responses:
     Unauthorized:
       description: Authentication required
@@ -169,6 +169,14 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     PageLimit:
       name: limit
       in: query
@@ -178,14 +186,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

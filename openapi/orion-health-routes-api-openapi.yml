@@ -218,34 +218,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
-    RouteStatus:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        status:
-          type: string
-          enum:
-          - started
-          - stopped
-          - error
-          - disabled
-        statusChangedAt:
-          type: string
-          format: date-time
     CommunicationPoint:
       type: object
       properties:
@@ -283,36 +255,6 @@ components:
           type: integer
         connectionCount:
           type: integer
-    Route:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        folderPath:
-          type: string
-        status:
-          type: string
-          enum:
-          - started
-          - stopped
-          - error
-          - disabled
-        inputCommPointCount:
-          type: integer
-        outputCommPointCount:
-          type: integer
-        filterCount:
-          type: integer
-        messagesProcessed:
-          type: integer
-          description: Total messages processed since last restart
-        errorCount:
-          type: integer
-        lastMessageTime:
-          type: string
-          format: date-time
     RouteDetail:
       type: object
       properties:
@@ -367,22 +309,6 @@ components:
         modifiedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
     RouteStatistics:
       type: object
       properties:
@@ -425,6 +351,80 @@ components:
                 type: integer
               avgProcessingTimeMs:
                 type: number
+    Route:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        folderPath:
+          type: string
+        status:
+          type: string
+          enum:
+          - started
+          - stopped
+          - error
+          - disabled
+        inputCommPointCount:
+          type: integer
+        outputCommPointCount:
+          type: integer
+        filterCount:
+          type: integer
+        messagesProcessed:
+          type: integer
+          description: Total messages processed since last restart
+        errorCount:
+          type: integer
+        lastMessageTime:
+          type: string
+          format: date-time
+    RouteStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - started
+          - stopped
+          - error
+          - disabled
+        statusChangedAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
   responses:
     Unauthorized:
       description: Authentication required
@@ -439,6 +439,14 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     PageLimit:
       name: limit
       in: query
@@ -448,14 +456,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

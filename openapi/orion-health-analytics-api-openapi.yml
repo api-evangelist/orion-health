@@ -145,24 +145,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    PopulationSummary:
+    CohortAnalytics:
       type: object
       properties:
-        totalPatients:
+        cohortId:
+          type: string
+          format: uuid
+        memberCount:
           type: integer
         demographics:
           type: object
@@ -172,6 +162,28 @@ components:
             genderDistribution:
               type: object
               additionalProperties:
+                type: integer
+            ageDistribution:
+              type: array
+              items:
+                type: object
+                properties:
+                  ageRange:
+                    type: string
+                  count:
+                    type: integer
+        topConditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition:
+                type: string
+              code:
+                type: string
+              prevalence:
+                type: number
+              count:
                 type: integer
         riskDistribution:
           type: object
@@ -184,26 +196,17 @@ components:
               type: integer
             critical:
               type: integer
-        topConditions:
-          type: array
-          items:
-            type: object
-            properties:
-              condition:
-                type: string
-              count:
-                type: integer
-              prevalence:
-                type: number
-        careGaps:
+        utilization:
           type: object
           properties:
-            total:
-              type: integer
-            byPriority:
-              type: object
-              additionalProperties:
-                type: integer
+            edVisitsPerThousand:
+              type: number
+            admissionsPerThousand:
+              type: number
+            readmissionRate:
+              type: number
+            averageLengthOfStay:
+              type: number
         period:
           type: object
           properties:
@@ -282,13 +285,10 @@ components:
                 type: string
               message:
                 type: string
-    CohortAnalytics:
+    PopulationSummary:
       type: object
       properties:
-        cohortId:
-          type: string
-          format: uuid
-        memberCount:
+        totalPatients:
           type: integer
         demographics:
           type: object
@@ -298,28 +298,6 @@ components:
             genderDistribution:
               type: object
               additionalProperties:
-                type: integer
-            ageDistribution:
-              type: array
-              items:
-                type: object
-                properties:
-                  ageRange:
-                    type: string
-                  count:
-                    type: integer
-        topConditions:
-          type: array
-          items:
-            type: object
-            properties:
-              condition:
-                type: string
-              code:
-                type: string
-              prevalence:
-                type: number
-              count:
                 type: integer
         riskDistribution:
           type: object
@@ -332,17 +310,26 @@ components:
               type: integer
             critical:
               type: integer
-        utilization:
+        topConditions:
+          type: array
+          items:
+            type: object
+            properties:
+              condition:
+                type: string
+              count:
+                type: integer
+              prevalence:
+                type: number
+        careGaps:
           type: object
           properties:
-            edVisitsPerThousand:
-              type: number
-            admissionsPerThousand:
-              type: number
-            readmissionRate:
-              type: number
-            averageLengthOfStay:
-              type: number
+            total:
+              type: integer
+            byPriority:
+              type: object
+              additionalProperties:
+                type: integer
         period:
           type: object
           properties:
@@ -352,6 +339,19 @@ components:
             end:
               type: string
               format: date
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -232,17 +232,47 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Pagination:
+    DocumentMetadata:
       type: object
       properties:
-        offset:
+        id:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+        documentType:
+          type: string
+        title:
+          type: string
+        sourceOrganization:
+          type: string
+        sourceOrganizationName:
+          type: string
+        authorName:
+          type: string
+        authorSpecialty:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        submittedDate:
+          type: string
+          format: date-time
+        format:
+          type: string
+        mimeType:
+          type: string
+        size:
           type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
-          type: boolean
+        hash:
+          type: string
+          description: SHA-256 hash of the document content
+        status:
+          type: string
+          enum:
+          - available
+          - deprecated
+          - deleted
     RecordLocatorResult:
       type: object
       properties:
@@ -319,60 +349,6 @@ components:
               - normal
               - restricted
               - very-restricted
-    DocumentMetadata:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        patientId:
-          type: string
-        documentType:
-          type: string
-        title:
-          type: string
-        sourceOrganization:
-          type: string
-        sourceOrganizationName:
-          type: string
-        authorName:
-          type: string
-        authorSpecialty:
-          type: string
-        createdDate:
-          type: string
-          format: date-time
-        submittedDate:
-          type: string
-          format: date-time
-        format:
-          type: string
-        mimeType:
-          type: string
-        size:
-          type: integer
-        hash:
-          type: string
-          description: SHA-256 hash of the document content
-        status:
-          type: string
-          enum:
-          - available
-          - deprecated
-          - deleted
-    DocumentContent:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        metadata:
-          $ref: '#/components/schemas/DocumentMetadata'
-        content:
-          type: string
-          description: Base64-encoded document content
-        format:
-          type: string
     Error:
       type: object
       properties:
@@ -389,15 +365,33 @@ components:
                 type: string
               message:
                 type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
+    DocumentContent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        metadata:
+          $ref: '#/components/schemas/DocumentMetadata'
+        content:
+          type: string
+          description: Base64-encoded document content
+        format:
+          type: string
   responses:
     Unauthorized:
       description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
       content:
         application/json:
           schema:
@@ -408,7 +402,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     PageLimit:
       name: limit
       in: query
@@ -418,14 +426,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

@@ -127,17 +127,27 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Pagination:
+    Queue:
       type: object
       properties:
-        offset:
+        id:
           type: integer
-        limit:
+        name:
+          type: string
+        routeId:
           type: integer
-        total:
+        routeName:
+          type: string
+        depth:
           type: integer
-        hasMore:
-          type: boolean
+          description: Number of messages in the queue
+        errorCount:
+          type: integer
+        heldCount:
+          type: integer
+        oldestMessageTime:
+          type: string
+          format: date-time
     Message:
       type: object
       properties:
@@ -168,27 +178,6 @@ components:
           description: Message size in bytes
         errorMessage:
           type: string
-    Queue:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        routeId:
-          type: integer
-        routeName:
-          type: string
-        depth:
-          type: integer
-          description: Number of messages in the queue
-        errorCount:
-          type: integer
-        heldCount:
-          type: integer
-        oldestMessageTime:
-          type: string
-          format: date-time
     QueueDetail:
       type: object
       properties:
@@ -215,6 +204,17 @@ components:
           type: number
         throughputPerSecond:
           type: number
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
+          type: boolean
     Error:
       type: object
       properties:
@@ -245,6 +245,14 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     PageLimit:
       name: limit
       in: query
@@ -254,14 +262,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

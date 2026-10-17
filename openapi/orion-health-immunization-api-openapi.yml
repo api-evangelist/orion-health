@@ -91,84 +91,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    FhirFormat:
-      name: _format
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - application/fhir+json
-        - application/fhir+xml
-    FhirOffset:
-      name: _offset
-      in: query
-      description: Starting offset for paging
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    FhirCount:
-      name: _count
-      in: query
-      description: Maximum number of results per page
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    ResourceId:
-      name: id
-      in: path
-      required: true
-      description: Logical ID of the FHIR resource
-      schema:
-        type: string
   schemas:
-    Quantity:
-      type: object
-      properties:
-        value:
-          type: number
-        unit:
-          type: string
-        system:
-          type: string
-          format: uri
-        code:
-          type: string
-    Resource:
-      type: object
-      properties:
-        resourceType:
-          type: string
-          description: Type of FHIR resource
-        id:
-          type: string
-          description: Logical ID of the resource
-        meta:
-          type: object
-          properties:
-            versionId:
-              type: string
-            lastUpdated:
-              type: string
-              format: date-time
-            profile:
-              type: array
-              items:
-                type: string
-                format: uri
-    CodeableConcept:
-      type: object
-      properties:
-        coding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Coding'
-        text:
-          type: string
     OperationOutcome:
       type: object
       properties:
@@ -193,6 +116,34 @@ components:
                 type: string
               details:
                 $ref: '#/components/schemas/CodeableConcept'
+    Quantity:
+      type: object
+      properties:
+        value:
+          type: number
+        unit:
+          type: string
+        system:
+          type: string
+          format: uri
+        code:
+          type: string
+    Reference:
+      type: object
+      properties:
+        reference:
+          type: string
+        display:
+          type: string
+    CodeableConcept:
+      type: object
+      properties:
+        coding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coding'
+        text:
+          type: string
     Coding:
       type: object
       properties:
@@ -203,6 +154,28 @@ components:
           type: string
         display:
           type: string
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: Type of FHIR resource
+        id:
+          type: string
+          description: Logical ID of the resource
+        meta:
+          type: object
+          properties:
+            versionId:
+              type: string
+            lastUpdated:
+              type: string
+              format: date-time
+            profile:
+              type: array
+              items:
+                type: string
+                format: uri
     Immunization:
       type: object
       properties:
@@ -232,13 +205,6 @@ components:
           $ref: '#/components/schemas/CodeableConcept'
         doseQuantity:
           $ref: '#/components/schemas/Quantity'
-    Reference:
-      type: object
-      properties:
-        reference:
-          type: string
-        display:
-          type: string
     Bundle:
       type: object
       properties:
@@ -296,18 +262,52 @@ components:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/fhir+json:
-          schema:
-            $ref: '#/components/schemas/OperationOutcome'
     NotFound:
       description: Resource not found
       content:
         application/fhir+json:
           schema:
             $ref: '#/components/schemas/OperationOutcome'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/fhir+json:
+          schema:
+            $ref: '#/components/schemas/OperationOutcome'
+  parameters:
+    FhirOffset:
+      name: _offset
+      in: query
+      description: Starting offset for paging
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FhirCount:
+      name: _count
+      in: query
+      description: Maximum number of results per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: Logical ID of the FHIR resource
+      schema:
+        type: string
+    FhirFormat:
+      name: _format
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - application/fhir+json
+        - application/fhir+xml
   securitySchemes:
     oauth2:
       type: oauth2

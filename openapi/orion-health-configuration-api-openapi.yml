@@ -77,16 +77,27 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Pagination:
+    Component:
       type: object
       properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        hasMore:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - filter
+          - communication-point
+          - module
+          - connector
+        version:
+          type: string
+        vendor:
+          type: string
+        description:
+          type: string
+        installed:
           type: boolean
     EngineConfiguration:
       type: object
@@ -121,27 +132,16 @@ components:
               type: boolean
             clustering:
               type: boolean
-    Component:
+    Pagination:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - filter
-          - communication-point
-          - module
-          - connector
-        version:
-          type: string
-        vendor:
-          type: string
-        description:
-          type: string
-        installed:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        hasMore:
           type: boolean
     Error:
       type: object
@@ -167,6 +167,14 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   parameters:
+    PageOffset:
+      name: offset
+      in: query
+      description: Number of items to skip
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     PageLimit:
       name: limit
       in: query
@@ -176,14 +184,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    PageOffset:
-      name: offset
-      in: query
-      description: Number of items to skip
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2
