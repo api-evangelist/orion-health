@@ -1,4 +1,4 @@
-# Orion Health (orion-health)
+# Orion Health
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,26 +66,226 @@
 
 Medical platform which allows the development of applications for different healthcare scenarios
 
-**APIs.yml:** [apis.yml](apis.yml)
+**Areas:** Health · Public APIs
 
-## Type
-- **x-type:** company
-- **x-tier:** 3 (bulk-registered from public-apis)
-- **source:** [public-apis/public-apis](https://github.com/public-apis/public-apis) — category: Health
+## Orion Health on APIs.io
 
-## API
-- **Orion Health** — [Documentation](https://developer.orionhealth.io/)
+Everything profiled for Orion Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/orion-health/](https://apis.io/providers/orion-health/)** — or go straight to one of the APIs or properties below.
 
-## Tags
-Health, Public APIs
+### APIs (33)
 
-## Notes
-This entry was bulk-registered as part of a public-apis catalog sweep on 2026-05-28.
-A real OpenAPI artifact will be added during a follow-up enrichment pass if the provider publishes one.
+- [Orion Health](https://apis.io/apis/orion-health/orion-health/) — Medical platform which allows the development of applications for different healthcare scenarios
+- [Orion Health Alerts API](https://apis.io/apis/orion-health/orion-alerts-api/) — Clinical and population health alerts
+- [Orion Health Analytics API](https://apis.io/apis/orion-health/orion-analytics-api/) — Population health analytics and reporting
+- [Orion Health Audit API](https://apis.io/apis/orion-health/orion-audit-api/) — Audit log access for compliance
+- [Orion Health Care Programs API](https://apis.io/apis/orion-health/orion-care-programs-api/) — Care program management and enrollment
+- [Orion Health Cohorts API](https://apis.io/apis/orion-health/orion-cohorts-api/) — Patient cohort definition and analysis
+- [Orion Health Communication Points API](https://apis.io/apis/orion-health/orion-communication-points-api/) — Communication point configuration and management
+- [Orion Health Condition API](https://apis.io/apis/orion-health/orion-condition-api/) — Operations on Condition resources (diagnoses, problems)
+- [Orion Health Configuration API](https://apis.io/apis/orion-health/orion-configuration-api/) — Engine configuration management
+- [Orion Health Consent API](https://apis.io/apis/orion-health/orion-consent-api/) — Patient consent management for data sharing
+- [Orion Health DiagnosticReport API](https://apis.io/apis/orion-health/orion-diagnosticreport-api/) — Operations on DiagnosticReport resources
+- [Orion Health Documents API](https://apis.io/apis/orion-health/orion-documents-api/) — Clinical document exchange and retrieval
+- [Orion Health Encounter API](https://apis.io/apis/orion-health/orion-encounter-api/) — Operations on Encounter resources
+- [Orion Health Immunization API](https://apis.io/apis/orion-health/orion-immunization-api/) — Operations on Immunization resources
+- [Orion Health Lookup Tables API](https://apis.io/apis/orion-health/orion-lookup-tables-api/) — Lookup table management for data mapping
+- [Orion Health Message Queues API](https://apis.io/apis/orion-health/orion-message-queues-api/) — Message queue monitoring and management
+- [Orion Health Messages API](https://apis.io/apis/orion-health/orion-messages-api/) — Message search, inspection, and reprocessing
+- [Orion Health Metadata API](https://apis.io/apis/orion-health/orion-metadata-api/) — Server capability and metadata operations
+- [Orion Health Monitoring API](https://apis.io/apis/orion-health/orion-monitoring-api/) — System health and performance monitoring
+- [Orion Health Notifications API](https://apis.io/apis/orion-health/orion-notifications-api/) — Admission, discharge, and transfer notifications
+- [Orion Health Observation API](https://apis.io/apis/orion-health/orion-observation-api/) — Operations on Observation resources (vitals, labs, etc.)
+- [Orion Health Patient API](https://apis.io/apis/orion-health/orion-patient-api/) — Operations on Patient resources
+- [Orion Health Patient Identity API](https://apis.io/apis/orion-health/orion-patient-identity-api/) — Patient identity matching and cross-referencing (MPI)
+- [Orion Health Procedure API](https://apis.io/apis/orion-health/orion-procedure-api/) — Operations on Procedure resources
+- [Orion Health Provider Directory API](https://apis.io/apis/orion-health/orion-provider-directory-api/) — Provider and organization directory lookups
+- [Orion Health Quality Measures API](https://apis.io/apis/orion-health/orion-quality-measures-api/) — Healthcare quality measure tracking
+- [Orion Health Registries API](https://apis.io/apis/orion-health/orion-registries-api/) — Patient registry management
+- [Orion Health Risk Stratification API](https://apis.io/apis/orion-health/orion-risk-stratification-api/) — Patient risk scoring and stratification
+- [Orion Health Routes API](https://apis.io/apis/orion-health/orion-routes-api/) — Integration route management
+- [Orion Health Allergy Intolerance API](https://apis.io/apis/orion-health/orion-health-allergy-intolerance-api/) — Operations on AllergyIntolerance resources
+- [Orion Health Care plan API](https://apis.io/apis/orion-health/orion-health-care-plan-api/) — Operations on CarePlan resources
+- [Orion Health Document Reference API](https://apis.io/apis/orion-health/orion-health-document-reference-api/) — Operations on DocumentReference resources
+- [Orion Health Medication Request API](https://apis.io/apis/orion-health/orion-health-medication-request-api/) — Operations on MedicationRequest resources
 
-## Timestamps
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-28
+### Published properties
 
-## Maintainers
-- **Kin Lane** — kin@apievangelist.com
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Orion Health Rhapsody Messaging Events](https://apis.io/asyncapis/orion-health/orion-health-rhapsody-messaging-asyncapi/)
+
+#### Event channels (12)
+
+Individual events and webhooks the provider emits.
+
+- [adt/patient-admit](https://apis.io/channels/orion-health/adt-patient-admit/)
+- [adt/patient-discharge](https://apis.io/channels/orion-health/adt-patient-discharge/)
+- [adt/patient-merge](https://apis.io/channels/orion-health/adt-patient-merge/)
+- [adt/patient-registration](https://apis.io/channels/orion-health/adt-patient-registration/)
+- [adt/patient-transfer](https://apis.io/channels/orion-health/adt-patient-transfer/)
+- [adt/patient-update](https://apis.io/channels/orion-health/adt-patient-update/)
+- [documents/clinical-document](https://apis.io/channels/orion-health/documents-clinical-document/)
+- [fhir/subscription-notification](https://apis.io/channels/orion-health/fhir-subscription-notification/)
+- [orders/new-order](https://apis.io/channels/orion-health/orders-new-order/)
+- [orders/order-update](https://apis.io/channels/orion-health/orders-order-update/)
+- [results/observation-result](https://apis.io/channels/orion-health/results-observation-result/)
+- [scheduling/appointment-notification](https://apis.io/channels/orion-health/scheduling-appointment-notification/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Orion Health Agentic Access](https://apis.io/agentic-access/orion-health/orion-health-agentic-access/)
+
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [Orion Health Population Health Care Plan](https://apis.io/schemas/orion-health/orion-health-care-plan/)
+- [Orion Health FHIR Observation](https://apis.io/schemas/orion-health/orion-health-observation/)
+- [Orion Health FHIR Patient](https://apis.io/schemas/orion-health/orion-health-patient/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Orion Health Healthcare Context](https://apis.io/jsonld/orion-health/orion-health-healthcare-context/)
+
+#### Collections (68)
+
+Postman and Open Collection request collections.
+
+- [Orion Health FHIR Alerts API](https://apis.io/collections/orion-health/open-orion-health-alerts-api/)
+- [Orion Health FHIR Alerts AllergyIntolerance API](https://apis.io/collections/orion-health/open-orion-health-allergyintolerance-api/)
+- [Orion Health FHIR Alerts Analytics API](https://apis.io/collections/orion-health/open-orion-health-analytics-api/)
+- [Orion Health FHIR Alerts Audit API](https://apis.io/collections/orion-health/open-orion-health-audit-api/)
+- [Orion Health FHIR Alerts Care Programs API](https://apis.io/collections/orion-health/open-orion-health-care-programs-api/)
+- [Orion Health FHIR Alerts CarePlan API](https://apis.io/collections/orion-health/open-orion-health-careplan-api/)
+- [Orion Health FHIR Alerts Cohorts API](https://apis.io/collections/orion-health/open-orion-health-cohorts-api/)
+- [Orion Health FHIR Alerts Communication Points API](https://apis.io/collections/orion-health/open-orion-health-communication-points-api/)
+- [Orion Health FHIR Alerts Condition API](https://apis.io/collections/orion-health/open-orion-health-condition-api/)
+- [Orion Health FHIR Alerts Configuration API](https://apis.io/collections/orion-health/open-orion-health-configuration-api/)
+- [Orion Health FHIR Alerts Consent API](https://apis.io/collections/orion-health/open-orion-health-consent-api/)
+- [Orion Health FHIR Alerts DiagnosticReport API](https://apis.io/collections/orion-health/open-orion-health-diagnosticreport-api/)
+- [Orion Health FHIR Alerts DocumentReference API](https://apis.io/collections/orion-health/open-orion-health-documentreference-api/)
+- [Orion Health FHIR Alerts Documents API](https://apis.io/collections/orion-health/open-orion-health-documents-api/)
+- [Orion Health FHIR Alerts Encounter API](https://apis.io/collections/orion-health/open-orion-health-encounter-api/)
+- [Orion Health FHIR API](https://apis.io/collections/orion-health/open-orion-health-fhir/)
+- [Orion Health HIE API](https://apis.io/collections/orion-health/open-orion-health-hie/)
+- [Orion Health FHIR Alerts Immunization API](https://apis.io/collections/orion-health/open-orion-health-immunization-api/)
+- [Orion Health FHIR Alerts Lookup Tables API](https://apis.io/collections/orion-health/open-orion-health-lookup-tables-api/)
+- [Orion Health FHIR Alerts MedicationRequest API](https://apis.io/collections/orion-health/open-orion-health-medicationrequest-api/)
+- [Orion Health FHIR Alerts Message Queues API](https://apis.io/collections/orion-health/open-orion-health-message-queues-api/)
+- [Orion Health FHIR Alerts Messages API](https://apis.io/collections/orion-health/open-orion-health-messages-api/)
+- [Orion Health FHIR Alerts Metadata API](https://apis.io/collections/orion-health/open-orion-health-metadata-api/)
+- [Orion Health FHIR Alerts Monitoring API](https://apis.io/collections/orion-health/open-orion-health-monitoring-api/)
+- [Orion Health FHIR Alerts Notifications API](https://apis.io/collections/orion-health/open-orion-health-notifications-api/)
+- …and 43 more published on APIs.io
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Orion Health — asyncapi rules](https://apis.io/rules/orion-health/orion-health-asyncapi-spectral-rules/)
+- [Orion Health — jsonschema rules](https://apis.io/rules/orion-health/orion-health-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Orion Health Authentication](https://apis.io/security/orion-health/orion-health-authentication/)
+- [Orion Health Domain Security](https://apis.io/security/orion-health/orion-health-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Orion Health Scopes](https://apis.io/scopes/orion-health/orion-health-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Orion Health Plans Pricing](https://apis.io/plans/orion-health/orion-health-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Orion Health Rate Limits](https://apis.io/rate-limits/orion-health/orion-health-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Orion Health Finops](https://apis.io/finops/orion-health/orion-health-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://developer.orionhealth.io/)
+- [Getting started](https://www.orionhealth.com/developers/getting-started)
+- [Support](https://www.orionhealth.com/support)
+- [Blog](https://www.orionhealth.com/feed/)
+- [Terms of service](https://www.orionhealth.com/terms-of-service)
+- [Privacy policy](https://www.orionhealth.com/privacy-policy)
+- [GitHub](https://github.com/orionhealth)
+- [Status](https://status.orionhealth.com)
+
+## API Evangelist rating
+
+**Kin Score 38.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 51.8 |
+| Contract quality | 71.7 |
+| Contract governance | 13.6 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 15.8 |
+
+**Agent readiness 29.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.7** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/orion-health/](https://apis.io/providers/orion-health/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Orion Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/orion-health/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
